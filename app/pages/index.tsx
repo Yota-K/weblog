@@ -19,10 +19,10 @@ interface Props {
 }
 
 const Home: NextComponentType<NextPageContext, {}, Props> = ({ blogs }) => {
-    const test = 'カルキチのブログ';
+    const siteTitle = 'カルキチのブログ';
     return (
         <Layout>
-            <Head title={test} />
+            <Head title={siteTitle} />
             <div id="blog-list">
             <H2>記事一覧</H2>
             {blogs.map(blog =>

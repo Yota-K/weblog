@@ -27,7 +27,7 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog }) => {
     return (
         <Layout>
             <Head 
-                title={blog.title} 
+                title={`${blog.title}｜カルキチのブログ`} 
                 description={blog.description}
             />
             <div id="blog">

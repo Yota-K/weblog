@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { NextComponentType, NextPageContext } from "next";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import { API } from '../../api/api';
+import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import { BlogJson } from '../../interfaces/blog';
 import { TagJson } from '../../interfaces/tag';
@@ -43,6 +44,7 @@ const Tags: NextComponentType<NextPageContext, {}, Props> = ({ blogs }) => {
 
     return (
         <Layout>
+            <Head title={`${tagname()}｜カルキチのブログ`} />
             <div id="tags">
             <H2>{tagname()}</H2>
             {blogs.map((blog) => 
@@ -66,7 +68,7 @@ const Tags: NextComponentType<NextPageContext, {}, Props> = ({ blogs }) => {
 }
 
 Tags.getInitialProps = async (context: any) => {
-    const url:string = API.BASE_URL;
+    const url = API.BASE_URL;
     const {id} = context.query;
     const api = new API();
     const data = await api.getTags(url, id)
