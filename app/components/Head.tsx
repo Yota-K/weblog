@@ -11,6 +11,7 @@ export default ({ title, description }: Props): JSX.Element => {
     <Head>
         <title>{title}</title>
         <meta name="Description" content={description} />
+        <link rel="shortcut icon" href="/favicon.ico" />
     </Head>
   );
 };
