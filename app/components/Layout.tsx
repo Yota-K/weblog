@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { API } from '../api/api';
-
 import Header from './Header';
 import Sidebar from './Sidebar/index';
 import Footer from './Footer';
