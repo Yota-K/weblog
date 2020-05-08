@@ -50,15 +50,15 @@ export class API {
     };
 
     // タグページ
-    getTags(url: string, slug: string):Promise<BlogJson[]> {
+    getTags(url: string, slug: string):Promise<TagJson> {
         return new Promise(async (resolve, reject) => {
             const headers = this.getHeaders();
             try {
                 const res = await axios.get(
-                    `${url}/blogs?filters=taxonomy[contains]${slug}`,
+                    `${url}/tags/${slug}?depth=2`,
                     headers
                 );
-                const data = await res.data.contents;
+                const data = await res.data;
                 return resolve(data);
             }
             catch (er) {
