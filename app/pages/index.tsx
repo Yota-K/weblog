@@ -1,5 +1,6 @@
 import React from 'react';
 import { NextComponentType, NextPageContext } from "next";
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
 
 import Head from '../components/Head';
@@ -31,7 +32,7 @@ const Home: NextComponentType<NextPageContext, {}, Props> = ({ blogs }) => {
                         <a>{blog.title}</a>
                     </Link></H3>
                     <TagArea>
-                        {blog.tags.map(tag => 
+                        {blog.tag_field[0].tags.map(tag => 
                             <TagLabel key={tag.id}>
                                 <Link href="/tags/[id]" as={`/tags/${tag.id}`}><a>{tag.name}</a></Link>
                             </TagLabel>
@@ -45,11 +46,15 @@ const Home: NextComponentType<NextPageContext, {}, Props> = ({ blogs }) => {
     )
 }
 
-Home.getInitialProps = async () => {
+export async function getStaticProps() {
     const url = API.BASE_URL;
     const api = new API();
     const data = await api.getBlog(url);
-    return {blogs: data};
+    return {
+        props: {
+            blogs: data
+        }
+    }
 }
 
 export default Home;
