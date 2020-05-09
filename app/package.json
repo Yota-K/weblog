@@ -31,7 +31,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "npm run build && next export"
   },
   "author": "Yota-K",
   "license": "ISC"
