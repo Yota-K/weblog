@@ -1,29 +1,25 @@
 import React,{ useState, useEffect} from 'react';
 import Link from 'next/link';
-import axios from 'axios';
 
 import { API } from '../../api/api';
-import { TagJson } from '../../interfaces/tag';
 
 import { H4 } from '../../styled-components/atoms/Heading';
 import { SidebarBox } from '../../styled-components/BlogSidebar';
 import { TagLabel } from '../../styled-components/atoms/TagLabel';
+import { TagArea } from '../../styled-components/organisms/TagArea';
 
-interface Tag {
-    tags: TagJson[];
-}
-
-const TagArea: React.FC = () => {
-    const [tagList, setTagList] = React.useState<Tag>({
+const TagList: React.FC = () => {
+    const [tagAry, setTagAry] = React.useState<{tags: any}>({
         tags: [],
     });
 
     useEffect(() => {
         const getTags = async () => {
+            const url = API.BASE_URL;
             const api = new API();
-            const data = await api.getTaxonomyList(API.BASE_URL, 'tags')
-            setTagList({
-                tags: data,
+            const data = await api.getTaxonomyList(url, 'tags');
+            setTagAry({
+                tags: data
             })
         }
         getTags();
@@ -32,13 +28,15 @@ const TagArea: React.FC = () => {
     return(
         <SidebarBox>
             <H4>タグ一覧</H4>
-            {tagList.tags.map(tag =>
+            <TagArea>
+            {tagAry.tags.map((tag: any) => 
                 <TagLabel key={tag.id}>
                     <Link href="/tags/[id]" as={`/tags/${tag.id}`}><a>{tag.name}</a></Link>
                 </TagLabel>
             )}
+            </TagArea>
         </SidebarBox>
     );
 }
 
-export default TagArea;
+export default TagList;

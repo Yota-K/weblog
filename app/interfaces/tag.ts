@@ -25,3 +25,16 @@ export interface TagJson {
         }[];
     }[];
 }
+
+// タグ一覧
+export interface Tags {
+    tags: {
+        id: string;
+        createdAt: string;
+        updatedAt: string;
+        name: string;
+        posts: {
+            id: string;
+        }[];
+    }[];
+}
