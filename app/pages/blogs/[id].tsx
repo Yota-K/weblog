@@ -33,7 +33,7 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog }) => {
             <div id="blog">
                 <H1 fontsize={'2.4rem'}>{blog.title}</H1>
                 <TagArea>
-                    {blog.tags.map(tag => 
+                    {blog.tag_field[0].tags.map(tag => 
                         <TagLabel key={tag.id}>
                             <Link href="/tags/[id]" as={`/tags/${tag.id}`}><a>{tag.name}</a></Link>
                         </TagLabel>
