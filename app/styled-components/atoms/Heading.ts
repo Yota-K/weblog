@@ -4,7 +4,7 @@ import { device } from '../MediaQuery';
 export const H1 = styled.h1<{fontsize: string}>`
     font-size: ${props => props.fontsize}
     ${device.mobileM} {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 `;
 

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import { H4 } from '../../styled-components/atoms/Heading';
 import { SidebarBox } from '../../styled-components/BlogSidebar';
 
@@ -10,6 +11,7 @@ const TwitterTimeLine: React.FC = () => {
         // ! nullでなければ要素を追加。nullなら実行しない
         timeline!.appendChild(script);
     }, []);
+
     return(
         <SidebarBox>
             <H4>Twitter</H4>

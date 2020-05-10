@@ -9,6 +9,7 @@ import { Main } from '../styled-components/Main';
 
 const Layout: React.FC = ({ children }) => {
     const siteTitle = 'カルキチのブログ';
+
     return (
         <>
             <Header siteTitle={siteTitle} />

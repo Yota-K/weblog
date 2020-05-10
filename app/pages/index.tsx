@@ -22,6 +22,7 @@ interface Props {
 
 const Home: NextComponentType<NextPageContext, {}, Props> = ({ blogs }) => {
     const siteTitle = 'カルキチのブログ';
+
     return (
         <Layout>
             <Head title={siteTitle} />
