@@ -4,6 +4,7 @@ import { colorObj } from './variables';
 export const Content = styled.div`
     margin-top: 40px;
     min-height: 800px;
+    word-break: break-word;
     h2 {
         margin: 20px 0;
         padding: 0.4rem;
