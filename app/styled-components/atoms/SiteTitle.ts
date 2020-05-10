@@ -8,7 +8,7 @@ const baseStyle = `
     ${device.mobileM} {
         font-size: 1.8rem;
     }
-`
+`;
 
 export const SiteTitleTop = styled.h1`
     ${baseStyle}
@@ -16,4 +16,4 @@ export const SiteTitleTop = styled.h1`
 
 export const SiteTitle = styled.div`
     ${baseStyle}
-`
+`;
