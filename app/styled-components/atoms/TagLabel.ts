@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../MediaQuery';
 import { colorObj } from '../variables';
 
 export const TagLabel = styled.span`
@@ -11,5 +12,9 @@ export const TagLabel = styled.span`
         border-radius: 3px;
         border: 1px solid ${colorObj.baseBlue};
         color: ${colorObj.baseBlue} !important;
+        font-size: 1rem;
+        ${device.mobileM} {
+            font-size: 0.8rem;
+        }
     }
 `

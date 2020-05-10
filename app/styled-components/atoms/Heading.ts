@@ -13,7 +13,10 @@ export const H2 = styled.h2`
 `;
 
 export const H3 = styled.h3`
-    font-size: 1.6rem;
+    font-size: 1.3rem;
+    ${device.mobileM} {
+        font-size: 1rem;
+    }
 `;
 
 export const H4 = styled.h4`
