@@ -9,4 +9,4 @@ export const Wrapper = styled.div`
     ${device.laptop} {
         display: block;
     }
-`
+`;
