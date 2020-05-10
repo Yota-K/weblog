@@ -8,5 +8,10 @@ export const Wrapper = styled.div`
     margin: 80px auto 0;
     ${device.laptop} {
         display: block;
+        margin: 60px auto 0;
+    }
+    ${device.mobileM} {
+        display: block;
+        margin: 40px auto 0;
     }
 `;
