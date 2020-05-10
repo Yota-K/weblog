@@ -3,6 +3,9 @@ export interface BlogJson {
     createdAt: string;
     updatedAt: string;
     title: string;
+    thumbnail: {
+        url: string;
+    },
     body: string;
     description: string;
     tag_field: {
