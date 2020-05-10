@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { H4 } from '../../styled-components/atoms/Heading';
 import { SidebarBox } from '../../styled-components/BlogSidebar';
@@ -8,7 +9,12 @@ const Profile: React.FC = () => {
         <SidebarBox>
             <H4>プロフィール</H4>
             <div className="profile-area">
-                <img className="profile-icon" src="/icon.png" alt="icon" />
+                <LazyLoadImage
+                    className="profile-icon"
+                    src='/icon.png'
+                    alt='icon'
+                    effect="blur"
+                />
                 <p>カルキチ副島です。</p>
                 <p>都内でウェブ系の開発やっています。</p>
                 <p>普段開発しているものや、日常について書いています。</p>
