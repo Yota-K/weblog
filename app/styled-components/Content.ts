@@ -57,5 +57,9 @@ export const Content = styled.div`
         color: #fff;
         border-radius: 3px;
         overflow-x: scroll;
+        code {
+            font-size: 14px;
+            line-height: 2.4;
+        }
     }
 `;

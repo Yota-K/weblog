@@ -8,10 +8,11 @@ import Layout from '../../components/Layout';
 import { TagJson } from '../../interfaces/tag';
 import { dateFormat } from '../../scripts/date-format';
 
-import { BlogCard } from '../../styled-components/organisms/BlogCard';
 import { H2, H3 } from '../../styled-components/atoms/Heading';
+import { BlogCard } from '../../styled-components/organisms/BlogCard';
 import { TagArea } from '../../styled-components/organisms/TagArea';
 import { TagLabel } from '../../styled-components/atoms/TagLabel';
+import { TimeStamp } from '../../styled-components/atoms/TimeStamp';
 
 interface Props {
     tags: TagJson;
@@ -35,7 +36,7 @@ const Tags: NextComponentType<NextPageContext, {}, Props> = ({ tags }) => {
                             </TagLabel>
                         )}
                     </TagArea>
-                    <span className="timestamp">{dateFormat(blog.createdAt)}</span>
+                    <TimeStamp>{dateFormat(blog.createdAt)}</TimeStamp>
                 </BlogCard>
             )}
             </div>

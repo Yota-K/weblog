@@ -3,17 +3,17 @@ import { NextComponentType, NextPageContext } from "next";
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 
+import { API } from '../api/api';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import { API } from '../api/api';
 import { BlogJson } from '../interfaces/blog';
 import { dateFormat } from '../scripts/date-format';
 
 import { H2, H3 } from '../styled-components/atoms/Heading';
-import { TimeStamp } from '../styled-components/atoms/TimeStamp';
 import { BlogCard } from '../styled-components/organisms/BlogCard';
 import { TagArea } from '../styled-components/organisms/TagArea';
 import { TagLabel } from '../styled-components/atoms/TagLabel';
+import { TimeStamp } from '../styled-components/atoms/TimeStamp';
 
 interface Props {
     blogs: BlogJson[];

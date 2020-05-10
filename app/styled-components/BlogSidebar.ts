@@ -22,6 +22,7 @@ export const SidebarBox = styled.div`
     }
     .profile-icon {
         width: 100px;
+        max-width: 100px;
         height: auto;
         display: inline-block;
         margin: 20px 0;
