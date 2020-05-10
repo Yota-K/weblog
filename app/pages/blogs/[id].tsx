@@ -1,18 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 import { NextComponentType, NextPageContext } from "next";
 import Link from 'next/link';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import MarkdownIt from 'markdown-it';
 
+import { API } from '../../api/api';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
-import { API } from '../../api/api';
 import { BlogJson } from '../../interfaces/blog';
 import { dateFormat } from '../../scripts/date-format';
 
 import { H1 } from '../../styled-components/atoms/Heading';
-import { TimeStamp } from '../../styled-components/atoms/TimeStamp';
 import { TagArea } from '../../styled-components/organisms/TagArea';
 import { TagLabel } from '../../styled-components/atoms/TagLabel';
+import { TimeStamp } from '../../styled-components/atoms/TimeStamp';
 import { Content } from '../../styled-components/Content';
 
 interface Props {
@@ -41,6 +42,14 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog }) => {
                 </TagArea>
                 <TimeStamp>{dateFormat(blog.createdAt)}</TimeStamp>
                 <Content>
+                    <LazyLoadImage
+                        className="eyecatch"
+                        width="100%"
+                        height="auto"
+                        src={`${blog.thumbnail.url}`}
+                        alt="thumbnail"
+                        effect="blur"
+                    />
                     <div className="post" dangerouslySetInnerHTML={{ __html: `${blog.body}`}}></div>
                 </Content>
             </div>

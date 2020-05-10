@@ -5,6 +5,10 @@ export const Content = styled.div`
     margin-top: 40px;
     min-height: 800px;
     word-break: break-word;
+    .eyecatch {
+        margin: -20px 0 60px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
     h2 {
         margin: 20px 0;
         padding: 0.4rem;
