@@ -30,6 +30,7 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog }) => {
             <Head 
                 title={`${blog.title}｜カルキチのブログ`} 
                 description={blog.description}
+                thumbnail={blog.thumbnail.url}
             />
             <div id="blog">
                 <H1 fontsize={'2.2rem'}>{blog.title}</H1>
@@ -46,7 +47,7 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog }) => {
                         className="eyecatch"
                         width="100%"
                         height="auto"
-                        src={`${blog.thumbnail.url}`}
+                        src={blog.thumbnail.url}
                         alt="thumbnail"
                         effect="blur"
                     />
