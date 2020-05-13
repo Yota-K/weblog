@@ -1,5 +1,5 @@
 import React from 'react';
-import { NextComponentType, NextPageContext } from "next";
+import { NextComponentType, NextPageContext } from 'next';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import MarkdownIt from 'markdown-it';

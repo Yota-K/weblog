@@ -10,7 +10,7 @@ const Profile: React.FC = () => {
             <H4>プロフィール</H4>
             <div className="profile-area">
                 <LazyLoadImage
-                    className="profile-icon"
+                    className='profile-icon'
                     src='/icon.png'
                     alt='icon'
                     effect="blur"

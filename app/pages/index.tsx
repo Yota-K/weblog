@@ -32,9 +32,9 @@ const Home: NextComponentType<NextPageContext, {}, Props> = ({ blogs }) => {
                 <BlogCard key={blog.id}>
                     <PostThumbnail>
                         <LazyLoadImage
-                            src={`${blog.thumbnail.url}`}
+                            src={blog.thumbnail.url}
                             alt='thumbnail'
-                            effect="blur"
+                            effect='blur'
                         />
                     </PostThumbnail>
                     <PostInfo>

@@ -1,7 +1,6 @@
 const axios = require('axios');
 import { BlogJson } from '../interfaces/blog';
-import { TagJson } from '../interfaces/tag';
-import { Tags } from '../interfaces/tag';
+import { TagJson, Tags } from '../interfaces/tag';
 import { RequestHeader } from '../interfaces/request-header';
 
 export class API {

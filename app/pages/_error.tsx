@@ -1,5 +1,5 @@
 import React from 'react';
-import { NextComponentType, NextPageContext } from "next";
+import { NextComponentType, NextPageContext } from 'next';
 
 import Head from '../components/Head';
 import Layout from '../components/Layout';
