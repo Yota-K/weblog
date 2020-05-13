@@ -33,7 +33,13 @@ export const Content = styled.div`
         }
     }
     a {
-        color: ${colorObj.baseBlue};
+        color: blue;
+        text-decoration: underline;
+        font-weight: 600;
+        &:hover {
+            color: red;
+            transition: all 0.4s;
+        }
     }
     p {
         font-size: 18px;
