@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colorObj } from './variables';
 
 export const Content = styled.div`
-    margin-top: 40px;
+    margin-top: 35px;
     min-height: 800px;
     word-break: break-word;
     .eyecatch {
