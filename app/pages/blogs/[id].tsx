@@ -7,12 +7,14 @@ import MarkdownIt from 'markdown-it';
 import { API } from '../../api/api';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
+import SocialLinks from '../../components/SocialLinks';
 import { BlogJson } from '../../interfaces/blog';
 import { dateFormat } from '../../scripts/date-format';
 
 import { H1 } from '../../styled-components/atoms/Heading';
 import { TagArea } from '../../styled-components/organisms/TagArea';
 import { TagLabel } from '../../styled-components/atoms/TagLabel';
+import { ShareArea } from '../../styled-components/organisms/ShareArea';
 import { TimeStamp } from '../../styled-components/atoms/TimeStamp';
 import { Content } from '../../styled-components/Content';
 
@@ -21,6 +23,7 @@ interface Props {
 }
 
 const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog }) => {
+    const url = `https://karukichi-blog.netlify.app/blogs/${blog.id}`;
     const md = new MarkdownIt({
         html: true
     });
@@ -33,6 +36,7 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog }) => {
                 thumbnail={blog.thumbnail.url}
             />
             <div id="blog">
+                <TimeStamp>{dateFormat(blog.createdAt)}</TimeStamp>
                 <H1 fontsize={'2.2rem'}>{blog.title}</H1>
                 <TagArea>
                     {blog.tag_field[0].tags.map(tag => 
@@ -41,7 +45,9 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog }) => {
                         </TagLabel>
                     )}
                 </TagArea>
-                <TimeStamp>{dateFormat(blog.createdAt)}</TimeStamp>
+                <ShareArea>
+                    <SocialLinks url={url} />
+                </ShareArea>
                 <Content>
                     <LazyLoadImage
                         className="eyecatch"
