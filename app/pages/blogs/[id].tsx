@@ -131,6 +131,12 @@ const Content = styled.div`
             line-height: 1.9;
         }
     }
+    blockquote {
+        padding: 12px;
+        background: #ddd;
+        border-radius: 3px;
+        line-height: 1.9;
+    }
     pre {
         padding: 12px;
         background: rgb(39, 44, 52);
