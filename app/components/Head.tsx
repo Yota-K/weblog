@@ -14,7 +14,7 @@ export default ({ title, description, thumbnail }: Props): JSX.Element => {
         if (typeof window !== 'undefined') {
             setUrl(window.location.href);
         }
-    }, [url])
+    }, [url]);
 
     return (
         <Head>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NextComponentType, NextPageContext } from "next";
+import { NextComponentType, NextPageContext } from 'next';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -10,11 +10,11 @@ import Layout from '../components/Layout';
 import { BlogJson } from '../interfaces/blog';
 import { dateFormat } from '../scripts/date-format';
 
-import { H2, H3 } from '../styled-components/atoms/Heading';
-import { BlogCard, PostThumbnail, PostInfo } from '../styled-components/organisms/BlogCard';
-import { TagArea } from '../styled-components/organisms/TagArea';
-import { TagLabel } from '../styled-components/atoms/TagLabel';
-import { TimeStamp } from '../styled-components/atoms/TimeStamp';
+import { H2, H3 } from '../share/Heading';
+import { BlogCard, PostThumbnail, PostInfo } from '../share/BlogCard';
+import { TagArea } from '../share/TagArea';
+import { TagLabel } from '../share/TagLabel';
+import { TimeStamp } from '../share/TimeStamp';
 
 interface Props {
     blogs: BlogJson[];
@@ -54,7 +54,7 @@ const Home: NextComponentType<NextPageContext, {}, Props> = ({ blogs }) => {
             )}
             </div>
         </Layout>
-    )
+    );
 }
 
 export async function getStaticProps() {
@@ -66,6 +66,6 @@ export async function getStaticProps() {
             blogs: data
         }
     }
-}
+};
 
 export default Home;

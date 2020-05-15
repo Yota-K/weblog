@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { device } from '../MediaQuery';
-import { colorObj } from '../variables';
+import { device } from './media-query';
+import { colorObj } from './variables';
 
 export const TagLabel = styled.span`
     display: inline-block;

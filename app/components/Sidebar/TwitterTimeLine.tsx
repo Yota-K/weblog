@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
-import { H4 } from '../../styled-components/atoms/Heading';
-import { SidebarBox } from '../../styled-components/BlogSidebar';
+import { SidebarBox } from './SidebarBox';
+import { H4 } from '../../share/Heading';
 
 const TwitterTimeLine: React.FC = () => {
     useEffect(() => {

@@ -3,7 +3,7 @@ import { NextComponentType, NextPageContext } from 'next';
 
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import { H2 } from '../styled-components/atoms/Heading';
+import { H2 } from '../share/Heading';
 
 interface Props {
     statusCode: number;
@@ -18,12 +18,12 @@ const Error: NextComponentType<NextPageContext, {}, Props> = ({ statusCode }) =>
             <p>移動または削除された可能性があります。</p>
             <p>URL、ファイル名にタイプミスがないかもご確認ください。</p>
         </Layout>
-    )
+    );
 }
 
 Error.getInitialProps = async ({ res, err }: NextPageContext) => {
     const statusCode = res ? res.statusCode : err ? err.statusCode : 400;
     return {statusCode};
-}
+};
 
 export default Error;

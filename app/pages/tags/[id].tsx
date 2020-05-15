@@ -9,11 +9,11 @@ import Layout from '../../components/Layout';
 import { TagJson } from '../../interfaces/tag';
 import { dateFormat } from '../../scripts/date-format';
 
-import { H2, H3 } from '../../styled-components/atoms/Heading';
-import { BlogCard, PostThumbnail, PostInfo } from '../../styled-components/organisms/BlogCard';
-import { TagArea } from '../../styled-components/organisms/TagArea';
-import { TagLabel } from '../../styled-components/atoms/TagLabel';
-import { TimeStamp } from '../../styled-components/atoms/TimeStamp';
+import { H2, H3 } from '../../share/Heading';
+import { BlogCard, PostThumbnail, PostInfo } from '../../share/BlogCard';
+import { TagArea } from '../../share/TagArea';
+import { TagLabel } from '../../share/TagLabel';
+import { TimeStamp } from '../../share/TimeStamp';
 
 interface Props {
     tags: TagJson;
@@ -60,6 +60,6 @@ Tags.getInitialProps = async (context: any) => {
     const api = new API();
     const data = await api.getTags(url, id);
     return {tags: data};
-}
+};
 
 export default Tags;

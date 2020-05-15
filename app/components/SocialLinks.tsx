@@ -20,7 +20,7 @@ const SocialLinks: React.FC<Props> = ({ url }) => {
                 <FacebookIcon size={42} round />
             </FacebookShareButton>
         </>
-    )
+    );
 }
 
 export default SocialLinks;

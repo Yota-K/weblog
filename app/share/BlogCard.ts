@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { device } from '../MediaQuery';
-import { colorObj } from '../variables';
+import { colorObj } from '../share/variables';
+import { device } from '../share/media-query';
 
 export const BlogCard = styled.div`
     display: flex;
@@ -12,7 +12,7 @@ export const BlogCard = styled.div`
     a {
         color: ${colorObj.baseBlack};
     }
-`;
+`
 
 export const PostThumbnail = styled.div`
     width: 40%;
@@ -22,7 +22,7 @@ export const PostThumbnail = styled.div`
     ${device.mobileM} {
         width: 50%;
     }
-`;
+`
 
 export const PostInfo = styled.div`
     width: 60%;
@@ -30,4 +30,4 @@ export const PostInfo = styled.div`
     ${device.mobileM} {
         width: 50%;
     }
-`;
+`

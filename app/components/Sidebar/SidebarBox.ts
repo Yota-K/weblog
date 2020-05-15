@@ -1,15 +1,5 @@
 import styled from 'styled-components';
-import { device } from './MediaQuery';
-import { colorObj } from './variables';
-
-export const BlogSidebar = styled.article`
-    width: 340px;
-    margin-left: 50px;
-    ${device.laptop} {
-        width: 100%;
-        margin: 80px 0 0 0;
-    }
-`;
+import { colorObj } from '../../share/variables';
 
 export const SidebarBox = styled.div`
     margin-bottom: 30px;
@@ -29,4 +19,4 @@ export const SidebarBox = styled.div`
         border: 1px solid ${colorObj.borderGray};
         border-radius: 50%;
     }
-`;
+`

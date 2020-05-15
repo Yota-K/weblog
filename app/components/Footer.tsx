@@ -1,7 +1,5 @@
 import React from 'react';
-
-import { FooterBar } from '../styled-components/organisms/AppBar';
-import { TextCenter } from '../styled-components/atoms/textCenter';
+import styled from 'styled-components';
 
 interface Props {
     siteTitle: React.ReactNode;
@@ -12,9 +10,17 @@ const Footer: React.FC<Props> = ({ siteTitle }) => {
 
     return (
         <FooterBar>
-            <TextCenter>© {year} {siteTitle}</TextCenter>
+            <p>© {year} {siteTitle}</p>
         </FooterBar>
-    )
+    );
 }
+
+const FooterBar = styled.footer`
+    margin-top: 50px;
+    padding: 20px;
+    p {
+        text-align: center;
+    }
+`
 
 export default Footer;

@@ -3,23 +3,23 @@ import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/do
 import { ServerStyleSheet } from 'styled-components';
 
 class MyDocument extends Document {
-    static async getInitialProps(ctx: DocumentContext) {
+    static async getInitialProps(context: DocumentContext) {
         const sheet = new ServerStyleSheet();
-        const originalRenderPage = ctx.renderPage;
+        const originalRenderPage = context.renderPage;
 
-        ctx.renderPage = () =>
+        context.renderPage = () =>
             originalRenderPage({
                 enhanceApp: (App: any) => (props :any) => 
                     sheet.collectStyles(<App {...props} />),
         });
 
-        const initialProps = await Document.getInitialProps(ctx);
+        const initialProps = await Document.getInitialProps(context);
 
         return {
             ...initialProps,
             styles: [...(initialProps.styles as any), ...sheet.getStyleElement()]
         };
-    }
+    };
 
     public render() {
         return (
@@ -61,7 +61,7 @@ class MyDocument extends Document {
                     <NextScript />
                 </body>
             </Html>
-        )
+        );
     }
 }
 

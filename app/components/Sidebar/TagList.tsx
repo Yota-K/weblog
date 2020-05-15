@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 import { API } from '../../api/api';
 
-import { H4 } from '../../styled-components/atoms/Heading';
-import { SidebarBox } from '../../styled-components/BlogSidebar';
-import { TagLabel } from '../../styled-components/atoms/TagLabel';
-import { TagArea } from '../../styled-components/organisms/TagArea';
+import { SidebarBox } from './SidebarBox';
+import { H4 } from '../../share/Heading';
+import { TagArea } from '../../share/TagArea';
+import { TagLabel } from '../../share/TagLabel';
 
 const TagList: React.FC = () => {
     const [tagAry, setTagAry] = React.useState<{tags: any}>({

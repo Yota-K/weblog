@@ -1,8 +1,8 @@
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { H4 } from '../../styled-components/atoms/Heading';
-import { SidebarBox } from '../../styled-components/BlogSidebar';
+import { H4 } from '../../share/Heading';
+import { SidebarBox } from './SidebarBox';
 
 const Profile: React.FC = () => {
     return(
