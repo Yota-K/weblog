@@ -74,7 +74,7 @@ const ShareArea = styled.div`
 const Content = styled.div`
     margin-top: 35px;
     min-height: 800px;
-    word-break: break-word;
+    word-break: break-all;
     .eyecatch {
         margin: -20px 0 60px;
         box-shadow: 0 0 10px rgba(0,0,0,0.2);
