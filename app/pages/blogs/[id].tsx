@@ -13,6 +13,7 @@ import { BlogJson } from '../../interfaces/blog';
 import { dateFormat } from '../../scripts/date-format';
 
 import { colorObj } from '../../share/variables';
+import { device } from '../../share/media-query';
 import { H1 } from '../../share/Heading';
 import { TagArea } from '../../share/TagArea';
 import { TagLabel } from '../../share/TagLabel';
@@ -85,6 +86,10 @@ const Content = styled.div`
         border-radius: 3px;
         font-size: 1.8rem;
         letter-spacing: 0.4px;
+        font-size: 1.8rem;
+        ${device.mobileM} {
+            font-size: 1.6rem;
+        }
     }
     h3 {
         position: relative;
@@ -99,6 +104,10 @@ const Content = styled.div`
             content: "";
             width: 30%;
             border-bottom: 2px solid ${colorObj.baseBlue};
+        }
+        font-size: 1.6rem;
+        ${device.mobileM} {
+            font-size: 1.4rem;
         }
     }
     a {
@@ -132,6 +141,7 @@ const Content = styled.div`
         }
     }
     blockquote {
+        margin: 25px 0;
         padding: 12px;
         background: #ddd;
         border-radius: 3px;

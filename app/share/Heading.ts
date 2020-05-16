@@ -4,18 +4,21 @@ import { device } from './media-query';
 export const H1 = styled.h1`
     font-size: 2rem;
     ${device.mobileM} {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 `
 
 export const H2 = styled.h2`
     font-size: 1.8rem;
+    ${device.mobileM} {
+        font-size: 1.6rem;
+    }
 `
 
 export const H3 = styled.h3`
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     ${device.mobileM} {
-        font-size: 1rem;
+        font-size: 1.4rem;
     }
 `
 
