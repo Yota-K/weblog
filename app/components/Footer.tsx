@@ -16,7 +16,7 @@ const Footer: React.FC<Props> = ({ siteTitle }) => {
 }
 
 const FooterBar = styled.footer`
-    margin-top: 50px;
+    margin-top: 100px;
     padding: 20px;
     p {
         text-align: center;
