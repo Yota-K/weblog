@@ -4,6 +4,8 @@ import { NextComponentType, NextPageContext } from 'next';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import MarkdownIt from 'markdown-it';
+import cheerio from 'cheerio';
+import hljs from 'highlight.js'
 
 import { API } from '../../api/api';
 import Head from '../../components/Head';
@@ -21,9 +23,10 @@ import { TimeStamp } from '../../share/TimeStamp';
 
 interface Props {
     blog: BlogJson;
+    body: string;
 }
 
-const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog }) => {
+const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog, body }) => {
     const url = `https://karukichi-blog.netlify.app/blogs/${blog.id}`;
     const md = new MarkdownIt({
         html: true
@@ -58,7 +61,7 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog }) => {
                         alt="thumbnail"
                         effect="blur"
                     />
-                    <div className="post" dangerouslySetInnerHTML={{ __html: `${blog.body}`}}></div>
+                    <div className="post" dangerouslySetInnerHTML={{ __html: body}}></div>
                 </Content>
             </div>
         </Layout>
@@ -84,18 +87,17 @@ const Content = styled.div`
         padding: 0.4rem;
         background: #b8d0f5;
         border-radius: 3px;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         letter-spacing: 0.4px;
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         ${device.mobileM} {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
         }
     }
     h3 {
         position: relative;
         margin: 20px 0;
         padding-bottom: 5px;
-        font-size: 1.6rem;
         border-bottom: 2px solid ${colorObj.borderGray};
         &::after {
             position: absolute;
@@ -105,9 +107,9 @@ const Content = styled.div`
             width: 30%;
             border-bottom: 2px solid ${colorObj.baseBlue};
         }
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         ${device.mobileM} {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
         }
     }
     a {
@@ -148,14 +150,12 @@ const Content = styled.div`
         line-height: 1.9;
     }
     pre {
-        padding: 12px;
-        background: rgb(39, 44, 52);
-        color: #fff;
+        margin: 20px 0;
         border-radius: 3px;
         overflow-x: scroll;
         code {
             font-size: 14px;
-            line-height: 2.4;
+            line-height: 2.2;
         }
     }
 `
@@ -165,7 +165,18 @@ Blog.getInitialProps = async (context: any) => {
     const {id} = context.query;
     const api = new API();
     const blog = await api.getPost(url, id);
-    return {blog};
+
+    const $ = cheerio.load(blog.body, { _useHtmlParser2: true });
+    $('pre > code').each((i, elm):void => {
+        const result = hljs.highlightAuto($(elm).text());
+        $(elm).html(result.value);
+        $(elm).addClass('hljs');
+    });
+
+    return {
+        blog: blog,
+        body: $.html(),
+    };
 };
 
 export default Blog;
