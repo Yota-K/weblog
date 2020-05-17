@@ -2,8 +2,15 @@ import react from 'react';
 import { AppProps } from 'next/app';
 import 'highlight.js/styles/dracula.css';
 
+import { GlobalStyle } from '../share/GlobalStyle';
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
-    return <Component {...pageProps} />
+    return (
+        <>
+            <GlobalStyle />
+            <Component {...pageProps} />
+        </>
+    )
 }
 
 // Only uncomment this method if you have blocking data requirements for
