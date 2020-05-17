@@ -2,9 +2,7 @@ FROM node:10.13-alpine
 
 RUN apk update
 
-RUN apk add nodejs && \
-    apk add npm && \
-    apk add git
+RUN apk add nodejs
 
 RUN npm install -g ts-node typescript netlify-cli
 
