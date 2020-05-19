@@ -12,7 +12,6 @@ const Sidebar: React.FC = () => {
         <BlogSidebar>
             <Profile />
             <TagList />
-            <TwitterTimeLine />
         </BlogSidebar>
     );
 }
