@@ -17,6 +17,7 @@ import { dateFormat } from '../../scripts/date-format';
 import { colorObj } from '../../share/variables';
 import { device } from '../../share/media-query';
 import { H1 } from '../../share/Heading';
+import { CategoryLabel } from '../../share/CategoryLabel';
 import { TagArea } from '../../share/TagArea';
 import { TagLabel } from '../../share/TagLabel';
 import { TimeStamp } from '../../share/TimeStamp';
@@ -42,8 +43,14 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog, body }) => 
             <div id="blog">
                 <TimeStamp>{dateFormat(blog.createdAt)}</TimeStamp>
                 <H1>{blog.title}</H1>
+                <CategoryLabel>
+                    カテゴリー：
+                    <Link href="/category/[id]" as={`/category/${blog.category_field.id}`}>
+                        <a>{blog.category_field.name}</a>
+                    </Link>
+                </CategoryLabel>
                 <TagArea>
-                    {blog.tag_field[0].tags.map(tag => 
+                    {blog.tag_field.map((tag: any) => 
                         <TagLabel key={tag.id}>
                             <Link href="/tags/[id]" as={`/tags/${tag.id}`}><a>{tag.name}</a></Link>
                         </TagLabel>
