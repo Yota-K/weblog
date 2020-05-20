@@ -1,17 +1,38 @@
-import React from 'react';
+import React,{ useState, useEffect} from 'react';
 import styled from 'styled-components';
 
+import { API } from '../../api/api';
+
 import Profile from './Profile';
+import CategoryList from './CategoryList';
 import TagList from './TagList';
-import TwitterTimeLine from './TwitterTimeLine';
 
 import { device } from '../../share/media-query';
 
 const Sidebar: React.FC = () => {
+    const [taxonomyList, setTaxonomyList] = React.useState<{tags: any, categories: any}>({
+        tags: [],
+        categories: [],
+    });
+
+    useEffect(() => {
+        const getTaxonomyList = async () => {
+            const url = API.BASE_URL;
+            const api = new API();
+            const data = await api.getTaxonomyList(url);
+            setTaxonomyList({
+                tags: data.tags,
+                categories: data.categories
+            })
+        }
+        getTaxonomyList();
+    }, []);
+
     return(
         <BlogSidebar>
             <Profile />
-            <TagList />
+            <CategoryList categories={taxonomyList.categories} />
+            <TagList tags={taxonomyList.tags} />
         </BlogSidebar>
     );
 }
