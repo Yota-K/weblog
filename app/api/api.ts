@@ -1,6 +1,8 @@
 const axios = require('axios');
 import { BlogJson } from '../interfaces/blog';
-import { TagJson, Tags } from '../interfaces/tag';
+import { TagJson } from '../interfaces/tag';
+import { CategoryJson } from '../interfaces/category';
+import { TaxonomyJson } from '../interfaces/taxonomy';
 import { RequestHeader } from '../interfaces/request-header';
 
 export class API {
@@ -68,19 +70,36 @@ export class API {
         })
     };
 
-    // タグ一覧とカテゴリー一覧の取得
-    getTaxonomyList(url: string, type: string):Promise<Tags> {
+    // カテゴリーページ
+    getCategories(url: string, slug: string):Promise<CategoryJson> {
         return new Promise(async (resolve, reject) => {
             const headers = this.getHeaders();
             try {
                 const res = await axios.get(
-                    `${url}/taxonomy?fields=${type}`, 
+                    `${url}/category/${slug}?depth=2`,
                     headers
                 );
-                if (type === 'tags') {
-                    const data = await res.data.tags;
-                    return resolve(data);
-                }
+                const data = await res.data;
+                return resolve(data);
+            }
+            catch (er) {
+                console.log(er.status);
+                return reject(er);
+            }
+        })
+    };
+
+    // タグ一覧とカテゴリー一覧の取得
+    getTaxonomyList(url: string):Promise<TaxonomyJson> {
+        return new Promise(async (resolve, reject) => {
+            const headers = this.getHeaders();
+            try {
+                const res = await axios.get(
+                    `${url}/taxonomy`, 
+                    headers
+                );
+                const data = res.data;
+                return resolve(data);
             }
             catch (er) {
                 console.log(er.status);
