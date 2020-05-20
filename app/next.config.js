@@ -22,6 +22,10 @@ module.exports = {
             `https://karukichi-tech-blog.microcms.io/api/v1/tags`,
             headers,
         );
+        const categoryRes = await axios.get(
+            `https://karukichi-tech-blog.microcms.io/api/v1/category`,
+            headers,
+        );
 
         const blogs = blogRes.data.contents;
         for (blog of blogs) {
@@ -31,6 +35,11 @@ module.exports = {
         const tags = tagRes.data.contents;
         for (tag of tags) {
             paths[`/tags/${tag.id}`] = {page: '/tags/[id]', query: {id: tag.id}};
+        }
+
+        const categories = categoryRes.data.contents;
+        for (category of categories) {
+            paths[`/category/${category.id}`] = {page: '/category/[id]', query: {id: category.id}};
         }
 
         return paths;
