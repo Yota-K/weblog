@@ -2,6 +2,7 @@ import React,{ useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 import { API } from '../../api/api';
+import { TaxonomyList } from '../../interfaces/taxonomy';
 
 import Profile from './Profile';
 import CategoryList from './CategoryList';
@@ -9,13 +10,13 @@ import TagList from './TagList';
 
 import { device } from '../../share/media-query';
 
-interface TaxonomyList {
-    tags: [];
-    categories: [];
+interface Taxonomy {
+    tags: TaxonomyList[];
+    categories: TaxonomyList[];
 }
 
 const Sidebar: React.FC = () => {
-    const [taxonomyList, setTaxonomyList] = React.useState<{tags: any, categories: any}>({
+    const [taxonomyList, setTaxonomyList] = React.useState<Taxonomy>({
         tags: [],
         categories: [],
     });

@@ -56,6 +56,7 @@ export interface TaxonomyJson {
         id: string;
         createdAt: string;
         updatedAt: string;
+        name: string;
         posts: {
             id: string;
         }[];
