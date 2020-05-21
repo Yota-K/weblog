@@ -21,7 +21,7 @@ export default ({ title, description, thumbnail }: Props): JSX.Element => {
     const slugChecker = () => {
         const router = useRouter();
         const path = router.asPath;
-        const pattern = /\/blogs\/.*$/g;
+        const pattern = /\/blogs\/.+$/g;
         const result = path.match(pattern);
         return result;
     }
