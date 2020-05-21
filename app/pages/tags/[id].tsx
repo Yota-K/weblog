@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { API } from '../../api/api';
+import { TagJson } from '../../interfaces/taxonomy';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
-import { TagJson } from '../../interfaces/tag';
 import { dateFormat } from '../../scripts/date-format';
 
 import { H2, H3 } from '../../share/Heading';

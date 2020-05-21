@@ -9,6 +9,11 @@ import TagList from './TagList';
 
 import { device } from '../../share/media-query';
 
+interface TaxonomyList {
+    tags: [];
+    categories: [];
+}
+
 const Sidebar: React.FC = () => {
     const [taxonomyList, setTaxonomyList] = React.useState<{tags: any, categories: any}>({
         tags: [],

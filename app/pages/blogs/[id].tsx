@@ -8,10 +8,10 @@ import cheerio from 'cheerio';
 import hljs from 'highlight.js'
 
 import { API } from '../../api/api';
+import { BlogJson } from '../../interfaces/blog';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import SocialLinks from '../../components/SocialLinks';
-import { BlogJson } from '../../interfaces/blog';
 import { dateFormat } from '../../scripts/date-format';
 
 import { colorObj } from '../../share/variables';

@@ -1,8 +1,6 @@
 const axios = require('axios');
 import { BlogJson } from '../interfaces/blog';
-import { TagJson } from '../interfaces/tag';
-import { CategoryJson } from '../interfaces/category';
-import { TaxonomyJson } from '../interfaces/taxonomy';
+import { TagJson, CategoryJson, TaxonomyJson } from '../interfaces/taxonomy';
 import { RequestHeader } from '../interfaces/request-header';
 
 export class API {
@@ -51,13 +49,13 @@ export class API {
         })
     };
 
-    // タグページ
-    getTags(url: string, slug: string):Promise<TagJson> {
+    // カテゴリーページ
+    getCategories(url: string, slug: string):Promise<CategoryJson> {
         return new Promise(async (resolve, reject) => {
             const headers = this.getHeaders();
             try {
                 const res = await axios.get(
-                    `${url}/tags/${slug}?depth=2`,
+                    `${url}/category/${slug}?depth=2`,
                     headers
                 );
                 const data = await res.data;
@@ -70,13 +68,13 @@ export class API {
         })
     };
 
-    // カテゴリーページ
-    getCategories(url: string, slug: string):Promise<CategoryJson> {
+    // タグページ
+    getTags(url: string, slug: string):Promise<TagJson> {
         return new Promise(async (resolve, reject) => {
             const headers = this.getHeaders();
             try {
                 const res = await axios.get(
-                    `${url}/category/${slug}?depth=2`,
+                    `${url}/tags/${slug}?depth=2`,
                     headers
                 );
                 const data = await res.data;
