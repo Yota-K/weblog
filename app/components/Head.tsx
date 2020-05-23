@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
+
+import { pathNameChecker } from '../scripts/path-name-checker';
 
 interface Props {
     title: string;
@@ -11,21 +12,13 @@ interface Props {
 export default ({ title, description, thumbnail }: Props): JSX.Element => {
     const [url, setUrl] = React.useState<string>('');
     const defaultDescription = '駆け出しウェブエンジニアカルキチ副島が運営するウェブ系の技術をメインに書くブログです。';
+    const descriptionCheck = pathNameChecker('blog');
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
             setUrl(window.location.href);
         }
     }, [url]);
-
-    const slugChecker = () => {
-        const router = useRouter();
-        const path = router.asPath;
-        const pattern = /\/blogs\/.+$/g;
-        const result = path.match(pattern);
-        return result;
-    }
-    const descriptionCheck = slugChecker();
 
     return (
         <Head>
