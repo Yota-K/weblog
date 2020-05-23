@@ -32,7 +32,7 @@ const Breadcrumb: React.FC<Props> = ({
             </Link></BreadcrumbItem>
             {isBlogPage !== null && 
                 <>
-                    <BreadcrumbItem><Link href="/category/[id]" as={blogPageInfo!.categoryId}>
+                    <BreadcrumbItem><Link href="/category/[id]" as={`/category/${blogPageInfo!.categoryId}`}>
                         <a>{blogPageInfo!.categoryName}</a>
                     </Link></BreadcrumbItem>
                     <BreadcrumbItem>{blogPageInfo!.blogTitle}</BreadcrumbItem>
