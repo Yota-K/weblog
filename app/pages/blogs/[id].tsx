@@ -11,6 +11,7 @@ import { API } from '../../api/api';
 import { BlogJson } from '../../interfaces/blog';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
+import Toc from '../../components/Toc';
 import SocialLinks from '../../components/SocialLinks';
 import { dateFormat } from '../../scripts/date-format';
 
@@ -24,10 +25,15 @@ import { TimeStamp } from '../../share/TimeStamp';
 
 interface Props {
     blog: BlogJson;
+    toc: {
+        id: string;
+        text: string;
+        type: string;
+    }[];
     body: string;
 }
 
-const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog, body }) => {
+const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog, toc, body }) => {
     const url = `https://karukichi-blog.netlify.app/blogs/${blog.id}`;
     const md = new MarkdownIt({
         html: true
@@ -68,6 +74,7 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog, body }) => 
                         alt="thumbnail"
                         effect="blur"
                     />
+                    <Toc toc={toc} />
                     <div className="post" dangerouslySetInnerHTML={{ __html: body}}></div>
                 </Content>
             </div>
@@ -174,6 +181,14 @@ Blog.getInitialProps = async (context: any) => {
     const blog = await api.getPost(url, id);
 
     const $ = cheerio.load(blog.body, { _useHtmlParser2: true });
+
+    const headings = $('h2, h3').toArray();
+    const toc = headings.map((data):any => ({
+        id: data.attribs.id,
+        text: data.children[0].data,
+        type: data.name,
+    }));
+
     $('pre > code').each((i, elm):void => {
         const result = hljs.highlightAuto($(elm).text());
         $(elm).html(result.value);
@@ -182,6 +197,7 @@ Blog.getInitialProps = async (context: any) => {
 
     return {
         blog: blog,
+        toc: toc,
         body: $.html(),
     };
 };
