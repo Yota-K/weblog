@@ -11,6 +11,7 @@ import { API } from '../../api/api';
 import { BlogJson } from '../../interfaces/blog';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
+import Breadcrumb from '../../components/Breadcrumb';
 import Toc from '../../components/Toc';
 import SocialLinks from '../../components/SocialLinks';
 import { dateFormat } from '../../scripts/date-format';
@@ -39,6 +40,12 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog, toc, body }
         html: true
     });
 
+    const reciveBreadcrumb = {
+        categoryId: blog.category_field.id,
+        categoryName: blog.category_field.name,
+        blogTitle: blog.title,
+    }
+
     return (
         <Layout>
             <Head 
@@ -47,6 +54,9 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog, toc, body }
                 thumbnail={blog.thumbnail.url}
             />
             <div id="blog">
+                <Breadcrumb
+                    blogPageInfo={reciveBreadcrumb}
+                />
                 <TimeStamp>{dateFormat(blog.createdAt)}</TimeStamp>
                 <H1>{blog.title}</H1>
                 <CategoryLabel>

@@ -7,6 +7,7 @@ import { API } from '../../api/api';
 import { TagJson } from '../../interfaces/taxonomy';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
+import Breadcrumb from '../../components/Breadcrumb';
 import { dateFormat } from '../../scripts/date-format';
 
 import { H2, H3 } from '../../share/Heading';
@@ -25,6 +26,9 @@ const Tags: NextComponentType<NextPageContext, {}, Props> = ({ tags }) => {
         <Layout>
             <Head title={`${tags.name}｜カルキチのブログ`} />
             <div id="tags">
+            <Breadcrumb 
+                tagPageTitle={tags.name}
+            />
             <H2>タグ：{tags.name}</H2>
             {tags.posts.map(blog => 
                 <BlogCard key={blog.id}>

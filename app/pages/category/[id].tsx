@@ -7,6 +7,7 @@ import { API } from '../../api/api';
 import { CategoryJson } from '../../interfaces/taxonomy';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
+import Breadcrumb from '../../components/Breadcrumb';
 import { dateFormat } from '../../scripts/date-format';
 
 import { H2, H3 } from '../../share/Heading';
@@ -25,6 +26,9 @@ const Categories: NextComponentType<NextPageContext, {}, Props> = ({ categories 
         <Layout>
             <Head title={`${categories.name}｜カルキチのブログ`} />
             <div id="categories">
+            <Breadcrumb 
+                categoryPageTitle={categories.name}
+            />
             <H2>カテゴリー：{categories.name}</H2>
             {categories.posts.map(blog => 
                 <BlogCard key={blog.id}>
