@@ -3,7 +3,7 @@ import { NextComponentType, NextPageContext } from 'next';
 
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import { H2 } from '../share/Heading';
+import { H2 } from '../../share/Heading';
 
 interface Props {
     statusCode: number;

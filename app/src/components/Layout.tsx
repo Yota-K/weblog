@@ -5,7 +5,7 @@ import Header from './Header';
 import Sidebar from './Sidebar/index';
 import Footer from './Footer';
 
-import { device } from '../share/media-query';
+import { device } from '../../share/media-query';
 
 const Layout: React.FC = ({ children }) => {
     const siteTitle = 'カルキチのブログ';

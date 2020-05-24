@@ -1,41 +1,42 @@
 import React from 'react';
 import { NextComponentType, NextPageContext } from 'next';
-import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { API } from '../api/api';
-import Head from '../components/Head';
-import Layout from '../components/Layout';
-import { BlogJson } from '../interfaces/blog';
-import { dateFormat } from '../scripts/date-format';
+import { API } from '../../../api/api';
+import { TagJson } from '../../../interfaces/taxonomy';
+import Head from '../../components/Head';
+import Layout from '../../components/Layout';
+import Breadcrumb from '../../components/Breadcrumb';
+import { dateFormat } from '../../../scripts/date-format';
 
-import { H2, H3 } from '../share/Heading';
-import { BlogCard, PostThumbnail, PostInfo } from '../share/BlogCard';
-import { CategoryLabel } from '../share/CategoryLabel';
-import { TagArea } from '../share/TagArea';
-import { TagLabel } from '../share/TagLabel';
-import { TimeStamp } from '../share/TimeStamp';
+import { H2, H3 } from '../../../share/Heading';
+import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
+import { CategoryLabel } from '../../../share/CategoryLabel';
+import { TagArea } from '../../../share/TagArea';
+import { TagLabel } from '../../../share/TagLabel';
+import { TimeStamp } from '../../../share/TimeStamp';
 
 interface Props {
-    blogs: BlogJson[];
+    tags: TagJson;
 }
 
-const Home: NextComponentType<NextPageContext, {}, Props> = ({ blogs }) => {
-    const siteTitle = 'カルキチのブログ';
-
+const Tags: NextComponentType<NextPageContext, {}, Props> = ({ tags }) => {
     return (
         <Layout>
-            <Head title={siteTitle} />
-            <div id="blog-list">
-            <H2>記事一覧</H2>
-            {blogs.map(blog =>
+            <Head title={`${tags.name}｜カルキチのブログ`} />
+            <div id="tags">
+            <Breadcrumb 
+                tagPageTitle={tags.name}
+            />
+            <H2>タグ：{tags.name}</H2>
+            {tags.posts.map(blog => 
                 <BlogCard key={blog.id}>
                     <PostThumbnail>
                         <LazyLoadImage
-                            src={blog.thumbnail.url}
+                            src={`${blog.thumbnail.url}`}
                             alt='thumbnail'
-                            effect='blur'
+                            effect="blur"
                         />
                     </PostThumbnail>
                     <PostInfo>
@@ -64,15 +65,15 @@ const Home: NextComponentType<NextPageContext, {}, Props> = ({ blogs }) => {
     );
 }
 
-export async function getStaticProps() {
+Tags.getInitialProps = async (context: any) => {
     const url = API.BASE_URL;
+    const {id} = context.query;
     const api = new API();
-    const data = await api.getBlog(url);
-    return {
-        props: {
-            blogs: data
-        }
-    }
+    const data = await api.getTags(url, id);
+
+    data.posts.sort((a,b) => (a.createdAt < b.createdAt ? 1 : -1));
+
+    return {tags: data};
 };
 
-export default Home;
+export default Tags;

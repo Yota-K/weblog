@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colorObj } from '../../share/variables';
+import { colorObj } from '../../../share/variables';
 
 export const SidebarBox = styled.div`
     margin-bottom: 30px;

@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { colorObj } from '../share/variables';
-import { device } from '../share/media-query';
+import { colorObj } from '../../share/variables';
+import { device } from '../../share/media-query';
 
 interface Props {
     siteTitle: React.ReactNode;

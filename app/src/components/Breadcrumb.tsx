@@ -2,9 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { pathNameChecker } from '../scripts/path-name-checker';
+import { pathNameChecker } from '../../scripts/path-name-checker';
 
-import { colorObj } from '../share/variables';
+import { colorObj } from '../../share/variables';
 
 interface Props {
     tagPageTitle?: string;

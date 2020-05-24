@@ -1,14 +1,14 @@
 import React,{ useState, useEffect} from 'react';
 import styled from 'styled-components';
 
-import { API } from '../../api/api';
-import { TaxonomyList } from '../../interfaces/taxonomy';
+import { API } from '../../../api/api';
+import { TaxonomyList } from '../../../interfaces/taxonomy';
 
 import Profile from './Profile';
 import CategoryList from './CategoryList';
 import TagList from './TagList';
 
-import { device } from '../../share/media-query';
+import { device } from '../../../share/media-query';
 
 interface Taxonomy {
     tags: TaxonomyList[];

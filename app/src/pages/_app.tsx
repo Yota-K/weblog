@@ -2,7 +2,7 @@ import react from 'react';
 import { AppProps } from 'next/app';
 import 'highlight.js/styles/dracula.css';
 
-import { GlobalStyle } from '../share/GlobalStyle';
+import { GlobalStyle } from '../../share/GlobalStyle';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     return (

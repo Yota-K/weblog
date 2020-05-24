@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 
-import { pathNameChecker } from '../scripts/path-name-checker';
+import { pathNameChecker } from '../../scripts/path-name-checker';
 
 interface Props {
     title: string;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { NextComponentType, NextPageContext } from 'next';
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { API } from '../../api/api';
-import { TagJson } from '../../interfaces/taxonomy';
-import Head from '../../components/Head';
-import Layout from '../../components/Layout';
-import Breadcrumb from '../../components/Breadcrumb';
+import Head from '../components/Head';
+import Layout from '../components/Layout';
+import { BlogJson } from '../../interfaces/blog';
 import { dateFormat } from '../../scripts/date-format';
 
 import { H2, H3 } from '../../share/Heading';
@@ -18,25 +18,24 @@ import { TagLabel } from '../../share/TagLabel';
 import { TimeStamp } from '../../share/TimeStamp';
 
 interface Props {
-    tags: TagJson;
+    blogs: BlogJson[];
 }
 
-const Tags: NextComponentType<NextPageContext, {}, Props> = ({ tags }) => {
+const Home: NextComponentType<NextPageContext, {}, Props> = ({ blogs }) => {
+    const siteTitle = 'カルキチのブログ';
+
     return (
         <Layout>
-            <Head title={`${tags.name}｜カルキチのブログ`} />
-            <div id="tags">
-            <Breadcrumb 
-                tagPageTitle={tags.name}
-            />
-            <H2>タグ：{tags.name}</H2>
-            {tags.posts.map(blog => 
+            <Head title={siteTitle} />
+            <div id="blog-list">
+            <H2>記事一覧</H2>
+            {blogs.map(blog =>
                 <BlogCard key={blog.id}>
                     <PostThumbnail>
                         <LazyLoadImage
-                            src={`${blog.thumbnail.url}`}
+                            src={blog.thumbnail.url}
                             alt='thumbnail'
-                            effect="blur"
+                            effect='blur'
                         />
                     </PostThumbnail>
                     <PostInfo>
@@ -65,15 +64,15 @@ const Tags: NextComponentType<NextPageContext, {}, Props> = ({ tags }) => {
     );
 }
 
-Tags.getInitialProps = async (context: any) => {
+export async function getStaticProps() {
     const url = API.BASE_URL;
-    const {id} = context.query;
     const api = new API();
-    const data = await api.getTags(url, id);
-
-    data.posts.sort((a,b) => (a.createdAt < b.createdAt ? 1 : -1));
-
-    return {tags: data};
+    const data = await api.getBlog(url);
+    return {
+        props: {
+            blogs: data
+        }
+    }
 };
 
-export default Tags;
+export default Home;

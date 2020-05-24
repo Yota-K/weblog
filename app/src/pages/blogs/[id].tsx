@@ -7,22 +7,22 @@ import MarkdownIt from 'markdown-it';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js'
 
-import { API } from '../../api/api';
-import { BlogJson } from '../../interfaces/blog';
+import { API } from '../../../api/api';
+import { BlogJson } from '../../../interfaces/blog';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumb';
 import Toc from '../../components/Toc';
 import SocialLinks from '../../components/SocialLinks';
-import { dateFormat } from '../../scripts/date-format';
+import { dateFormat } from '../../../scripts/date-format';
 
-import { colorObj } from '../../share/variables';
-import { device } from '../../share/media-query';
-import { H1 } from '../../share/Heading';
-import { CategoryLabel } from '../../share/CategoryLabel';
-import { TagArea } from '../../share/TagArea';
-import { TagLabel } from '../../share/TagLabel';
-import { TimeStamp } from '../../share/TimeStamp';
+import { colorObj } from '../../../share/variables';
+import { device } from '../../../share/media-query';
+import { H1 } from '../../../share/Heading';
+import { CategoryLabel } from '../../../share/CategoryLabel';
+import { TagArea } from '../../../share/TagArea';
+import { TagLabel } from '../../../share/TagLabel';
+import { TimeStamp } from '../../../share/TimeStamp';
 
 interface Props {
     blog: BlogJson;
