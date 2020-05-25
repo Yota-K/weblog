@@ -1,4 +1,9 @@
 export interface BlogJson {
+    blogs: Content;
+    totalCount: number;
+}
+
+export interface Content {
     id: string;
     createdAt: string;
     updatedAt: string;

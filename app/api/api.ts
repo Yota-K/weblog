@@ -18,13 +18,31 @@ export class API {
     }
 
     // 投稿一覧
-    getBlog(url: string):Promise<BlogJson[]> {
+    getBlog(url: string, params_id: number):Promise<BlogJson> {
         return new Promise(async (resolve, reject) => {
             const headers = this.getHeaders();
             try {
-                const res = await axios.get(`${url}/blogs`, headers);
-                const data = await res.data.contents;
-                return resolve(data);
+                let res;
+                if (params_id > 0) {
+                    const offsetNum = 10;
+                    const page = params_id * offsetNum - offsetNum;
+                    res = await axios.get(`${url}/blogs?offset=${page}&limit=10`, headers);
+                }
+                else {
+                    res = await axios.get(`${url}/blogs?offset=${params_id}&limit=10`, headers);
+                }
+
+                const data = await res.data;
+                const contents = data.contents;
+                let totalCount = data.totalCount;
+                totalCount = Math.floor(totalCount/10);
+
+                const blogObj = {
+                    blogs: contents,
+                    totalCount: totalCount + 1,
+                };
+
+                return resolve(blogObj);
             }
             catch (er) {
                 console.log(er.status);

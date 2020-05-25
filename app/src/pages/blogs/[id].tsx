@@ -8,7 +8,7 @@ import cheerio from 'cheerio';
 import hljs from 'highlight.js'
 
 import { API } from '../../../api/api';
-import { BlogJson } from '../../../interfaces/blog';
+import { Content } from '../../../interfaces/blog';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumb';
@@ -25,7 +25,7 @@ import { TagLabel } from '../../../share/TagLabel';
 import { TimeStamp } from '../../../share/TimeStamp';
 
 interface Props {
-    blog: BlogJson;
+    blog: Content;
     toc: {
         id: string;
         text: string;
@@ -75,7 +75,7 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog, toc, body }
                 <ShareArea>
                     <SocialLinks url={url} />
                 </ShareArea>
-                <Content>
+                <MyContent>
                     <LazyLoadImage
                         className="eyecatch"
                         width="100%"
@@ -86,7 +86,7 @@ const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog, toc, body }
                     />
                     <Toc toc={toc} />
                     <div className="post" dangerouslySetInnerHTML={{ __html: body}}></div>
-                </Content>
+                </MyContent>
             </div>
         </Layout>
     );
@@ -98,7 +98,7 @@ const ShareArea = styled.div`
     }
 `
 
-const Content = styled.div`
+const MyContent = styled.div`
     margin-top: 35px;
     min-height: 800px;
     word-break: break-all;

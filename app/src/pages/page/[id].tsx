@@ -1,30 +1,31 @@
 import React from 'react';
 import { NextComponentType, NextPageContext } from 'next';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
+import Router from 'next/router';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { API } from '../../api/api';
-import Head from '../components/Head';
-import Layout from '../components/Layout';
-import Paginate from '../components/Paginate';
-import { Content } from '../../interfaces/blog';
-import { dateFormat } from '../../scripts/date-format';
-import { paginateAry } from '../../scripts/generate-paginate-ary';
+import { API } from '../../../api/api';
+import { Content } from '../../../interfaces/blog';
+import Head from '../../components/Head';
+import Layout from '../../components/Layout';
+import Paginate from '../../components/Paginate';
+import { dateFormat } from '../../../scripts/date-format';
+import { paginateAry } from '../../../scripts/generate-paginate-ary';
 
-import { H2, H3 } from '../../share/Heading';
-import { BlogCard, PostThumbnail, PostInfo } from '../../share/BlogCard';
-import { CategoryLabel } from '../../share/CategoryLabel';
-import { TagArea } from '../../share/TagArea';
-import { TagLabel } from '../../share/TagLabel';
-import { TimeStamp } from '../../share/TimeStamp';
+import { H2, H3 } from '../../../share/Heading';
+import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
+import { CategoryLabel } from '../../../share/CategoryLabel';
+import { TagArea } from '../../../share/TagArea';
+import { TagLabel } from '../../../share/TagLabel';
+import { TimeStamp } from '../../../share/TimeStamp';
 
 interface Props {
     blogs: Content[];
     totalCount: number;
 }
 
-const Home: NextComponentType<NextPageContext, {}, Props> = ({ blogs, totalCount }) => {
+const Page: NextComponentType<NextPageContext, {}, Props> = ({ blogs, totalCount }) => {
     const siteTitle = 'カルキチのブログ';
     const paginate = paginateAry(totalCount);
 
@@ -68,18 +69,15 @@ const Home: NextComponentType<NextPageContext, {}, Props> = ({ blogs, totalCount
     );
 }
 
-
-export async function getStaticProps() {
+Page.getInitialProps = async (context: any) => {
+    const id = context.query.id;
     const url = API.BASE_URL;
     const api = new API();
-    const defaultOffset = 0;
-    const data = await api.getBlog(url, defaultOffset);
+    const data = await api.getBlog(url, id);
     return {
-        props: {
-            blogs: data.blogs,
-            totalCount: data.totalCount,
-        }
+        blogs: data.blogs,
+        totalCount: data.totalCount,
     }
 };
 
-export default Home;
+export default Page;
