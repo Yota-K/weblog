@@ -1,3 +1,3 @@
 export const paginateAry = (totalCount: number) => {
-    return [...new Array(totalCount).keys()].map(i => ++i);
+  return [...new Array(totalCount).keys()].map((i) => ++i);
 };

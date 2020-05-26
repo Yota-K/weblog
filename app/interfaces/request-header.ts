@@ -1,5 +1,5 @@
 export interface RequestHeader {
-    headers: {
-        'X-API-KEY': string | undefined;
-    };
+  headers: {
+    'X-API-KEY': string | undefined;
+  };
 }

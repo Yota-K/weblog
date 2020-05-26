@@ -7,11 +7,7 @@
     "strict": true,
     "esModuleInterop": true,
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -20,12 +16,6 @@
     "isolatedModules": true,
     "downlevelIteration": true
   },
-  "include": [
-    "src/pages/**/*",
-    "src/layouts/**/*",
-    "src/components/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/pages/**/*", "src/layouts/**/*", "src/components/**/*"],
+  "exclude": ["node_modules"]
 }
