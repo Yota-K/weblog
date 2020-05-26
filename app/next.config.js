@@ -20,15 +20,18 @@ module.exports = {
 
     // ページネーションのビルド設定
     const totalCount = blogRes.data.totalCount;
+    const defaultParams = 0;
+
     const totalCountAry = [...new Array(totalCount).keys()].map((i) => ++i);
-    let offsetParamsAry = [0];
+    let offsetParamsAry = [defaultParams];
     for (const num of totalCountAry) {
       if (num % 10 === 0) offsetParamsAry.push(num);
     }
 
     offsetParamsAry.forEach((page, i) => {
       axios.get(`https://karukichi-tech-blog.microcms.io/api/v1/blogs?offset=${page}&limit=10`, headers);
-      const pageNum = i + 1;
+      // ページネーションは1から始まるため
+      const pageNum = ++i;
       paths[`/page/${pageNum}`] = { page: '/page/[id]', query: { id: pageNum } };
     });
 
