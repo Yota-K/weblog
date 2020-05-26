@@ -1,5 +1,5 @@
 const axios = require('axios');
-import { BlogJson } from '../interfaces/blog';
+import { BlogJson, Content } from '../interfaces/blog';
 import { TagJson, CategoryJson, TaxonomyJson } from '../interfaces/taxonomy';
 import { RequestHeader } from '../interfaces/request-header';
 
@@ -52,7 +52,7 @@ export class API {
     };
 
     // 記事ページ
-    getPost(url: string, slug: string):Promise<BlogJson> {
+    getPost(url: string, slug: string):Promise<Content> {
         return new Promise(async (resolve, reject) => {
             const headers = this.getHeaders();
             try {

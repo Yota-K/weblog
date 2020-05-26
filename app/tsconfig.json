@@ -17,12 +17,13 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "downlevelIteration": true
   },
   "include": [
-    "pages/**/*",
-    "layouts/**/*",
-    "components/**/*"
+    "src/pages/**/*",
+    "src/layouts/**/*",
+    "src/components/**/*"
   ],
   "exclude": [
     "node_modules"
