@@ -18,7 +18,7 @@ module.exports = {
     const tagRes = await axios.get(`https://karukichi-tech-blog.microcms.io/api/v1/tags`, headers);
     const categoryRes = await axios.get(`https://karukichi-tech-blog.microcms.io/api/v1/category`, headers);
 
-    // ページネーションのビルド設定（仮）
+    // ページネーションのビルド設定
     const totalCount = blogRes.data.totalCount;
     const totalCountAry = [...new Array(totalCount).keys()].map((i) => ++i);
     let offsetParamsAry = [0];
