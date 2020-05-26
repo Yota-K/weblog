@@ -28,17 +28,21 @@ module.exports = {
         );
 
         // ページネーションのビルド設定（仮）
-        await axios.get(
-          `https://karukichi-tech-blog.microcms.io/api/v1/blogs?offset=0&limit=10`,
-          headers,
-        );
-        paths[`/page/1`] = {page: '/page/[id]', query: {id: 1}};
+        const totalCount = blogRes.data.totalCount;
+        const totalCountAry = [...new Array(totalCount).keys()].map(i => ++i);
+        let offsetParamsAry = [0];
+        for (const num of totalCountAry) {
+            if (num % 10 === 0) offsetParamsAry.push(num);
+        }
 
-        await axios.get(
-          `https://karukichi-tech-blog.microcms.io/api/v1/blogs?offset=10&limit=10`,
-          headers,
-        );
-        paths[`/page/2`] = {page: '/page/[id]', query: {id: 2}};
+        offsetParamsAry.forEach((page, i) => {
+            axios.get(
+                `https://karukichi-tech-blog.microcms.io/api/v1/blogs?offset=${page}&limit=10`,
+                headers,
+            );
+            const pageNum = i + 1;
+            paths[`/page/${pageNum}`] = {page: '/page/[id]', query: {id: pageNum}};
+        })
 
         const blogs = blogRes.data.contents;
         for (blog of blogs) {
