@@ -27,6 +27,19 @@ module.exports = {
             headers,
         );
 
+        // ページネーションのビルド設定（仮）
+        await axios.get(
+          `https://karukichi-tech-blog.microcms.io/api/v1/blogs?offset=0&limit=10`,
+          headers,
+        );
+        paths[`/page/1`] = {page: '/page/[id]', query: {id: 1}};
+
+        await axios.get(
+          `https://karukichi-tech-blog.microcms.io/api/v1/blogs?offset=10&limit=10`,
+          headers,
+        );
+        paths[`/page/2`] = {page: '/page/[id]', query: {id: 2}};
+
         const blogs = blogRes.data.contents;
         for (blog of blogs) {
             paths[`/blogs/${blog.id}`] = {page: '/blogs/[id]', query: {id: blog.id}};
