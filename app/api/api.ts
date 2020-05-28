@@ -24,17 +24,17 @@ export class API {
       try {
         let res;
         if (params_id > 0) {
-          const offsetNum = 10;
+          const offsetNum = 5;
           const page = params_id * offsetNum - offsetNum;
-          res = await axios.get(`${url}/blogs?offset=${page}&limit=10`, headers);
+          res = await axios.get(`${url}/blogs?offset=${page}&limit=5`, headers);
         } else {
-          res = await axios.get(`${url}/blogs?offset=${params_id}&limit=10`, headers);
+          res = await axios.get(`${url}/blogs?offset=${params_id}&limit=5`, headers);
         }
 
         const data = await res.data;
         const contents = data.contents;
         let totalCount = data.totalCount;
-        totalCount = Math.floor(totalCount / 10);
+        totalCount = Math.floor(totalCount / 5);
 
         const blogObj = {
           blogs: contents,

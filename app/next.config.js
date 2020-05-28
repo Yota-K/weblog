@@ -25,7 +25,7 @@ module.exports = {
     const totalCountAry = [...new Array(totalCount).keys()].map((i) => ++i);
     let offsetParamsAry = [defaultParams];
     for (const num of totalCountAry) {
-      if (num % 10 === 0) offsetParamsAry.push(num);
+      if (num % 5 === 0) offsetParamsAry.push(num);
     }
 
     offsetParamsAry.forEach((page, i) => {

@@ -1,34 +1,63 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
+
+import { colorObj } from '../../share/variables';
 
 interface Props {
   paginate: number[];
 }
 
 const Paginate: React.FC<Props> = ({ paginate }) => {
-  return (
-    <MyPaginate>
-      {paginate.map((page: any, i: number) => (
-        <Link key={i} href="/page/[id]" as={`/page/${page}`}>
-          <a>{page}</a>
+  const router = useRouter();
+  const path = router.asPath;
+
+  const generatePaginate = (paginate: number[]) => {
+    if (path === '/' || path === '/page/1') {
+      return (
+        <Link href="/page/[id]" as={'/page/2'}>
+          <a className="next-paginate">Next</a>
         </Link>
-      ))}
-    </MyPaginate>
-  );
+      );
+    }
+
+    const pathMatch = path.match(/\d+$/g);
+    if (pathMatch === null) return;
+
+    const pageNum = parseInt(pathMatch[0]);
+    if (pageNum === paginate.length) {
+      return (
+        <Link href="/page/[id]" as={`/page/${paginate.length - 1}`}>
+          <a className="prev-paginate">Prev</a>
+        </Link>
+      );
+    } else {
+      return (
+        <>
+          <Link href="/page/[id]" as={`/page/${pageNum - 1}`}>
+            <a className="prev-paginate">Prev</a>
+          </Link>
+          <Link href="/page/[id]" as={`/page/${pageNum + 1}`}>
+            <a className="next-paginate">Next</a>
+          </Link>
+        </>
+      );
+    }
+  };
+
+  return <MyPaginate>{generatePaginate(paginate)}</MyPaginate>;
 };
 
 const MyPaginate = styled.div`
   a {
-    background: #a0a8c1;
-    color: #fff;
-    padding: 8px 8px 10px 8px;
-    display: inline-block;
-    margin: 0 10px;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    border-radius: 50%;
+    color: ${colorObj.baseBlue};
+  }
+  .prev-paginate {
+    float: left;
+  }
+  .next-paginate {
+    float: right;
   }
 `;
 
