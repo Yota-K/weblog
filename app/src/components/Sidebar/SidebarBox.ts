@@ -19,4 +19,16 @@ export const SidebarBox = styled.div`
     border: 1px solid ${colorObj.borderGray};
     border-radius: 50%;
   }
+  .btn-area {
+    margin-top: 10px;
+    .mini-icon {
+      margin-right: 10px;
+    }
+    .twitter svg {
+      fill: #42afe3;
+    }
+    .github svg {
+      fill: darkslategray;
+    }
+  }
 `;
