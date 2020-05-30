@@ -155,8 +155,8 @@ const MyContent = styled.div`
   ol {
     margin: 25px 0;
     padding: 0.5em 0.5em 0.5em 2em;
-    background: #f1f1f1;
-    border: 1px solid ${colorObj.borderGray};
+    background: #fffbf4;
+    border: 2px solid #f3a6c3;
     border-radius: 3px;
     li {
       font-weight: 600;
