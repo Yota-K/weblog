@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { API } from '../../../api/api';
+import { RecordType } from '../../../interfaces/record-type';
 import { CategoryJson } from '../../../interfaces/taxonomy';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
@@ -21,7 +22,7 @@ interface Props {
   categories: CategoryJson;
 }
 
-const Categories: NextComponentType<NextPageContext, {}, Props> = ({ categories }) => {
+const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({ categories }) => {
   return (
     <Layout>
       <Head title={`${categories.name}｜カルキチのブログ`} />

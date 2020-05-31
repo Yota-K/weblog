@@ -8,6 +8,7 @@ import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 
 import { API } from '../../../api/api';
+import { RecordType } from '../../../interfaces/record-type';
 import { Content } from '../../../interfaces/blog';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
@@ -34,8 +35,9 @@ interface Props {
   body: string;
 }
 
-const Blog: NextComponentType<NextPageContext, {}, Props> = ({ blog, toc, body }) => {
+const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body }) => {
   const url = `https://karukichi-blog.netlify.app/blogs/${blog.id}`;
+  // eslint-disable-next-line
   const md = new MarkdownIt({
     html: true,
   });

@@ -1,11 +1,10 @@
 import React from 'react';
 import { NextComponentType, NextPageContext } from 'next';
-import { GetServerSideProps } from 'next';
-import Router from 'next/router';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { API } from '../../../api/api';
+import { RecordType } from '../../../interfaces/record-type';
 import { Content } from '../../../interfaces/blog';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
@@ -13,7 +12,7 @@ import Paginate from '../../components/Paginate';
 import { dateFormat } from '../../../scripts/date-format';
 import { paginateAry } from '../../../scripts/generate-paginate-ary';
 
-import { H2, H3 } from '../../../share/Heading';
+import { H3 } from '../../../share/Heading';
 import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
 import { CategoryLabel } from '../../../share/CategoryLabel';
 import { TagArea } from '../../../share/TagArea';
@@ -25,7 +24,7 @@ interface Props {
   totalCount: number;
 }
 
-const Page: NextComponentType<NextPageContext, {}, Props> = ({ blogs, totalCount }) => {
+const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, totalCount }) => {
   const siteTitle = 'カルキチのブログ';
   const paginate = paginateAry(totalCount);
 

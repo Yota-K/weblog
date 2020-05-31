@@ -1,6 +1,7 @@
 import React from 'react';
 import { NextComponentType, NextPageContext } from 'next';
 
+import { RecordType } from '../../interfaces/record-type';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 import { H2 } from '../../share/Heading';
@@ -9,7 +10,7 @@ interface Props {
   statusCode: number;
 }
 
-const Error: NextComponentType<NextPageContext, {}, Props> = ({ statusCode }) => {
+const Error: NextComponentType<NextPageContext, RecordType, Props> = ({ statusCode }) => {
   return (
     <Layout>
       <Head title={`${statusCode}エラーが発生しました`} />
