@@ -36,7 +36,7 @@ export interface TagJson {
 }
 
 // カテゴリーページ
-export interface CategoryJson extends TagJson {}
+export type CategoryJson = TagJson;
 
 // カテゴリーとタグ一覧
 export interface TaxonomyJson {
