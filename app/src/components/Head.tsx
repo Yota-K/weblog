@@ -9,6 +9,7 @@ interface Props {
   thumbnail?: string;
 }
 
+// eslint-disable-next-line react/display-name
 export default ({ title, description, thumbnail }: Props): JSX.Element => {
   const [url, setUrl] = React.useState<string>('');
   const defaultDescription = '駆け出しウェブエンジニアカルキチ副島が運営するウェブ系の技術をメインに書くブログです。';
