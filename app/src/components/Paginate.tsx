@@ -17,7 +17,7 @@ const Paginate: React.FC<Props> = ({ paginate }) => {
     if (path === '/' || path === '/page/1') {
       return (
         <Link href="/page/[id]" as={'/page/2'}>
-          <a className="next-paginate">Next</a>
+          <a className="next-paginate">Next &gt;&gt;</a>
         </Link>
       );
     }
@@ -29,17 +29,17 @@ const Paginate: React.FC<Props> = ({ paginate }) => {
     if (pageNum === paginate.length) {
       return (
         <Link href="/page/[id]" as={`/page/${paginate.length - 1}`}>
-          <a className="prev-paginate">Prev</a>
+          <a className="prev-paginate"> &lt;&lt; Prev</a>
         </Link>
       );
     } else {
       return (
         <>
           <Link href="/page/[id]" as={`/page/${pageNum - 1}`}>
-            <a className="prev-paginate">Prev</a>
+            <a className="prev-paginate">&lt;&lt; Prev</a>
           </Link>
           <Link href="/page/[id]" as={`/page/${pageNum + 1}`}>
-            <a className="next-paginate">Next</a>
+            <a className="next-paginate">Next &gt;&gt;</a>
           </Link>
         </>
       );
