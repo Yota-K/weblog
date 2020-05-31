@@ -1,0 +1,7 @@
+.netlify
+.next
+build
+node_modules
+out
+package.json
+package-lock.json
