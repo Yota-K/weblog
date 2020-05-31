@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('axios'); // eslint-disable-line
 require('dotenv').config();
 
 module.exports = {
@@ -36,17 +36,17 @@ module.exports = {
     });
 
     const blogs = blogRes.data.contents;
-    for (blog of blogs) {
+    for (const blog of blogs) {
       paths[`/blogs/${blog.id}`] = { page: '/blogs/[id]', query: { id: blog.id } };
     }
 
     const tags = tagRes.data.contents;
-    for (tag of tags) {
+    for (const tag of tags) {
       paths[`/tags/${tag.id}`] = { page: '/tags/[id]', query: { id: tag.id } };
     }
 
     const categories = categoryRes.data.contents;
-    for (category of categories) {
+    for (const category of categories) {
       paths[`/category/${category.id}`] = { page: '/category/[id]', query: { id: category.id } };
     }
 
