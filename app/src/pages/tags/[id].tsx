@@ -70,7 +70,7 @@ Tags.getInitialProps = async (context: any) => {
   const api = new API();
   const data = await api.getTags(url, id);
 
-  data.posts.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+  data.posts.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
 
   return { tags: data };
 };
