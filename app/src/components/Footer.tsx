@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { animateScroll as scroll } from 'react-scroll';
 
+import { animateScroll as scroll } from 'react-scroll';
 import { colorObj } from '../../share/variables';
 
 interface Props {
