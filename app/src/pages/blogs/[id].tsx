@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NextComponentType, NextPageContext } from 'next';
+import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import MarkdownIt from 'markdown-it';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 
-import { API } from '../../../api/api';
 import { RecordType } from '../../../interfaces/record-type';
 import { Content } from '../../../interfaces/blog';
 import Head from '../../components/Head';
@@ -15,6 +14,7 @@ import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumb';
 import Toc from '../../components/Toc';
 import SocialLinks from '../../components/SocialLinks';
+import { getRequestHeader } from '../../../scripts/get-request-header';
 import { dateFormat } from '../../../scripts/date-format';
 
 import { colorObj } from '../../../share/variables';
@@ -183,31 +183,50 @@ const MyContent = styled.div`
   }
 `;
 
-Blog.getInitialProps = async (context: any) => {
-  const url: string = API.BASE_URL;
-  const { id } = context.query;
-  const api = new API();
-  const blog = await api.getPost(url, id);
+interface pageSlug {
+  id: string;
+}
+const header = getRequestHeader();
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
+  const data = await res.json();
+  const slugAry: pageSlug[] = data.contents;
+  const paths = slugAry.map((post) => ({
+    params: { id: `/blogs/${post.id}` },
+  }));
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = params?.id;
+  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}`, header);
+  const blog = await res.json();
 
   const $ = cheerio.load(blog.body, { _useHtmlParser2: true });
 
   const headings = $('h2, h3').toArray();
-  const toc = headings.map((data): any => ({
+  const toc = headings.map((data) => ({
     id: data.attribs.id,
     text: data.children[0].data,
     type: data.name,
   }));
 
-  $('pre > code').each((i, elm): void => {
+  $('pre > code').each((i, elm) => {
     const result = hljs.highlightAuto($(elm).text());
     $(elm).html(result.value);
     $(elm).addClass('hljs');
   });
 
   return {
-    blog: blog,
-    toc: toc,
-    body: $.html(),
+    props: {
+      blog: blog,
+      toc: toc,
+      body: $.html(),
+    },
   };
 };
 
