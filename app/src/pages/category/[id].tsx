@@ -5,6 +5,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { RecordType } from '../../../interfaces/record-type';
 import { CategoryJson } from '../../../interfaces/taxonomy';
+import { PageSlug } from '../../../interfaces/page-slug';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumb';
@@ -66,15 +67,6 @@ const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({ cat
   );
 };
 
-interface CategorySlug {
-  category_field: {
-    id: string;
-  };
-}
-
-interface PageSlug {
-  id: string;
-}
 const header = getRequestHeader();
 
 export const getStaticPaths: GetStaticPaths = async () => {

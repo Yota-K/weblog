@@ -9,6 +9,7 @@ import hljs from 'highlight.js';
 
 import { RecordType } from '../../../interfaces/record-type';
 import { Content } from '../../../interfaces/blog';
+import { PageSlug } from '../../../interfaces/page-slug';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumb';
@@ -183,9 +184,6 @@ const MyContent = styled.div`
   }
 `;
 
-interface PageSlug {
-  id: string;
-}
 const header = getRequestHeader();
 
 export const getStaticPaths: GetStaticPaths = async () => {
