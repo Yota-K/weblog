@@ -1,15 +1,15 @@
 import React from 'react';
-import { NextComponentType, NextPageContext } from 'next';
+import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { API } from '../../../api/api';
 import { RecordType } from '../../../interfaces/record-type';
 import { CategoryJson } from '../../../interfaces/taxonomy';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumb';
 import { dateFormat } from '../../../scripts/date-format';
+import { getRequestHeader } from '../../../scripts/get-request-header';
 
 import { H2, H3 } from '../../../share/Heading';
 import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
@@ -23,6 +23,8 @@ interface Props {
 }
 
 const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({ categories }) => {
+  categories.posts.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+
   return (
     <Layout>
       <Head title={`${categories.name}｜カルキチのブログ`} />
@@ -64,15 +66,32 @@ const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({ cat
   );
 };
 
-Categories.getInitialProps = async (context: any) => {
-  const url = API.BASE_URL;
-  const { id } = context.query;
-  const api = new API();
-  const data = await api.getCategories(url, id);
+interface CategorySlug {
+  category_field: {
+    id: string;
+  };
+}
+const header = getRequestHeader();
 
-  data.posts.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=category_field.id&limit=9999`, header);
+  const data = await res.json();
+  const slugAry: CategorySlug[] = data.contents;
+  const paths = slugAry.map((post) => ({
+    params: { id: post.category_field.id },
+  }));
+  return { paths, fallback: false };
+};
 
-  return { categories: data };
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = params?.id;
+  const res = await fetch(`${process.env.ENDPOINT}/category/${id}?depth=2`, header);
+  const data = await res.json();
+  return {
+    props: {
+      categories: data,
+    },
+  };
 };
 
 export default Categories;
