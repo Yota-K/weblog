@@ -71,14 +71,18 @@ interface CategorySlug {
     id: string;
   };
 }
+
+interface PageSlug {
+  id: string;
+}
 const header = getRequestHeader();
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=category_field.id&limit=9999`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/category?fields=id&limit=9999`, header);
   const data = await res.json();
-  const slugAry: CategorySlug[] = data.contents;
+  const slugAry: PageSlug[] = data.contents;
   const paths = slugAry.map((post) => ({
-    params: { id: post.category_field.id },
+    params: { id: post.id },
   }));
   return { paths, fallback: false };
 };
