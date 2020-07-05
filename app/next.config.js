@@ -14,7 +14,7 @@ module.exports = {
     };
 
     const blogRes = await axios.get(`https://karukichi-tech-blog.microcms.io/api/v1/blogs`, headers);
-    const tagRes = await axios.get(`https://karukichi-tech-blog.microcms.io/api/v1/tags`, headers);
+    // const tagRes = await axios.get(`https://karukichi-tech-blog.microcms.io/api/v1/tags`, headers);
     // const categoryRes = await axios.get(`https://karukichi-tech-blog.microcms.io/api/v1/category`, headers);
 
     // ページネーションのビルド設定
@@ -39,10 +39,10 @@ module.exports = {
     //   paths[`/blogs/${blog.id}`] = { page: '/blogs/[id]', query: { id: blog.id } };
     // }
 
-    const tags = tagRes.data.contents;
-    for (const tag of tags) {
-      paths[`/tags/${tag.id}`] = { page: '/tags/[id]', query: { id: tag.id } };
-    }
+    // const tags = tagRes.data.contents;
+    // for (const tag of tags) {
+    //   paths[`/tags/${tag.id}`] = { page: '/tags/[id]', query: { id: tag.id } };
+    // }
 
     // const categories = categoryRes.data.contents;
     // for (const category of categories) {

@@ -1,15 +1,15 @@
 import React from 'react';
-import { NextComponentType, NextPageContext } from 'next';
+import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { API } from '../../../api/api';
 import { RecordType } from '../../../interfaces/record-type';
 import { TagJson } from '../../../interfaces/taxonomy';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumb';
 import { dateFormat } from '../../../scripts/date-format';
+import { getRequestHeader } from '../../../scripts/get-request-header';
 
 import { H2, H3 } from '../../../share/Heading';
 import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
@@ -23,6 +23,8 @@ interface Props {
 }
 
 const Tags: NextComponentType<NextPageContext, RecordType, Props> = ({ tags }) => {
+  tags.posts.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+
   return (
     <Layout>
       <Head title={`${tags.name}｜カルキチのブログ`} />
@@ -64,15 +66,30 @@ const Tags: NextComponentType<NextPageContext, RecordType, Props> = ({ tags }) =
   );
 };
 
-Tags.getInitialProps = async (context: any) => {
-  const url = API.BASE_URL;
-  const { id } = context.query;
-  const api = new API();
-  const data = await api.getTags(url, id);
+interface PageSlug {
+  id: string;
+}
+const header = getRequestHeader();
 
-  data.posts.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await fetch(`${process.env.ENDPOINT}/tags?fields=id&limit=9999`, header);
+  const data = await res.json();
+  const slugAry: PageSlug[] = data.contents;
+  const paths = slugAry.map((post) => ({
+    params: { id: post.id },
+  }));
+  return { paths, fallback: false };
+};
 
-  return { tags: data };
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = params?.id;
+  const res = await fetch(`${process.env.ENDPOINT}/tags/${id}?depth=2`, header);
+  const data = await res.json();
+  return {
+    props: {
+      tags: data,
+    },
+  };
 };
 
 export default Tags;
