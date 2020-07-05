@@ -14,8 +14,8 @@ import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumb';
 import Toc from '../../components/Toc';
 import SocialLinks from '../../components/SocialLinks';
-import { getRequestHeader } from '../../../scripts/get-request-header';
 import { dateFormat } from '../../../scripts/date-format';
+import { getRequestHeader } from '../../../scripts/get-request-header';
 
 import { colorObj } from '../../../share/variables';
 import { device } from '../../../share/media-query';
@@ -183,7 +183,7 @@ const MyContent = styled.div`
   }
 `;
 
-interface pageSlug {
+interface PageSlug {
   id: string;
 }
 const header = getRequestHeader();
@@ -191,14 +191,11 @@ const header = getRequestHeader();
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
   const data = await res.json();
-  const slugAry: pageSlug[] = data.contents;
+  const slugAry: PageSlug[] = data.contents;
   const paths = slugAry.map((post) => ({
-    params: { id: `/blogs/${post.id}` },
+    params: { id: post.id },
   }));
-  return {
-    paths,
-    fallback: false,
-  };
+  return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
