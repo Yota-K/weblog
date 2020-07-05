@@ -190,14 +190,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
   const data = await res.json();
   const slugAry: PageSlug[] = data.contents;
-  const paths = slugAry.map((post) => ({
-    params: { id: post.id },
-  }));
+  const paths = slugAry.map((post) => `/blogs/${post.id}`);
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = params?.id;
+export const getStaticProps: GetStaticProps = async (context) => {
+  const id = context?.params?.id;
   const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}`, header);
   const blog = await res.json();
 

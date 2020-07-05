@@ -73,14 +73,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/category?fields=id&limit=9999`, header);
   const data = await res.json();
   const slugAry: PageSlug[] = data.contents;
-  const paths = slugAry.map((post) => ({
-    params: { id: post.id },
-  }));
+  const paths = slugAry.map((post) => `/category/${post.id}`);
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = params?.id;
+export const getStaticProps: GetStaticProps = async (context) => {
+  const id = context?.params?.id;
   const res = await fetch(`${process.env.ENDPOINT}/category/${id}?depth=2`, header);
   const data = await res.json();
   return {
