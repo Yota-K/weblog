@@ -1,5 +1,5 @@
 import React from 'react';
-import { NextComponentType, NextPageContext } from 'next';
+import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -10,6 +10,7 @@ import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import Paginate from '../../components/Paginate';
 import { dateFormat } from '../../../scripts/date-format';
+import { getRequestHeader } from '../../../scripts/get-request-header';
 import { paginateAry } from '../../../scripts/generate-paginate-ary';
 
 import { H3 } from '../../../share/Heading';
@@ -26,6 +27,8 @@ interface Props {
 
 const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, totalCount }) => {
   const siteTitle = 'カルキチのブログ';
+
+  const paginateType = 'page';
   const paginate = paginateAry(totalCount);
 
   return (
@@ -51,7 +54,7 @@ const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
                 </Link>
               </CategoryLabel>
               <TagArea>
-                {blog.tag_field.map((tag: any) => (
+                {blog.tag_field.map((tag) => (
                   <TagLabel key={tag.id}>
                     <Link href="/tags/[id]" as={`/tags/${tag.id}`}>
                       <a>{tag.name}</a>
@@ -62,11 +65,17 @@ const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginate={paginate} />
+        <Paginate paginateType={paginateType} paginate={paginate} />
       </div>
     </Layout>
   );
 };
+
+const header = getRequestHeader();
+
+// export const getStaticPaths: GetStaticPaths = async () => {
+//
+// };
 
 Page.getInitialProps = async (context: any) => {
   const id = context.query.id;

@@ -26,6 +26,8 @@ interface Props {
 
 const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, totalCount }) => {
   const siteTitle = 'カルキチのブログ';
+
+  const paginateType = 'page';
   const paginate = paginateAry(totalCount);
 
   return (
@@ -62,7 +64,7 @@ const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginate={paginate} />
+        <Paginate paginateType={paginateType} paginate={paginate} />
       </div>
     </Layout>
   );

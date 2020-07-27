@@ -6,17 +6,18 @@ import styled from 'styled-components';
 import { colorObj } from '../../share/variables';
 
 interface Props {
+  paginateType: string;
   paginate: number[];
 }
 
-const Paginate: React.FC<Props> = ({ paginate }) => {
+const Paginate: React.FC<Props> = ({ paginateType, paginate }) => {
   const router = useRouter();
   const path = router.asPath;
 
-  const generatePaginate = (paginate: number[]) => {
-    if (path === '/' || path === '/page/1') {
+  const generatePaginate = (paginateType: string, paginate: number[]) => {
+    if (path === '/' || path === `/${paginateType}/1`) {
       return (
-        <Link href="/page/[id]" as={'/page/2'}>
+        <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/2`}>
           <a className="next-paginate">Next &gt;&gt;</a>
         </Link>
       );
@@ -28,17 +29,17 @@ const Paginate: React.FC<Props> = ({ paginate }) => {
     const pageNum = parseInt(pathMatch[0]);
     if (pageNum === paginate.length) {
       return (
-        <Link href="/page/[id]" as={`/page/${paginate.length - 1}`}>
+        <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${paginate.length - 1}`}>
           <a className="prev-paginate"> &lt;&lt; Prev</a>
         </Link>
       );
     } else {
       return (
         <>
-          <Link href="/page/[id]" as={`/page/${pageNum - 1}`}>
+          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${pageNum - 1}`}>
             <a className="prev-paginate">&lt;&lt; Prev</a>
           </Link>
-          <Link href="/page/[id]" as={`/page/${pageNum + 1}`}>
+          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${pageNum + 1}`}>
             <a className="next-paginate">Next &gt;&gt;</a>
           </Link>
         </>
@@ -46,7 +47,7 @@ const Paginate: React.FC<Props> = ({ paginate }) => {
     }
   };
 
-  return <MyPaginate>{generatePaginate(paginate)}</MyPaginate>;
+  return <MyPaginate>{generatePaginate(paginateType, paginate)}</MyPaginate>;
 };
 
 const MyPaginate = styled.div`
