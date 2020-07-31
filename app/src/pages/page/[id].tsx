@@ -3,7 +3,6 @@ import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } fr
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { API } from '../../../api/api';
 import { RecordType } from '../../../interfaces/record-type';
 import { Content } from '../../../interfaces/blog';
 import Head from '../../components/Head';
@@ -22,10 +21,11 @@ import { TimeStamp } from '../../../share/TimeStamp';
 
 interface Props {
   blogs: Content[];
+  offsetNum: number;
   totalCount: number;
 }
 
-const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, totalCount }) => {
+const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, offsetNum, totalCount }) => {
   const siteTitle = 'カルキチのブログ';
 
   const paginateType = 'page';
@@ -65,26 +65,42 @@ const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} paginate={paginate} />
+        <Paginate paginateType={paginateType} paginate={paginate} offsetNum={offsetNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
 };
 
 const header = getRequestHeader();
+const offsetNum = 5;
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//
-// };
+export const getStaticPaths = async () => {
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
+  const data = await res.json();
+  let totalCount = data.totalCount;
 
-Page.getInitialProps = async (context: any) => {
-  const id = context.query.id;
-  const url = API.BASE_URL;
-  const api = new API();
-  const data = await api.getBlog(url, id);
+  totalCount = Math.floor(totalCount / offsetNum) + 1;
+  const paginate: number[] = paginateAry(totalCount);
+  const paths = paginate.map((pageNum) => `/page/${pageNum}`);
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  let id: any = context?.params?.id;
+  id = id * offsetNum - offsetNum;
+
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${id}&limit=5`, header);
+  const data = await res.json();
+  const blogs = data.contents;
+  const totalCount = data.totalCount;
+
   return {
-    blogs: data.blogs,
-    totalCount: data.totalCount,
+    props: {
+      blogs: blogs,
+      offsetNum: offsetNum,
+      totalCount: totalCount,
+    },
   };
 };
 
