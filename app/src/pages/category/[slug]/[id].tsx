@@ -3,21 +3,21 @@ import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } fr
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { RecordType } from '../../../interfaces/record-type';
-import { CategoryJson } from '../../../interfaces/taxonomy';
-import { PageSlug } from '../../../interfaces/page-slug';
-import Head from '../../components/Head';
-import Layout from '../../components/Layout';
-import Breadcrumb from '../../components/Breadcrumb';
-import { dateFormat } from '../../../scripts/date-format';
-import { getRequestHeader } from '../../../scripts/get-request-header';
+import { RecordType } from '../../../../interfaces/record-type';
+import { CategoryJson } from '../../../../interfaces/taxonomy';
+import { PageSlug } from '../../../../interfaces/page-slug';
+import Head from '../../../components/Head';
+import Layout from '../../../components/Layout';
+import Breadcrumb from '../../../components/Breadcrumb';
+import { dateFormat } from '../../../../scripts/date-format';
+import { getRequestHeader } from '../../../../scripts/get-request-header';
 
-import { H2, H3 } from '../../../share/Heading';
-import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
-import { CategoryLabel } from '../../../share/CategoryLabel';
-import { TagArea } from '../../../share/TagArea';
-import { TagLabel } from '../../../share/TagLabel';
-import { TimeStamp } from '../../../share/TimeStamp';
+import { H2, H3 } from '../../../../share/Heading';
+import { BlogCard, PostThumbnail, PostInfo } from '../../../../share/BlogCard';
+import { CategoryLabel } from '../../../../share/CategoryLabel';
+import { TagArea } from '../../../../share/TagArea';
+import { TagLabel } from '../../../../share/TagLabel';
+import { TimeStamp } from '../../../../share/TimeStamp';
 
 interface Props {
   categories: CategoryJson;
@@ -78,7 +78,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context?.params?.id;
+  const id = context?.params?.slug;
   const res = await fetch(`${process.env.ENDPOINT}/category/${id}?depth=2`, header);
   const data = await res.json();
   return {
