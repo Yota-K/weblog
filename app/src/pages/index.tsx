@@ -21,10 +21,11 @@ import { TimeStamp } from '../../share/TimeStamp';
 
 interface Props {
   blogs: Content[];
+  offsetNum: number;
   totalCount: number;
 }
 
-const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, totalCount }) => {
+const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, offsetNum, totalCount }) => {
   const siteTitle = 'カルキチのブログ';
 
   const paginateType = 'page';
@@ -64,13 +65,14 @@ const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} paginate={paginate} />
+        <Paginate paginateType={paginateType} paginate={paginate} offsetNum={offsetNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
 };
 
 const header = getRequestHeader();
+const offsetNum = 5;
 
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=0&limit=5`, header);
@@ -78,6 +80,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       blogs: data.contents,
+      offsetNum: offsetNum,
       totalCount: data.totalCount,
     },
   };
