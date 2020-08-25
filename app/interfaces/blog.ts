@@ -11,6 +11,7 @@ export interface Content {
   thumbnail: {
     url: string;
   };
+  category: string;
   body: string;
   description: string;
   tag_field: {

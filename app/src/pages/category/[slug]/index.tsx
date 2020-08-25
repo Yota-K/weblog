@@ -4,13 +4,15 @@ import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { RecordType } from '../../../../interfaces/record-type';
-import { CategoryJson } from '../../../../interfaces/taxonomy';
+import { Content } from '../../../../interfaces/blog';
 import { PageSlug } from '../../../../interfaces/page-slug';
 import Head from '../../../components/Head';
 import Layout from '../../../components/Layout';
 import Breadcrumb from '../../../components/Breadcrumb';
+import Paginate from '../../../components/Paginate';
 import { dateFormat } from '../../../../scripts/date-format';
 import { getRequestHeader } from '../../../../scripts/get-request-header';
+import { paginateAry } from '../../../../scripts/generate-paginate-ary';
 
 import { H2, H3 } from '../../../../share/Heading';
 import { BlogCard, PostThumbnail, PostInfo } from '../../../../share/BlogCard';
@@ -20,19 +22,27 @@ import { TagLabel } from '../../../../share/TagLabel';
 import { TimeStamp } from '../../../../share/TimeStamp';
 
 interface Props {
-  categories: CategoryJson;
+  categories: Content[];
+  categoryName: string;
+  categorySlug: string;
+  totalCount: number;
 }
 
-const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({ categories }) => {
-  categories.posts.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({
+  categories,
+  categoryName,
+  categorySlug,
+  totalCount,
+}) => {
+  const paginateType = `category/${categorySlug}`;
 
   return (
     <Layout>
-      <Head title={`${categories.name}｜カルキチのブログ`} />
+      <Head title={`${categoryName}｜カルキチのブログ`} />
       <div id="categories">
-        <Breadcrumb categoryPageTitle={categories.name} />
-        <H2>カテゴリー：{categories.name}</H2>
-        {categories.posts.map((blog) => (
+        <Breadcrumb categoryPageTitle={categoryName} />
+        <H2>カテゴリー：{categoryName}</H2>
+        {categories.map((blog) => (
           <BlogCard key={blog.id}>
             <PostThumbnail>
               <LazyLoadImage src={`${blog.thumbnail.url}`} alt="thumbnail" effect="blur" />
@@ -62,28 +72,43 @@ const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({ cat
             </PostInfo>
           </BlogCard>
         ))}
+        <Paginate paginateType={paginateType} offsetNum={offsetNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
 };
 
 const header = getRequestHeader();
+const offsetNum = 5;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/category?fields=id&limit=9999`, header);
   const data = await res.json();
+
   const slugAry: PageSlug[] = data.contents;
   const paths = slugAry.map((post) => `/category/${post.id}`);
+
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context?.params?.slug;
-  const res = await fetch(`${process.env.ENDPOINT}/category/${id}?depth=2`, header);
+  const slug = context?.params?.slug;
+
+  const params = `filters=category[contains]${slug}&limit=${offsetNum}&orders=createdAt`;
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?${params}`, header);
   const data = await res.json();
+
+  const contents = data.contents;
+  const categoryName = contents[0].category_field.name;
+  const categorySlug = contents[0].category_field.id;
+  const totalCount = data.totalCount;
+
   return {
     props: {
-      categories: data,
+      categories: contents,
+      categoryName: categoryName,
+      categorySlug: categorySlug,
+      totalCount: totalCount,
     },
   };
 };

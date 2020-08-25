@@ -4,13 +4,14 @@ import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { RecordType } from '../../../../interfaces/record-type';
-import { CategoryJson } from '../../../../interfaces/taxonomy';
-import { PageSlug } from '../../../../interfaces/page-slug';
+import { Content } from '../../../../interfaces/blog';
 import Head from '../../../components/Head';
 import Layout from '../../../components/Layout';
 import Breadcrumb from '../../../components/Breadcrumb';
+import Paginate from '../../../components/Paginate';
 import { dateFormat } from '../../../../scripts/date-format';
 import { getRequestHeader } from '../../../../scripts/get-request-header';
+import { paginateAry } from '../../../../scripts/generate-paginate-ary';
 
 import { H2, H3 } from '../../../../share/Heading';
 import { BlogCard, PostThumbnail, PostInfo } from '../../../../share/BlogCard';
@@ -20,19 +21,27 @@ import { TagLabel } from '../../../../share/TagLabel';
 import { TimeStamp } from '../../../../share/TimeStamp';
 
 interface Props {
-  categories: CategoryJson;
+  categories: Content[];
+  categoryName: string;
+  categorySlug: string;
+  totalCount: number;
 }
 
-const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({ categories }) => {
-  categories.posts.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
+const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({
+  categories,
+  categoryName,
+  categorySlug,
+  totalCount,
+}) => {
+  const paginateType = `category/${categorySlug}`;
 
   return (
     <Layout>
-      <Head title={`${categories.name}｜カルキチのブログ`} />
+      <Head title={`${categoryName}｜カルキチのブログ`} />
       <div id="categories">
-        <Breadcrumb categoryPageTitle={categories.name} />
-        <H2>カテゴリー：{categories.name}</H2>
-        {categories.posts.map((blog) => (
+        <Breadcrumb categoryPageTitle={categoryName} />
+        <H2>カテゴリー：{categoryName}</H2>
+        {categories.map((blog) => (
           <BlogCard key={blog.id}>
             <PostThumbnail>
               <LazyLoadImage src={`${blog.thumbnail.url}`} alt="thumbnail" effect="blur" />
@@ -62,28 +71,89 @@ const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({ cat
             </PostInfo>
           </BlogCard>
         ))}
+        <Paginate paginateType={paginateType} offsetNum={offsetNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
 };
 
 const header = getRequestHeader();
+const offsetNum = 5;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${process.env.ENDPOINT}/category?fields=id&limit=9999`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/taxonomy?fields=categories.id,categories.posts&limit=9999`, header);
   const data = await res.json();
-  const slugAry: PageSlug[] = data.contents;
-  const paths = slugAry.map((post) => `/category/${post.id}`);
+  const contents: any = data.categories;
+
+  const categoryAry: {
+    slug: string;
+    count: number;
+  }[] = [];
+
+  // 以下のようなオブジェクトを持った配列を生成する
+  // [
+  //  {id: 'front-end': count: 2}
+  // ]
+  contents.forEach((content: any) => {
+    const postLength = content.posts.length;
+    const count = [...new Array(postLength).keys()].map((i) => ++i);
+    const totalCount = Math.floor(count.length / offsetNum) + 1;
+
+    categoryAry.push({
+      slug: content.id,
+      count: totalCount,
+    });
+  });
+
+  // 二次元配列を生成する
+  // [
+  //   [
+  //     {params: {slug: 'front-end', id: 1}},
+  //     {params: {slug: 'front-end', id: 2}},
+  //   ],
+  //   [
+  //     {params: {slug: 'front-end', id: 1}},
+  //   ],
+  // ]
+  const pathAry = categoryAry.map((category) => {
+    const count = category.count;
+    return [...Array(count)].map((_, i) => ({
+      params: { slug: category.slug, id: ++i },
+    }));
+  });
+
+  // reduceで二次元配列を一次元配列に変換
+  const resultAry = pathAry.reduce((prev, current) => {
+    return [...prev, ...current];
+  }, []);
+
+  const paths = resultAry.map((path) => ({
+    params: { slug: path.params.slug, id: path.params.id.toString() },
+  }));
+
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context?.params?.slug;
-  const res = await fetch(`${process.env.ENDPOINT}/category/${id}?depth=2`, header);
+  const slug = context?.params?.slug;
+  let id: any = context?.params?.id;
+  id = id * offsetNum - offsetNum;
+
+  const params = `filters=category[contains]${slug}&offset=${id}&limit=${offsetNum}&orders=createdAt`;
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?${params}`, header);
   const data = await res.json();
+
+  const contents = data.contents;
+  const categoryName = contents[0].category_field.name;
+  const categorySlug = contents[0].category_field.id;
+  const totalCount = data.totalCount;
+
   return {
     props: {
-      categories: data,
+      categories: contents,
+      categoryName: categoryName,
+      categorySlug: categorySlug,
+      totalCount: totalCount,
     },
   };
 };
