@@ -27,9 +27,7 @@ interface Props {
 
 const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, offsetNum, totalCount }) => {
   const siteTitle = 'カルキチのブログ';
-
   const paginateType = 'page';
-  const paginate = paginateAry(totalCount);
 
   return (
     <Layout>
@@ -65,7 +63,7 @@ const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, of
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} paginate={paginate} offsetNum={offsetNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} offsetNum={offsetNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
@@ -90,7 +88,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   let id: any = context?.params?.id;
   id = id * offsetNum - offsetNum;
 
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${id}&limit=5`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${id}&limit=5&orders=createdAt`, header);
   const data = await res.json();
   const blogs = data.contents;
   const totalCount = data.totalCount;
