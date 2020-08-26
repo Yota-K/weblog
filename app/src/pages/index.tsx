@@ -9,7 +9,6 @@ import Paginate from '../components/Paginate';
 import { RecordType } from '../../interfaces/record-type';
 import { Content } from '../../interfaces/blog';
 import { dateFormat } from '../../scripts/date-format';
-import { paginateAry } from '../../scripts/generate-paginate-ary';
 import { getRequestHeader } from '../../scripts/get-request-header';
 
 import { H3 } from '../../share/Heading';
@@ -27,9 +26,7 @@ interface Props {
 
 const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, offsetNum, totalCount }) => {
   const siteTitle = 'カルキチのブログ';
-
   const paginateType = 'page';
-  const paginate = paginateAry(totalCount);
 
   return (
     <Layout>
@@ -65,7 +62,7 @@ const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, of
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} paginate={paginate} offsetNum={offsetNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} offsetNum={offsetNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
@@ -77,6 +74,7 @@ const offsetNum = 5;
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=0&limit=5`, header);
   const data = await res.json();
+
   return {
     props: {
       blogs: data.contents,

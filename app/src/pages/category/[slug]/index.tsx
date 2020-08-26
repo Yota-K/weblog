@@ -12,7 +12,6 @@ import Breadcrumb from '../../../components/Breadcrumb';
 import Paginate from '../../../components/Paginate';
 import { dateFormat } from '../../../../scripts/date-format';
 import { getRequestHeader } from '../../../../scripts/get-request-header';
-import { paginateAry } from '../../../../scripts/generate-paginate-ary';
 
 import { H2, H3 } from '../../../../share/Heading';
 import { BlogCard, PostThumbnail, PostInfo } from '../../../../share/BlogCard';
@@ -94,7 +93,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context?.params?.slug;
 
-  const params = `filters=category[contains]${slug}&limit=${offsetNum}&orders=createdAt`;
+  const params = `filters=category[contains]${slug}&limit=${offsetNum}`;
   const res = await fetch(`${process.env.ENDPOINT}/blogs?${params}`, header);
   const data = await res.json();
 
