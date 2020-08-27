@@ -16,10 +16,10 @@ const Paginate: React.FC<Props> = ({ paginateType, offsetNum, totalCount }) => {
 
   const generatePaginate = (paginateType: string, offsetNum: number, totalCount: number) => {
     // 投稿が5記事以下の時はページネーションを非表示
-    if (totalCount < offsetNum) return <></>;
+    if (totalCount <= offsetNum) return <></>;
 
     // １ページ目のとき
-    if (path === '/' || path === `/${paginateType}/1` || path === `/${paginateType}`) {
+    if (path === '/' || path === `/${paginateType}` || path === `/${paginateType}/1`) {
       return (
         <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/2`}>
           <a className="next-paginate">Next &gt;&gt;</a>
