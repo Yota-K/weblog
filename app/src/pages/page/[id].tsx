@@ -75,9 +75,10 @@ const offsetNum = 5;
 export const getStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
   const data = await res.json();
-  let totalCount = data.totalCount;
 
+  let totalCount = data.totalCount;
   totalCount = Math.floor(totalCount / offsetNum) + 1;
+
   const paginate: number[] = paginateAry(totalCount);
   const paths = paginate.map((pageNum) => `/page/${pageNum}`);
 
@@ -88,7 +89,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   let id: any = context?.params?.id;
   id = id * offsetNum - offsetNum;
 
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${id}&limit=5&orders=createdAt`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${id}&limit=5`, header);
   const data = await res.json();
   const blogs = data.contents;
   const totalCount = data.totalCount;
