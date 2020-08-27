@@ -1,0 +1,20 @@
+## 記事一覧
+[[redirects]]
+  from = "/page/1"
+  to = "/"
+  status = 301
+  force = true
+
+## カテゴリーに紐付く投稿一覧
+[[redirects]]
+  from = "/category/*/1"
+  to = "/category/:splat"
+  status = 301
+  force = true
+
+## タグに紐付く投稿一覧
+[[redirects]]
+  from = "/tags/*/1"
+  to = "/tags/:splat"
+  status = 301
+  force = true
