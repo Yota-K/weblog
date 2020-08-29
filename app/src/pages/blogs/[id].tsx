@@ -10,13 +10,15 @@ import hljs from 'highlight.js';
 import { RecordType } from '../../../interfaces/record-type';
 import { Content } from '../../../interfaces/blog';
 import { PageSlug } from '../../../interfaces/page-slug';
+
+import { dateFormat } from '../../../scripts/date-format';
+import { getRequestHeader } from '../../../scripts/get-request-header';
+
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumb';
 import Toc from '../../components/Toc';
 import SocialLinks from '../../components/SocialLinks';
-import { dateFormat } from '../../../scripts/date-format';
-import { getRequestHeader } from '../../../scripts/get-request-header';
 
 import { colorObj } from '../../../share/variables';
 import { device } from '../../../share/media-query';
