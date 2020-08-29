@@ -7,7 +7,9 @@ import { paginateNum } from '../../../../config/paginate-num';
 
 import { RecordType } from '../../../../interfaces/record-type';
 import { Content } from '../../../../interfaces/blog';
+import { TaxonomyAry } from '../../../../interfaces/taxonomy';
 
+import { generateBuildPaginatePath } from '../../../../scripts/generate-build-paginate-path';
 import { dateFormat } from '../../../../scripts/date-format';
 import { getRequestHeader } from '../../../../scripts/get-request-header';
 
@@ -82,35 +84,9 @@ const header = getRequestHeader();
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/taxonomy?fields=tags.id,tags.posts&limit=9999`, header);
   const data = await res.json();
-  const contents: any = data.tags;
 
-  const tagAry: {
-    slug: string;
-    count: number;
-  }[] = [];
-
-  contents.forEach((content: any) => {
-    const postLength = content.posts.length;
-    const count = [...new Array(postLength).keys()].map((i) => ++i);
-    const totalCount = Math.floor(count.length / offsetNum) + 1;
-
-    tagAry.push({
-      slug: content.id,
-      count: totalCount,
-    });
-  });
-
-  const pathAry = tagAry.map((tag) => {
-    const count = tag.count;
-
-    return [...new Array(count)].map((_, i) => ({
-      params: { slug: tag.slug, id: ++i },
-    }));
-  });
-
-  const resultAry = pathAry.reduce((prev, current) => {
-    return [...prev, ...current];
-  }, []);
+  const contents: TaxonomyAry[] = data.tags;
+  const resultAry = generateBuildPaginatePath(contents, offsetNum);
 
   const paths = resultAry.map((path) => ({
     params: { slug: path.params.slug, id: path.params.id.toString() },

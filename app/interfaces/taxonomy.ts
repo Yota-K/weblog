@@ -63,12 +63,20 @@ export interface TaxonomyJson {
   }[];
 }
 
-// 個別のコンポーネントで使用する型定義
+// カテゴリーとタグ、個別のコンポーネントで使用する型定義
 export interface TaxonomyList {
   id: string;
   createdAt: string;
   updatedAt: string;
   name: string;
+  posts: {
+    id: string;
+  }[];
+}
+
+// カテゴリーページとタグページのビルドを行う際に使用する型定義
+export interface TaxonomyAry {
+  id: string;
   posts: {
     id: string;
   }[];

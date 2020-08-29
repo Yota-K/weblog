@@ -7,7 +7,9 @@ import { paginateNum } from '../../../../config/paginate-num';
 
 import { RecordType } from '../../../../interfaces/record-type';
 import { Content } from '../../../../interfaces/blog';
+import { TaxonomyAry } from '../../../../interfaces/taxonomy';
 
+import { generateBuildPaginatePath } from '../../../../scripts/generate-build-paginate-path';
 import { dateFormat } from '../../../../scripts/date-format';
 import { getRequestHeader } from '../../../../scripts/get-request-header';
 
@@ -87,49 +89,9 @@ const header = getRequestHeader();
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/taxonomy?fields=categories.id,categories.posts&limit=9999`, header);
   const data = await res.json();
-  const contents: any = data.categories;
 
-  const categoryAry: {
-    slug: string;
-    count: number;
-  }[] = [];
-
-  // 以下のようなオブジェクトを持った配列を生成する
-  // [
-  //  {id: 'front-end': count: 2}
-  // ]
-  contents.forEach((content: any) => {
-    const postLength = content.posts.length;
-    const count = [...new Array(postLength).keys()].map((i) => ++i);
-    const totalCount = Math.floor(count.length / offsetNum) + 1;
-
-    categoryAry.push({
-      slug: content.id,
-      count: totalCount,
-    });
-  });
-
-  // 二次元配列を生成する
-  // [
-  //   [
-  //     {params: {slug: 'front-end', id: 1}},
-  //     {params: {slug: 'front-end', id: 2}},
-  //   ],
-  //   [
-  //     {params: {slug: 'front-end', id: 1}},
-  //   ],
-  // ]
-  const pathAry = categoryAry.map((category) => {
-    const count = category.count;
-    return [...Array(count)].map((_, i) => ({
-      params: { slug: category.slug, id: ++i },
-    }));
-  });
-
-  // reduceで二次元配列を一次元配列に変換
-  const resultAry = pathAry.reduce((prev, current) => {
-    return [...prev, ...current];
-  }, []);
+  const contents: TaxonomyAry[] = data.categories;
+  const resultAry = generateBuildPaginatePath(contents, offsetNum);
 
   const paths = resultAry.map((path) => ({
     params: { slug: path.params.slug, id: path.params.id.toString() },
