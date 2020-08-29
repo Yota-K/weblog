@@ -3,14 +3,18 @@ import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } fr
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
+import { paginateNum } from '../../../config/paginate-num';
+
 import { RecordType } from '../../../interfaces/record-type';
 import { Content } from '../../../interfaces/blog';
-import Head from '../../components/Head';
-import Layout from '../../components/Layout';
-import Paginate from '../../components/Paginate';
+
 import { dateFormat } from '../../../scripts/date-format';
 import { getRequestHeader } from '../../../scripts/get-request-header';
 import { paginateAry } from '../../../scripts/generate-paginate-ary';
+
+import Head from '../../components/Head';
+import Layout from '../../components/Layout';
+import Paginate from '../../components/Paginate';
 
 import { H3 } from '../../../share/Heading';
 import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
@@ -24,6 +28,8 @@ interface Props {
   offsetNum: number;
   totalCount: number;
 }
+
+const offsetNum = paginateNum['count'];
 
 const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, offsetNum, totalCount }) => {
   const siteTitle = 'カルキチのブログ';
@@ -70,9 +76,8 @@ const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, of
 };
 
 const header = getRequestHeader();
-const offsetNum = 5;
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
   const data = await res.json();
 

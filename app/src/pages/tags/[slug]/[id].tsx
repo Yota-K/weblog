@@ -3,14 +3,18 @@ import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } fr
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
+import { paginateNum } from '../../../../config/paginate-num';
+
 import { RecordType } from '../../../../interfaces/record-type';
 import { Content } from '../../../../interfaces/blog';
+
+import { dateFormat } from '../../../../scripts/date-format';
+import { getRequestHeader } from '../../../../scripts/get-request-header';
+
 import Head from '../../../components/Head';
 import Layout from '../../../components/Layout';
 import Breadcrumb from '../../../components/Breadcrumb';
 import Paginate from '../../../components/Paginate';
-import { dateFormat } from '../../../../scripts/date-format';
-import { getRequestHeader } from '../../../../scripts/get-request-header';
 
 import { H2, H3 } from '../../../../share/Heading';
 import { BlogCard, PostThumbnail, PostInfo } from '../../../../share/BlogCard';
@@ -25,6 +29,8 @@ interface Props {
   tagSlug: string;
   totalCount: number;
 }
+
+const offsetNum = paginateNum['count'];
 
 const Tags: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, tagName, tagSlug, totalCount }) => {
   const paginateType = `tags/${tagSlug}`;
@@ -72,7 +78,6 @@ const Tags: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, tag
 };
 
 const header = getRequestHeader();
-const offsetNum = 5;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/taxonomy?fields=tags.id,tags.posts&limit=9999`, header);
