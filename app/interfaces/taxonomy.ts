@@ -74,6 +74,11 @@ export interface TaxonomyList {
   }[];
 }
 
+export interface Taxonomy {
+  tags: TaxonomyList[];
+  categories: TaxonomyList[];
+}
+
 // カテゴリーページとタグページのビルドを行う際に使用する型定義
 export interface TaxonomyAry {
   id: string;

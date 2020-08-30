@@ -1,6 +1,7 @@
 module.exports = {
   env: {
-    access_key: process.env.API_KEY,
+    API_KEY: process.env.API_KEY,
+    ENDPOINT: process.env.ENDPOINT,
   },
   exportPathMap: async function () {
     const paths = {

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import { API } from '../../../api/api';
-import { TaxonomyList } from '../../../interfaces/taxonomy';
+import { Taxonomy } from '../../../interfaces/taxonomy';
 
 import Profile from './Profile';
 import CategoryList from './CategoryList';
@@ -10,30 +9,11 @@ import TagList from './TagList';
 
 import { device } from '../../../share/media-query';
 
-interface Taxonomy {
-  tags: TaxonomyList[];
-  categories: TaxonomyList[];
+interface Props {
+  taxonomyList: Taxonomy;
 }
 
-const Sidebar: React.FC = () => {
-  const [taxonomyList, setTaxonomyList] = React.useState<Taxonomy>({
-    tags: [],
-    categories: [],
-  });
-
-  useEffect(() => {
-    const getTaxonomyList = async () => {
-      const url = API.BASE_URL;
-      const api = new API();
-      const data = await api.getTaxonomyList(url);
-      setTaxonomyList({
-        tags: data.tags,
-        categories: data.categories,
-      });
-    };
-    getTaxonomyList();
-  }, []);
-
+const Sidebar: React.FC<Props> = ({ taxonomyList }) => {
   return (
     <BlogSidebar>
       <Profile />
