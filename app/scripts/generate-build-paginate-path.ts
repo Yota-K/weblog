@@ -20,7 +20,15 @@ export const generateBuildPaginatePath = (contents: TaxonomyAry[], offsetNum: nu
   contents.forEach((content) => {
     const postLength = content.posts.length;
     const count = [...new Array(postLength).keys()].map((i) => ++i);
-    const totalCount = Math.floor(count.length / offsetNum) + 1;
+
+    let totalCount;
+    const countLength = count.length;
+
+    if (countLength <= offsetNum) {
+      totalCount = 1;
+    } else {
+      totalCount = Math.floor(countLength / offsetNum) + 1;
+    }
 
     slugAry.push({
       slug: content.id,
