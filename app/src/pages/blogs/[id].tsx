@@ -149,6 +149,12 @@ const MyContent = styled.div`
   p {
     font-size: 18px;
     line-height: 35px;
+    code {
+      border: 1px solid #ddd;
+      background-color: #fff;
+      color: #ff357f;
+      margin: 0 2px;
+    }
   }
   img {
     width: 100%;
@@ -191,8 +197,10 @@ const header = getRequestHeader();
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
   const data = await res.json();
+
   const slugAry: PageSlug[] = data.contents;
   const paths = slugAry.map((post) => `/blogs/${post.id}`);
+
   return { paths, fallback: false };
 };
 
