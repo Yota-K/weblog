@@ -1,6 +1,6 @@
 ## 記事一覧
 [[redirects]]
-  from = "/page/1"
+  from = "https://karukichi-blog.netlify.app/page/1"
   to = "https://karukichi-blog.netlify.app/"
   status = 301
   force = true
