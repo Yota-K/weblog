@@ -65,7 +65,7 @@ const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc
           </Link>
         </CategoryLabel>
         <TagArea>
-          {blog.tag_field.map((tag: any) => (
+          {blog.tag_field.map((tag) => (
             <TagLabel key={tag.id}>
               <Link href="/tags/[id]" as={`/tags/${tag.id}`}>
                 <a>{tag.name}</a>

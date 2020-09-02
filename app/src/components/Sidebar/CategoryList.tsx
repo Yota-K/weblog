@@ -17,7 +17,7 @@ const CategoryList: React.FC<Props> = ({ categories }) => {
     <SidebarBox>
       <H4>カテゴリー</H4>
       <CategoryUl>
-        {categories.map((category: any) => (
+        {categories.map((category) => (
           <li key={category.id}>
             <Link href="/category/[id]" as={`/category/${category.id}`}>
               <a>

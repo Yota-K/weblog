@@ -21,7 +21,7 @@ const Toc: React.FC<Props> = ({ toc }) => {
   return (
     <TocArea>
       <H2>目次</H2>
-      {toc.map((el: any) => (
+      {toc.map((el) => (
         <li key={el.id} onClick={headingScroll} className={`toc-${el.type}`}>
           <Link to={el.id} smooth={true} offset={-70} duration={600}>
             {el.text}

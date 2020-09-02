@@ -17,7 +17,7 @@ const TagList: React.FC<Props> = ({ tags }) => {
     <SidebarBox>
       <H4>タグ</H4>
       <TagArea>
-        {tags.map((tag: any) => (
+        {tags.map((tag) => (
           <TagLabel key={tag.id}>
             <Link href="/tags/[id]" as={`/tags/${tag.id}`}>
               <a>{tag.name}</a>
