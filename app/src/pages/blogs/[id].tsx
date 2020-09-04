@@ -151,9 +151,10 @@ const MyContent = styled.div`
     line-height: 35px;
     code {
       border: 1px solid #ddd;
-      background-color: #fff;
-      color: #ff357f;
+      background-color: #eee;
+      color: #333;
       margin: 0 2px;
+      padding: 0.1em 0.4em;
     }
   }
   img {
