@@ -30,10 +30,11 @@ const Paginate: React.FC<Props> = ({ paginateType, offsetNum, totalCount }) => {
 
     const pathMatch = path.match(/\d+$/g);
 
+    // pathMatchにnullが入らないようにする
     if (pathMatch === null) return;
 
     const currentPaginateNum = parseInt(pathMatch[0]);
-    const totalPaginateNum = Math.floor(totalCount / offsetNum) + 1;
+    const totalPaginateNum = Math.ceil(totalCount / offsetNum);
 
     // パスに含まれるページネーションの数字と投稿数を表示数で割った数に1を足した数が同じ時は最後のページ
     if (currentPaginateNum === totalPaginateNum) {
