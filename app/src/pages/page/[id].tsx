@@ -91,10 +91,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  let id: any = context?.params?.id;
-  id = id * offsetNum - offsetNum;
+  const id = context?.params?.id as string;
+  const offset = parseInt(id) * offsetNum - offsetNum;
 
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${id}&limit=5`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${offset}&limit=5`, header);
   const data = await res.json();
   const blogs = data.contents;
   const totalCount = data.totalCount;

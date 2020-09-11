@@ -102,10 +102,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context?.params?.slug;
-  let id: any = context?.params?.id;
-  id = id * offsetNum - offsetNum;
+  const id = context?.params?.id as string;
 
-  const params = `filters=category[contains]${slug}&offset=${id}&limit=${offsetNum}`;
+  const offset = parseInt(id) * offsetNum - offsetNum;
+
+  const params = `filters=category[contains]${slug}&offset=${offset}&limit=${offsetNum}`;
   const res = await fetch(`${process.env.ENDPOINT}/blogs?${params}`, header);
   const data = await res.json();
 
