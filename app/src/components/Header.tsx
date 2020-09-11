@@ -1,10 +1,10 @@
-import React from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React from 'react';
 import styled from 'styled-components';
 
-import { colorObj } from '../../share/variables';
 import { device } from '../../share/media-query';
+import { colorObj } from '../../share/variables';
 
 interface Props {
   siteTitle: React.ReactNode;

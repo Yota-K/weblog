@@ -1,26 +1,26 @@
-import React from 'react';
 import { NextComponentType, NextPageContext, GetStaticProps } from 'next';
 import Link from 'next/link';
+import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { paginateNum } from '../../config/paginate-num';
 
-import { RecordType } from '../../interfaces/record-type';
 import { Content } from '../../interfaces/blog';
+import { RecordType } from '../../interfaces/record-type';
 
 import { dateFormat } from '../../scripts/date-format';
 import { getRequestHeader } from '../../scripts/get-request-header';
 
-import Head from '../components/Head';
-import Layout from '../components/Layout';
-import Paginate from '../components/Paginate';
-
-import { H3 } from '../../share/Heading';
 import { BlogCard, PostThumbnail, PostInfo } from '../../share/BlogCard';
 import { CategoryLabel } from '../../share/CategoryLabel';
+import { H3 } from '../../share/Heading';
 import { TagArea } from '../../share/TagArea';
 import { TagLabel } from '../../share/TagLabel';
 import { TimeStamp } from '../../share/TimeStamp';
+
+import Head from '../components/Head';
+import Layout from '../components/Layout';
+import Paginate from '../components/Paginate';
 
 interface Props {
   blogs: Content[];
@@ -57,7 +57,7 @@ const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, of
                 </Link>
               </CategoryLabel>
               <TagArea>
-                {blog.tag_field.map((tag: any) => (
+                {blog.tag_field.map((tag) => (
                   <TagLabel key={tag.id}>
                     <Link href="/tags/[id]" as={`/tags/${tag.id}`}>
                       <a>{tag.name}</a>

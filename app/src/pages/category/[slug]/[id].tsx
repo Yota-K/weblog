@@ -1,29 +1,29 @@
-import React from 'react';
 import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
+import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { paginateNum } from '../../../../config/paginate-num';
 
-import { RecordType } from '../../../../interfaces/record-type';
 import { Content } from '../../../../interfaces/blog';
+import { RecordType } from '../../../../interfaces/record-type';
 import { TaxonomyAry } from '../../../../interfaces/taxonomy';
 
-import { generateBuildPaginatePath } from '../../../../scripts/generate-build-paginate-path';
 import { dateFormat } from '../../../../scripts/date-format';
+import { generateBuildPaginatePath } from '../../../../scripts/generate-build-paginate-path';
 import { getRequestHeader } from '../../../../scripts/get-request-header';
 
-import Head from '../../../components/Head';
-import Layout from '../../../components/Layout';
-import Breadcrumb from '../../../components/Breadcrumb';
-import Paginate from '../../../components/Paginate';
-
-import { H2, H3 } from '../../../../share/Heading';
 import { BlogCard, PostThumbnail, PostInfo } from '../../../../share/BlogCard';
 import { CategoryLabel } from '../../../../share/CategoryLabel';
+import { H2, H3 } from '../../../../share/Heading';
 import { TagArea } from '../../../../share/TagArea';
 import { TagLabel } from '../../../../share/TagLabel';
 import { TimeStamp } from '../../../../share/TimeStamp';
+
+import Breadcrumb from '../../../components/Breadcrumb';
+import Head from '../../../components/Head';
+import Layout from '../../../components/Layout';
+import Paginate from '../../../components/Paginate';
 
 interface Props {
   categories: Content[];
@@ -67,7 +67,7 @@ const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({
                 </Link>
               </CategoryLabel>
               <TagArea>
-                {blog.tag_field.map((tag: any) => (
+                {blog.tag_field.map((tag) => (
                   <TagLabel key={tag.id}>
                     <Link href="/tags/[id]" as={`/tags/${tag.id}`}>
                       <a>{tag.name}</a>

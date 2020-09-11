@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
 import { AppProps } from 'next/app';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import 'highlight.js/styles/dracula.css';
 
 import { Taxonomy } from '../../interfaces/taxonomy';
 
 import { getRequestHeader } from '../../scripts/get-request-header';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Sidebar from '../components/Sidebar';
-
 import { GlobalStyle } from '../../share/GlobalStyle';
 import { device } from '../../share/media-query';
+
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
+
+import 'highlight.js/styles/dracula.css';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const siteTitle = 'カルキチのブログ';

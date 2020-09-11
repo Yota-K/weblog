@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
+import { animateScroll as scroll } from 'react-scroll';
 import styled from 'styled-components';
 
-import { animateScroll as scroll } from 'react-scroll';
 import { colorObj } from '../../share/variables';
 
 interface Props {
@@ -15,6 +15,7 @@ const Footer: React.FC<Props> = ({ siteTitle }) => {
     const scrollBtn = document.querySelector('.scroll-top');
     const height = window.innerHeight;
     const offset = window.pageYOffset;
+
     if (offset - height > height) {
       scrollBtn?.classList.add('slide-top');
     } else {
@@ -25,6 +26,7 @@ const Footer: React.FC<Props> = ({ siteTitle }) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', handleScroll);
+
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
@@ -32,6 +34,7 @@ const Footer: React.FC<Props> = ({ siteTitle }) => {
   }, []);
 
   const year = new Date().getFullYear();
+
   return (
     <FooterBar>
       <svg

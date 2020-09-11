@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 export const pathNameChecker = (pageType: string): RegExpMatchArray | null | undefined => {
   const router = useRouter();
   const path = router.asPath;
+
   let result;
 
   switch (pageType) {

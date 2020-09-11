@@ -1,12 +1,13 @@
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
 
 import { TaxonomyList } from '../../../interfaces/taxonomy';
 
-import { SidebarBox } from './SidebarBox';
 import { H4 } from '../../../share/Heading';
 import { TagArea } from '../../../share/TagArea';
 import { TagLabel } from '../../../share/TagLabel';
+
+import { SidebarBox } from './SidebarBox';
 
 interface Props {
   tags: TaxonomyList[];

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import React, { useState, useEffect } from 'react';
 
 import { pathNameChecker } from '../../scripts/path-name-checker';
 

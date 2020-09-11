@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 import { Taxonomy } from '../../../interfaces/taxonomy';
 
-import Profile from './Profile';
-import CategoryList from './CategoryList';
-import TagList from './TagList';
-
 import { device } from '../../../share/media-query';
+
+import CategoryList from './CategoryList';
+import Profile from './Profile';
+import TagList from './TagList';
 
 interface Props {
   taxonomyList: Taxonomy;

@@ -1,12 +1,13 @@
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
 
 import { TaxonomyList } from '../../../interfaces/taxonomy';
 
-import { colorObj } from '../../../share/variables';
-import { SidebarBox } from './SidebarBox';
 import { H4 } from '../../../share/Heading';
+import { colorObj } from '../../../share/variables';
+
+import { SidebarBox } from './SidebarBox';
 
 interface Props {
   categories: TaxonomyList[];

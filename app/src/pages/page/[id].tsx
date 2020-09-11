@@ -1,27 +1,27 @@
-import React from 'react';
 import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
+import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { paginateNum } from '../../../config/paginate-num';
 
-import { RecordType } from '../../../interfaces/record-type';
 import { Content } from '../../../interfaces/blog';
+import { RecordType } from '../../../interfaces/record-type';
 
 import { dateFormat } from '../../../scripts/date-format';
-import { getRequestHeader } from '../../../scripts/get-request-header';
 import { paginateAry } from '../../../scripts/generate-paginate-ary';
+import { getRequestHeader } from '../../../scripts/get-request-header';
+
+import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
+import { CategoryLabel } from '../../../share/CategoryLabel';
+import { H3 } from '../../../share/Heading';
+import { TagArea } from '../../../share/TagArea';
+import { TagLabel } from '../../../share/TagLabel';
+import { TimeStamp } from '../../../share/TimeStamp';
 
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
 import Paginate from '../../components/Paginate';
-
-import { H3 } from '../../../share/Heading';
-import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
-import { CategoryLabel } from '../../../share/CategoryLabel';
-import { TagArea } from '../../../share/TagArea';
-import { TagLabel } from '../../../share/TagLabel';
-import { TimeStamp } from '../../../share/TimeStamp';
 
 interface Props {
   blogs: Content[];
@@ -94,7 +94,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const id = context?.params?.id as string;
   const offset = parseInt(id) * offsetNum - offsetNum;
 
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${offset}&limit=5`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${offset}&limit=${offsetNum}`, header);
   const data = await res.json();
   const blogs = data.contents;
   const totalCount = data.totalCount;

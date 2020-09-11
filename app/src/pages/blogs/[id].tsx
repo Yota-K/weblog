@@ -1,32 +1,31 @@
-import React from 'react';
-import styled from 'styled-components';
-import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
-import Link from 'next/link';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import MarkdownIt from 'markdown-it';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
+import MarkdownIt from 'markdown-it';
+import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
+import Link from 'next/link';
+import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import styled from 'styled-components';
 
-import { RecordType } from '../../../interfaces/record-type';
 import { Content } from '../../../interfaces/blog';
 import { PageSlug } from '../../../interfaces/page-slug';
+import { RecordType } from '../../../interfaces/record-type';
 
+import { CategoryLabel } from '../../../share/CategoryLabel';
 import { dateFormat } from '../../../scripts/date-format';
 import { getRequestHeader } from '../../../scripts/get-request-header';
-
-import Head from '../../components/Head';
-import Layout from '../../components/Layout';
-import Breadcrumb from '../../components/Breadcrumb';
-import Toc from '../../components/Toc';
-import SocialLinks from '../../components/SocialLinks';
-
-import { colorObj } from '../../../share/variables';
-import { device } from '../../../share/media-query';
 import { H1 } from '../../../share/Heading';
-import { CategoryLabel } from '../../../share/CategoryLabel';
+import { device } from '../../../share/media-query';
 import { TagArea } from '../../../share/TagArea';
 import { TagLabel } from '../../../share/TagLabel';
 import { TimeStamp } from '../../../share/TimeStamp';
+import { colorObj } from '../../../share/variables';
+
+import Breadcrumb from '../../components/Breadcrumb';
+import Head from '../../components/Head';
+import Layout from '../../components/Layout';
+import Toc from '../../components/Toc';
+import SocialLinks from '../../components/SocialLinks';
 
 interface Props {
   blog: Content;

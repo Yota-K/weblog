@@ -2,11 +2,13 @@ import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { H4 } from '../../../share/Heading';
+
 import { SidebarBox } from './SidebarBox';
 
 const Profile: React.FC = () => {
   const twitterUrl = 'https://twitter.com/karukichi_yah';
   const githubUrl = 'https://github.com/Yota-K';
+
   return (
     <SidebarBox>
       <H4>プロフィール</H4>

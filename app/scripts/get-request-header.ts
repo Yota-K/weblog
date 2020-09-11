@@ -4,5 +4,6 @@ export const getRequestHeader = () => {
       'X-API-KEY': process.env.API_KEY || '',
     },
   };
+
   return key;
 };
