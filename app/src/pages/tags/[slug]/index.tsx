@@ -97,13 +97,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const res = await fetch(`${process.env.ENDPOINT}/blogs?${params}`, header);
   const data = await res.json();
 
-  const contents = data.contents;
+  const contents: Content[] = data.contents;
 
   // ページに一致するタグを探す
-  const findTag = contents[0].tag_field.find((tag: any) => tag.id === slug);
+  const findTag = contents[0].tag_field.find((tag) => tag.id === slug);
 
-  const tagName = findTag.name;
-  const tagSlug = findTag.id;
+  const tagName = findTag?.name;
+  const tagSlug = findTag?.id;
   const totalCount = data.totalCount;
 
   return {
