@@ -3,13 +3,7 @@ import styled from 'styled-components';
 
 import { device } from '../../share/media-query';
 
-const Layout: React.FC = ({ children }) => {
-  return (
-    <>
-      <Main>{children}</Main>
-    </>
-  );
-};
+const Layout: React.FC = ({ children }) => <Main>{children}</Main>;
 
 const Main = styled.main`
   width: 740px;
