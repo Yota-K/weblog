@@ -36,7 +36,7 @@ const Paginate: React.FC<Props> = ({ paginateType, offsetNum, totalCount }) => {
     const currentPaginateNum = parseInt(pathMatch[0]);
     const totalPaginateNum = Math.ceil(totalCount / offsetNum);
 
-    // パスに含まれるページネーションの数字と投稿数を表示数で割った数に1を足した数が同じ時は最後のページ
+    // パスに含まれるページネーションの数と投稿を表示数で割った数を切り上げた数値が同じ時は最後のページ
     if (currentPaginateNum === totalPaginateNum) {
       return (
         <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${currentPaginateNum - 1}`}>
