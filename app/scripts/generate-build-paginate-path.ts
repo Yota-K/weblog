@@ -27,7 +27,7 @@ export const generateBuildPaginatePath = (contents: TaxonomyAry[], offsetNum: nu
     if (countLength <= offsetNum) {
       totalCount = 1;
     } else {
-      totalCount = Math.floor(countLength / offsetNum) + 1;
+      totalCount = Math.ceil(countLength / offsetNum);
     }
 
     slugAry.push({
