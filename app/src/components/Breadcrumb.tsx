@@ -31,11 +31,11 @@ const Breadcrumb: React.FC<Props> = ({ blogPageInfo, categoryPageTitle, tagPageT
       {isBlogPage !== null && (
         <>
           <BreadcrumbItem>
-            <Link href="/category/[id]" as={`/category/${blogPageInfo!.categoryId}`}>
-              <a>{blogPageInfo!.categoryName}</a>
+            <Link href="/category/[id]" as={`/category/${blogPageInfo?.categoryId}`}>
+              <a>{blogPageInfo?.categoryName}</a>
             </Link>
           </BreadcrumbItem>
-          <BreadcrumbItem>{blogPageInfo!.blogTitle}</BreadcrumbItem>
+          <BreadcrumbItem>{blogPageInfo?.blogTitle}</BreadcrumbItem>
         </>
       )}
       {isCategoryPage !== null && <BreadcrumbItem>{categoryPageTitle}</BreadcrumbItem>}
