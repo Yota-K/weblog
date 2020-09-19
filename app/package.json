@@ -1,7 +1,7 @@
 {
-  "name": "tech-blog",
+  "name": "karukichi-blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is my blog.",
   "main": "index.js",
   "dependencies": {
     "next": "^9.4.4",
@@ -9,7 +9,6 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0",
     "@types/cheerio": "^0.22.18",
     "@types/dotenv": "^8.2.0",
     "@types/highlight.js": "^9.12.4",
@@ -25,7 +24,6 @@
     "@typescript-eslint/eslint-plugin": "^3.5.0",
     "@typescript-eslint/parser": "^3.5.0",
     "@zeit/next-typescript": "^1.1.1",
-    "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.10.7",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
