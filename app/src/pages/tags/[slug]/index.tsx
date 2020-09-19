@@ -93,8 +93,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context?.params?.slug;
 
-  const params = `filters=tags[contains]${slug}&limit=${offsetNum}`;
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?${params}`, header);
+  const params = `?filters=tags[contains]${slug}&limit=${offsetNum}`;
+  const res = await fetch(`${process.env.ENDPOINT}/blogs${params}`, header);
   const data = await res.json();
 
   const contents: Content[] = data.contents;
