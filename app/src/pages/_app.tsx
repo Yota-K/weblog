@@ -42,7 +42,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <>
       <GlobalStyle />
-      <Header siteTitle={siteTitle} />
+      <Header siteTitle={siteTitle} categories={taxonomyList.categories} />
       <Wrapper>
         <Component {...pageProps} />
         <Sidebar taxonomyList={taxonomyList} />
