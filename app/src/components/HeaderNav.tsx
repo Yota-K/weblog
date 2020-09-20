@@ -36,6 +36,12 @@ const HeaderNavBar = styled.nav`
   ${device.mobileM} {
     width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
   ul {
     display: flex;
