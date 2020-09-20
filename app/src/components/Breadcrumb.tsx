@@ -7,16 +7,17 @@ import { pathNameChecker } from '../../scripts/path-name-checker';
 import { colorObj } from '../../share/variables';
 
 interface Props {
-  tagPageTitle?: string;
-  categoryPageTitle?: string;
   blogPageInfo?: {
     categoryId: string;
     categoryName: string;
     blogTitle: string;
   };
+  categoryPageTitle?: string;
+  tagPageTitle?: string;
+  pageTitle?: string;
 }
 
-const Breadcrumb: React.FC<Props> = ({ blogPageInfo, categoryPageTitle, tagPageTitle }) => {
+const Breadcrumb: React.FC<Props> = ({ blogPageInfo, categoryPageTitle, tagPageTitle, pageTitle }) => {
   const isBlogPage = pathNameChecker('blog');
   const isCategoryPage = pathNameChecker('category');
   const isTagPage = pathNameChecker('tag');
@@ -40,6 +41,7 @@ const Breadcrumb: React.FC<Props> = ({ blogPageInfo, categoryPageTitle, tagPageT
       )}
       {isCategoryPage !== null && <BreadcrumbItem>{categoryPageTitle}</BreadcrumbItem>}
       {isTagPage !== null && <BreadcrumbItem>{tagPageTitle}</BreadcrumbItem>}
+      {pageTitle !== null && <BreadcrumbItem>{pageTitle}</BreadcrumbItem>}
     </MyBreadcrumb>
   );
 };

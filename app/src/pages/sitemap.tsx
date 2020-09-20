@@ -9,6 +9,7 @@ import { getRequestHeader } from '../../scripts/get-request-header';
 
 import { colorObj } from '../../share/variables';
 
+import Breadcrumb from '../components/Breadcrumb';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 
@@ -17,11 +18,12 @@ interface Props {
 }
 
 const Sitemap: NextPage<Props> = ({ contents }) => {
-  const siteTitle = 'カルキチのブログ｜サイトマップ';
+  const title = 'カルキチのブログ｜サイトマップ';
 
   return (
     <Layout>
-      <Head title={siteTitle} />
+      <Head title={title} />
+      <Breadcrumb pageTitle={`サイトマップ`} />
       <h1>サイトマップ</h1>
       <SitemapDiv>
         {contents.map((content) => (
