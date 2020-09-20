@@ -22,6 +22,8 @@ const Breadcrumb: React.FC<Props> = ({ blogPageInfo, categoryPageTitle, tagPageT
   const isCategoryPage = pathNameChecker('category');
   const isTagPage = pathNameChecker('tag');
 
+  console.log(pageTitle);
+
   return (
     <MyBreadcrumb>
       <BreadcrumbItem>
@@ -41,7 +43,7 @@ const Breadcrumb: React.FC<Props> = ({ blogPageInfo, categoryPageTitle, tagPageT
       )}
       {isCategoryPage !== null && <BreadcrumbItem>{categoryPageTitle}</BreadcrumbItem>}
       {isTagPage !== null && <BreadcrumbItem>{tagPageTitle}</BreadcrumbItem>}
-      {pageTitle !== null && <BreadcrumbItem>{pageTitle}</BreadcrumbItem>}
+      {pageTitle !== undefined && <BreadcrumbItem>{pageTitle}</BreadcrumbItem>}
     </MyBreadcrumb>
   );
 };
