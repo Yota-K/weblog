@@ -3,6 +3,8 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
+import { config } from '../../config/app';
+
 import { SitemapJson } from '../../interfaces/sitemap';
 
 import { getRequestHeader } from '../../scripts/get-request-header';
@@ -18,12 +20,14 @@ interface Props {
 }
 
 const Sitemap: NextPage<Props> = ({ contents }) => {
-  const title = 'カルキチのブログ｜サイトマップ';
+  const { siteTitle } = config.siteInfo;
+  const pageTitle = 'サイトマップ';
+  const title = `${siteTitle}｜${pageTitle}`;
 
   return (
     <Layout>
       <Head title={title} />
-      <Breadcrumb pageTitle={`サイトマップ`} />
+      <Breadcrumb pageTitle={pageTitle} />
       <h1>サイトマップ</h1>
       <SitemapDiv>
         {contents.map((content) => (

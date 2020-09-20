@@ -2,6 +2,8 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
+import { config } from '../../config/app';
+
 import { pathNameChecker } from '../../scripts/path-name-checker';
 
 import { colorObj } from '../../share/variables';
@@ -18,17 +20,17 @@ interface Props {
 }
 
 const Breadcrumb: React.FC<Props> = ({ blogPageInfo, categoryPageTitle, tagPageTitle, pageTitle }) => {
+  const { siteTitle } = config.siteInfo;
+
   const isBlogPage = pathNameChecker('blog');
   const isCategoryPage = pathNameChecker('category');
   const isTagPage = pathNameChecker('tag');
-
-  console.log(pageTitle);
 
   return (
     <MyBreadcrumb>
       <BreadcrumbItem>
         <Link href="/">
-          <a>カルキチのブログ</a>
+          <a>{siteTitle}</a>
         </Link>
       </BreadcrumbItem>
       {isBlogPage !== null && (

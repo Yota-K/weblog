@@ -2,6 +2,8 @@ import { AppProps } from 'next/app';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import { config } from '../../config/app';
+
 import { Taxonomy } from '../../interfaces/taxonomy';
 
 import { getRequestHeader } from '../../scripts/get-request-header';
@@ -16,7 +18,7 @@ import Sidebar from '../components/Sidebar';
 import 'highlight.js/styles/dracula.css';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
-  const siteTitle = 'カルキチのブログ';
+  const { siteTitle } = config.siteInfo;
 
   const [taxonomyList, setTaxonomyList] = React.useState<Taxonomy>({
     tags: [],

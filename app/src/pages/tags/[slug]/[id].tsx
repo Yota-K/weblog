@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { paginateNum } from '../../../../config/paginate-num';
+import { config } from '../../../../config/app';
 
 import { Content } from '../../../../interfaces/blog';
 import { RecordType } from '../../../../interfaces/record-type';
@@ -32,14 +32,16 @@ interface Props {
   totalCount: number;
 }
 
-const offsetNum = paginateNum['count'];
+const paginateNum = config.paginateNum;
 
 const Tags: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, tagName, tagSlug, totalCount }) => {
+  const { siteTitle } = config.siteInfo;
+
   const paginateType = `tags/${tagSlug}`;
 
   return (
     <Layout>
-      <Head title={`${tagName}｜カルキチのブログ`} />
+      <Head title={`${tagName}｜${siteTitle}`} />
       <div id="categories">
         <Breadcrumb tagPageTitle={tagName} />
         <H2>タグ：{tagName}</H2>
@@ -73,7 +75,7 @@ const Tags: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, tag
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} offsetNum={offsetNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} offsetNum={paginateNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
@@ -86,7 +88,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await res.json();
 
   const contents: TaxonomyAry[] = data.tags;
-  const resultAry = generateBuildPaginatePath(contents, offsetNum);
+  const resultAry = generateBuildPaginatePath(contents, paginateNum);
 
   const paths = resultAry.map((path) => ({
     params: { slug: path.params.slug, id: path.params.id.toString() },
@@ -99,9 +101,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context?.params?.slug;
   const id = context?.params?.id as string;
 
-  const offset = parseInt(id) * offsetNum - offsetNum;
+  const offset = parseInt(id) * paginateNum - paginateNum;
 
-  const params = `?filters=tags[contains]${slug}&offset=${offset}&limit=${offsetNum}`;
+  const params = `?filters=tags[contains]${slug}&offset=${offset}&limit=${paginateNum}`;
   const res = await fetch(`${process.env.ENDPOINT}/blogs${params}`, header);
   const data = await res.json();
 

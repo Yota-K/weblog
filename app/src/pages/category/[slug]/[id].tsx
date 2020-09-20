@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { paginateNum } from '../../../../config/paginate-num';
+import { config } from '../../../../config/app';
 
 import { Content } from '../../../../interfaces/blog';
 import { RecordType } from '../../../../interfaces/record-type';
@@ -32,7 +32,7 @@ interface Props {
   totalCount: number;
 }
 
-const offsetNum = paginateNum['count'];
+const paginateNum = config.paginateNum;
 
 const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({
   categories,
@@ -40,11 +40,13 @@ const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({
   categorySlug,
   totalCount,
 }) => {
+  const { siteTitle } = config.siteInfo;
+
   const paginateType = `category/${categorySlug}`;
 
   return (
     <Layout>
-      <Head title={`${categoryName}｜カルキチのブログ`} />
+      <Head title={`${categoryName}｜${siteTitle}`} />
       <div id="categories">
         <Breadcrumb categoryPageTitle={categoryName} />
         <H2>カテゴリー：{categoryName}</H2>
@@ -78,7 +80,7 @@ const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} offsetNum={offsetNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} offsetNum={paginateNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
@@ -91,7 +93,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await res.json();
 
   const contents: TaxonomyAry[] = data.categories;
-  const resultAry = generateBuildPaginatePath(contents, offsetNum);
+  const resultAry = generateBuildPaginatePath(contents, paginateNum);
 
   const paths = resultAry.map((path) => ({
     params: { slug: path.params.slug, id: path.params.id.toString() },
@@ -104,9 +106,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context?.params?.slug;
   const id = context?.params?.id as string;
 
-  const offset = parseInt(id) * offsetNum - offsetNum;
+  const offset = parseInt(id) * paginateNum - paginateNum;
 
-  const params = `?filters=category[contains]${slug}&offset=${offset}&limit=${offsetNum}`;
+  const params = `?filters=category[contains]${slug}&offset=${offset}&limit=${paginateNum}`;
   const res = await fetch(`${process.env.ENDPOINT}/blogs${params}`, header);
   const data = await res.json();
 

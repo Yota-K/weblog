@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { paginateNum } from '../../config/paginate-num';
+import { config } from '../../config/app';
 
 import { Content } from '../../interfaces/blog';
 import { RecordType } from '../../interfaces/record-type';
@@ -24,14 +24,14 @@ import Paginate from '../components/Paginate';
 
 interface Props {
   blogs: Content[];
-  offsetNum: number;
   totalCount: number;
 }
 
-const offsetNum = paginateNum['count'];
+const paginateNum = config.paginateNum;
 
-const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, offsetNum, totalCount }) => {
-  const siteTitle = 'カルキチのブログ';
+const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, totalCount }) => {
+  const { siteTitle } = config.siteInfo;
+
   const paginateType = 'page';
 
   return (
@@ -68,7 +68,7 @@ const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, of
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} offsetNum={offsetNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} offsetNum={paginateNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
@@ -83,7 +83,6 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       blogs: data.contents,
-      offsetNum: offsetNum,
       totalCount: data.totalCount,
     },
   };

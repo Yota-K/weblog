@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { paginateNum } from '../../../../config/paginate-num';
+import { config } from '../../../../config/app';
 
 import { Content } from '../../../../interfaces/blog';
 import { PageSlug } from '../../../../interfaces/page-slug';
@@ -31,14 +31,16 @@ interface Props {
   totalCount: number;
 }
 
-const offsetNum = paginateNum['count'];
+const paginateNum = config.paginateNum;
 
 const Tags: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, tagName, tagSlug, totalCount }) => {
+  const { siteTitle } = config.siteInfo;
+
   const paginateType = `tags/${tagSlug}`;
 
   return (
     <Layout>
-      <Head title={`${tagName}｜カルキチのブログ`} />
+      <Head title={`${tagName}｜${siteTitle}`} />
       <div id="categories">
         <Breadcrumb tagPageTitle={tagName} />
         <H2>タグ：{tagName}</H2>
@@ -72,7 +74,7 @@ const Tags: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, tag
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} offsetNum={offsetNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} offsetNum={paginateNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
@@ -93,7 +95,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context?.params?.slug;
 
-  const params = `?filters=tags[contains]${slug}&limit=${offsetNum}`;
+  const params = `?filters=tags[contains]${slug}&limit=${paginateNum}`;
   const res = await fetch(`${process.env.ENDPOINT}/blogs${params}`, header);
   const data = await res.json();
 

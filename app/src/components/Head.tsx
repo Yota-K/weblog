@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 
+import { config } from '../../config/app';
+
 import { pathNameChecker } from '../../scripts/path-name-checker';
 
 interface Props {
@@ -12,7 +14,9 @@ interface Props {
 // eslint-disable-next-line react/display-name
 export default ({ title, description, thumbnail }: Props): JSX.Element => {
   const [url, setUrl] = React.useState<string>('');
-  const defaultDescription = '駆け出しウェブエンジニアカルキチ副島が運営するウェブ系の技術をメインに書くブログです。';
+
+  const { defaultDescription } = config.siteInfo;
+
   const descriptionCheck = pathNameChecker('blog');
 
   useEffect(() => {

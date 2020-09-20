@@ -7,6 +7,8 @@ import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
 
+import { config } from '../../../config/app';
+
 import { Content } from '../../../interfaces/blog';
 import { PageSlug } from '../../../interfaces/page-slug';
 import { RecordType } from '../../../interfaces/record-type';
@@ -38,11 +40,7 @@ interface Props {
 }
 
 const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body }) => {
-  const url = `https://karukichi-blog.netlify.app/blogs/${blog.id}`;
-  // eslint-disable-next-line
-  const md = new MarkdownIt({
-    html: true,
-  });
+  const { siteTitle } = config.siteInfo;
 
   const reciveBreadcrumb = {
     categoryId: blog.category_field.id,
@@ -50,9 +48,16 @@ const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc
     blogTitle: blog.title,
   };
 
+  const url = `https://karukichi-blog.netlify.app/blogs/${blog.id}`;
+
+  // eslint-disable-next-line
+  const md = new MarkdownIt({
+    html: true,
+  });
+
   return (
     <Layout>
-      <Head title={`${blog.title}｜カルキチのブログ`} description={blog.description} thumbnail={blog.thumbnail.url} />
+      <Head title={`${blog.title}｜${siteTitle}`} description={blog.description} thumbnail={blog.thumbnail.url} />
       <div id="blog">
         <Breadcrumb blogPageInfo={reciveBreadcrumb} />
         <TimeStamp>{dateFormat(blog.createdAt)}</TimeStamp>
