@@ -6,12 +6,15 @@ import { device } from '../share/media-query';
 export const BlogCard = styled.div`
   display: flex;
   align-items: start;
-  margin: 20px 0;
+  margin-bottom: 20px;
   padding: 10px 0;
   border-top: 1px solid ${colorObj.borderGray};
   border-bottom: 1px solid ${colorObj.borderGray};
   a {
     color: ${colorObj.baseBlack};
+  }
+  &:nth-child(1) {
+    margin-bottom: 20px;
   }
 `;
 

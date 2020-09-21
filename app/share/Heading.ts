@@ -10,6 +10,7 @@ export const H1 = styled.h1`
 
 export const H2 = styled.h2`
   font-size: 1.6rem;
+  margin-bottom: 20px;
   ${device.mobileM} {
     font-size: 1.4rem;
   }
