@@ -7,17 +7,17 @@ import { colorObj } from '../../share/variables';
 
 interface Props {
   paginateType: string;
-  offsetNum: number;
+  paginateNum: number;
   totalCount: number;
 }
 
-const Paginate: React.FC<Props> = ({ paginateType, offsetNum, totalCount }) => {
+const Paginate: React.FC<Props> = ({ paginateType, paginateNum, totalCount }) => {
   const router = useRouter();
   const path = router.asPath;
 
-  const generatePaginate = (paginateType: string, offsetNum: number, totalCount: number) => {
+  const generatePaginate = (paginateType: string, paginateNum: number, totalCount: number) => {
     // 投稿が5記事以下の時はページネーションを非表示
-    if (totalCount <= offsetNum) return <></>;
+    if (totalCount <= paginateNum) return <></>;
 
     // １ページ目のとき
     if (path === '/' || path === `/${paginateType}` || path === `/${paginateType}/1`) {
@@ -34,7 +34,7 @@ const Paginate: React.FC<Props> = ({ paginateType, offsetNum, totalCount }) => {
     if (pathMatch === null) return;
 
     const currentPaginateNum = parseInt(pathMatch[0]);
-    const totalPaginateNum = Math.ceil(totalCount / offsetNum);
+    const totalPaginateNum = Math.ceil(totalCount / paginateNum);
 
     // パスに含まれるページネーションの数と投稿を表示数で割った数を切り上げた数値が同じ時は最後のページ
     if (currentPaginateNum === totalPaginateNum) {
@@ -57,7 +57,7 @@ const Paginate: React.FC<Props> = ({ paginateType, offsetNum, totalCount }) => {
     }
   };
 
-  return <MyPaginate>{generatePaginate(paginateType, offsetNum, totalCount)}</MyPaginate>;
+  return <MyPaginate>{generatePaginate(paginateType, paginateNum, totalCount)}</MyPaginate>;
 };
 
 const MyPaginate = styled.div`

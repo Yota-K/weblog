@@ -79,7 +79,7 @@ const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} offsetNum={paginateNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} paginateNum={paginateNum} totalCount={totalCount} />
       </div>
     </Layout>
   );

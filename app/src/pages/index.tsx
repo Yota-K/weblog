@@ -68,7 +68,7 @@ const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} offsetNum={paginateNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} paginateNum={paginateNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
@@ -77,7 +77,7 @@ const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
 const header = getRequestHeader();
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=0&limit=5`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=0&limit=${paginateNum}`, header);
   const data = await res.json();
 
   return {

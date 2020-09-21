@@ -69,7 +69,7 @@ const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} offsetNum={paginateNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} paginateNum={paginateNum} totalCount={totalCount} />
       </div>
     </Layout>
   );
