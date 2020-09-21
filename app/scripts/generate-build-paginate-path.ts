@@ -25,6 +25,7 @@ export const generateBuildPaginatePath = (contents: TaxonomyAry[], offsetNum: nu
     const countLength = count.length;
 
     if (countLength <= offsetNum) {
+      // 記事数の合計が5記事以下の場合はページネーションは不要なので1を代入する
       totalCount = 1;
     } else {
       totalCount = Math.ceil(countLength / offsetNum);

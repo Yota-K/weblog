@@ -13,8 +13,9 @@ import { Content } from '../../../interfaces/blog';
 import { PageSlug } from '../../../interfaces/page-slug';
 import { RecordType } from '../../../interfaces/record-type';
 
-import { CategoryLabel } from '../../../share/CategoryLabel';
 import { dateFormat } from '../../../scripts/date-format';
+
+import { CategoryLabel } from '../../../share/CategoryLabel';
 import { getRequestHeader } from '../../../scripts/get-request-header';
 import { H1 } from '../../../share/Heading';
 import { device } from '../../../share/media-query';
