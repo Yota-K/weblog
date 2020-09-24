@@ -8,7 +8,7 @@ interface ResultPathAry {
   };
 }
 
-export const generateBuildPaginatePath = (contents: TaxonomyAry[], offsetNum: number): ResultPathAry[] => {
+export const generateBuildPaginatePath = (contents: TaxonomyAry[], paginateNum: number): ResultPathAry[] => {
   const slugAry: {
     slug: string;
     count: number;
@@ -25,11 +25,11 @@ export const generateBuildPaginatePath = (contents: TaxonomyAry[], offsetNum: nu
     let totalCount;
     const countLength = count.length;
 
-    if (countLength <= offsetNum) {
+    if (countLength <= paginateNum) {
       // 記事数の合計が5記事以下の場合はページネーションは不要なので1を代入する
       totalCount = 1;
     } else {
-      totalCount = Math.ceil(countLength / offsetNum);
+      totalCount = Math.ceil(countLength / paginateNum);
     }
 
     slugAry.push({
