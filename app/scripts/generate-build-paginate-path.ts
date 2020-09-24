@@ -1,4 +1,5 @@
 import { TaxonomyAry } from '../interfaces/taxonomy';
+import { paginateAry } from './generate-paginate-ary';
 
 interface ResultPathAry {
   params: {
@@ -19,7 +20,7 @@ export const generateBuildPaginatePath = (contents: TaxonomyAry[], offsetNum: nu
   // ]
   contents.forEach((content) => {
     const postLength = content.posts.length;
-    const count = [...new Array(postLength).keys()].map((i) => ++i);
+    const count = paginateAry(postLength);
 
     let totalCount;
     const countLength = count.length;
