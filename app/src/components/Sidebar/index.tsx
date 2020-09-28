@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Taxonomy } from '../../../interfaces/taxonomy';
+import { CategoriesAndTags } from '../../../interfaces/taxonomy';
 
 import { device } from '../../../share/media-query';
 
@@ -10,15 +10,15 @@ import Profile from './Profile';
 import TagList from './TagList';
 
 interface Props {
-  taxonomyList: Taxonomy;
+  taxonomies: CategoriesAndTags;
 }
 
-const Sidebar: React.FC<Props> = ({ taxonomyList }) => {
+const Sidebar: React.FC<Props> = ({ taxonomies }) => {
   return (
     <BlogSidebar>
       <Profile />
-      <CategoryList categories={taxonomyList.categories} />
-      <TagList tags={taxonomyList.tags} />
+      <CategoryList categories={taxonomies.categories} />
+      <TagList tags={taxonomies.tags} />
     </BlogSidebar>
   );
 };

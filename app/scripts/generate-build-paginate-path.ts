@@ -1,4 +1,4 @@
-import { TaxonomyAry } from '../interfaces/taxonomy';
+import { BuildTaxonomyPaginateList } from '../interfaces/taxonomy';
 import { paginateAry } from './generate-paginate-ary';
 
 interface ResultPathAry {
@@ -8,7 +8,10 @@ interface ResultPathAry {
   };
 }
 
-export const generateBuildPaginatePath = (contents: TaxonomyAry[], paginateNum: number): ResultPathAry[] => {
+export const generateBuildPaginatePath = (
+  contents: BuildTaxonomyPaginateList[],
+  paginateNum: number
+): ResultPathAry[] => {
   const slugAry: {
     slug: string;
     count: number;

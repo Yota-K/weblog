@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { config } from '../../config/app';
 
-import { Taxonomy } from '../../interfaces/taxonomy';
+import { CategoriesAndTags } from '../../interfaces/taxonomy';
 
 import { getRequestHeader } from '../../scripts/get-request-header';
 
@@ -20,34 +20,34 @@ import 'highlight.js/styles/dracula.css';
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const { siteTitle } = config.siteInfo;
 
-  const [taxonomyList, setTaxonomyList] = React.useState<Taxonomy>({
-    tags: [],
+  const [taxonomies, setTaxonomies] = React.useState<CategoriesAndTags>({
     categories: [],
+    tags: [],
   });
 
   // サイドバーのカテゴリー・タグ一覧の取得
   useEffect(() => {
-    const getTaxonomyList = async () => {
+    const getTaxonomies = async () => {
       const header = getRequestHeader();
       const res = await fetch(`${process.env.ENDPOINT}/taxonomy`, header);
       const data = await res.json();
 
-      setTaxonomyList({
-        tags: data.tags,
+      setTaxonomies({
         categories: data.categories,
+        tags: data.tags,
       });
     };
 
-    getTaxonomyList();
+    getTaxonomies();
   }, []);
 
   return (
     <>
       <GlobalStyle />
-      <Header siteTitle={siteTitle} categories={taxonomyList.categories} />
+      <Header siteTitle={siteTitle} categories={taxonomies.categories} />
       <Wrapper>
         <Component {...pageProps} />
-        <Sidebar taxonomyList={taxonomyList} />
+        <Sidebar taxonomies={taxonomies} />
       </Wrapper>
       <Footer siteTitle={siteTitle} />
     </>

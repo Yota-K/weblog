@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-import { TaxonomyList } from '../../../interfaces/taxonomy';
+import { Taxonomy } from '../../../interfaces/taxonomy';
 
 import { H4 } from '../../../share/Heading';
 import { TagArea } from '../../../share/TagArea';
@@ -10,7 +10,7 @@ import { TagLabel } from '../../../share/TagLabel';
 import { SidebarBox } from './SidebarBox';
 
 interface Props {
-  tags: TaxonomyList[];
+  tags: Taxonomy[];
 }
 
 const TagList: React.FC<Props> = ({ tags }) => {

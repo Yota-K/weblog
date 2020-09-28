@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-import { TaxonomyList } from '../../../interfaces/taxonomy';
+import { Taxonomy } from '../../../interfaces/taxonomy';
 
 import { H4 } from '../../../share/Heading';
 import { colorObj } from '../../../share/variables';
@@ -10,7 +10,7 @@ import { colorObj } from '../../../share/variables';
 import { SidebarBox } from './SidebarBox';
 
 interface Props {
-  categories: TaxonomyList[];
+  categories: Taxonomy[];
 }
 
 const CategoryList: React.FC<Props> = ({ categories }) => {

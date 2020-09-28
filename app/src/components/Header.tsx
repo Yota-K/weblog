@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
-import { TaxonomyList } from '../../interfaces/taxonomy';
+import { Taxonomy } from '../../interfaces/taxonomy';
 
 import { device } from '../../share/media-query';
 import { colorObj } from '../../share/variables';
@@ -12,7 +12,7 @@ import HeaderNav from './HeaderNav';
 
 interface Props {
   siteTitle: React.ReactNode;
-  categories: TaxonomyList[];
+  categories: Taxonomy[];
 }
 
 const Header: React.FC<Props> = ({ siteTitle, categories }) => {

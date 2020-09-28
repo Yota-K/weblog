@@ -2,12 +2,12 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-import { TaxonomyList } from '../../interfaces/taxonomy';
+import { Taxonomy } from '../../interfaces/taxonomy';
 
 import { device } from '../../share/media-query';
 
 interface Props {
-  categories: TaxonomyList[];
+  categories: Taxonomy[];
 }
 
 const HeaderNav: React.FC<Props> = ({ categories }) => {

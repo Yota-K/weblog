@@ -7,7 +7,7 @@ import { config } from '../../../../config/app';
 
 import { Content } from '../../../../interfaces/content';
 import { RecordType } from '../../../../interfaces/record-type';
-import { TaxonomyAry } from '../../../../interfaces/taxonomy';
+import { BuildTaxonomyPaginateList } from '../../../../interfaces/taxonomy';
 
 import { dateFormat } from '../../../../scripts/date-format';
 import { generateBuildPaginatePath } from '../../../../scripts/generate-build-paginate-path';
@@ -87,7 +87,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/taxonomy?fields=tags.id,tags.posts&limit=9999`, header);
   const data = await res.json();
 
-  const contents: TaxonomyAry[] = data.tags;
+  const contents: BuildTaxonomyPaginateList[] = data.tags;
   const resultAry = generateBuildPaginatePath(contents, paginateNum);
 
   const paths = resultAry.map((path) => ({
