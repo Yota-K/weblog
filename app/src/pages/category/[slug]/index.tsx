@@ -33,7 +33,7 @@ interface Props {
 
 const paginateNum = config.paginateNum;
 
-const Categories: NextComponentType<NextPageContext, RecordType, Props> = ({
+const CategoryPage: NextComponentType<NextPageContext, RecordType, Props> = ({
   categories,
   categoryName,
   categorySlug,
@@ -119,4 +119,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export default Categories;
+export default CategoryPage;

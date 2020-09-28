@@ -34,7 +34,7 @@ interface Props {
 
 const paginateNum = config.paginateNum;
 
-const Tags: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, tagName, tagSlug, totalCount }) => {
+const TagPage: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, tagName, tagSlug, totalCount }) => {
   const { siteTitle } = config.siteInfo;
 
   const paginateType = `tags/${tagSlug}`;
@@ -126,4 +126,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export default Tags;
+export default TagPage;
