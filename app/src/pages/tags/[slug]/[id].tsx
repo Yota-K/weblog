@@ -5,7 +5,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { config } from '../../../../config/app';
 
-import { Content } from '../../../../interfaces/blog';
+import { Content } from '../../../../interfaces/content';
 import { RecordType } from '../../../../interfaces/record-type';
 import { TaxonomyAry } from '../../../../interfaces/taxonomy';
 

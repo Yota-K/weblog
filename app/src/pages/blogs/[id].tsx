@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 import { config } from '../../../config/app';
 
-import { Content } from '../../../interfaces/blog';
+import { Content } from '../../../interfaces/content';
 import { PageSlug } from '../../../interfaces/page-slug';
 import { RecordType } from '../../../interfaces/record-type';
 
