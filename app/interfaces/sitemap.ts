@@ -1,4 +1,4 @@
-export interface SitemapJson {
+export interface Sitemap {
   id: string;
   name: string;
   posts: {

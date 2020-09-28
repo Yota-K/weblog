@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { config } from '../../config/app';
 
-import { SitemapJson } from '../../interfaces/sitemap';
+import { Sitemap } from '../../interfaces/sitemap';
 
 import { getRequestHeader } from '../../scripts/get-request-header';
 
@@ -16,10 +16,10 @@ import Head from '../components/Head';
 import Layout from '../components/Layout';
 
 interface Props {
-  contents: SitemapJson[];
+  contents: Sitemap[];
 }
 
-const Sitemap: NextPage<Props> = ({ contents }) => {
+const BlogSitemap: NextPage<Props> = ({ contents }) => {
   const { siteTitle } = config.siteInfo;
   const pageTitle = 'サイトマップ';
   const title = `${siteTitle}｜${pageTitle}`;
@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/category${params}`, header);
   const data = await res.json();
 
-  const contents: SitemapJson[] = data.contents;
+  const contents: Sitemap[] = data.contents;
   contents.map((blog) => {
     const posts = blog.posts;
     posts.sort((a, b) => {
@@ -91,4 +91,4 @@ const SitemapDiv = styled.div`
   }
 `;
 
-export default Sitemap;
+export default BlogSitemap;
