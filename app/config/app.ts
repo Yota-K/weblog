@@ -1,12 +1,4 @@
-interface Config {
-  siteInfo: {
-    siteTitle: string;
-    defaultDescription: string;
-  };
-  twitterUrl: string;
-  githubUrl: string;
-  paginateNum: number;
-}
+import { Config } from '../interfaces/config';
 
 export const config: Config = {
   siteInfo: {
