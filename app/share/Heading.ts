@@ -18,6 +18,7 @@ export const H2 = styled.h2`
 
 export const H3 = styled.h3`
   font-size: 1.3rem;
+  line-height: 1.4;
   ${device.mobileM} {
     font-size: 1.2rem;
   }

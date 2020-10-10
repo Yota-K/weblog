@@ -109,7 +109,7 @@ const MyContent = styled.div`
   min-height: 800px;
   word-break: break-all;
   .eyecatch {
-    margin: -20px 0 60px;
+    margin: -20px 0 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   h2 {
@@ -121,6 +121,9 @@ const MyContent = styled.div`
     letter-spacing: 0.4px;
     font-size: 1.4rem;
     ${device.mobileM} {
+      font-size: 1.4rem;
+    }
+    ${device.mobileS} {
       font-size: 1.4rem;
     }
   }
@@ -152,8 +155,11 @@ const MyContent = styled.div`
     }
   }
   p {
-    font-size: 18px;
-    line-height: 35px;
+    font-size: 1.1rem;
+    line-height: 1.9;
+    ${device.mobileS} {
+      font-size: 1rem;
+    }
     code {
       border: 1px solid #ddd;
       background-color: #eee;
@@ -192,7 +198,7 @@ const MyContent = styled.div`
     border-radius: 3px;
     overflow-x: scroll;
     code {
-      font-size: 14px;
+      font-size: 0.9rem;
       line-height: 2.2;
     }
   }

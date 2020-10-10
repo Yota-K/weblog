@@ -4,6 +4,8 @@ import { device } from './media-query';
 import { colorObj } from './variables';
 
 export const CategoryLabel = styled.span`
+  display: block;
+  margin-top: 10px;
   font-size: 1rem;
   line-height: 2;
   ${device.mobileM} {

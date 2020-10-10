@@ -16,6 +16,10 @@ export const BlogCard = styled.div`
   &:nth-child(1) {
     margin-bottom: 20px;
   }
+  ${device.mobileS} {
+    display: block;
+    margin-bottom: 10px;
+  }
 `;
 
 export const PostThumbnail = styled.div`
@@ -23,15 +27,16 @@ export const PostThumbnail = styled.div`
   img {
     width: 100%;
   }
-  ${device.mobileM} {
-    width: 50%;
+  ${device.mobileS} {
+    width: 100%;
   }
 `;
 
 export const PostInfo = styled.div`
   width: 60%;
   margin-left: 20px;
-  ${device.mobileM} {
-    width: 50%;
+  ${device.mobileS} {
+    width: 100%;
+    margin-left: 0px;
   }
 `;

@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,YuGothic,ヒラギノ角ゴ ProN W3,Hiragino Kaku Gothic ProN,Arial,メイリオ,Meiryo,sans-serif;
     line-height: 1.5;
     color: #2b2c30;
+    font-size: 16px;
   }
   a {
     text-decoration: none;
