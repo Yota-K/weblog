@@ -7,7 +7,7 @@ interface MediaQuery {
 const size: MediaQuery = {
   laptop: '1024px',
   mobileM: '768px',
-  mobileS: '420px',
+  mobileS: '480px',
 };
 
 export const device: MediaQuery = {
