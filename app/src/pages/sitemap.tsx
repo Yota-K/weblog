@@ -28,7 +28,7 @@ const BlogSitemap: NextPage<Props> = ({ contents }) => {
     <Layout>
       <Head title={title} />
       <Breadcrumb pageTitle={pageTitle} />
-      <h1>サイトマップ</h1>
+      <h1>{pageTitle}</h1>
       <SitemapDiv>
         {contents.map((content) => (
           <ul key={content.id}>
