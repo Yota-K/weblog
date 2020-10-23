@@ -202,6 +202,9 @@ const MyContent = styled.div`
       line-height: 2.2;
     }
   }
+  iframe {
+    margin 12px 0;
+  }
 `;
 
 const header = getRequestHeader();
