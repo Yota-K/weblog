@@ -24,10 +24,12 @@ const Sidebar: React.FC<Props> = ({ taxonomies }) => {
 };
 
 const BlogSidebar = styled.article`
-  width: 340px;
-  margin-left: 50px;
+  width: 100%;
+  max-width: 320px;
+  margin-left: 40px;
   ${device.laptop} {
     width: 100%;
+    max-width: initial;
     margin: 80px 0 0 0;
   }
 `;

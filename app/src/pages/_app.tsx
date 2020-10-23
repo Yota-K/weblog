@@ -56,9 +56,9 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 90%;
+  justify-content: space-around;
   margin: 80px auto 0;
+  width: 96%;
   ${device.laptop} {
     display: block;
     margin: 60px auto 0;
