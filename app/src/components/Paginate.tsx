@@ -22,9 +22,11 @@ const Paginate: React.FC<Props> = ({ paginateType, paginateNum, totalCount }) =>
     // １ページ目のとき
     if (path === '/' || path === `/${paginateType}` || path === `/${paginateType}/1`) {
       return (
-        <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/2`}>
-          <a className="next-paginate">Next &gt;&gt;</a>
-        </Link>
+        <MyPaginate type="flex-end">
+          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/2`}>
+            <a className="next-paginate">Next &gt;&gt;</a>
+          </Link>
+        </MyPaginate>
       );
     }
 
@@ -39,36 +41,38 @@ const Paginate: React.FC<Props> = ({ paginateType, paginateNum, totalCount }) =>
     // パスに含まれるページネーションの数と投稿を表示数で割った数を切り上げた数値が同じ時は最後のページ
     if (currentPaginateNum === totalPaginateNum) {
       return (
-        <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${currentPaginateNum - 1}`}>
-          <a className="prev-paginate"> &lt;&lt; Prev</a>
-        </Link>
+        <MyPaginate type="flex-start">
+          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${currentPaginateNum - 1}`}>
+            <a className="prev-paginate"> &lt;&lt; Prev</a>
+          </Link>
+        </MyPaginate>
       );
     } else {
       return (
-        <>
+        <MyPaginate type="space-between">
           <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${currentPaginateNum - 1}`}>
             <a className="prev-paginate">&lt;&lt; Prev</a>
           </Link>
           <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${currentPaginateNum + 1}`}>
             <a className="next-paginate">Next &gt;&gt;</a>
           </Link>
-        </>
+        </MyPaginate>
       );
     }
   };
 
-  return <MyPaginate>{generatePaginate(paginateType, paginateNum, totalCount)}</MyPaginate>;
+  return <>{generatePaginate(paginateType, paginateNum, totalCount)}</>;
 };
 
-const MyPaginate = styled.div`
+type StyleType = {
+  type: string;
+};
+
+const MyPaginate = styled.div<StyleType>`
+  display: flex;
+  justify-content: ${(props) => props.type};
   a {
     color: ${colorObj.baseBlue};
-  }
-  .prev-paginate {
-    float: left;
-  }
-  .next-paginate {
-    float: right;
   }
 `;
 
