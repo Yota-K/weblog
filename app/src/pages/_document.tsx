@@ -21,10 +21,27 @@ class MyDocument extends Document {
   }
 
   public render() {
+    const GA_TRACKING_ID = 'G-Y2MDQ3RC4V';
+
     return (
       <Html lang="ja">
         <Head>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          {
+            // <!-- Global site tag (gtag.js) - Google Analytics -->
+          }
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${GA_TRACKING_ID}');
+            `,
+            }}
+          />
         </Head>
         <body>
           <Main />
