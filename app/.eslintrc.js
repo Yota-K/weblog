@@ -25,5 +25,6 @@ module.exports = {
     'prettier/prettier': 'error',
     /* TypeScriptではprop-types不要なのでoff */
     'react/prop-types': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
 };
