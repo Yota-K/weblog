@@ -1,23 +1,25 @@
 import { useRouter } from 'next/router';
+import { PageTypes } from '../interfaces/page-types';
 
-export const pathNameChecker = (pageType: string): RegExpMatchArray | null | undefined => {
+// オブジェクトのkeyを元にUnion型を生成する
+export type PageTypes = typeof PageTypes[keyof typeof PageTypes];
+
+export const pathNameChecker = (pageType: PageTypes) => {
   const router = useRouter();
   const path = router.asPath;
 
-  let result;
-
   switch (pageType) {
-    case 'blog':
-      result = path.match(/\/blogs\/.+$/g);
-      break;
-    case 'category':
-      result = path.match(/\/category\/.+$/g);
-      break;
-    case 'tag':
-      result = path.match(/\/tags\/.+$/g);
-      break;
-    default:
+    case PageTypes.blog: {
+      return /\/blogs\/.+$/g.test(path);
+    }
+    case PageTypes.category: {
+      return /\/category\/.+$/g.test(path);
+    }
+    case PageTypes.tag: {
+      return /\/tags\/.+$/g.test(path);
+    }
+    default: {
+      const check: never = pageType; // eslint-disable-line no-unused-vars
+    }
   }
-
-  return result;
 };

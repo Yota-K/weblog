@@ -17,7 +17,7 @@ export default ({ title, description, thumbnail }: Props): JSX.Element => {
 
   const { defaultDescription } = config.siteInfo;
 
-  const descriptionCheck = pathNameChecker('blog');
+  const isBlogPage = pathNameChecker('blog');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -28,7 +28,7 @@ export default ({ title, description, thumbnail }: Props): JSX.Element => {
   return (
     <Head>
       <title>{title}</title>
-      {descriptionCheck !== null ? (
+      {isBlogPage ? (
         <meta name="Description" content={description} />
       ) : (
         <meta name="Description" content={defaultDescription} />
