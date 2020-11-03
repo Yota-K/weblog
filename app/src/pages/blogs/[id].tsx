@@ -42,14 +42,14 @@ interface Props {
 
 const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body }) => {
   const { siteTitle } = config.siteInfo;
+  const { siteUrl } = config.siteInfo;
+  const url = `${siteUrl}blogs/${blog.id}`;
 
   const reciveBreadcrumb = {
     categoryId: blog.category_field.id,
     categoryName: blog.category_field.name,
     blogTitle: blog.title,
   };
-
-  const url = `https://karukichi-blog.netlify.app/blogs/${blog.id}`;
 
   // eslint-disable-next-line
   const md = new MarkdownIt({
@@ -58,7 +58,12 @@ const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc
 
   return (
     <Layout>
-      <Head title={`${blog.title}｜${siteTitle}`} description={blog.description} thumbnail={blog.thumbnail.url} />
+      <Head
+        title={`${blog.title}｜${siteTitle}`}
+        url={url}
+        description={blog.description}
+        thumbnail={blog.thumbnail.url}
+      />
       <div id="blog">
         <Breadcrumb blogPageInfo={reciveBreadcrumb} />
         <TimeStamp>{dateFormat(blog.createdAt)}</TimeStamp>
