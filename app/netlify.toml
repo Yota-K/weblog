@@ -19,5 +19,6 @@
   status = 301
   force = true
 
+## ステージング環境で使用する環境変数
 [context.branch-deploy.environment]
   NEXT_STAGING_ENV = "staging"
