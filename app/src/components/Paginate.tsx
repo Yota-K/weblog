@@ -3,22 +3,21 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
+import { config } from '../../config/app';
 import { colorObj } from '../../share/variables';
 
 interface Props {
   paginateType: string;
-  paginateNum: number;
   totalCount: number;
 }
 
-const Paginate: React.FC<Props> = ({ paginateType, paginateNum, totalCount }) => {
+const Paginate: React.FC<Props> = ({ paginateType, totalCount }) => {
   const router = useRouter();
   const path = router.asPath;
 
-  const generatePaginate = (paginateType: string, paginateNum: number, totalCount: number) => {
-    // 投稿が5記事以下の時はページネーションを非表示
-    if (totalCount <= paginateNum) return <></>;
+  const paginateNum = config.paginateNum;
 
+  const generatePaginate = (paginateType: string, totalCount: number) => {
     // １ページ目のとき
     if (path === '/' || path === `/${paginateType}` || path === `/${paginateType}/1`) {
       return (
@@ -61,7 +60,14 @@ const Paginate: React.FC<Props> = ({ paginateType, paginateNum, totalCount }) =>
     }
   };
 
-  return <>{generatePaginate(paginateType, paginateNum, totalCount)}</>;
+  return (
+    <>
+      {
+        // 投稿が5記事よりも多い時はページネーションを表示
+        totalCount > paginateNum && generatePaginate(paginateType, totalCount)
+      }
+    </>
+  );
 };
 
 type StyleType = {

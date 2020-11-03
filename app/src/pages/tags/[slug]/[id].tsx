@@ -75,7 +75,7 @@ const TagPage: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, 
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} paginateNum={paginateNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} totalCount={totalCount} />
       </div>
     </Layout>
   );
@@ -88,7 +88,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await res.json();
 
   const contents: BuildTaxonomyPaginateList[] = data.tags;
-  const resultAry = generateBuildPaginatePath(contents, paginateNum);
+  const resultAry = generateBuildPaginatePath(contents);
 
   const paths = resultAry.map((path) => ({
     params: { slug: path.params.slug, id: path.params.id.toString() },

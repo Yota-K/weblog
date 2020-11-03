@@ -74,7 +74,7 @@ const TagPage: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, 
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} paginateNum={paginateNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} totalCount={totalCount} />
       </div>
     </Layout>
   );

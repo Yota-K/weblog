@@ -79,7 +79,7 @@ const CategoryPage: NextComponentType<NextPageContext, RecordType, Props> = ({
             </PostInfo>
           </BlogCard>
         ))}
-        <Paginate paginateType={paginateType} paginateNum={paginateNum} totalCount={totalCount} />
+        <Paginate paginateType={paginateType} totalCount={totalCount} />
       </div>
     </Layout>
   );
