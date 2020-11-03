@@ -1,6 +1,7 @@
 export const config = {
   siteInfo: {
     siteTitle: 'カルキチのブログ',
+    siteUrl: 'https://karukichi-blog.netlify.app/',
     defaultDescription: '駆け出しウェブエンジニアカルキチ副島が運営するウェブ系の技術をメインに書くブログです。',
   },
   twitterUrl: 'https://twitter.com/karukichi_yah',
