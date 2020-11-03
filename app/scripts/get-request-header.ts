@@ -1,6 +1,4 @@
-import { RequestHeader } from '../interfaces/request-header';
-
-export const getRequestHeader = (): RequestHeader => {
+export const getRequestHeader = () => {
   const key = {
     headers: {
       'X-API-KEY': process.env.API_KEY || '',

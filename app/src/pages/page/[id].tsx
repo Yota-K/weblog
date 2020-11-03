@@ -9,7 +9,6 @@ import { Content } from '../../../interfaces/content';
 import { RecordType } from '../../../interfaces/record-type';
 
 import { dateFormat } from '../../../scripts/date-format';
-import { paginateAry } from '../../../scripts/generate-paginate-ary';
 import { getRequestHeader } from '../../../scripts/get-request-header';
 
 import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
