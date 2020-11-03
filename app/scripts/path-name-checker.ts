@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { PageTypes } from '../interfaces/page-types';
 
 // オブジェクトのkeyを元にUnion型を生成する
-export type PageTypes = typeof PageTypes[keyof typeof PageTypes];
+type PageTypes = typeof PageTypes[keyof typeof PageTypes];
 
 export const pathNameChecker = (pageType: PageTypes) => {
   const router = useRouter();
