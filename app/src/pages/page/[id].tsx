@@ -81,11 +81,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
   const data = await res.json();
 
-  let totalCount = data.totalCount;
+  let totalCount: number = data.totalCount;
   totalCount = Math.ceil(totalCount / paginateNum);
 
-  const paginate: number[] = paginateAry(totalCount);
-  const paths = paginate.map((pageNum) => `/page/${pageNum}`);
+  const paginate = (totalCount: number) => {
+    return [...new Array(totalCount).keys()].map((i) => ++i);
+  };
+
+  const paths = paginate(totalCount).map((pageNum) => `/page/${pageNum}`);
 
   return { paths, fallback: false };
 };
