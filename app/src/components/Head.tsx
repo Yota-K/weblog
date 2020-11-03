@@ -33,6 +33,7 @@ export default ({ title, description, thumbnail }: Props): JSX.Element => {
       ) : (
         <meta name="Description" content={defaultDescription} />
       )}
+      {process.env.NEXT_STAGING_ENV === 'staging' && <meta name="robots" content="noindex" />}
       <link rel="shortcut icon" href="/favicon.ico" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@karukichi_yah" />
