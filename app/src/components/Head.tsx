@@ -16,7 +16,7 @@ interface Props {
 export default ({ title, description, url, thumbnail }: Props): JSX.Element => {
   const { defaultDescription } = config.siteInfo;
 
-  const isBlogPage = pathNameChecker('blog');
+  const isBlogPage = pathNameChecker('blogs');
 
   return (
     <Head>

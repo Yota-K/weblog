@@ -1,5 +1,5 @@
 export const PageTypes = {
-  blog: 'blog',
+  blogs: 'blogs',
   category: 'category',
   tag: 'tag',
 } as const;

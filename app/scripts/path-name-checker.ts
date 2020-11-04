@@ -9,7 +9,7 @@ export const pathNameChecker = (pageType: PageTypes) => {
   const path = router.asPath;
 
   switch (pageType) {
-    case PageTypes.blog: {
+    case PageTypes.blogs: {
       return /\/blogs\/.+$/g.test(path);
     }
     case PageTypes.category: {
