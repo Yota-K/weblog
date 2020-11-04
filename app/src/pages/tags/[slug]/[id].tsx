@@ -103,7 +103,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const offset = parseInt(id) * paginateNum - paginateNum;
 
-  const params = `?filters=tags[contains]${slug}&offset=${offset}&limit=${paginateNum}`;
+  const params = `?filters=tag_field[contains]${slug}&offset=${offset}&limit=${paginateNum}`;
   const res = await fetch(`${process.env.ENDPOINT}/blogs${params}`, header);
   const data = await res.json();
 

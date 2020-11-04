@@ -100,7 +100,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context?.params?.slug;
 
-  const params = `?filters=category[contains]${slug}&limit=${paginateNum}`;
+  const params = `?filters=category_field[equals]${slug}&limit=${paginateNum}`;
   const res = await fetch(`${process.env.ENDPOINT}/blogs${params}`, header);
   const data = await res.json();
 
