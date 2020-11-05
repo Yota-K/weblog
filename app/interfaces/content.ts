@@ -6,8 +6,6 @@ export interface Content {
   thumbnail: {
     url: string;
   };
-  category: string;
-  tags: string;
   body: string;
   description: string;
   category_field: {
