@@ -66,7 +66,11 @@ const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc
       />
       <div id="blog">
         <Breadcrumb blogPageInfo={reciveBreadcrumb} />
-        <TimeStamp>{dateFormat(blog.createdAt)}</TimeStamp>
+        <TimeStamp>
+          <time itemProp="dateCreated" dateTime={`${dateFormat(blog.createdAt)}`}>
+            {dateFormat(blog.createdAt)}
+          </time>
+        </TimeStamp>
         <H1>{blog.title}</H1>
         <CategoryLabel>
           カテゴリー：

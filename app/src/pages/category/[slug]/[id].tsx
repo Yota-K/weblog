@@ -56,7 +56,11 @@ const CategoryPage: NextComponentType<NextPageContext, RecordType, Props> = ({
               <LazyLoadImage src={`${blog.thumbnail.url}`} alt="thumbnail" effect="blur" />
             </PostThumbnail>
             <PostInfo>
-              <TimeStamp>{dateFormat(blog.createdAt)}</TimeStamp>
+              <TimeStamp>
+                <time itemProp="dateCreated" dateTime={`${dateFormat(blog.createdAt)}`}>
+                  {dateFormat(blog.createdAt)}
+                </time>
+              </TimeStamp>
               <H3>
                 <Link href="/blogs/[id]" as={`/blogs/${blog.id}`}>
                   <a>{blog.title}</a>
