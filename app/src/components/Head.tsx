@@ -33,7 +33,7 @@ export default ({ title, description, url, thumbnail }: Props): JSX.Element => {
           <meta property="og:image" content={thumbnail} />
         </>
       ) : (
-        <meta name="Description" content={defaultDescription} />
+        <meta name="description" content={defaultDescription} />
       )}
       {process.env.NEXT_STAGING_ENV === 'staging' && <meta name="robots" content="noindex,nofollow" />}
     </Head>
