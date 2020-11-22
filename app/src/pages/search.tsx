@@ -38,6 +38,8 @@ const Search: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, 
   const router = useRouter();
   const { query } = router.query;
 
+  const paginateType = 'search';
+
   return (
     <Layout>
       <Head title={siteTitle} />
@@ -77,6 +79,7 @@ const Search: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, 
             </PostInfo>
           </BlogCard>
         ))}
+        <Paginate paginateType={paginateType} totalCount={totalCount} />
       </div>
     </Layout>
   );
@@ -88,12 +91,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context.query;
   const encodeString = encodeURI(query as string);
 
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?q=${encodeString}`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?q=${encodeString}&offset=0&limit=${paginateNum}`, header);
   const data = await res.json();
 
   return {
     props: {
       blogs: data.contents,
+      totalCount: data.totalCount,
     },
   };
 };
