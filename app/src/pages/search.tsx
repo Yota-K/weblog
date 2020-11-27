@@ -36,11 +36,12 @@ const paginateNum = config.paginateNum;
 const Search: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, totalCount }) => {
   const { siteTitle } = config.siteInfo;
 
-  const paginateType = 'search';
-
   // 検索クエリを取得
   const router = useRouter();
   const { query } = router.query;
+
+  // 2ページ目の時 react/2
+  const paginateType = `search?query=${query}`;
 
   // 検索クエリがない・空の配列が返ってきた時は検索失敗と判定する
   if (!blogs.length || !query) return <Error statusCode={404} />;

@@ -6,29 +6,43 @@ import styled from 'styled-components';
 import { config } from '../../config/app';
 import { colorObj } from '../../share/variables';
 
-import SearchPaginate from './SearchPaginate';
-
 interface Props {
   paginateType: string;
   totalCount: number;
 }
 
-const Paginate: React.FC<Props> = ({ paginateType, totalCount }) => {
+const SearchPaginate: React.FC<Props> = ({ paginateType, totalCount }) => {
   const router = useRouter();
   const path = router.asPath;
 
   const paginateNum = config.paginateNum;
 
-  const generatePaginate = (paginateType: string, totalCount: number) => {
-    if (path.match(/search.+$/)) {
-      return <SearchPaginate paginateType={paginateType} totalCount={totalCount} />;
+  const buildPaginateLink = (paginatePath: string, type: string) => {
+    // search?query={検索ワード}という文字列を生成
+    const baseSearchParam = paginatePath.replace(/\/[1-9]/, '');
+    const findSearchPaginateNum = paginatePath.match(/[2-9]$/) as string[];
+
+    let searchPaginateNum: number;
+
+    if (type === 'first') {
+      searchPaginateNum = 2;
+    } else if (type === 'prev') {
+      searchPaginateNum = parseInt(findSearchPaginateNum[0]) - 1;
+    } else {
+      searchPaginateNum = parseInt(findSearchPaginateNum[0]) + 1;
     }
 
+    return `/${baseSearchParam}/${searchPaginateNum}`;
+  };
+
+  const generatePaginate = (paginateType: string, totalCount: number) => {
     // １ページ目のとき
-    if (path === '/' || path === `/${paginateType}` || path === `/${paginateType}/1`) {
+    if (path.match(/search.+([^2-9])$/)) {
+      const paginateLink = buildPaginateLink(paginateType, 'first');
+
       return (
         <MyPaginate type="flex-end">
-          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/2`}>
+          <Link href={`${paginateLink}`}>
             <a className="next-paginate">Next &gt;&gt;</a>
           </Link>
         </MyPaginate>
@@ -37,28 +51,31 @@ const Paginate: React.FC<Props> = ({ paginateType, totalCount }) => {
 
     const pathMatch = path.match(/\d+$/g);
 
-    // pathMatchにnullが入らないようにする
     if (pathMatch === null) return;
 
     const currentPaginateNum = parseInt(pathMatch[0]);
     const totalPaginateNum = Math.ceil(totalCount / paginateNum);
 
-    // パスに含まれるページネーションの数と投稿を表示数で割った数を切り上げた数値が同じ時は最後のページ
     if (currentPaginateNum === totalPaginateNum) {
+      const paginateLink = buildPaginateLink(paginateType, 'prev');
+
       return (
         <MyPaginate type="flex-start">
-          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${currentPaginateNum - 1}`}>
+          <Link href={`${paginateLink}`}>
             <a className="prev-paginate"> &lt;&lt; Prev</a>
           </Link>
         </MyPaginate>
       );
     } else {
+      const prevPaginateLink = buildPaginateLink(paginateType, 'prev');
+      const relPaginateLink = buildPaginateLink(paginateType, 'next');
+
       return (
         <MyPaginate type="space-between">
-          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${currentPaginateNum - 1}`}>
+          <Link href={`${prevPaginateLink}`}>
             <a className="prev-paginate">&lt;&lt; Prev</a>
           </Link>
-          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${currentPaginateNum + 1}`}>
+          <Link href={`${relPaginateLink}`}>
             <a className="next-paginate">Next &gt;&gt;</a>
           </Link>
         </MyPaginate>
@@ -66,14 +83,7 @@ const Paginate: React.FC<Props> = ({ paginateType, totalCount }) => {
     }
   };
 
-  return (
-    <>
-      {
-        // 投稿が5記事よりも多い時はページネーションを表示
-        totalCount > paginateNum && generatePaginate(paginateType, totalCount)
-      }
-    </>
-  );
+  return <>{generatePaginate(paginateType, totalCount)}</>;
 };
 
 type StyleType = {
@@ -88,4 +98,4 @@ const MyPaginate = styled.div<StyleType>`
   }
 `;
 
-export default Paginate;
+export default SearchPaginate;
