@@ -36,23 +36,23 @@ const paginateNum = config.paginateNum;
 const Search: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, totalCount }) => {
   const { siteTitle } = config.siteInfo;
 
+  const paginateType = 'search';
+
   // 検索クエリを取得
   const router = useRouter();
   const { query } = router.query;
 
-  // 空の配列が返ってくる時は検索失敗と判定する
+  // 検索クエリがない・空の配列が返ってきた時は検索失敗と判定する
   if (!blogs.length || !query) return <Error statusCode={404} />;
 
   const queryString = query as string;
-  const replacementQuery = queryString.replace(/\/[0-9]+$/, '');
-
-  const paginateType = 'search';
+  const searchResultWord = queryString.replace(/\/[0-9]+$/, '');
 
   return (
     <Layout>
-      <Head title={siteTitle} />
+      <Head title={`${searchResultWord}の検索結果｜${siteTitle}`} />
       <div id="blog-list">
-        <H2>{replacementQuery}の検索結果</H2>
+        <H2>{searchResultWord}の検索結果</H2>
         {blogs.map((blog) => (
           <BlogCard key={blog.id}>
             <PostThumbnail>
@@ -96,29 +96,29 @@ const Search: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, 
 const header = getRequestHeader();
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // React・React/2
+  // 例: React・React/2
   const { query } = context.query;
   const queryString = query as string;
 
   let currentPaginateNum = 1;
-  let encodeString: string;
+  let searchWord: string;
 
-  // ページネーション２ページ目以降の場合
+  // ２ページ目以降の場合に行う処理
   if (queryString.match(/[0-9]+$/)) {
     const queryParamNum = queryString.match(/[0-9]+$/) as string[];
     currentPaginateNum = parseInt(queryParamNum[0]);
 
     const searchQuery = queryString.replace(/\/[0-9]$/, '');
-    encodeString = encodeURI(searchQuery as string);
+    searchWord = encodeURI(searchQuery as string);
   } else {
     // matchの戻り値がnullの場合はパラメータに設定された文字列をそのままエンコードする
-    encodeString = encodeURI(queryString as string);
+    searchWord = encodeURI(queryString as string);
   }
 
   const offset = currentPaginateNum * paginateNum - paginateNum;
 
   const res = await fetch(
-    `${process.env.ENDPOINT}/blogs?q=${encodeString}&offset=${offset}&limit=${paginateNum}&orders=-createdAt`,
+    `${process.env.ENDPOINT}/blogs?q=${searchWord}&offset=${offset}&limit=${paginateNum}&orders=-createdAt`,
     header
   );
   const data = await res.json();
