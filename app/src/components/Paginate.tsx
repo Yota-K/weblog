@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import styled from 'styled-components';
 
 import { config } from '../../config/app';
-import { colorObj } from '../../share/variables';
+
+import { MyPaginate } from '../../share/MyPaginate';
 
 import SearchPaginate from './SearchPaginate';
 
@@ -75,17 +75,5 @@ const Paginate: React.FC<Props> = ({ paginateType, totalCount }) => {
     </>
   );
 };
-
-type StyleType = {
-  type: string;
-};
-
-const MyPaginate = styled.div<StyleType>`
-  display: flex;
-  justify-content: ${(props) => props.type};
-  a {
-    color: ${colorObj.baseBlue};
-  }
-`;
 
 export default Paginate;
