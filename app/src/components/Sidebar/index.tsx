@@ -5,8 +5,9 @@ import { CategoriesAndTags } from '../../../interfaces/taxonomy';
 
 import { device } from '../../../share/media-query';
 
-import CategoryList from './CategoryList';
+import SearchWindow from './SearchWindow';
 import Profile from './Profile';
+import CategoryList from './CategoryList';
 import TagList from './TagList';
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
 const Sidebar: React.FC<Props> = ({ taxonomies }) => {
   return (
     <BlogSidebar>
+      <SearchWindow />
       <Profile />
       <CategoryList categories={taxonomies.categories} />
       <TagList tags={taxonomies.tags} />
