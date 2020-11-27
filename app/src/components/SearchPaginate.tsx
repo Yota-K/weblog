@@ -1,22 +1,16 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React from 'react';
-
-import { config } from '../../config/app';
 
 import { MyPaginate } from '../../share/MyPaginate';
 
 interface Props {
+  path: string;
+  paginateNum: number;
   paginateType: string;
   totalCount: number;
 }
 
-const SearchPaginate: React.FC<Props> = ({ paginateType, totalCount }) => {
-  const router = useRouter();
-  const path = router.asPath;
-
-  const paginateNum = config.paginateNum;
-
+const SearchPaginate: React.FC<Props> = ({ path, paginateNum, paginateType, totalCount }) => {
   const buildPaginateLink = (paginatePath: string, type: string) => {
     // search?query={検索ワード}という文字列を生成
     const baseSearchParam = paginatePath.replace(/\/[1-9]/, '');
@@ -35,7 +29,7 @@ const SearchPaginate: React.FC<Props> = ({ paginateType, totalCount }) => {
     return `/${baseSearchParam}/${searchPaginateNum}`;
   };
 
-  const generatePaginate = (paginateType: string, totalCount: number) => {
+  const generatePaginate = (path: string, paginateNum: number, paginateType: string, totalCount: number) => {
     // １ページ目のとき
     if (path.match(/search.+([^2-9])$/)) {
       const paginateLink = buildPaginateLink(paginateType, 'first');
@@ -83,7 +77,7 @@ const SearchPaginate: React.FC<Props> = ({ paginateType, totalCount }) => {
     }
   };
 
-  return <>{generatePaginate(paginateType, totalCount)}</>;
+  return <>{generatePaginate(path, paginateNum, paginateType, totalCount)}</>;
 };
 
 export default SearchPaginate;

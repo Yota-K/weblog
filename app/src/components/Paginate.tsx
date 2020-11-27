@@ -21,7 +21,9 @@ const Paginate: React.FC<Props> = ({ paginateType, totalCount }) => {
 
   const generatePaginate = (paginateType: string, totalCount: number) => {
     if (path.match(/search.+$/)) {
-      return <SearchPaginate paginateType={paginateType} totalCount={totalCount} />;
+      return (
+        <SearchPaginate path={path} paginateNum={paginateNum} paginateType={paginateType} totalCount={totalCount} />
+      );
     }
 
     // １ページ目のとき
