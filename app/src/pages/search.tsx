@@ -33,6 +33,8 @@ const paginateNum = config.paginateNum;
 
 const Search: React.FC = () => {
   const [queryString, setQueryString] = React.useState<string>('');
+  const [searchResult, setSearchResult] = React.useState<string>('');
+  const [param, setParam] = React.useState<string>('');
   const [posts, setPosts] = React.useState<Posts>({
     blogs: [],
     totalCount: 0,
@@ -56,7 +58,8 @@ const Search: React.FC = () => {
   useEffect(() => {
     const main = async () => {
       if (queryString) {
-        const header = getRequestHeader();
+        setParam(`search?query=${queryString}`);
+        setSearchResult(queryString.replace(/\/[0-9]+$/, ''));
 
         let currentPaginateNum = 1;
         let searchWord: string;
@@ -75,6 +78,7 @@ const Search: React.FC = () => {
 
         const offset = currentPaginateNum * paginateNum - paginateNum;
 
+        const header = getRequestHeader();
         const res = await fetch(
           `${process.env.ENDPOINT}/blogs?q=${searchWord}&offset=${offset}&limit=${paginateNum}&orders=-createdAt`,
           header
@@ -85,14 +89,19 @@ const Search: React.FC = () => {
           blogs: data.contents,
           totalCount: data.totalCount,
         });
+
+        // 検索クエリがない・空の配列が返ってきた時は検索失敗と判定する
+        if (!posts.blogs.length || !queryString) return <Error statusCode={404} />;
       }
     };
+
     main();
   }, [queryString]);
 
   return (
     <Layout>
       <div id="blog-list">
+        <H2>{searchResult}の検索結果</H2>
         {posts.blogs.map((blog) => (
           <BlogCard key={blog.id}>
             <PostThumbnail>
