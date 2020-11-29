@@ -33,6 +33,7 @@ const HeaderNav: React.FC<Props> = ({ categories }) => {
 
 const HeaderNavBar = styled.nav`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  margin-bottom: 25px;
   ${device.mobileM} {
     width: 100%;
     overflow-x: auto;

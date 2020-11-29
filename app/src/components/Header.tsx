@@ -3,19 +3,22 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
+import { SearchJson } from '../../interfaces/search-posts';
 import { Taxonomy } from '../../interfaces/taxonomy';
 
 import { device } from '../../share/media-query';
 import { colorObj } from '../../share/variables';
 
 import HeaderNav from './HeaderNav';
+import SearchArea from './Sidebar/SearchArea';
 
 interface Props {
   siteTitle: React.ReactNode;
   categories: Taxonomy[];
+  searchPosts: SearchJson[];
 }
 
-const Header: React.FC<Props> = ({ siteTitle, categories }) => {
+const Header: React.FC<Props> = ({ siteTitle, categories, searchPosts }) => {
   const getPathName = () => {
     const router = useRouter();
     return router.asPath;
@@ -39,6 +42,9 @@ const Header: React.FC<Props> = ({ siteTitle, categories }) => {
         )}
       </HeaderBar>
       <HeaderNav categories={categories} />
+      <SpSearchArea>
+        <SearchArea searchPosts={searchPosts} />
+      </SpSearchArea>
     </>
   );
 };
@@ -62,5 +68,14 @@ const SiteTitleTop = styled.h1`
 `;
 
 const SiteTitle = SiteTitleTop.withComponent('div');
+
+const SpSearchArea = styled.div`
+  display none;
+  width: 96%;
+  margin: auto;
+  ${device.mobileM} {
+    display: block;
+  }
+`;
 
 export default Header;
