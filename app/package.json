@@ -8,7 +8,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "export": "npm run build && next export",
+    "export": "npm run build && next export && node hoge.js",
     "eslint": "eslint --fix **/*.{js,ts,tsx}",
     "fmt": "prettier --write **/*.{js,json,ts,tsx}"
   },
@@ -34,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "@zeit/next-typescript": "^1.1.1",
+    "axios": "^0.21.0",
     "babel-plugin-styled-components": "^1.11.1",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
