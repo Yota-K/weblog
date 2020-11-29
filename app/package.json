@@ -8,7 +8,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "export": "npm run build && next export && node hoge.js",
+    "export": "npm run build && next export && node create-posts-json.js",
     "eslint": "eslint --fix **/*.{js,ts,tsx}",
     "fmt": "prettier --write **/*.{js,json,ts,tsx}"
   },
