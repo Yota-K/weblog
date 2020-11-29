@@ -32,15 +32,20 @@ type ModalHeight = {
 };
 
 const Modal = styled.ul<ModalHeight>`
+  position: absolute;
+  top: 45px;
+  left: 0;
   border: 1px solid ${colorObj.borderGray};
-  margin-top: 20px;
   list-style: none;
-  height: ${(props) => (props.resultsLength === 0 ? 'auto' : '200px')};
+  background: #fff;
+  width: 100%;
+  height: ${(props) => (props.resultsLength === 0 ? 'auto' : '220px')};
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;
   }
   scrollbar-width: none;
+  z-index: 1000;
 `;
 
 const BaseStyle = `
