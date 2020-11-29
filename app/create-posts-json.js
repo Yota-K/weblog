@@ -14,7 +14,9 @@ const fs = require('fs');
   const searchJSON = await res.data.contents;
 
   // 書き込み処理を行う
-  fs.writeFileSync('./public/search.json', JSON.stringify(searchJSON));
+  process.env.IS_NETLIFY === 'netlify'
+    ? fs.writeFileSync('./out/search.json', JSON.stringify(searchJSON))
+    : fs.writeFileSync('./public/search.json', JSON.stringify(searchJSON));
 
   console.info('検索用のJSONの生成に成功しました');
 })();

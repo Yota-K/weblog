@@ -21,3 +21,4 @@
 
 [context.branch-deploy.environment]
   NEXT_STAGING_ENV = "staging"
+  IS_NETLIFY = 'netlify'
