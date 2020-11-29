@@ -58,6 +58,7 @@ const PostList = styled.li`
       transition: 0.4s;
       background: rgba(216, 228, 239, 0.7);
     }
+    cursor: pointer;
   }
   &:last-child {
     border-bottom: none;
