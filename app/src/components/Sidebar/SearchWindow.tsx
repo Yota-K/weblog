@@ -6,6 +6,7 @@ import { SearchJson } from '../../../interfaces/search-posts';
 import { H4 } from '../../../share/Heading';
 
 import { SidebarBox } from './SidebarBox';
+import SearchModal from './SearchModal';
 
 interface Props {
   searchPosts: SearchJson[];
@@ -23,6 +24,7 @@ const SearchWindow: React.FC<Props> = ({ searchPosts }) => {
       ],
     },
   ]);
+
   const [searchWord, setSearchWord] = React.useState<string>('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,8 +57,6 @@ const SearchWindow: React.FC<Props> = ({ searchPosts }) => {
     }
   }, [searchWord]);
 
-  console.log(results);
-
   return (
     <SidebarBox>
       <H4>検索</H4>
@@ -68,6 +68,7 @@ const SearchWindow: React.FC<Props> = ({ searchPosts }) => {
           </svg>
         </SearchIcon>
       </InputWrapper>
+      {searchWord !== '' && <SearchModal results={results} />}
     </SidebarBox>
   );
 };
