@@ -14,9 +14,13 @@ const fs = require('fs');
   const searchJSON = await res.data.contents;
 
   // 書き込み処理を行う
-  process.env.IS_NETLIFY === 'netlify'
-    ? fs.writeFileSync('./out/search.json', JSON.stringify(searchJSON))
-    : fs.writeFileSync('./public/search.json', JSON.stringify(searchJSON));
+  if (process.env.IS_NETLIFY === 'netlify') {
+    console.info('Netlifyで実行します。');
+    fs.writeFileSync('./out/search.json', JSON.stringify(searchJSON));
+  } else {
+    console.info('開発環境で実行します。');
+    fs.writeFileSync('./public/search.json', JSON.stringify(searchJSON));
+  }
 
   console.info('検索用のJSONの生成に成功しました');
 })();
