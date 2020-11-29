@@ -15,10 +15,10 @@ const fs = require('fs');
 
   // 書き込み処理を行う
   if (process.env.IS_NETLIFY === 'netlify') {
-    console.info('Netlifyで実行します。');
+    console.info('検索用JSONの生成：Netlifyで実行します。');
     fs.writeFileSync('./out/search.json', JSON.stringify(searchJSON));
   } else {
-    console.info('開発環境で実行します。');
+    console.info('検索用JSONの生成：開発環境で実行します。');
     fs.writeFileSync('./public/search.json', JSON.stringify(searchJSON));
   }
 

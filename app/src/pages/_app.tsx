@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { config } from '../../config/app';
 
 import { CategoriesAndTags } from '../../interfaces/taxonomy';
+import { SearchJson } from '../../interfaces/search-posts';
 
 import { getRequestHeader } from '../../scripts/get-request-header';
 
@@ -20,15 +21,28 @@ import 'highlight.js/styles/dracula.css';
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const { siteTitle } = config.siteInfo;
 
+  const [searchPosts, setSearchPosts] = React.useState<SearchJson[]>([
+    {
+      id: '',
+      title: '',
+      tag_field: [
+        {
+          name: '',
+        },
+      ],
+    },
+  ]);
+
   const [taxonomies, setTaxonomies] = React.useState<CategoriesAndTags>({
     categories: [],
     tags: [],
   });
 
-  // サイドバーのカテゴリー・タグ一覧の取得
   useEffect(() => {
+    const header = getRequestHeader();
+
+    // サイドバーのカテゴリー・タグ一覧の取得
     const getTaxonomies = async () => {
-      const header = getRequestHeader();
       const res = await fetch(`${process.env.ENDPOINT}/taxonomy`, header);
       const data = await res.json();
 
@@ -38,7 +52,17 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
       });
     };
 
+    // 検索用のJSONを取得
+    const getSearchPosts = async () => {
+      const url = window.location.origin;
+      const res = await fetch(`${url}/search.json`);
+      const data = await res.json();
+
+      setSearchPosts(data);
+    };
+
     getTaxonomies();
+    getSearchPosts();
   }, []);
 
   return (
@@ -47,7 +71,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
       <Header siteTitle={siteTitle} categories={taxonomies.categories} />
       <Wrapper>
         <Component {...pageProps} />
-        <Sidebar taxonomies={taxonomies} />
+        <Sidebar taxonomies={taxonomies} searchPosts={searchPosts} />
       </Wrapper>
       <Footer siteTitle={siteTitle} />
     </>

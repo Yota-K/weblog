@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { CategoriesAndTags } from '../../../interfaces/taxonomy';
+import { SearchJson } from '../../../interfaces/search-posts';
 
 import { device } from '../../../share/media-query';
 
@@ -12,12 +13,13 @@ import TagList from './TagList';
 
 interface Props {
   taxonomies: CategoriesAndTags;
+  searchPosts: SearchJson[];
 }
 
-const Sidebar: React.FC<Props> = ({ taxonomies }) => {
+const Sidebar: React.FC<Props> = ({ taxonomies, searchPosts }) => {
   return (
     <BlogSidebar>
-      <SearchWindow />
+      <SearchWindow searchPosts={searchPosts} />
       <Profile />
       <CategoryList categories={taxonomies.categories} />
       <TagList tags={taxonomies.tags} />
