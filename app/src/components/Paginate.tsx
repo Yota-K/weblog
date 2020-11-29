@@ -6,8 +6,6 @@ import { config } from '../../config/app';
 
 import { MyPaginate } from '../../share/MyPaginate';
 
-import SearchPaginate from './SearchPaginate';
-
 interface Props {
   paginateType: string;
   totalCount: number;
@@ -20,12 +18,6 @@ const Paginate: React.FC<Props> = ({ paginateType, totalCount }) => {
   const paginateNum = config.paginateNum;
 
   const generatePaginate = (paginateType: string, totalCount: number) => {
-    if (path.match(/search.+$/)) {
-      return (
-        <SearchPaginate path={path} paginateNum={paginateNum} paginateType={paginateType} totalCount={totalCount} />
-      );
-    }
-
     // １ページ目のとき
     if (path === '/' || path === `/${paginateType}` || path === `/${paginateType}/1`) {
       return (
