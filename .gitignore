@@ -4,3 +4,4 @@ app/node_modules
 app/.next
 app/build
 app/out
+app/public/search.json
