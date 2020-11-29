@@ -39,12 +39,14 @@ const SearchWindow: React.FC<Props> = ({ searchPosts }) => {
       const tags = e.tag_field.map((e) => e.name);
       const tagStr = tags.join(',');
 
+      // タイトル・記事のURL・タグの配列を文字列として連結
       const target = `
         ${e.title.toLowerCase()}
         ${e.id.toLowerCase()}
-        ${tagStr}
+        ${tagStr.toLowerCase()}
       `;
 
+      // 生成した配列に検索ワードが含まれる場合は-1以外が返る
       return target.indexOf(value) !== -1;
     });
 
@@ -83,7 +85,6 @@ const SearchIcon = styled.span`
   right: 12px;
   background: transparent;
   border: none;
-  cursor: pointer;
 `;
 
 const SearchInput = styled.input`
