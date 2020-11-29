@@ -1,6 +1,8 @@
+/* eslint-disable */
 const axios = require('axios');
 require('dotenv').config();
 const fs = require('fs');
+/* eslint-disable */
 
 (async () => {
   const header = {
