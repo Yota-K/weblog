@@ -9,21 +9,19 @@ interface Props {
   results: SearchJson[];
 }
 
-const SearchModal: React.FC<Props> = ({ results }) => {
+const SearchView: React.FC<Props> = ({ results }) => {
   return (
-    <>
-      <Modal resultsLength={results.length}>
-        {results.length === 0 ? (
-          <NotFoundList>記事が見つかりませんでした</NotFoundList>
-        ) : (
-          results.map((post, i) => (
-            <PostList key={i}>
-              <a href={`/blogs/${post.id}`}>{post.title}</a>
-            </PostList>
-          ))
-        )}
-      </Modal>
-    </>
+    <SearchUl resultsLength={results.length}>
+      {results.length === 0 ? (
+        <NotFoundList>記事が見つかりませんでした</NotFoundList>
+      ) : (
+        results.map((post, i) => (
+          <PostList key={i}>
+            <a href={`/blogs/${post.id}`}>{post.title}</a>
+          </PostList>
+        ))
+      )}
+    </SearchUl>
   );
 };
 
@@ -31,7 +29,7 @@ type ModalHeight = {
   resultsLength: number;
 };
 
-const Modal = styled.ul<ModalHeight>`
+const SearchUl = styled.ul<ModalHeight>`
   position: absolute;
   top: 45px;
   left: 0;
@@ -74,4 +72,4 @@ const NotFoundList = styled.li`
   ${BaseStyle}
 `;
 
-export default SearchModal;
+export default SearchView;

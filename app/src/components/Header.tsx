@@ -10,7 +10,7 @@ import { device } from '../../share/media-query';
 import { colorObj } from '../../share/variables';
 
 import HeaderNav from './HeaderNav';
-import SearchArea from './Sidebar/SearchArea';
+import SearchArea from './Search/SearchArea';
 
 interface Props {
   siteTitle: React.ReactNode;

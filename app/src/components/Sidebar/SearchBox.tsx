@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 
 import { SearchJson } from '../../../interfaces/search-posts';
 
@@ -7,13 +6,13 @@ import { H4 } from '../../../share/Heading';
 
 import { SidebarBox } from './SidebarBox';
 
-import SearchArea from './SearchArea';
+import SearchArea from '../Search/SearchArea';
 
 interface Props {
   searchPosts: SearchJson[];
 }
 
-const SearchWindow: React.FC<Props> = ({ searchPosts }) => {
+const SearchBox: React.FC<Props> = ({ searchPosts }) => {
   return (
     <SidebarBox>
       <H4>検索</H4>
@@ -22,4 +21,4 @@ const SearchWindow: React.FC<Props> = ({ searchPosts }) => {
   );
 };
 
-export default SearchWindow;
+export default SearchBox;

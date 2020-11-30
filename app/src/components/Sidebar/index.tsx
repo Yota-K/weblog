@@ -6,7 +6,7 @@ import { SearchJson } from '../../../interfaces/search-posts';
 
 import { device } from '../../../share/media-query';
 
-import SearchWindow from './SearchWindow';
+import SearchBox from './SearchBox';
 import Profile from './Profile';
 import CategoryList from './CategoryList';
 import TagList from './TagList';
@@ -19,7 +19,7 @@ interface Props {
 const Sidebar: React.FC<Props> = ({ taxonomies, searchPosts }) => {
   return (
     <BlogSidebar>
-      <SearchWindow searchPosts={searchPosts} />
+      <SearchBox searchPosts={searchPosts} />
       <Profile />
       <CategoryList categories={taxonomies.categories} />
       <TagList tags={taxonomies.tags} />
