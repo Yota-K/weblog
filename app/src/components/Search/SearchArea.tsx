@@ -75,16 +75,8 @@ const InputWrapper = styled.div`
   position: relative;
 `;
 
-const SearchIcon = styled.span`
-  display: block;
-  position: absolute;
-  top: 15px;
-  right: 12px;
-  background: transparent;
-  border: none;
-`;
-
 const SearchInput = styled.input`
+  position: relative;
   margin-top: 5px;
   padding: 8px;
   border: 1px solid #ddd;
@@ -95,6 +87,17 @@ const SearchInput = styled.input`
   font-size: 16px;
   box-shadow: none;
   transition: box-shadow 0.2s ease;
+  z-index: 9999;
+`;
+
+const SearchIcon = styled.span`
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  z-index: 10000;
 `;
 
 export default SearchArea;

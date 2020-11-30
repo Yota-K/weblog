@@ -31,7 +31,7 @@ type ModalHeight = {
 
 const SearchUl = styled.ul<ModalHeight>`
   position: absolute;
-  top: 45px;
+  top: 15px;
   left: 0;
   border: 1px solid ${colorObj.borderGray};
   list-style: none;
@@ -42,12 +42,14 @@ const SearchUl = styled.ul<ModalHeight>`
   ::-webkit-scrollbar {
     display: none;
   }
+  padding-top: 30px;
   scrollbar-width: none;
+  box-sizing: border-box;
   z-index: 1000;
 `;
 
 const BaseStyle = `
-  padding: 8px;
+  padding: 10px;
   color: #504b4b;
   font-size: 14px;
 `;
