@@ -43,7 +43,7 @@ const TagPage: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, 
     <Layout>
       <Head title={`${tagName}｜${siteTitle}`} />
       <div id="categories">
-        <Breadcrumb tagPageTitle={tagName} />
+        <Breadcrumb pageTitle={tagName} />
         <H2>タグ：{tagName}</H2>
         {tags.map((blog) => (
           <BlogCard key={blog.id}>

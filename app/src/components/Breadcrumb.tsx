@@ -14,17 +14,13 @@ interface Props {
     categoryName: string;
     blogTitle: string;
   };
-  categoryPageTitle?: string;
-  tagPageTitle?: string;
   pageTitle?: string;
 }
 
-const Breadcrumb: React.FC<Props> = ({ blogPageInfo, categoryPageTitle, tagPageTitle, pageTitle }) => {
+const Breadcrumb: React.FC<Props> = ({ blogPageInfo, pageTitle }) => {
   const { siteTitle } = config.siteInfo;
 
   const isBlogPage = pathNameChecker('blogs');
-  const isCategoryPage = pathNameChecker('category');
-  const isTagPage = pathNameChecker('tag');
 
   return (
     <MyBreadcrumb>
@@ -43,9 +39,7 @@ const Breadcrumb: React.FC<Props> = ({ blogPageInfo, categoryPageTitle, tagPageT
           <BreadcrumbItem>{blogPageInfo?.blogTitle}</BreadcrumbItem>
         </>
       )}
-      {isCategoryPage && <BreadcrumbItem>{categoryPageTitle}</BreadcrumbItem>}
-      {isTagPage && <BreadcrumbItem>{tagPageTitle}</BreadcrumbItem>}
-      {pageTitle !== undefined && <BreadcrumbItem>{pageTitle}</BreadcrumbItem>}
+      {pageTitle && <BreadcrumbItem>{pageTitle}</BreadcrumbItem>}
     </MyBreadcrumb>
   );
 };

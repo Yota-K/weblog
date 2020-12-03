@@ -48,7 +48,7 @@ const CategoryPage: NextComponentType<NextPageContext, RecordType, Props> = ({
     <Layout>
       <Head title={`${categoryName}｜${siteTitle}`} />
       <div id="categories">
-        <Breadcrumb categoryPageTitle={categoryName} />
+        <Breadcrumb pageTitle={categoryName} />
         <H2>カテゴリー：{categoryName}</H2>
         {categories.map((blog) => (
           <BlogCard key={blog.id}>
