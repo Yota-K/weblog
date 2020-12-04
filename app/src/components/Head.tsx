@@ -24,7 +24,7 @@ export default ({ title, description, url, thumbnail }: Props): JSX.Element => {
       <link rel="shortcut icon" href="/favicon.ico" />
       {isBlogPage ? (
         <>
-          <meta name="Description" content={description} />
+          <meta name="description" content={description} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@karukichi_yah" />
           <meta property="og:title" content={title} />
