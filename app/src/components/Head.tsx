@@ -14,6 +14,7 @@ interface Props {
 
 // eslint-disable-next-line react/display-name
 export default ({ title, description, url, thumbnail }: Props): JSX.Element => {
+  const { ogpImage } = config.siteInfo;
   const { defaultDescription } = config.siteInfo;
 
   const isBlogPage = pathNameChecker('blogs');
@@ -22,18 +23,22 @@ export default ({ title, description, url, thumbnail }: Props): JSX.Element => {
     <Head>
       <title>{title}</title>
       <link rel="shortcut icon" href="/favicon.ico" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@karukichi_yah" />
+      <meta property="og:title" content={title} />
+      <meta property="og:url" content={url} />
       {isBlogPage ? (
         <>
           <meta name="description" content={description} />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@karukichi_yah" />
-          <meta property="og:title" content={title} />
           <meta property="og:description" content={description} />
-          <meta property="og:url" content={url} />
           <meta property="og:image" content={thumbnail} />
         </>
       ) : (
-        <meta name="description" content={defaultDescription} />
+        <>
+          <meta name="description" content={defaultDescription} />
+          <meta property="og:description" content={defaultDescription} />
+          <meta property="og:image" content={ogpImage} />
+        </>
       )}
       {process.env.NEXT_STAGING_ENV === 'staging' && <meta name="robots" content="noindex,nofollow" />}
     </Head>
