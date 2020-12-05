@@ -37,15 +37,17 @@ const BlogSitemap: NextPage<Props> = ({ contents }) => {
                 <a>{content.name}</a>
               </Link>
             </li>
-            <ul>
-              {content.posts.map((post) => (
-                <li key={post.id}>
-                  <Link href="/blogs/[id]" as={`/blogs/${post.id}`}>
-                    <a>{post.title}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <PostList>
+              <ul>
+                {content.posts.map((post) => (
+                  <li key={post.id}>
+                    <Link href="/blogs/[id]" as={`/blogs/${post.id}`}>
+                      <a>{post.title}</a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </PostList>
           </ul>
         ))}
       </SitemapDiv>
@@ -61,8 +63,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const data = await res.json();
 
   const contents: Sitemap[] = data.contents;
+
   contents.map((blog) => {
     const posts = blog.posts;
+
     posts.sort((a, b) => {
       return a.createdAt < b.createdAt ? 1 : -1;
     });
@@ -82,11 +86,15 @@ const SitemapDiv = styled.div`
     a {
       color: ${colorObj.baseBlue};
     }
-    ul {
-      margin-left: 20px;
-      li {
-        line-height: 190%;
-      }
+  }
+`;
+
+const PostList = styled.li`
+  list-style: none;
+  ul {
+    margin-left: 20px;
+    li {
+      line-height: 190%;
     }
   }
 `;
