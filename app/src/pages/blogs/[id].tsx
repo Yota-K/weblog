@@ -107,6 +107,47 @@ const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc
   );
 };
 
+const header = getRequestHeader();
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
+  const data = await res.json();
+
+  const slugAry: PageSlug[] = data.contents;
+  const paths = slugAry.map((post) => `/blogs/${post.id}`);
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const id = context?.params?.id;
+  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}`, header);
+  const blog = await res.json();
+
+  const $ = cheerio.load(blog.body, { _useHtmlParser2: true });
+
+  const headings = $('h2, h3').toArray();
+  const toc = headings.map((data) => ({
+    id: data.attribs.id,
+    text: data.children[0].data,
+    type: data.name,
+  }));
+
+  $('pre > code').each((i, elm) => {
+    const result = hljs.highlightAuto($(elm).text());
+    $(elm).html(result.value);
+    $(elm).addClass('hljs');
+  });
+
+  return {
+    props: {
+      blog: blog,
+      toc: toc,
+      body: $.html(),
+    },
+  };
+};
+
 const ShareArea = styled.div`
   button {
     margin-right: 8px;
@@ -215,46 +256,5 @@ const MyContent = styled.div`
     margin 12px 0;
   }
 `;
-
-const header = getRequestHeader();
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
-  const data = await res.json();
-
-  const slugAry: PageSlug[] = data.contents;
-  const paths = slugAry.map((post) => `/blogs/${post.id}`);
-
-  return { paths, fallback: false };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context?.params?.id;
-  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}`, header);
-  const blog = await res.json();
-
-  const $ = cheerio.load(blog.body, { _useHtmlParser2: true });
-
-  const headings = $('h2, h3').toArray();
-  const toc = headings.map((data) => ({
-    id: data.attribs.id,
-    text: data.children[0].data,
-    type: data.name,
-  }));
-
-  $('pre > code').each((i, elm) => {
-    const result = hljs.highlightAuto($(elm).text());
-    $(elm).html(result.value);
-    $(elm).addClass('hljs');
-  });
-
-  return {
-    props: {
-      blog: blog,
-      toc: toc,
-      body: $.html(),
-    },
-  };
-};
 
 export default Blog;
