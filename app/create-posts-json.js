@@ -27,7 +27,7 @@ const fs = require('fs');
     }
 
     console.info('検索用のJSONの生成に成功しました');
-  } catch(er) {
+  } catch (er) {
     const { status, statusText } = er.respose;
 
     console.error(`HTTP Status: ${status} ${statusText}`);
