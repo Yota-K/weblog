@@ -41,7 +41,7 @@ const getUrlByApi = async () => {
     const lastmod = updatedAt.replace(/T.+$/g, '');
 
     return {
-      url: `${host}/${item.id}`,
+      url: `${host}/blogs/${item.id}`,
       lastmod: lastmod,
     };
   });
