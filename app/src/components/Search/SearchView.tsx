@@ -37,7 +37,7 @@ const SearchUl = styled.ul<ModalHeight>`
   list-style: none;
   background: #fff;
   width: 100%;
-  height: ${(props) => (props.resultsLength === 0 ? 'auto' : '220px')};
+  height: ${(props) => (props.resultsLength <= 3 ? 'auto' : '220px')};
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;

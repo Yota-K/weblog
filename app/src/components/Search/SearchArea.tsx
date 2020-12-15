@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import { colorObj } from '../../../share/variables';
+
 import { SearchJson } from '../../../interfaces/search-posts';
 
 import SearchView from './SearchView';
@@ -88,6 +90,10 @@ const SearchInput = styled.input`
   box-shadow: none;
   transition: box-shadow 0.2s ease;
   z-index: 9999;
+  &[type='text']:focus {
+    border: 1px solid ${colorObj.baseBlue};
+    outline: 0;
+  }
 `;
 
 const SearchIcon = styled.span`
