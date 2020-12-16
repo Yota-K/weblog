@@ -127,7 +127,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const $ = cheerio.load(blog.body, { _useHtmlParser2: true });
 
   const headings = $('h2, h3').toArray();
-  const toc = headings.map((data) => ({
+
+  // Memo: 型定義ファイルのバージョンをあげたら
+  // コンパイルエラーが発生するようになった
+  const toc = headings.map((data: any) => ({
     id: data.attribs.id,
     text: data.children[0].data,
     type: data.name,
