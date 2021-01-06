@@ -80,7 +80,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const SitemapDiv = styled.div`
-  margin-top: 30px;
+  margin: 30px 0 0 18px;
   ul {
     margin-bottom: 20px;
     a {
