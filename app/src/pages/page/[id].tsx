@@ -97,10 +97,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const key = getApiKey();
+
   const id = context?.params?.id as string;
   const offset = parseInt(id) * paginateNum - paginateNum;
 
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${offset}&limit=${paginateNum}`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${offset}&limit=${paginateNum}`, key);
   const data = await res.json();
 
   const blogs = data.contents;
