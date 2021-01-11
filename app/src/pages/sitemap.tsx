@@ -7,7 +7,7 @@ import { config } from '../../config/app';
 
 import { Sitemap } from '../../interfaces/sitemap';
 
-import { getRequestHeader } from '../../scripts/get-request-header';
+import { getApiKey } from '../../scripts/get-api-key';
 
 import { colorObj } from '../../share/variables';
 
@@ -55,11 +55,11 @@ const BlogSitemap: NextPage<Props> = ({ contents }) => {
   );
 };
 
-const header = getRequestHeader();
-
 export const getStaticProps: GetStaticProps = async () => {
+  const key = getApiKey();
+
   const params = `?fields=id,name,posts.id,posts.createdAt,posts.title&limit=9999`;
-  const res = await fetch(`${process.env.ENDPOINT}/category${params}`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/category${params}`, key);
   const data = await res.json();
 
   const contents: Sitemap[] = data.contents;

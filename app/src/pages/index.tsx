@@ -9,7 +9,7 @@ import { Content } from '../../interfaces/content';
 import { RecordType } from '../../interfaces/record-type';
 
 import { dateFormat } from '../../scripts/date-format';
-import { getRequestHeader } from '../../scripts/get-request-header';
+import { getApiKey } from '../../scripts/get-api-key';
 
 import { BlogCard, PostThumbnail, PostInfo } from '../../share/BlogCard';
 import { CategoryLabel } from '../../share/CategoryLabel';
@@ -78,10 +78,10 @@ const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
   );
 };
 
-const header = getRequestHeader();
-
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=0&limit=${paginateNum}`, header);
+  const key = getApiKey();
+
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=0&limit=${paginateNum}`, key);
   const data = await res.json();
 
   return {

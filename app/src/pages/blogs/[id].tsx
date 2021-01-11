@@ -16,7 +16,7 @@ import { RecordType } from '../../../interfaces/record-type';
 import { dateFormat } from '../../../scripts/date-format';
 
 import { CategoryLabel } from '../../../share/CategoryLabel';
-import { getRequestHeader } from '../../../scripts/get-request-header';
+import { getApiKey } from '../../../scripts/get-api-key';
 import { H1 } from '../../../share/Heading';
 import { device } from '../../../share/media-query';
 import { TagArea } from '../../../share/TagArea';
@@ -107,10 +107,10 @@ const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc
   );
 };
 
-const header = getRequestHeader();
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
+  const key = getApiKey();
+
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, key);
   const data = await res.json();
 
   const slugAry: PageSlug[] = data.contents;
@@ -120,8 +120,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const key = getApiKey();
+
   const id = context?.params?.id;
-  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}`, key);
   const blog = await res.json();
 
   const $ = cheerio.load(blog.body, { _useHtmlParser2: true });

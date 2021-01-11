@@ -10,7 +10,7 @@ import { PageSlug } from '../../../../interfaces/page-slug';
 import { RecordType } from '../../../../interfaces/record-type';
 
 import { dateFormat } from '../../../../scripts/date-format';
-import { getRequestHeader } from '../../../../scripts/get-request-header';
+import { getApiKey } from '../../../../scripts/get-api-key';
 
 import { BlogCard, PostThumbnail, PostInfo } from '../../../../share/BlogCard';
 import { CategoryLabel } from '../../../../share/CategoryLabel';
@@ -84,10 +84,10 @@ const TagPage: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, 
   );
 };
 
-const header = getRequestHeader();
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${process.env.ENDPOINT}/tags?fields=id&limit=9999`, header);
+  const key = getApiKey();
+
+  const res = await fetch(`${process.env.ENDPOINT}/tags?fields=id&limit=9999`, key);
   const data = await res.json();
 
   const slugAry: PageSlug[] = data.contents;
@@ -97,10 +97,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const key = getApiKey();
+
   const slug = context?.params?.slug;
 
   const params = `?filters=tag_field[contains]${slug}&limit=${paginateNum}`;
-  const res = await fetch(`${process.env.ENDPOINT}/blogs${params}`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs${params}`, key);
   const data = await res.json();
 
   const contents: Content[] = data.contents;

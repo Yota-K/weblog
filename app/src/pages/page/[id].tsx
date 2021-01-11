@@ -9,7 +9,7 @@ import { Content } from '../../../interfaces/content';
 import { RecordType } from '../../../interfaces/record-type';
 
 import { dateFormat } from '../../../scripts/date-format';
-import { getRequestHeader } from '../../../scripts/get-request-header';
+import { getApiKey } from '../../../scripts/get-api-key';
 
 import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
 import { CategoryLabel } from '../../../share/CategoryLabel';
@@ -78,10 +78,10 @@ const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
   );
 };
 
-const header = getRequestHeader();
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, header);
+  const key = getApiKey();
+
+  const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, key);
   const data = await res.json();
 
   let totalCount: number = data.totalCount;

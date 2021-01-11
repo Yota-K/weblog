@@ -7,7 +7,7 @@ import { config } from '../../config/app';
 import { CategoriesAndTags } from '../../interfaces/taxonomy';
 import { SearchJson } from '../../interfaces/search-posts';
 
-import { getRequestHeader } from '../../scripts/get-request-header';
+import { getApiKey } from '../../scripts/get-api-key';
 
 import { GlobalStyle } from '../../share/GlobalStyle';
 import { device } from '../../share/media-query';
@@ -39,11 +39,11 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   });
 
   useEffect(() => {
-    const header = getRequestHeader();
+    const key = getApiKey();
 
     // サイドバーのカテゴリー・タグ一覧の取得
     const getTaxonomies = async () => {
-      const res = await fetch(`${process.env.ENDPOINT}/taxonomy`, header);
+      const res = await fetch(`${process.env.ENDPOINT}/taxonomy`, key);
       const data = await res.json();
 
       setTaxonomies({

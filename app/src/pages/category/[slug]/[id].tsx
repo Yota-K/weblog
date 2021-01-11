@@ -11,7 +11,7 @@ import { BuildTaxonomyPaginateList } from '../../../../interfaces/taxonomy';
 
 import { dateFormat } from '../../../../scripts/date-format';
 import { generateBuildPaginatePath } from '../../../../scripts/generate-build-paginate-path';
-import { getRequestHeader } from '../../../../scripts/get-request-header';
+import { getApiKey } from '../../../../scripts/get-api-key';
 
 import { BlogCard, PostThumbnail, PostInfo } from '../../../../share/BlogCard';
 import { CategoryLabel } from '../../../../share/CategoryLabel';
@@ -90,10 +90,10 @@ const CategoryPage: NextComponentType<NextPageContext, RecordType, Props> = ({
   );
 };
 
-const header = getRequestHeader();
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${process.env.ENDPOINT}/taxonomy?fields=categories.id,categories.posts&limit=9999`, header);
+  const key = getApiKey();
+
+  const res = await fetch(`${process.env.ENDPOINT}/taxonomy?fields=categories.id,categories.posts&limit=9999`, key);
   const data = await res.json();
 
   const contents: BuildTaxonomyPaginateList[] = data.categories;
@@ -107,13 +107,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const key = getApiKey();
+
   const slug = context?.params?.slug;
   const id = context?.params?.id as string;
 
   const offset = parseInt(id) * paginateNum - paginateNum;
 
   const params = `?filters=category_field[equals]${slug}&offset=${offset}&limit=${paginateNum}`;
-  const res = await fetch(`${process.env.ENDPOINT}/blogs${params}`, header);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs${params}`, key);
   const data = await res.json();
 
   const contents = data.contents;
