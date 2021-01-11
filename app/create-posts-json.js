@@ -6,13 +6,13 @@ const fs = require('fs');
 
 (async () => {
   try {
-    const header = {
+    const key = {
       headers: { 'X-API-KEY': process.env.API_KEY },
     };
 
     const res = await axios.get(
       `${process.env.ENDPOINT}/blogs?fields=id,title,tag_field.name&limit=9999&?orders=-publishedAt`,
-      header
+      key
     );
 
     const searchJSON = await res.data.contents;

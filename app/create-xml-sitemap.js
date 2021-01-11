@@ -25,13 +25,13 @@ const sitemapOptions = {
 
 // 記事のスラッグをAPI経由で取得
 const getUrlByApi = async () => {
-  const header = {
+  const key = {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
 
   const res = await axios.get(
     `${process.env.ENDPOINT}/blogs?fields=id,updatedAt&limit=9999&?orders=-publishedAt`,
-    header
+    key
   );
 
   const contents = await res.data.contents;
