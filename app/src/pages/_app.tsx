@@ -39,10 +39,10 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   });
 
   useEffect(() => {
-    const key = getApiKey();
-
     // サイドバーのカテゴリー・タグ一覧の取得
     const getTaxonomies = async () => {
+      const key = getApiKey();
+
       const res = await fetch(`${process.env.ENDPOINT}/taxonomy`, key);
       const data = await res.json();
 
@@ -54,7 +54,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 
     // 検索用のJSONを取得
     const getSearchPosts = async () => {
-      const url = window.location.origin;
+      const url = location.origin;
       const res = await fetch(`${url}/search.json`);
       const data = await res.json();
 
