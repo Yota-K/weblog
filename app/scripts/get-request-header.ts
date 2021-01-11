@@ -1,9 +1,7 @@
 export const getRequestHeader = () => {
-  const key = {
+  return {
     headers: {
       'X-API-KEY': process.env.API_KEY || '',
     },
   };
-
-  return key;
 };
