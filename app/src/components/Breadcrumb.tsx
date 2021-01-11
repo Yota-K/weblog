@@ -20,7 +20,7 @@ interface Props {
 const Breadcrumb: React.FC<Props> = ({ blogPageInfo, pageTitle }) => {
   const { siteTitle } = config.siteInfo;
 
-  const isBlogPage = pathNameChecker('blogs');
+  const isBlogPage = pathNameChecker();
 
   return (
     <MyBreadcrumb>

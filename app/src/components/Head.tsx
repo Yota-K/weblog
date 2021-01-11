@@ -17,7 +17,7 @@ export default ({ title, description, url, thumbnail }: Props): JSX.Element => {
   const { ogpImage } = config.siteInfo;
   const { defaultDescription } = config.siteInfo;
 
-  const isBlogPage = pathNameChecker('blogs');
+  const isBlogPage = pathNameChecker();
 
   return (
     <Head>
