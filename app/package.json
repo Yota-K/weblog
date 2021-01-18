@@ -9,7 +9,9 @@
     "start": "next start",
     "export": "npm run build && next export && node create-posts-json.js && node create-xml-sitemap.js",
     "eslint": "eslint --fix **/*.{js,ts,tsx}",
-    "fmt": "prettier --write **/*.{js,json,ts,tsx}"
+    "fmt": "prettier --write **/*.{js,json,ts,tsx}",
+    "function:build": "netlify-lambda build functions/",
+    "function:serve": "netlify-lambda serve functions/"
   },
   "dependencies": {
     "next": "^10.0.5",
@@ -43,6 +45,7 @@
     "eslint-plugin-react": "^7.22.0",
     "highlight.js": "^10.5.0",
     "markdown-it": "^12.0.4",
+    "netlify-lambda": "^2.0.2",
     "prettier": "^2.2.1",
     "react-lazy-load-image-component": "^1.5.1",
     "react-scroll": "^1.8.1",

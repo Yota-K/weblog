@@ -1,26 +1,34 @@
 ## 記事一覧
 [[redirects]]
-  from = "https://karukichi-blog.netlify.app/page/1"
-  to = "https://karukichi-blog.netlify.app/"
+  from = 'https://karukichi-blog.netlify.app/page/1'
+  to = 'https://karukichi-blog.netlify.app/'
   status = 301
   force = true
 
 ## カテゴリーに紐付く投稿一覧
 [[redirects]]
-  from = "/category/*/1"
-  to = "/category/:splat"
+  from = '/category/*/1'
+  to = '/category/:splat'
   status = 301
   force = true
 
 ## タグに紐付く投稿一覧
 [[redirects]]
-  from = "/tags/*/1"
-  to = "/tags/:splat"
+  from = '/tags/*/1'
+  to = '/tags/:splat'
   status = 301
   force = true
 
+## 開発環境かどうか分岐を行うための環境変数
 [build.environment]
   IS_NETLIFY = 'netlify'
 
+## ステージング環境用のブランチかどうか分岐を行うための環境変数
 [context.branch-deploy.environment]
-  NEXT_STAGING_ENV = "staging"
+  NEXT_STAGING_ENV = 'staging'
+
+## Netlify Functions
+[build]
+  command = 'npm run build' # ビルドを実行するためのコマンド
+  functions = 'dist/api' # Netlify Functionsのエンドポイント対象のファイルを格納するディレクトリ
+  publish = 'build'

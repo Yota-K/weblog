@@ -132,7 +132,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
   }
 
-  const res = await fetch(`${process.env.ENDPOINT}/blog/${id}?draftKey=${draftKey}`, key);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}?draftKey=${draftKey}`, key);
   const blog = await res.json();
 
   const $ = cheerio.load(blog.body, { _useHtmlParser2: true });
