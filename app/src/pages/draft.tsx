@@ -122,8 +122,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const key = getApiKey();
 
+  // 編集中の記事URLとdraftKeyが設定されていない場合を考慮
   const id = context?.params?.id;
-  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}`, key);
+  const draftKey = context?.params?.draftKey;
+
+  if (id === undefined && draftKey === undefined) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const res = await fetch(`${process.env.ENDPOINT}/blog/${id}?draftKey=${draftKey}`, key);
   const blog = await res.json();
 
   const $ = cheerio.load(blog.body, { _useHtmlParser2: true });
