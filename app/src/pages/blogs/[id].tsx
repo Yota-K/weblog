@@ -1,3 +1,4 @@
+import ErrorPage from 'next/error';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 import MarkdownIt from 'markdown-it';
@@ -41,6 +42,8 @@ interface Props {
 }
 
 const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body }) => {
+  if (!blog) return <ErrorPage statusCode={404} />;
+
   const { siteTitle } = config.siteInfo;
   const { siteUrl } = config.siteInfo;
   const url = `${siteUrl}blogs/${blog.id}`;
@@ -116,14 +119,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const slugAry: PageSlug[] = data.contents;
   const paths = slugAry.map((post) => `/blogs/${post.id}`);
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const key = getApiKey();
 
   const id = context?.params?.id;
-  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}`, key);
+  const draftKey = context.previewData?.draftKey;
+
+  const res = await fetch(
+    `${process.env.ENDPOINT}/blogs/${id}${draftKey !== undefined ? `?draftKey=${draftKey}` : ''}`,
+    key
+  );
   const blog = await res.json();
 
   const $ = cheerio.load(blog.body, { _useHtmlParser2: true });
