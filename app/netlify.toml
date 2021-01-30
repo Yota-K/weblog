@@ -19,8 +19,16 @@
   status = 301
   force = true
 
+## 環境変数の設定
 [build.environment]
   IS_NETLIFY = 'netlify'
 
 [context.branch-deploy.environment]
   NEXT_STAGING_ENV = "staging"
+
+## プラグインの導入
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[plugins]]
+  package = "netlify-plugin-cache-nextjs"

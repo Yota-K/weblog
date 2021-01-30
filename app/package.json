@@ -36,6 +36,7 @@
     "axios": "^0.21.1",
     "babel-plugin-styled-components": "^1.12.0",
     "cheerio": "^1.0.0-rc.5",
+    "critters": "0.0.6",
     "dotenv": "^8.2.0",
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.1.0",
