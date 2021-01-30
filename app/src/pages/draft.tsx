@@ -132,7 +132,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
   }
 
-  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}?draftKey=${draftKey}`, key);
+  const res = await fetch(`/.netlify/functions/draft?id=${id}?draftKey=${draftKey}`);
   const blog = await res.json();
 
   const $ = cheerio.load(blog.body, { _useHtmlParser2: true });

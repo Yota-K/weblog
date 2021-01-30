@@ -29,6 +29,4 @@
 
 ## Netlify Functions
 [build]
-  command = 'npm run build' # ビルドを実行するためのコマンド
   functions = 'dist/api' # Netlify Functionsのエンドポイント対象のファイルを格納するディレクトリ
-  publish = 'build'
