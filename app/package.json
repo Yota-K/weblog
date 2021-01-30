@@ -7,7 +7,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "export": "npm run build && next export && node create-posts-json.js && node create-xml-sitemap.js",
+    "export": "npm run build && next export && node create-posts-json.js && node create-xml-sitemap.js && netlify-lambda build functions/",
     "eslint": "eslint --fix **/*.{js,ts,tsx}",
     "fmt": "prettier --write **/*.{js,json,ts,tsx}",
     "functions:build": "netlify-lambda build functions/",
