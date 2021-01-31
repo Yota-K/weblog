@@ -20,14 +20,11 @@
   force = true
 
 ## 環境変数の設定
-[build.environment]
-  IS_NETLIFY = 'netlify'
-
 [context.branch-deploy.environment]
   NEXT_STAGING_ENV = 'staging'
 
 ## ビルドの設定
 [build]
  command = 'npm run build'
- publish   = 'out_publish'
+ publish = 'out_publish'
  functions = 'out_functions'
