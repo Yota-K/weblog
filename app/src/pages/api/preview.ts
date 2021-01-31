@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.query.slug || req.query.secret !== 'lpcbjzpvub6666') {
+  if (!req.query.slug || req.query.secret !== 'lpcbjzpvub6666') {
     return res.status(401).json({
       message: 'Invalid token',
     });
@@ -10,7 +10,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const content = await fetch(`${process.env.ENDPOINT}/blogs/${req.query.slug}?draftKey=${req.query.draftKey}`, {
       headers: {
-        'X-API-KEY': process.env.apiKey || '',
+        'X-API-KEY': process.env.API_KEY || '',
       },
     });
 
@@ -24,11 +24,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.setPreviewData({
       id: data.id,
-      draftKey: data.draftKey,
+      draftKey: req.query.draftKey,
     });
 
     res.writeHead(307, {
-      Location: `/${data.id}`,
+      Location: `/blogs/${data.id}`,
     });
 
     res.end('Preview mode enabled');
