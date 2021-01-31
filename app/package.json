@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "next build && node create-posts-json.js && node create-xml-sitemap.js",
     "start": "next start",
-    "export": "npm run build && next export && node create-posts-json.js && node create-xml-sitemap.js",
     "eslint": "eslint --fix **/*.{js,ts,tsx}",
-    "fmt": "prettier --write **/*.{js,json,ts,tsx}"
+    "fmt": "prettier --write **/*.{js,json,ts,tsx}",
+    "postbuild": "next-on-netlify"
   },
   "dependencies": {
     "next": "^10.0.5",
@@ -36,6 +36,7 @@
     "axios": "^0.21.1",
     "babel-plugin-styled-components": "^1.12.0",
     "cheerio": "^1.0.0-rc.5",
+    "critters": "0.0.6",
     "dotenv": "^8.2.0",
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.1.0",
@@ -43,6 +44,7 @@
     "eslint-plugin-react": "^7.22.0",
     "highlight.js": "^10.5.0",
     "markdown-it": "^12.0.4",
+    "next-on-netlify": "^2.8.6",
     "prettier": "^2.2.1",
     "react-lazy-load-image-component": "^1.5.1",
     "react-scroll": "^1.8.1",
