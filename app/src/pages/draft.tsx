@@ -1,34 +1,33 @@
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 import MarkdownIt from 'markdown-it';
-import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
+import { NextComponentType, NextPageContext, GetServerSideProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
 
-import { config } from '../../../config/app';
+import { config } from '../../config/app';
 
-import { Content } from '../../../interfaces/content';
-import { PageSlug } from '../../../interfaces/page-slug';
-import { RecordType } from '../../../interfaces/record-type';
+import { Content } from '../../interfaces/content';
+import { RecordType } from '../../interfaces/record-type';
 
-import { dateFormat } from '../../../scripts/date-format';
+import { dateFormat } from '../../scripts/date-format';
 
-import { CategoryLabel } from '../../../share/CategoryLabel';
-import { getApiKey } from '../../../scripts/get-api-key';
-import { H1 } from '../../../share/Heading';
-import { device } from '../../../share/media-query';
-import { TagArea } from '../../../share/TagArea';
-import { TagLabel } from '../../../share/TagLabel';
-import { TimeStamp } from '../../../share/TimeStamp';
-import { colorObj } from '../../../share/variables';
+import { CategoryLabel } from '../../share/CategoryLabel';
+import { getApiKey } from '../../scripts/get-api-key';
+import { H1 } from '../../share/Heading';
+import { device } from '../../share/media-query';
+import { TagArea } from '../../share/TagArea';
+import { TagLabel } from '../../share/TagLabel';
+import { TimeStamp } from '../../share/TimeStamp';
+import { colorObj } from '../../share/variables';
 
-import Breadcrumb from '../../components/Breadcrumb';
-import Head from '../../components/Head';
-import Layout from '../../components/Layout';
-import Toc from '../../components/Toc';
-import SocialLinks from '../../components/SocialLinks';
+import Breadcrumb from '../components/Breadcrumb';
+import Head from '../components/Head';
+import Layout from '../components/Layout';
+import Toc from '../components/Toc';
+import SocialLinks from '../components/SocialLinks';
 
 interface Props {
   blog: Content;
@@ -40,7 +39,7 @@ interface Props {
   body: string;
 }
 
-const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body }) => {
+const Draft: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body }) => {
   const { siteTitle } = config.siteInfo;
   const { siteUrl } = config.siteInfo;
   const url = `${siteUrl}blogs/${blog.id}`;
@@ -107,24 +106,21 @@ const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const key = getApiKey();
 
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?fields=id&limit=9999`, key);
-  const data = await res.json();
+  const { id, draftKey } = context.query;
+  console.log(id);
+  console.log(draftKey);
 
-  const slugAry: PageSlug[] = data.contents;
-  const paths = slugAry.map((post) => `/blogs/${post.id}`);
+  // 編集中の記事URLとdraftKeyが設定されていない場合を考慮
+  if (id === undefined && draftKey === undefined) {
+    return {
+      notFound: true,
+    };
+  }
 
-  return { paths, fallback: false };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const key = getApiKey();
-
-  const id = context?.params?.id;
-
-  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}`, key);
+  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}?draftKey=${draftKey}`, key);
   const blog = await res.json();
 
   const $ = cheerio.load(blog.body, { _useHtmlParser2: true });
@@ -263,4 +259,4 @@ const MyContent = styled.div`
   }
 `;
 
-export default Blog;
+export default Draft;
