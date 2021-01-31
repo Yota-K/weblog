@@ -3,7 +3,6 @@
 app/node_modules
 app/.next
 app/build
-app/out
 app/out_functions
-app/public/search.json
-app/public/sitemap.xml
+app/out_publish
+app/.netlify
