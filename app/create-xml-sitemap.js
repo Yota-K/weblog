@@ -50,13 +50,8 @@ const getUrlByApi = async () => {
     const sitemapStream = new SitemapStream(sitemapOptions);
 
     // 書き込み用のファイルを開く
-    if (process.env.IS_NETLIFY) {
-      console.info('sitemap.xmlの生成：Netlifyで実行します。');
-      sitemapStream.pipe(createWriteStream(path.resolve('./public/sitemap.xml')));
-    } else {
-      console.info('sitemap.xmlの生成：開発環境で実行します。');
-      sitemapStream.pipe(createWriteStream(path.resolve('./public/sitemap.xml')));
-    }
+    console.info('sitemap.xmlの生成を実行します');
+    sitemapStream.pipe(createWriteStream(path.resolve('./public/sitemap.xml')));
 
     const urls = await getUrlByApi();
     const getRecentlyLastMod = urls[0].lastmod;

@@ -18,13 +18,8 @@ const fs = require('fs');
     const searchJSON = await res.data.contents;
 
     // 書き込み処理を行う
-    if (process.env.IS_NETLIFY) {
-      console.info('検索用JSONの生成：Netlifyで実行します。');
-      fs.writeFileSync('./public/search.json', JSON.stringify(searchJSON));
-    } else {
-      console.info('検索用JSONの生成：開発環境で実行します。');
-      fs.writeFileSync('./public/search.json', JSON.stringify(searchJSON));
-    }
+    console.info('検索用JSONの生成を実行します');
+    fs.writeFileSync('./public/search.json', JSON.stringify(searchJSON));
 
     console.info('検索用のJSONの生成に成功しました');
   } catch (er) {
