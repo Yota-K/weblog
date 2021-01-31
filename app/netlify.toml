@@ -29,5 +29,5 @@
 ## ビルドの設定
 [build]
  command = 'npm run build'
- publish = 'out'
+ publish   = 'out_publish'
  functions = 'out_functions'
