@@ -39,7 +39,7 @@ interface Props {
   body: string;
 }
 
-const Draft: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body }) => {
+const Preview: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body }) => {
   const { siteTitle } = config.siteInfo;
   const { siteUrl } = config.siteInfo;
   const url = `${siteUrl}blogs/${blog.id}`;
@@ -109,12 +109,10 @@ const Draft: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, to
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const key = getApiKey();
 
-  const { id, draftKey } = context.query;
-  console.log(id);
-  console.log(draftKey);
+  const { secret, id, draftKey } = context.query;
 
   // 編集中の記事URLとdraftKeyが設定されていない場合を考慮
-  if (id === undefined && draftKey === undefined) {
+  if (secret !== process.env.SECRET_KEY && id === undefined && draftKey === undefined) {
     return {
       notFound: true,
     };
@@ -259,4 +257,4 @@ const MyContent = styled.div`
   }
 `;
 
-export default Draft;
+export default Preview;
