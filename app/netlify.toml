@@ -1,21 +1,21 @@
 ## 記事一覧
 [[redirects]]
-  from = "https://karukichi-blog.netlify.app/page/1"
-  to = "https://karukichi-blog.netlify.app/"
+  from = 'https://karukichi-blog.netlify.app/page/1'
+  to = 'https://karukichi-blog.netlify.app/'
   status = 301
   force = true
 
 ## カテゴリーに紐付く投稿一覧
 [[redirects]]
-  from = "/category/*/1"
-  to = "/category/:splat"
+  from = '/category/*/1'
+  to = '/category/:splat'
   status = 301
   force = true
 
 ## タグに紐付く投稿一覧
 [[redirects]]
-  from = "/tags/*/1"
-  to = "/tags/:splat"
+  from = '/tags/*/1'
+  to = '/tags/:splat'
   status = 301
   force = true
 
@@ -24,9 +24,10 @@
   IS_NETLIFY = 'netlify'
 
 [context.branch-deploy.environment]
-  NEXT_STAGING_ENV = "staging"
+  NEXT_STAGING_ENV = 'staging'
 
+## ビルドの設定
 [build]
-   command   = "npm run build"
-   functions = "out_functions"
-   publish   = "out_publish"
+ command = 'npm run build'
+ publish = 'out'
+ functions = 'out_functions'
