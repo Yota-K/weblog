@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build": "next build && node create-posts-json.js && node create-xml-sitemap.js && next start",
+    "build": "next build && node create-posts-json.js && node create-xml-sitemap.js",
     "start": "next start",
     "eslint": "eslint --fix **/*.{js,ts,tsx}",
     "fmt": "prettier --write **/*.{js,json,ts,tsx}",
