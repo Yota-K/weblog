@@ -112,7 +112,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { secret, id, draftKey } = context.query;
 
   // 編集中の記事URLとdraftKeyが設定されていない場合を考慮
-  if (secret !== process.env.SECRET_KEY && id === undefined && draftKey === undefined) {
+  if (secret !== process.env.SECRET_KEY || id === undefined || draftKey === undefined) {
     return {
       notFound: true,
     };
