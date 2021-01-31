@@ -29,10 +29,7 @@ const getUrlByApi = async () => {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
 
-  const res = await axios.get(
-    `${process.env.ENDPOINT}/blogs?fields=id,updatedAt&limit=9999&?orders=-publishedAt`,
-    key
-  );
+  const res = await axios.get(`${process.env.ENDPOINT}/blogs?fields=id,updatedAt&limit=9999&?orders=-publishedAt`, key);
 
   const contents = await res.data.contents;
 
@@ -55,7 +52,7 @@ const getUrlByApi = async () => {
     // 書き込み用のファイルを開く
     if (process.env.IS_NETLIFY) {
       console.info('sitemap.xmlの生成：Netlifyで実行します。');
-      sitemapStream.pipe(createWriteStream(path.resolve('./out/sitemap.xml')));
+      sitemapStream.pipe(createWriteStream(path.resolve('./public/sitemap.xml')));
     } else {
       console.info('sitemap.xmlの生成：開発環境で実行します。');
       sitemapStream.pipe(createWriteStream(path.resolve('./public/sitemap.xml')));
