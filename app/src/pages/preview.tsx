@@ -35,9 +35,10 @@ interface Props {
     type: string;
   }[];
   body: string;
+  draftKey: string;
 }
 
-const Preview: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body }) => {
+const Preview: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body, draftKey }) => {
   const { siteTitle } = config.siteInfo;
   const { siteUrl } = config.siteInfo;
   const url = `${siteUrl}blogs/${blog.id}`;
@@ -47,6 +48,9 @@ const Preview: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, 
     categoryName: blog.category_field.name,
     blogTitle: blog.title,
   };
+
+  console.log(reciveBreadcrumb);
+  console.log(draftKey);
 
   // eslint-disable-next-line
   const md = new MarkdownIt({
@@ -62,7 +66,7 @@ const Preview: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, 
         thumbnail={blog.thumbnail.url}
       />
       <div id="blog">
-        <Breadcrumb blogPageInfo={reciveBreadcrumb} />
+        <Breadcrumb blogPageInfo={reciveBreadcrumb} draftKey={draftKey} />
         <TimeStamp>
           <time itemProp="dateCreated" dateTime={`${dateFormat(blog.createdAt)}`}>
             {dateFormat(blog.createdAt)}
@@ -140,6 +144,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       blog: blog,
       toc: toc,
       body: $.html(),
+      draftKey,
     },
   };
 };

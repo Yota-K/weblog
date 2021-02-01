@@ -15,9 +15,10 @@ interface Props {
     blogTitle: string;
   };
   pageTitle?: string;
+  draftKey?: string;
 }
 
-const Breadcrumb: React.FC<Props> = ({ blogPageInfo, pageTitle }) => {
+const Breadcrumb: React.FC<Props> = ({ blogPageInfo, pageTitle, draftKey }) => {
   const { siteTitle } = config.siteInfo;
 
   const isBlogPage = pathNameChecker();
@@ -29,16 +30,17 @@ const Breadcrumb: React.FC<Props> = ({ blogPageInfo, pageTitle }) => {
           <a>{siteTitle}</a>
         </Link>
       </BreadcrumbItem>
-      {isBlogPage && (
-        <>
-          <BreadcrumbItem>
-            <Link href="/category/[id]" as={`/category/${blogPageInfo?.categoryId}`}>
-              <a>{blogPageInfo?.categoryName}</a>
-            </Link>
-          </BreadcrumbItem>
-          <BreadcrumbItem>{blogPageInfo?.blogTitle}</BreadcrumbItem>
-        </>
-      )}
+      {isBlogPage ||
+        (draftKey && (
+          <>
+            <BreadcrumbItem>
+              <Link href="/category/[id]" as={`/category/${blogPageInfo?.categoryId}`}>
+                <a>{blogPageInfo?.categoryName}</a>
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem>{blogPageInfo?.blogTitle}</BreadcrumbItem>
+          </>
+        ))}
       {pageTitle && <BreadcrumbItem>{pageTitle}</BreadcrumbItem>}
     </MyBreadcrumb>
   );
