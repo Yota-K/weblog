@@ -78,7 +78,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   display: flex;
   justify-content: space-around;
   margin: 80px auto 0;

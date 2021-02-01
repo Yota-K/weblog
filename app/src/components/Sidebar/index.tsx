@@ -27,7 +27,7 @@ const Sidebar: React.FC<Props> = ({ taxonomies, searchPosts }) => {
   );
 };
 
-const BlogSidebar = styled.article`
+const BlogSidebar = styled.aside`
   width: 100%;
   max-width: 320px;
   margin-left: 40px;

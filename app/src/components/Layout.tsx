@@ -5,11 +5,11 @@ import { device } from '../../share/media-query';
 
 const Layout: React.FC = ({ children }) => <Main>{children}</Main>;
 
-const Main = styled.main`
+const Main = styled.article`
   width: 100%;
   max-width: 820px;
   ${device.laptop} {
-    width: 100%;
+    max-width: initial;
   }
 `;
 
