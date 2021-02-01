@@ -21,7 +21,24 @@ interface Props {
 const Breadcrumb: React.FC<Props> = ({ blogPageInfo, pageTitle, draftKey }) => {
   const { siteTitle } = config.siteInfo;
 
-  const isBlogPage = pathNameChecker();
+  // 記事ページ用のパンくず
+  const blogPageBreadCrumb = () => {
+    const isBlogPage = pathNameChecker();
+
+    // draftKeyがある（下書き）の場合にもパンくずを表示
+    if (isBlogPage || draftKey) {
+      return (
+        <>
+          <BreadcrumbItem>
+            <Link href="/category/[id]" as={`/category/${blogPageInfo?.categoryId}`}>
+              <a>{blogPageInfo?.categoryName}</a>
+            </Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem>{blogPageInfo?.blogTitle}</BreadcrumbItem>
+        </>
+      );
+    }
+  };
 
   return (
     <MyBreadcrumb>
@@ -30,17 +47,7 @@ const Breadcrumb: React.FC<Props> = ({ blogPageInfo, pageTitle, draftKey }) => {
           <a>{siteTitle}</a>
         </Link>
       </BreadcrumbItem>
-      {isBlogPage ||
-        (draftKey && (
-          <>
-            <BreadcrumbItem>
-              <Link href="/category/[id]" as={`/category/${blogPageInfo?.categoryId}`}>
-                <a>{blogPageInfo?.categoryName}</a>
-              </Link>
-            </BreadcrumbItem>
-            <BreadcrumbItem>{blogPageInfo?.blogTitle}</BreadcrumbItem>
-          </>
-        ))}
+      {blogPageBreadCrumb()}
       {pageTitle && <BreadcrumbItem>{pageTitle}</BreadcrumbItem>}
     </MyBreadcrumb>
   );
