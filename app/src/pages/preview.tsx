@@ -125,8 +125,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const headings = $('h2, h3').toArray();
 
-  // Memo: 型定義ファイルのバージョンをあげたら
-  // コンパイルエラーが発生するようになった
   const toc = headings.map((data: any) => ({
     id: data.attribs.id,
     text: data.children[0].data,
