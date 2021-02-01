@@ -3,6 +3,9 @@
 build
 node_modules
 out
+out_publish
+out_functions
 package.json
 package-lock.json
 config/app.ts
+public
