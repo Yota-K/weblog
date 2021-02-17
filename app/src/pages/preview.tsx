@@ -49,9 +49,6 @@ const Preview: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, 
     blogTitle: blog.title,
   };
 
-  console.log(reciveBreadcrumb);
-  console.log(draftKey);
-
   // eslint-disable-next-line
   const md = new MarkdownIt({
     html: true,
