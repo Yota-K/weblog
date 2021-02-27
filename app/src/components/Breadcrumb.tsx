@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { config } from '../../config/app';
 
-import { pathNameChecker } from '../../scripts/path-name-checker';
+import { pathNameChecker } from '../../utils/path-name-checker';
 
 import { colorObj } from '../../share/variables';
 

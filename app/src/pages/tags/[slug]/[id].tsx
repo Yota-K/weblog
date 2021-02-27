@@ -9,9 +9,9 @@ import { Content } from '../../../../interfaces/content';
 import { RecordType } from '../../../../interfaces/record-type';
 import { BuildTaxonomyPaginateList } from '../../../../interfaces/taxonomy';
 
-import { dateFormat } from '../../../../scripts/date-format';
-import { generateBuildPaginatePath } from '../../../../scripts/generate-build-paginate-path';
-import { getApiKey } from '../../../../scripts/get-api-key';
+import { dateFormat } from '../../../../utils/date-format';
+import { generateBuildPaginatePath } from '../../../../utils/generate-build-paginate-path';
+import { getApiKey } from '../../../../utils/get-api-key';
 
 import { BlogCard, PostThumbnail, PostInfo } from '../../../../share/BlogCard';
 import { CategoryLabel } from '../../../../share/CategoryLabel';

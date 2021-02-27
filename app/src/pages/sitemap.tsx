@@ -7,7 +7,7 @@ import { config } from '../../config/app';
 
 import { Sitemap } from '../../interfaces/sitemap';
 
-import { getApiKey } from '../../scripts/get-api-key';
+import { getApiKey } from '../../utils/get-api-key';
 
 import { colorObj } from '../../share/variables';
 

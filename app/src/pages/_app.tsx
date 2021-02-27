@@ -7,7 +7,7 @@ import { config } from '../../config/app';
 import { CategoriesAndTags } from '../../interfaces/taxonomy';
 import { SearchJson } from '../../interfaces/search-posts';
 
-import { getApiKey } from '../../scripts/get-api-key';
+import { getApiKey } from '../../utils/get-api-key';
 
 import { GlobalStyle } from '../../share/GlobalStyle';
 import { device } from '../../share/media-query';
