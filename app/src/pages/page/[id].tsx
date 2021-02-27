@@ -8,8 +8,8 @@ import { config } from '../../../config/app';
 import { Content } from '../../../interfaces/content';
 import { RecordType } from '../../../interfaces/record-type';
 
-import { dateFormat } from '../../../scripts/date-format';
-import { getApiKey } from '../../../scripts/get-api-key';
+import { dateFormat } from '../../../utils/date-format';
+import { getApiKey } from '../../../utils/get-api-key';
 
 import { BlogCard, PostThumbnail, PostInfo } from '../../../share/BlogCard';
 import { CategoryLabel } from '../../../share/CategoryLabel';
