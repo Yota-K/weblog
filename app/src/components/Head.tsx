@@ -3,7 +3,7 @@ import React from 'react';
 
 import { config } from '../../config/app';
 
-import { pathNameChecker } from '../../scripts/path-name-checker';
+import { pathNameChecker } from '../../utils/path-name-checker';
 
 interface Props {
   title: string;

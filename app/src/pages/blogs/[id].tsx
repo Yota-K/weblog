@@ -12,11 +12,11 @@ import { Content } from '../../../interfaces/content';
 import { PageSlug } from '../../../interfaces/page-slug';
 import { RecordType } from '../../../interfaces/record-type';
 
-import { dateFormat } from '../../../scripts/date-format';
+import { dateFormat } from '../../../utils/date-format';
 
 import { ShareArea, MyContent } from '../../../share/blog';
 import { CategoryLabel } from '../../../share/CategoryLabel';
-import { getApiKey } from '../../../scripts/get-api-key';
+import { getApiKey } from '../../../utils/get-api-key';
 import { H1 } from '../../../share/Heading';
 import { TagArea } from '../../../share/TagArea';
 import { TagLabel } from '../../../share/TagLabel';
