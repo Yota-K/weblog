@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { config } from '../../config/app';
 
@@ -10,35 +11,114 @@ import Breadcrumb from '../components/Breadcrumb';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 
+interface FormContent {
+  name: string;
+  email: string;
+  message: string;
+}
+
 const Contact: NextPage = () => {
   const { siteTitle } = config.siteInfo;
   const pageTitle = 'お問い合わせ';
   const title = `${siteTitle}｜${pageTitle}`;
+  const { register, errors, handleSubmit, reset } = useForm<FormContent>();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const [sendMessage, setSendMessage] = useState('');
+
+  const isDisabled = !name || !email || !message;
+
+  const handleNameChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    setName(target.value);
+  };
+
+  const handleEmailChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(target.value);
+  };
+
+  const handleMessageChange = ({ target }: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(target.value);
+  };
+
+  const onSubmit: SubmitHandler<FormContent> = async (data) => {
+    try {
+      console.log(data);
+      setSendMessage('メールの送信に成功しました');
+
+      reset();
+    } catch (er) {
+      setSendMessage('メールの送信に失敗しました');
+      console.error(er);
+    }
+  };
 
   return (
     <Layout>
       <Head title={title} />
       <Breadcrumb pageTitle={pageTitle} />
       <h1>{pageTitle}</h1>
-      <FormP>
-        <FormLabel htmlFor="name">お名前</FormLabel>
-        <Input id="name" type="text" placeholder="お名前" />
-      </FormP>
-      <FormP>
-        <FormLabel htmlFor="email">メール</FormLabel>
-        <Input id="email" type="email" placeholder="test@hoge.com" />
-      </FormP>
-      <FormP>
-        <FormLabel htmlFor="name">お問い合わせ内容</FormLabel>
-        <Textarea cols={50} rows={10}></Textarea>
-      </FormP>
-      <SubmitButton type="submit">送信</SubmitButton>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormP>
+          <FormLabel htmlFor="name">お名前</FormLabel>
+          <Input
+            name="name"
+            type="text"
+            placeholder="お名前"
+            onChange={handleNameChange}
+            ref={register({ required: true })}
+          />
+        </FormP>
+        <FormP>
+          <FormLabel htmlFor="email">メール</FormLabel>
+          <Input
+            name="email"
+            type="email"
+            placeholder="test@hoge.com"
+            onChange={handleEmailChange}
+            ref={register({
+              pattern: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/,
+              required: true,
+            })}
+          />
+          {errors.email?.type === 'pattern' && (
+            <ValidationMessage>正しいメールアドレスを入力してください</ValidationMessage>
+          )}
+        </FormP>
+        <FormP>
+          <FormLabel htmlFor="name">お問い合わせ内容</FormLabel>
+          <Textarea
+            name="message"
+            cols={50}
+            rows={10}
+            onChange={handleMessageChange}
+            ref={register({ minLength: 20, required: true })}
+          ></Textarea>
+          {errors.message?.type === 'minLength' && (
+            <ValidationMessage>お問い合わせ内容は20文字以上で入力してください</ValidationMessage>
+          )}
+        </FormP>
+        <SubmitButton type="submit" disabled={isDisabled}>
+          送信
+        </SubmitButton>
+        {/* あとでスタイル整える */}
+        {sendMessage !== '' && <div>{sendMessage}</div>}
+      </form>
     </Layout>
   );
 };
 
 const FormP = styled.p`
   margin: 20px 0;
+`;
+
+const ValidationMessage = styled.span`
+  display: block;
+  padding-top: 8px;
+  color: red;
+  font-weight: bold;
 `;
 
 const FormLabel = styled.label`
@@ -78,6 +158,10 @@ const SubmitButton = styled.button`
   border: none;
   width: 100%;
   max-width: 140px;
+
+  &[type='submit']:disabled {
+    background: #ddd;
+  }
 `;
 
 export default Contact;
