@@ -46,6 +46,15 @@ const Contact: NextPage = () => {
   const onSubmit: SubmitHandler<FormContent> = async (data) => {
     try {
       console.log(data);
+
+      await fetch('http://localhost:9000/.netlify/functions/mail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
       setSendMessage('メールの送信に成功しました');
 
       reset();
@@ -96,6 +105,7 @@ const Contact: NextPage = () => {
             onChange={handleMessageChange}
             ref={register({ minLength: 20, required: true })}
           ></Textarea>
+          {/* バリデーションメッセージが表示された時に下にがくんと下がる */}
           {errors.message?.type === 'minLength' && (
             <ValidationMessage>お問い合わせ内容は20文字以上で入力してください</ValidationMessage>
           )}
