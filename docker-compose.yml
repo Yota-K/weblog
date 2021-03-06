@@ -1,8 +1,8 @@
 version: '3'
-services:
 
-  tech_blog:
-    container_name: tech_blog
+services:
+  weblog:
+    container_name: weblog
     tty: true
     build: .
     ports:
