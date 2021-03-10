@@ -1,3 +1,4 @@
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { NextPage } from 'next';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -6,6 +7,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { config } from '../../config/app';
 
 import { colorObj } from '../../share/variables';
+import { contactApiEndpoint } from '../../utils/switch-contact-api';
 
 import Breadcrumb from '../components/Breadcrumb';
 import Head from '../components/Head';
@@ -21,8 +23,9 @@ const Contact: NextPage = () => {
   const { siteTitle } = config.siteInfo;
   const pageTitle = 'お問い合わせ';
   const title = `${siteTitle}｜${pageTitle}`;
-  const { register, errors, handleSubmit, reset } = useForm<FormContent>();
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
+  const { register, errors, handleSubmit, reset } = useForm<FormContent>();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -45,22 +48,35 @@ const Contact: NextPage = () => {
 
   const onSubmit: SubmitHandler<FormContent> = async (data) => {
     try {
-      console.log(data);
+      // 実行環境ごとのAPIのエンドポイントを取得
+      const apiEndpoint = contactApiEndpoint();
 
-      await fetch('http://localhost:9000/.netlify/functions/mail', {
+      const reCaptchaToken = await executeRecaptcha('contactPage');
+
+      const res = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          message: data.message,
+          token: reCaptchaToken,
+        }),
       });
+
+      if (!res.ok) {
+        throw Error(res.statusText);
+      }
 
       setSendMessage('メールの送信に成功しました');
 
       reset();
     } catch (er) {
-      setSendMessage('メールの送信に失敗しました');
       console.error(er);
+
+      setSendMessage('メールの送信に失敗しました');
     }
   };
 
@@ -113,8 +129,7 @@ const Contact: NextPage = () => {
         <SubmitButton type="submit" disabled={isDisabled}>
           送信
         </SubmitButton>
-        {/* あとでスタイル整える */}
-        {sendMessage !== '' && <div>{sendMessage}</div>}
+        {sendMessage !== '' && <SendMessageP>{sendMessage}</SendMessageP>}
       </form>
     </Layout>
   );
@@ -172,6 +187,12 @@ const SubmitButton = styled.button`
   &[type='submit']:disabled {
     background: #ddd;
   }
+`;
+
+const SendMessageP = styled.p`
+  margin-top: 16px;
+  color: red;
+  font-weight: bold;
 `;
 
 export default Contact;
