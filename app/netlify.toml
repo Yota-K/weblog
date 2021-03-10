@@ -21,10 +21,11 @@
 
 ## 環境変数の設定
 [context.branch-deploy.environment]
+  NEXT_PROD_ENV = 'prod'
   NEXT_STAGING_ENV = 'staging'
 
 ## ビルドの設定
 [build]
- command = 'npm run build'
- publish = 'out_publish'
- functions = 'out_functions'
+  command = 'npm run build'
+  publish = 'out_publish'
+  functions = 'out_functions'

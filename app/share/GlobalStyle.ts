@@ -28,4 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     opacity: 1;
     transition: opacity .3s;
   }
+  .grecaptcha-badge {
+    visibility: hidden;
+  }
 `;
