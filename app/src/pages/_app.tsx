@@ -1,3 +1,4 @@
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { AppProps } from 'next/app';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
@@ -66,7 +67,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   }, []);
 
   return (
-    <>
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY} language="ja">
       <GlobalStyle />
       <Header siteTitle={siteTitle} categories={taxonomies.categories} searchPosts={searchPosts} />
       <Wrapper>
@@ -74,7 +75,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
         <Sidebar taxonomies={taxonomies} searchPosts={searchPosts} />
       </Wrapper>
       <Footer siteTitle={siteTitle} />
-    </>
+    </GoogleReCaptchaProvider>
   );
 };
 

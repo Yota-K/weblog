@@ -47,6 +47,13 @@ const Footer: React.FC<Props> = ({ siteTitle }) => {
       >
         <path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z" />
       </svg>
+      <SiteInfo>
+        <p>
+          このサイトはreCAPTCHAによって保護されており、Googleの
+          <a href="https://policies.google.com/privacy">プライバシーポリシー</a>と
+          <a href="https://policies.google.com/terms">利用規約</a>が適用されます。
+        </p>
+      </SiteInfo>
       <p>
         © {year} {siteTitle}
       </p>
@@ -80,6 +87,15 @@ const FooterBar = styled.footer`
   padding: 20px;
   p {
     text-align: center;
+  }
+`;
+
+const SiteInfo = styled.div`
+  font-size: 14px;
+  margin-bottom: 16px;
+  a {
+    color: ${colorObj.baseBlue};
+    font-weight: bold;
   }
 `;
 

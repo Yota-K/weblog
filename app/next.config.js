@@ -3,6 +3,7 @@ module.exports = {
   env: {
     API_KEY: process.env.API_KEY,
     ENDPOINT: process.env.ENDPOINT,
+    RECAPTCHA_KEY: process.env.RECAPTCHA_KEY,
   },
   webpack: (config, { dev }) => {
     // Docker環境で動かしているため、ポーリングの設定を行う

@@ -26,6 +26,11 @@ const HeaderNav: React.FC<Props> = ({ categories }) => {
             <a>サイトマップ</a>
           </Link>
         </li>
+        <li>
+          <Link href="/contact" as="/contact">
+            <a>お問い合わせ</a>
+          </Link>
+        </li>
       </ul>
     </HeaderNavBar>
   );
