@@ -7,6 +7,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { config } from '../../config/app';
 
 import { colorObj } from '../../share/variables';
+import { device } from '../../share/media-query';
 import { contactApiEndpoint } from '../../utils/switch-contact-api';
 
 import Breadcrumb from '../components/Breadcrumb';
@@ -137,6 +138,11 @@ const Contact: NextPage = () => {
   );
 };
 
+const Form = styled.form`
+  width: 100%;
+  max-width: 700px;
+`;
+
 const FormP = styled.p`
   margin: 20px 0;
 `;
@@ -168,11 +174,21 @@ const FormBaseStyle = `
 const Input = styled.input`
   ${FormBaseStyle}
   max-width: 320px;
+
+  ${device.mobileM} {
+    width: 90%;
+    max-width: initial;
+  }
 `;
 
 const Textarea = styled.textarea`
   ${FormBaseStyle}
   max-width: 620px;
+
+  ${device.mobileM} {
+    width: 90%;
+    max-width: initial;
+  }
 `;
 
 const SubmitButton = styled.button`
