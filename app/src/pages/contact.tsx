@@ -1,6 +1,6 @@
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { NextPage } from 'next';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -25,13 +25,13 @@ const Contact: NextPage = () => {
   const title = `${siteTitle}｜${pageTitle}`;
   const { executeRecaptcha } = useGoogleReCaptcha();
 
-  const { register, errors, handleSubmit, reset } = useForm<FormContent>();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-
   const [sendMessage, setSendMessage] = useState('');
+  const [apiEndPoint, setApiEndPoint] = useState('');
 
+  const { register, errors, handleSubmit, reset } = useForm<FormContent>();
   const isDisabled = !name || !email || !message;
 
   const handleNameChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,14 +46,16 @@ const Contact: NextPage = () => {
     setMessage(target.value);
   };
 
+  useEffect(() => {
+    setApiEndPoint(contactApiEndpoint());
+  }, []);
+
   const onSubmit: SubmitHandler<FormContent> = async (data) => {
     try {
       // 実行環境ごとのAPIのエンドポイントを取得
-      const apiEndpoint = contactApiEndpoint();
-
       const reCaptchaToken = await executeRecaptcha('contactPage');
 
-      const res = await fetch(apiEndpoint, {
+      const res = await fetch(apiEndPoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
