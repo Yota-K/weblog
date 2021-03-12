@@ -53,7 +53,6 @@ const Contact: NextPage = () => {
 
   const onSubmit: SubmitHandler<FormContent> = async (data) => {
     try {
-      // 実行環境ごとのAPIのエンドポイントを取得
       const reCaptchaToken = await executeRecaptcha('contactPage');
 
       const res = await fetch(apiEndPoint, {
@@ -88,7 +87,7 @@ const Contact: NextPage = () => {
       <Head title={title} />
       <Breadcrumb pageTitle={pageTitle} />
       <h1>{pageTitle}</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <FormP>
           <FormLabel htmlFor="name">お名前</FormLabel>
           <Input
@@ -100,7 +99,7 @@ const Contact: NextPage = () => {
           />
         </FormP>
         <FormP>
-          <FormLabel htmlFor="email">メール</FormLabel>
+          <FormLabel htmlFor="email">メールアドレス</FormLabel>
           <Input
             name="email"
             type="email"
@@ -133,7 +132,7 @@ const Contact: NextPage = () => {
           送信
         </SubmitButton>
         {sendMessage !== '' && <SendMessageP>{sendMessage}</SendMessageP>}
-      </form>
+      </Form>
     </Layout>
   );
 };
@@ -155,10 +154,11 @@ const ValidationMessage = styled.span`
 `;
 
 const FormLabel = styled.label`
-  display: block;
+  display: inline-block;
   margin-bottom: 12px;
   font-size: 14px;
   font-weight: bold;
+  max-width: 100%;
   color: #2b2030;
 `;
 
@@ -173,6 +173,7 @@ const FormBaseStyle = `
 
 const Input = styled.input`
   ${FormBaseStyle}
+  display: block;
   max-width: 320px;
 
   ${device.mobileM} {
