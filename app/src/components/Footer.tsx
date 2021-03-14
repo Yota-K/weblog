@@ -54,9 +54,9 @@ const Footer: React.FC<Props> = ({ siteTitle }) => {
           <a href="https://policies.google.com/terms">利用規約</a>が適用されます。
         </p>
       </SiteInfo>
-      <p>
-        © {year} {siteTitle}
-      </p>
+      <CopyRight>
+        © 2020〜{year} {siteTitle}
+      </CopyRight>
     </FooterBar>
   );
 };
@@ -64,8 +64,8 @@ const Footer: React.FC<Props> = ({ siteTitle }) => {
 const FooterBar = styled.footer`
   .scroll-top {
     position: fixed;
-    bottom: 18px;
-    right: 18px;
+    bottom: 16px;
+    right: 10px;
     padding: 8px;
     background: ${colorObj.accentBlue};
     fill: #fff;
@@ -97,6 +97,10 @@ const SiteInfo = styled.div`
     color: ${colorObj.baseBlue};
     font-weight: bold;
   }
+`;
+
+const CopyRight = styled.p`
+  font-size: 12px;
 `;
 
 export default Footer;

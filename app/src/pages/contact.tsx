@@ -185,6 +185,7 @@ const Input = styled.input`
 const Textarea = styled.textarea`
   ${FormBaseStyle}
   max-width: 620px;
+  resize: none;
 
   ${device.mobileM} {
     width: 90%;
