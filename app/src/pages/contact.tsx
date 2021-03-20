@@ -1,6 +1,6 @@
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { NextPage } from 'next';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -48,11 +48,20 @@ const Contact: NextPage = () => {
   };
 
   useEffect(() => {
-    setApiEndPoint(contactApiEndpoint());
+    // windowオブジェクトが存在する時のみAPIのエンドポイントを取得
+    if (window) setApiEndPoint(contactApiEndpoint());
   }, []);
+
+  const processing = useRef(false);
 
   const onSubmit: SubmitHandler<FormContent> = async (data) => {
     try {
+      // 処理中なら非同期処理せずに抜ける
+      if (processing.current) return;
+
+      // 処理中フラグを上げる
+      processing.current = true;
+
       const reCaptchaToken = await executeRecaptcha('contactPage');
 
       const res = await fetch(apiEndPoint, {
@@ -80,6 +89,11 @@ const Contact: NextPage = () => {
 
       setSendMessage('メールの送信に失敗しました');
     }
+
+    setTimeout(() => {
+      // 処理中のフラグを下げる
+      processing.current = false;
+    }, 5000);
   };
 
   return (
