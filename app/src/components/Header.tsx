@@ -4,7 +4,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { SearchJson } from '../../interfaces/search-posts';
-import { Taxonomy } from '../../interfaces/taxonomy';
 
 import { device } from '../../share/media-query';
 import { colorObj } from '../../share/variables';
@@ -14,11 +13,10 @@ import SearchArea from './Search/SearchArea';
 
 interface Props {
   siteTitle: React.ReactNode;
-  categories: Taxonomy[];
   searchPosts: SearchJson[];
 }
 
-const Header: React.FC<Props> = ({ siteTitle, categories, searchPosts }) => {
+const Header: React.FC<Props> = ({ siteTitle, searchPosts }) => {
   const getPathName = () => {
     const router = useRouter();
     return router.asPath;
@@ -41,7 +39,7 @@ const Header: React.FC<Props> = ({ siteTitle, categories, searchPosts }) => {
           </SiteTitle>
         )}
       </HeaderBar>
-      <HeaderNav categories={categories} />
+      <HeaderNav />
       <SpSearchArea>
         <SearchArea searchPosts={searchPosts} />
       </SpSearchArea>

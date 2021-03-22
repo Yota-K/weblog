@@ -2,35 +2,42 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Taxonomy } from '../../interfaces/taxonomy';
-
 import { device } from '../../share/media-query';
 
-interface Props {
-  categories: Taxonomy[];
-}
+const HeaderNav: React.FC = () => {
+  const navLinks = [
+    {
+      title: 'フロントエンド',
+      link: '/category/front-end',
+    },
+    {
+      title: 'バックエンド',
+      link: '/category/back-end',
+    },
+    {
+      title: 'その他もろもろ',
+      link: '/category/others',
+    },
+    {
+      title: 'サイトマップ',
+      link: '/sitemap',
+    },
+    {
+      title: 'お問い合わせ',
+      link: '/contact',
+    },
+  ];
 
-const HeaderNav: React.FC<Props> = ({ categories }) => {
   return (
     <HeaderNavBar>
       <ul>
-        {categories.map((category) => (
-          <li key={category.id}>
-            <Link href="/category/[id]" as={`/category/${category.id}`}>
-              <a>{category.name}</a>
+        {navLinks.map((el, i) => (
+          <li key={i}>
+            <Link href={el.link}>
+              <a>{el.title}</a>
             </Link>
           </li>
         ))}
-        <li>
-          <Link href="/sitemap" as="/sitemap">
-            <a>サイトマップ</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/contact" as="/contact">
-            <a>お問い合わせ</a>
-          </Link>
-        </li>
       </ul>
     </HeaderNavBar>
   );
