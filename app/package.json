@@ -9,13 +9,9 @@
     "start": "next start",
     "eslint": "eslint --fix **/*.{js,ts,tsx}",
     "fmt": "prettier --write **/*.{js,json,ts,tsx}",
-    "postbuild": "next-on-netlify",
-    "function:prod": "netlify-lambda build api/",
-    "function:dev": "netlify-lambda serve api/"
+    "postbuild": "next-on-netlify"
   },
   "dependencies": {
-    "@aspida/fetch": "^1.6.0",
-    "netlify-lambda": "^2.0.3",
     "next": "^10.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
