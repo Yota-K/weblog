@@ -69,7 +69,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY} language="ja">
       <GlobalStyle />
-      <Header siteTitle={siteTitle} categories={taxonomies.categories} searchPosts={searchPosts} />
+      <Header siteTitle={siteTitle} searchPosts={searchPosts} />
       <Wrapper>
         <Component {...pageProps} />
         <Sidebar taxonomies={taxonomies} searchPosts={searchPosts} />
