@@ -8,8 +8,7 @@ import { H4 } from '../../../share/Heading';
 import { SidebarBox } from './SidebarBox';
 
 const Profile: React.FC = () => {
-  const twitterUrl = config.twitterUrl;
-  const githubUrl = config.githubUrl;
+  const { twitterUrl, githubUrl, profileUrl } = config.urls;
 
   return (
     <SidebarBox>
@@ -18,8 +17,11 @@ const Profile: React.FC = () => {
         <LazyLoadImage className="profile-icon" src="/icon.png" alt="icon" effect="blur" />
         <p>カルキチ副島です。</p>
         <p>都内でウェブ系の開発やっています。</p>
-        <p>普段開発しているものや、日常について書いています。</p>
-        <p>よろぴ</p>
+        <p>ウェブ開発・ウェブ制作に関する情報を発信しています。</p>
+        <p>
+          詳しいプロフィールは
+          <a href={profileUrl}>こちら！</a>
+        </p>
         <div className="btn-area">
           <a className="twitter mini-icon" href={twitterUrl}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
