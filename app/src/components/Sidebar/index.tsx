@@ -31,6 +31,7 @@ const BlogSidebar = styled.aside`
   width: 100%;
   max-width: 320px;
   margin-left: 40px;
+
   ${device.laptop} {
     width: 100%;
     max-width: initial;

@@ -62,6 +62,9 @@ const Footer: React.FC<Props> = ({ siteTitle }) => {
 };
 
 const FooterBar = styled.footer`
+  margin-top: 100px;
+  padding: 20px;
+
   .scroll-top {
     position: fixed;
     bottom: 16px;
@@ -75,16 +78,17 @@ const FooterBar = styled.footer`
     transition: all 0.8s;
     cursor: pointer;
     z-index: 10000;
+
     &:hover {
       box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
     }
   }
+
   .slide-top {
     transform: translateY(0);
     transition: all 0.8s;
   }
-  margin-top: 100px;
-  padding: 20px;
+
   p {
     text-align: center;
   }
@@ -93,6 +97,7 @@ const FooterBar = styled.footer`
 const SiteInfo = styled.div`
   font-size: 14px;
   margin-bottom: 16px;
+
   a {
     color: ${colorObj.baseBlue};
     font-weight: bold;

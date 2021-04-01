@@ -49,8 +49,9 @@ const Header: React.FC<Props> = ({ siteTitle, searchPosts }) => {
 
 const HeaderBar = styled.header`
   padding: 14px;
-  background: ${colorObj.baseBlack};
   text-align: center;
+  background: ${colorObj.baseBlack};
+
   a {
     color: #fff;
   }
@@ -60,6 +61,7 @@ const SiteTitleTop = styled.h1`
   display: inline-block;
   font-size: 2rem;
   font-weight: 600;
+
   ${device.mobileM} {
     font-size: 1.8rem;
   }
@@ -71,6 +73,7 @@ const SpSearchArea = styled.div`
   display none;
   width: 96%;
   margin: auto;
+
   ${device.mobileM} {
     display: block;
   }

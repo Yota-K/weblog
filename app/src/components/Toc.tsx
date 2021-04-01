@@ -38,20 +38,25 @@ const TocArea = styled.ul`
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
   border: none !important;
   border-top: 6px solid ${colorObj.baseBlue} !important;
+
   h2 {
     margin: 0 !important;
     border-radius: 0 !important;
     background: transparent !important;
   }
+
   .toc-h3 {
     margin-left: 20px;
   }
+
   li {
     cursor: pointer;
     line-height: 2;
+
     a {
       text-decoration: none;
       color: ${colorObj.fontColor} !important;
+
       &:hover {
         text-decoration: underline;
       }

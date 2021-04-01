@@ -35,12 +35,15 @@ export const SidebarBox = styled.div`
 
     .btn-area {
       margin-top: 10px;
+
       .mini-icon {
         margin-right: 10px;
       }
+
       .twitter svg {
         fill: #42afe3;
       }
+
       .github svg {
         fill: darkslategray;
       }
