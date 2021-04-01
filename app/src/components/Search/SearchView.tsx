@@ -57,14 +57,16 @@ const BaseStyle = `
 const PostList = styled.li`
   border-bottom: 1px solid ${colorObj.borderGray};
   a {
-    display: block;
     ${BaseStyle}
+    display: block;
+    cursor: pointer;
+
     &:hover {
       transition: 0.4s;
       background: rgba(216, 228, 239, 0.7);
     }
-    cursor: pointer;
   }
+
   &:last-child {
     border-bottom: none;
   }

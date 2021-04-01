@@ -34,10 +34,12 @@ const CategoryList: React.FC<Props> = ({ categories }) => {
 
 const CategoryUl = styled.ul`
   list-style: none;
+
   li {
     padding: 10px;
     font-size: 1rem;
     border-bottom: 1px solid #ddd;
+
     a {
       color: ${colorObj.fontColor};
     }

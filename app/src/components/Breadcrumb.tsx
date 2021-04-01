@@ -62,20 +62,26 @@ const BreadcrumbItem = styled.li`
   position: relative;
   display: inline;
   margin-right: 20px;
+
   a {
     color: ${colorObj.baseBlue};
+
     &:hover {
       text-decoration: underline;
     }
   }
+
   &::after {
     position: absolute;
     content: '>';
     bottom: -1px;
     right: -15px;
   }
-  &:last-child::after {
-    content: '';
+
+  &:last-child {
+    &::after {
+      content: '';
+    }
   }
 `;
 

@@ -77,9 +77,7 @@ const Contact: NextPage = () => {
         }),
       });
 
-      if (!res.ok) {
-        throw Error(res.statusText);
-      }
+      if (!res.ok) throw Error(res.statusText);
 
       setSendMessage('メールの送信に成功しました');
 
@@ -137,7 +135,6 @@ const Contact: NextPage = () => {
             onChange={handleMessageChange}
             ref={register({ minLength: 20, required: true })}
           ></Textarea>
-          {/* バリデーションメッセージが表示された時に下にがくんと下がる */}
           {errors.message?.type === 'minLength' && (
             <ValidationMessage>お問い合わせ内容は20文字以上で入力してください</ValidationMessage>
           )}

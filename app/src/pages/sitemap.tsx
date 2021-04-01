@@ -81,8 +81,10 @@ export const getStaticProps: GetStaticProps = async () => {
 
 const SitemapDiv = styled.div`
   margin: 30px 0 0 18px;
+
   ul {
     margin-bottom: 20px;
+
     a {
       color: ${colorObj.baseBlue};
     }
@@ -91,8 +93,10 @@ const SitemapDiv = styled.div`
 
 const PostList = styled.li`
   list-style: none;
+
   ul {
     margin-left: 20px;
+
     li {
       line-height: 190%;
     }
