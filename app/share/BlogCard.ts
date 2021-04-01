@@ -10,12 +10,15 @@ export const BlogCard = styled.div`
   padding: 10px 0;
   border-top: 1px solid ${colorObj.borderGray};
   border-bottom: 1px solid ${colorObj.borderGray};
+
   a {
     color: ${colorObj.baseBlack};
   }
+
   &:nth-child(1) {
     margin-bottom: 20px;
   }
+
   ${device.mobileS} {
     display: block;
     margin-bottom: 10px;
