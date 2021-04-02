@@ -96,7 +96,7 @@ const FooterBar = styled.footer`
 
 const SiteInfo = styled.div`
   font-size: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 
   a {
     color: ${colorObj.baseBlue};
