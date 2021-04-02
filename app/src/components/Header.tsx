@@ -22,6 +22,17 @@ const Header: React.FC<Props> = ({ siteTitle, searchPosts }) => {
     return router.asPath;
   };
 
+  // トップページとカテゴリーごとの記事一覧ページのみ検索窓を表示する
+  const SpSearchArea = () => {
+    if (getPathName() === '/' || getPathName().match(/\/category\/.+$/u)) {
+      return (
+        <SpSearchDiv>
+          <SearchArea searchPosts={searchPosts} />
+        </SpSearchDiv>
+      );
+    }
+  };
+
   return (
     <>
       <HeaderBar>
@@ -40,9 +51,7 @@ const Header: React.FC<Props> = ({ siteTitle, searchPosts }) => {
         )}
       </HeaderBar>
       <HeaderNav />
-      <SpSearchArea>
-        <SearchArea searchPosts={searchPosts} />
-      </SpSearchArea>
+      {SpSearchArea()}
     </>
   );
 };
@@ -69,7 +78,7 @@ const SiteTitleTop = styled.h1`
 
 const SiteTitle = SiteTitleTop.withComponent('div');
 
-const SpSearchArea = styled.div`
+const SpSearchDiv = styled.div`
   display none;
   width: 96%;
   margin: auto;
