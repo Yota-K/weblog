@@ -22,12 +22,13 @@ const PostThumbnail: React.FC<Props> = ({ className, thumbnailUrl, width, height
 export const Thumbnail = styled.div`
   width: 40%;
 
-  img {
+  ${device.mobileS} {
     width: 100%;
   }
 
-  ${device.mobileS} {
+  img {
     width: 100%;
+    height: auto;
   }
 
   &.post-thumbnail {
