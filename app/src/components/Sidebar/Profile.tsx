@@ -14,7 +14,7 @@ const Profile: React.FC = () => {
     <SidebarBox>
       <H4>プロフィール</H4>
       <div className="profile-area">
-        <LazyLoadImage className="profile-icon" src="/icon.png" alt="icon" effect="blur" />
+        <LazyLoadImage className="profile-icon" src="/icon.png" alt="icon" width="102" height="102" effect="blur" />
         <p>カルキチ副島です。</p>
         <p>都内でウェブ系の開発やっています。</p>
         <p>ウェブ開発・ウェブ制作に関する情報を発信しています。</p>

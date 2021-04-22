@@ -25,19 +25,10 @@ export const BlogCard = styled.div`
   }
 `;
 
-export const PostThumbnail = styled.div`
-  width: 40%;
-  img {
-    width: 100%;
-  }
-  ${device.mobileS} {
-    width: 100%;
-  }
-`;
-
 export const PostInfo = styled.div`
   width: 60%;
   margin-left: 20px;
+
   ${device.mobileS} {
     width: 100%;
     margin-left: 0px;
