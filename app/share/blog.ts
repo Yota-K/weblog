@@ -14,11 +14,6 @@ export const MyContent = styled.div`
   min-height: 800px;
   word-break: break-all;
 
-  .eyecatch {
-    margin: -20px 0 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-
   h2 {
     margin: 20px 0;
     padding: 0.4rem;

@@ -4,7 +4,6 @@ import MarkdownIt from 'markdown-it';
 import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { config } from '../../../config/app';
 
@@ -25,8 +24,9 @@ import { TimeStamp } from '../../../share/TimeStamp';
 import Breadcrumb from '../../components/Breadcrumb';
 import Head from '../../components/Head';
 import Layout from '../../components/Layout';
-import Toc from '../../components/Toc';
+import PostThumbnail from '../../components/PostThumbnail';
 import SocialLinks from '../../components/SocialLinks';
+import Toc from '../../components/Toc';
 
 interface Props {
   blog: Content;
@@ -89,14 +89,7 @@ const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc
           <SocialLinks url={url} />
         </ShareArea>
         <MyContent>
-          <LazyLoadImage
-            className="eyecatch"
-            width="100%"
-            height="auto"
-            src={blog.thumbnail.url}
-            alt="thumbnail"
-            effect="blur"
-          />
+          <PostThumbnail className="post-thumbnail" thumbnailUrl={blog.thumbnail.url} width="100%" height="auto" />
           <Toc toc={toc} />
           <div className="post" dangerouslySetInnerHTML={{ __html: body }}></div>
         </MyContent>

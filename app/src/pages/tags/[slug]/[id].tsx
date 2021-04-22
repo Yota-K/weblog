@@ -1,7 +1,6 @@
 import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { config } from '../../../../config/app';
 
@@ -13,7 +12,7 @@ import { dateFormat } from '../../../../utils/date-format';
 import { generateBuildPaginatePath } from '../../../../utils/generate-build-paginate-path';
 import { getApiKey } from '../../../../utils/get-api-key';
 
-import { BlogCard, PostThumbnail, PostInfo } from '../../../../share/BlogCard';
+import { BlogCard, PostInfo } from '../../../../share/BlogCard';
 import { CategoryLabel } from '../../../../share/CategoryLabel';
 import { H2, H3 } from '../../../../share/Heading';
 import { TagArea } from '../../../../share/TagArea';
@@ -24,6 +23,7 @@ import Breadcrumb from '../../../components/Breadcrumb';
 import Head from '../../../components/Head';
 import Layout from '../../../components/Layout';
 import Paginate from '../../../components/Paginate';
+import PostThumbnail from '../../../components/PostThumbnail';
 
 interface Props {
   tags: Content[];
@@ -47,9 +47,7 @@ const TagPage: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, 
         <H2>タグ：{tagName}</H2>
         {tags.map((blog) => (
           <BlogCard key={blog.id}>
-            <PostThumbnail>
-              <LazyLoadImage src={`${blog.thumbnail.url}`} alt="thumbnail" effect="blur" />
-            </PostThumbnail>
+            <PostThumbnail thumbnailUrl={blog.thumbnail.url} width="308" height="173" />
             <PostInfo>
               <TimeStamp>
                 <time itemProp="dateCreated" dateTime={`${dateFormat(blog.createdAt)}`}>
