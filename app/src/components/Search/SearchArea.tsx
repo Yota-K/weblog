@@ -12,7 +12,7 @@ interface Props {
 }
 
 const SearchArea: React.FC<Props> = ({ searchPosts }) => {
-  const [results, setResults] = React.useState<SearchJson[]>([
+  const [results, setResults] = useState<SearchJson[]>([
     {
       id: '',
       title: '',
@@ -24,7 +24,7 @@ const SearchArea: React.FC<Props> = ({ searchPosts }) => {
     },
   ]);
 
-  const [searchWord, setSearchWord] = React.useState<string>('');
+  const [searchWord, setSearchWord] = useState<string>('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchWord(e.target.value);

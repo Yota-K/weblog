@@ -22,7 +22,7 @@ import 'highlight.js/styles/dracula.css';
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const { siteTitle } = config.siteInfo;
 
-  const [searchPosts, setSearchPosts] = React.useState<SearchJson[]>([
+  const [searchPosts, setSearchPosts] = useState<SearchJson[]>([
     {
       id: '',
       title: '',
@@ -34,7 +34,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     },
   ]);
 
-  const [taxonomies, setTaxonomies] = React.useState<CategoriesAndTags>({
+  const [taxonomies, setTaxonomies] = useState<CategoriesAndTags>({
     categories: [],
     tags: [],
   });
