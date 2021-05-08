@@ -14,7 +14,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 
-interface FormContent {
+interface FormValues {
   name: string;
   email: string;
   message: string;
@@ -24,28 +24,28 @@ const Contact: NextPage = () => {
   const { siteTitle } = config.siteInfo;
   const pageTitle = 'お問い合わせ';
   const title = `${siteTitle}｜${pageTitle}`;
+
   const { executeRecaptcha } = useGoogleReCaptcha();
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
   const [sendMessage, setSendMessage] = useState('');
   const [apiEndPoint, setApiEndPoint] = useState('');
 
-  const { register, errors, handleSubmit, reset } = useForm<FormContent>();
-  const isDisabled = !name || !email || !message;
+  const { register, watch, formState, handleSubmit, reset } = useForm<FormValues>({
+    // バリデーションが実行されるタイミング
+    mode: 'onSubmit',
+    // 再度バリデーションを実行するタイミング
+    // onChangeの場合は、入力の度にバリデーションが実行される
+    reValidateMode: 'onChange',
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+    }
+  });
 
-  const handleNameChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    setName(target.value);
-  };
-
-  const handleEmailChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(target.value);
-  };
-
-  const handleMessageChange = ({ target }: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(target.value);
-  };
+  // フォームに文字が入力されていない時は送信ボタンにdisabledを付与する
+  const watchFields = watch(['name', 'email', 'message']);
+  const isDisabled = watchFields.every((value) => value === '')
 
   useEffect(() => {
     // windowオブジェクトが存在する時のみAPIのエンドポイントを取得
@@ -54,13 +54,16 @@ const Contact: NextPage = () => {
 
   const processing = useRef(false);
 
-  const onSubmit: SubmitHandler<FormContent> = async (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
       // 処理中なら非同期処理せずに抜ける
       if (processing.current) return;
 
       // 処理中フラグを上げる
       processing.current = true;
+
+      // undefinedの可能性があるとエラーが出たので
+      if (!executeRecaptcha) return;
 
       const reCaptchaToken = await executeRecaptcha('contactPage');
 
@@ -103,39 +106,39 @@ const Contact: NextPage = () => {
         <FormP>
           <FormLabel htmlFor="name">お名前</FormLabel>
           <Input
-            name="name"
             type="text"
             placeholder="お名前"
-            onChange={handleNameChange}
-            ref={register({ required: true })}
+            {...register('name', { required: true })}
           />
+          {formState.errors.name?.type === 'required' && (
+            <ValidationMessage>お名前を入力してください</ValidationMessage>
+          )}
         </FormP>
         <FormP>
           <FormLabel htmlFor="email">メールアドレス</FormLabel>
           <Input
-            name="email"
             type="email"
             placeholder="test@hoge.com"
-            onChange={handleEmailChange}
-            ref={register({
+            {...register('email', {
               pattern: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/,
               required: true,
             })}
           />
-          {errors.email?.type === 'pattern' && (
+          {formState.errors.email?.type === 'pattern' && (
             <ValidationMessage>正しいメールアドレスを入力してください</ValidationMessage>
           )}
         </FormP>
         <FormP>
           <FormLabel htmlFor="name">お問い合わせ内容</FormLabel>
           <Textarea
-            name="message"
             cols={50}
             rows={10}
-            onChange={handleMessageChange}
-            ref={register({ minLength: 20, required: true })}
+            {...register('message', { required: true, minLength: 20,  })}
           ></Textarea>
-          {errors.message?.type === 'minLength' && (
+          {formState.errors.message?.type === 'required' && (
+            <ValidationMessage>お問い合わせ内容が入力されていません</ValidationMessage>
+          )}
+          {formState.errors.message?.type === 'minLength' && (
             <ValidationMessage>お問い合わせ内容は20文字以上で入力してください</ValidationMessage>
           )}
         </FormP>
