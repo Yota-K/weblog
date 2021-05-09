@@ -40,12 +40,12 @@ const Contact: NextPage = () => {
       name: '',
       email: '',
       message: '',
-    }
+    },
   });
 
   // フォームに文字が入力されていない時は送信ボタンにdisabledを付与する
   const watchFields = watch(['name', 'email', 'message']);
-  const isDisabled = watchFields.every((value) => value === '')
+  const isDisabled = watchFields.every((value) => value === '');
 
   useEffect(() => {
     // windowオブジェクトが存在する時のみAPIのエンドポイントを取得
@@ -105,11 +105,7 @@ const Contact: NextPage = () => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormP>
           <FormLabel htmlFor="name">お名前</FormLabel>
-          <Input
-            type="text"
-            placeholder="お名前"
-            {...register('name', { required: true })}
-          />
+          <Input type="text" placeholder="お名前" {...register('name', { required: true })} />
           {formState.errors.name?.type === 'required' && (
             <ValidationMessage>お名前を入力してください</ValidationMessage>
           )}
@@ -130,11 +126,7 @@ const Contact: NextPage = () => {
         </FormP>
         <FormP>
           <FormLabel htmlFor="name">お問い合わせ内容</FormLabel>
-          <Textarea
-            cols={50}
-            rows={10}
-            {...register('message', { required: true, minLength: 20,  })}
-          ></Textarea>
+          <Textarea cols={50} rows={10} {...register('message', { required: true, minLength: 20 })}></Textarea>
           {formState.errors.message?.type === 'required' && (
             <ValidationMessage>お問い合わせ内容が入力されていません</ValidationMessage>
           )}
