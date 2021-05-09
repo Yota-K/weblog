@@ -116,10 +116,13 @@ const Contact: NextPage = () => {
             type="email"
             placeholder="test@hoge.com"
             {...register('email', {
-              pattern: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/,
               required: true,
+              pattern: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/,
             })}
           />
+          {formState.errors.email?.type === 'required' && (
+            <ValidationMessage>メールアドレスが入力されていません</ValidationMessage>
+          )}
           {formState.errors.email?.type === 'pattern' && (
             <ValidationMessage>正しいメールアドレスを入力してください</ValidationMessage>
           )}
