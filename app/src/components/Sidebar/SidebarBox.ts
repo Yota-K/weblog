@@ -28,7 +28,7 @@ export const SidebarBox = styled.div`
     p {
       a {
         &:hover {
-          color: crimson;
+          color: ${colorObj.baseRed};
         }
       }
     }

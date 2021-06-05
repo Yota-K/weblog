@@ -50,7 +50,7 @@ export const MyContent = styled.div`
     font-weight: 600;
 
     &:hover {
-      color: crimson;
+      color: ${colorObj.baseRed};
     }
   }
 
@@ -70,7 +70,7 @@ export const MyContent = styled.div`
     }
 
     strong {
-      color: crimson !important;
+      color: ${colorObj.baseRed};
     }
   }
 
