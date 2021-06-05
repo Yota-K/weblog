@@ -16,6 +16,12 @@ export const TagLabel = styled.span`
     color: ${colorObj.baseBlue} !important;
     font-size: 1rem;
 
+    &:hover {
+      background: ${colorObj.baseBlue};
+      color: #fff !important;
+      transition: all 0.3s;
+    }
+
     ${device.mobileM} {
       font-size: 0.8rem;
     }
