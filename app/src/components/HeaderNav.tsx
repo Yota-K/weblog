@@ -46,6 +46,10 @@ const HeaderNav: React.FC = () => {
 const HeaderNavBar = styled.nav`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   margin-bottom: 25px;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
 
   ${device.mobileM} {
     width: 100%;
