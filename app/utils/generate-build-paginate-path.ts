@@ -35,6 +35,8 @@ export const generateBuildPaginatePath = (contents: BuildTaxonomyPaginateList[])
     });
   });
 
+  console.info(slugAry);
+
   // 二次元配列を生成する
   // [
   //   [
@@ -53,10 +55,14 @@ export const generateBuildPaginatePath = (contents: BuildTaxonomyPaginateList[])
     }));
   });
 
+  console.info(paramsAry);
+
   // reduceで二次元配列を一次元配列に変換
   const resultAry = paramsAry.reduce((prev, current) => {
     return [...prev, ...current];
   }, []);
+
+  console.info(resultAry);
 
   return resultAry;
 };

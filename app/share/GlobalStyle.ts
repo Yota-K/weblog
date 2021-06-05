@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { colorObj } from './variables';
 
 export const GlobalStyle = createGlobalStyle`
   html,body,h1,h2,h3,h4,p,ul,ol,li {
@@ -14,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
+    color: ${colorObj.baseBlue};
     text-decoration: none;
   }
 

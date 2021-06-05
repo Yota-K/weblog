@@ -46,13 +46,11 @@ export const MyContent = styled.div`
   }
 
   a {
-    color: blue;
     text-decoration: underline;
     font-weight: 600;
 
     &:hover {
-      color: red;
-      transition: all 0.4s;
+      color: ${colorObj.baseRed};
     }
   }
 
@@ -62,14 +60,17 @@ export const MyContent = styled.div`
 
     code {
       border: 1px solid #ddd;
-      background-color: #eee;
+      background: #f1f1f1;
       color: #333;
-      margin: 0 2px;
-      padding: 0.1em 0.4em;
+      padding: 0 4px;
     }
 
     ${device.mobileS} {
       font-size: 1rem;
+    }
+
+    strong {
+      color: ${colorObj.baseRed};
     }
   }
 
@@ -95,11 +96,26 @@ export const MyContent = styled.div`
   }
 
   blockquote {
-    margin: 25px 0;
-    padding: 12px;
-    background: #ddd;
-    border-radius: 3px;
-    line-height: 1.9;
+    position: relative;
+    margin: 25px 0px;
+    padding: 30px 15px 8px 15px;
+    box-sizing: border-box;
+    font-style: italic;
+    background: #efefef;
+    color: #555;
+
+    &::before {
+      display: inline-block;
+      position: absolute;
+      top: 13px;
+      left: 15px;
+      content:'“';
+      font-family: sans-serif;
+      color: #cfcfcf;
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 900;
+    }
   }
 
   pre {
@@ -109,7 +125,7 @@ export const MyContent = styled.div`
 
     code {
       font-size: 0.9rem;
-      line-height: 2.2;
+      line-height: 1.8;
     }
   }
 
