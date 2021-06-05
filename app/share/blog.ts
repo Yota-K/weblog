@@ -96,11 +96,26 @@ export const MyContent = styled.div`
   }
 
   blockquote {
-    margin: 25px 0;
-    padding: 12px;
-    background: #ddd;
-    border-radius: 3px;
-    line-height: 1.9;
+    position: relative;
+    margin: 25px 0px;
+    padding: 30px 15px 8px 15px;
+    box-sizing: border-box;
+    font-style: italic;
+    background: #efefef;
+    color: #555;
+
+    &::before {
+      display: inline-block;
+      position: absolute;
+      top: 13px;
+      left: 15px;
+      content:'“';
+      font-family: sans-serif;
+      color: #cfcfcf;
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 900;
+    }
   }
 
   pre {
