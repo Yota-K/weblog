@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { config } from '../../config/app';
 
 import { pathNameChecker } from '../../utils/path-name-checker';
-
 import { colorObj } from '../../share/variables';
 
 interface Props {
@@ -62,10 +61,9 @@ const BreadcrumbItem = styled.li`
   position: relative;
   display: inline;
   margin-right: 20px;
+  color: ${colorObj.baseBlue};
 
   a {
-    color: ${colorObj.baseBlue};
-
     &:hover {
       text-decoration: underline;
     }
@@ -79,6 +77,7 @@ const BreadcrumbItem = styled.li`
   }
 
   &:last-child {
+    color: ${colorObj.fontColor};
     &::after {
       content: '';
     }
