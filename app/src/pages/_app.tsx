@@ -17,7 +17,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
-import 'highlight.js/styles/dracula.css';
+import 'highlight.js/styles/shades-of-purple.css';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const { siteTitle } = config.siteInfo;
