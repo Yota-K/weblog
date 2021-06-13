@@ -126,6 +126,12 @@ export const MyContent = styled.div`
     code {
       font-size: 0.9rem;
       line-height: 1.8;
+
+      &.hljs {
+        display: block;
+        padding: .5em;
+        overflow-x: auto;
+      }
     }
   }
 
