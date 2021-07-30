@@ -17,8 +17,9 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ siteTitle, searchPosts }) => {
+  const router = useRouter();
+
   const getPathName = () => {
-    const router = useRouter();
     return router.asPath;
   };
 
