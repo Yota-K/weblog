@@ -49,7 +49,7 @@ const HeaderNavBar = styled.nav`
   background: #fff;
   position: sticky;
   top: 0;
-  z-index: 10000;
+  z-index: 99999;
 
   ${device.mobileM} {
     width: 100%;
