@@ -68,10 +68,6 @@ export const MyContent = styled.div`
     ${device.mobileS} {
       font-size: 1rem;
     }
-
-    strong {
-      color: ${colorObj.baseRed};
-    }
   }
 
   img {
