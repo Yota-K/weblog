@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
 import { colorObj } from '../../../share/variables';
@@ -24,13 +24,13 @@ const SearchArea: React.FC<Props> = ({ searchPosts }) => {
     },
   ]);
 
-  const [searchWord, setSearchWord] = useState<string>('');
+  const [searchWord, setSearchWord] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchWord(e.target.value);
   };
 
-  const searchFunc = () => {
+  const searchFunc = useCallback(() => {
     // 半角文字列に変換
     const value = searchWord.toLowerCase();
 
@@ -50,13 +50,11 @@ const SearchArea: React.FC<Props> = ({ searchPosts }) => {
     });
 
     setResults(genarateNewAry);
-  };
+  }, [searchWord, searchPosts]);
 
   useEffect(() => {
-    if (searchWord !== '') {
-      searchFunc();
-    }
-  }, [searchWord]);
+    if (searchWord !== '') searchFunc();
+  }, [searchWord, searchFunc]);
 
   return (
     <>
