@@ -12,7 +12,7 @@ import { getApiKey } from '../../utils/get-api-key';
 import { colorObj } from '../../share/variables';
 
 import Breadcrumb from '../components/Breadcrumb';
-import Head from '../components/Head';
+import Seo from '../components/Seo';
 import Layout from '../components/Layout';
 
 interface Props {
@@ -26,7 +26,7 @@ const BlogSitemap: NextPage<Props> = ({ contents }) => {
 
   return (
     <Layout>
-      <Head title={title} />
+      <Seo title={title} />
       <Breadcrumb pageTitle={pageTitle} />
       <h1>{pageTitle}</h1>
       <SitemapDiv>

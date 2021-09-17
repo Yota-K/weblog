@@ -11,7 +11,7 @@ import { device } from '../../share/media-query';
 import { contactApiEndpoint } from '../../utils/switch-contact-api';
 
 import Breadcrumb from '../components/Breadcrumb';
-import Head from '../components/Head';
+import Seo from '../components/Seo';
 import Layout from '../components/Layout';
 
 interface FormValues {
@@ -99,7 +99,7 @@ const Contact: NextPage = () => {
 
   return (
     <Layout>
-      <Head title={title} />
+      <Seo title={title} />
       <Breadcrumb pageTitle={pageTitle} />
       <h1>{pageTitle}</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>

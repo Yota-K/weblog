@@ -20,7 +20,7 @@ import { TagLabel } from '../../../../share/TagLabel';
 import { TimeStamp } from '../../../../share/TimeStamp';
 
 import Breadcrumb from '../../../components/Breadcrumb';
-import Head from '../../../components/Head';
+import Seo from '../../../components/Seo';
 import Layout from '../../../components/Layout';
 import Paginate from '../../../components/Paginate';
 import PostThumbnail from '../../../components/PostThumbnail';
@@ -41,7 +41,7 @@ const TagPage: NextComponentType<NextPageContext, RecordType, Props> = ({ tags, 
 
   return (
     <Layout>
-      <Head title={`${tagName}｜${siteTitle}`} />
+      <Seo title={`${tagName}｜${siteTitle}`} />
       <div id="categories">
         <Breadcrumb pageTitle={tagName} />
         <H2>タグ：{tagName}</H2>

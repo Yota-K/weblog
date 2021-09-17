@@ -17,7 +17,7 @@ import { TagArea } from '../../../share/TagArea';
 import { TagLabel } from '../../../share/TagLabel';
 import { TimeStamp } from '../../../share/TimeStamp';
 
-import Head from '../../components/Head';
+import Seo from '../../components/Seo';
 import Layout from '../../components/Layout';
 import Paginate from '../../components/Paginate';
 import PostThumbnail from '../../components/PostThumbnail';
@@ -36,7 +36,7 @@ const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
 
   return (
     <Layout>
-      <Head title={siteTitle} />
+      <Seo title={siteTitle} />
       <div id="blog-list">
         {blogs.map((blog) => (
           <BlogCard key={blog.id}>

@@ -5,7 +5,7 @@ import { RecordType } from '../../interfaces/record-type';
 
 import { H2 } from '../../share/Heading';
 
-import Head from '../components/Head';
+import Seo from '../components/Seo';
 import Layout from '../components/Layout';
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 const Error: NextComponentType<NextPageContext, RecordType, Props> = ({ statusCode }) => {
   return (
     <Layout>
-      <Head title={`${statusCode}エラーが発生しました`} />
+      <Seo title={`${statusCode}エラーが発生しました`} />
       <H2>{statusCode} Not Found</H2>
       <p>お探しのページは一時的にアクセスができない状況にあるか、</p>
       <p>移動または削除された可能性があります。</p>

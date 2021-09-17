@@ -22,7 +22,7 @@ import { TagLabel } from '../../share/TagLabel';
 import { TimeStamp } from '../../share/TimeStamp';
 
 import Breadcrumb from '../components/Breadcrumb';
-import Head from '../components/Head';
+import Seo from '../components/Seo';
 import Layout from '../components/Layout';
 import Toc from '../components/Toc';
 import SocialLinks from '../components/SocialLinks';
@@ -56,7 +56,7 @@ const Preview: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, 
 
   return (
     <Layout>
-      <Head
+      <Seo
         title={`${blog.title}｜${siteTitle}`}
         url={url}
         description={blog.description}

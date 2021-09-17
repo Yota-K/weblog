@@ -19,7 +19,7 @@ import { TagLabel } from '../../../../share/TagLabel';
 import { TimeStamp } from '../../../../share/TimeStamp';
 
 import Breadcrumb from '../../../components/Breadcrumb';
-import Head from '../../../components/Head';
+import Seo from '../../../components/Seo';
 import Layout from '../../../components/Layout';
 import Paginate from '../../../components/Paginate';
 import PostThumbnail from '../../../components/PostThumbnail';
@@ -45,7 +45,7 @@ const CategoryPage: NextComponentType<NextPageContext, RecordType, Props> = ({
 
   return (
     <Layout>
-      <Head title={`${categoryName}｜${siteTitle}`} />
+      <Seo title={`${categoryName}｜${siteTitle}`} />
       <div id="categories">
         <Breadcrumb pageTitle={categoryName} />
         <H2>カテゴリー：{categoryName}</H2>

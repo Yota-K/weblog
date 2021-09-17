@@ -12,8 +12,7 @@ interface Props {
   thumbnail?: string;
 }
 
-// eslint-disable-next-line react/display-name
-export default ({ title, description, url, thumbnail }: Props): JSX.Element => {
+const Seo: React.FC<Props> = ({ title, description, url, thumbnail }) => {
   const { ogpImage } = config.siteInfo;
   const { defaultDescription } = config.siteInfo;
 
@@ -47,3 +46,5 @@ export default ({ title, description, url, thumbnail }: Props): JSX.Element => {
     </Head>
   );
 };
+
+export default Seo;
