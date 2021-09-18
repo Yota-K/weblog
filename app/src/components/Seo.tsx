@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import { config } from '../../config/app';
@@ -16,7 +17,8 @@ const Seo: React.FC<Props> = ({ title, description, url, thumbnail }) => {
   const { ogpImage } = config.siteInfo;
   const { defaultDescription } = config.siteInfo;
 
-  const isBlogPage = pathNameChecker();
+  const router = useRouter();
+  const isBlogPage = pathNameChecker(router);
 
   return (
     <Head>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -18,11 +19,12 @@ interface Props {
 }
 
 const Breadcrumb: React.FC<Props> = ({ blogPageInfo, pageTitle, draftKey }) => {
+  const router = useRouter();
   const { siteTitle } = config.siteInfo;
 
   // 記事ページ用のパンくず
   const blogPageBreadCrumb = () => {
-    const isBlogPage = pathNameChecker();
+    const isBlogPage = pathNameChecker(router);
 
     // draftKeyがある（下書き）の場合にもパンくずを表示
     if (isBlogPage || draftKey) {

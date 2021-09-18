@@ -1,9 +1,7 @@
-import { useRouter } from 'next/router';
+import { NextRouter } from 'next/router';
 
 // 記事ページかどうかのチェックを行う
-export const pathNameChecker = () => {
-  const router = useRouter();
+export const pathNameChecker = (router: NextRouter) => {
   const path = router.asPath;
-
   return /\/blogs\/.+$/g.test(path);
 };
