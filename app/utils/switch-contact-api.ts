@@ -1,12 +1,15 @@
+import { config } from '../config/app';
+
 // ホスト名を取得して、ホスト名で分岐させる
 export const contactApiEndpoint = () => {
   const host = location.host;
+  const { prod, stg, local } = config.contactApiSettings;
 
-  if (host === 'karukichi-blog.netlify.app') {
-    return 'https://3b1ej2urge.execute-api.ap-northeast-1.amazonaws.com/prod/send-mail';
-  } else if (host === 'staging--karukichi-blog.netlify.app') {
-    return 'https://mlrwxvphj2.execute-api.ap-northeast-1.amazonaws.com/dev/send-mail';
+  if (host === prod.host) {
+    return prod.endpoint;
+  } else if (host === stg.host) {
+    return stg.endpoint;
   } else {
-    return 'http://0.0.0.0:9000/dev/send-mail';
+    return local.endpoint;
   }
 };
