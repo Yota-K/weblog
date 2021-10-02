@@ -87,7 +87,7 @@ const SearchInput = styled.input`
   font-size: 16px;
   box-shadow: none;
   transition: box-shadow 0.2s ease;
-  z-index: 9999;
+  z-index: 999;
 
   &[type='text']:focus {
     border: 1px solid ${colorObj.baseBlue};
