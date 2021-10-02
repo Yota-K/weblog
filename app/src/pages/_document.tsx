@@ -43,6 +43,7 @@ class MyDocument extends Document {
 
   render() {
     const GA_TRACKING_ID = 'G-Y2MDQ3RC4V';
+    const AD_CLIENT = 'ca-pub-1412340494644518';
 
     return (
       <Html lang="ja">
@@ -52,6 +53,14 @@ class MyDocument extends Document {
             // <!-- Global site tag (gtag.js) - Google Analytics -->
           }
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+          {
+            // <!-- Google AdSense -->
+          }
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+            data-ad-client={AD_CLIENT}
+          />
           <script
             dangerouslySetInnerHTML={{
               __html: `
