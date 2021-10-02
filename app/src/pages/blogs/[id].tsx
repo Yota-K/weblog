@@ -137,8 +137,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      blog: blog,
-      toc: toc,
+      blog,
+      toc,
       body: $.html(),
     },
   };
