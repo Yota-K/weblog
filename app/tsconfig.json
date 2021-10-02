@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/config/*": ["config/*"],
+      "@/interfaces/*": ["interfaces/*"],
+      "@/share/*": ["share/*"],
+      "@/utils/*": ["utils/*"]
+    },
     "target": "es5",
     "module": "esnext",
     "moduleResolution": "node",

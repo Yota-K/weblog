@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
-import { colorObj } from '../../../share/variables';
+import { colorObj } from '@/share/variables';
 
-import { SearchJson } from '../../../interfaces/search-posts';
+import { SearchJson } from '@/interfaces/search-posts';
 
-import SearchView from './SearchView';
+import SearchView from '@/components/Search/SearchView';
 
 interface Props {
   searchPosts: SearchJson[];

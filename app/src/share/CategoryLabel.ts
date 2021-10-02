@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { device } from './media-query';
-import { colorObj } from './variables';
+import { device } from '@/share/media-query';
+import { colorObj } from '@/share/variables';
 
 export const CategoryLabel = styled.span`
   display: block;

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { H2 } from '../../share/Heading';
+import { H2 } from '@/share/Heading';
 
-import Seo from '../components/Seo';
-import Layout from '../components/Layout';
+import Layout from '@/components/Layout';
+import Seo from '@/components/Seo';
 
 const Custom404: React.FC = () => {
   return (

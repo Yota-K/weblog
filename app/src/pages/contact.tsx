@@ -4,15 +4,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { config } from '../../config/app';
+import { config } from '@/config/app';
 
-import { colorObj } from '../../share/variables';
-import { device } from '../../share/media-query';
-import { contactApiEndpoint } from '../../utils/switch-contact-api';
+import { colorObj } from '@/share/variables';
+import { device } from '@/share/media-query';
+import { contactApiEndpoint } from '@/utils/switch-contact-api';
 
-import Breadcrumb from '../components/Breadcrumb';
-import Seo from '../components/Seo';
-import Layout from '../components/Layout';
+import Breadcrumb from '@/components/Breadcrumb';
+import Seo from '@/components/Seo';
+import Layout from '@/components/Layout';
 
 interface FormValues {
   name: string;

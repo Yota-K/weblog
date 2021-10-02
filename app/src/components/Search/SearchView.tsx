@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colorObj } from '../../../share/variables';
+import { colorObj } from '@/share/variables';
 
-import { SearchJson } from '../../../interfaces/search-posts';
+import { SearchJson } from '@/interfaces/search-posts';
 
 interface Props {
   results: SearchJson[];

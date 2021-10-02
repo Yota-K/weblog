@@ -2,28 +2,28 @@ import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } fr
 import Link from 'next/link';
 import React from 'react';
 
-import { config } from '../../../../config/app';
+import { config } from '@/config/app';
 
-import { Content } from '../../../../interfaces/content';
-import { RecordType } from '../../../../interfaces/record-type';
-import { BuildTaxonomyPaginateList } from '../../../../interfaces/taxonomy';
+import { Content } from '@/interfaces/content';
+import { RecordType } from '@/interfaces/record-type';
+import { BuildTaxonomyPaginateList } from '@/interfaces/taxonomy';
 
-import { dateFormat } from '../../../../utils/date-format';
-import { generateBuildPaginatePath } from '../../../../utils/generate-build-paginate-path';
-import { getApiKey } from '../../../../utils/get-api-key';
+import { dateFormat } from '@/utils/date-format';
+import { generateBuildPaginatePath } from '@/utils/generate-build-paginate-path';
+import { getApiKey } from '@/utils/get-api-key';
 
-import { BlogCard, PostInfo } from '../../../../share/BlogCard';
-import { CategoryLabel } from '../../../../share/CategoryLabel';
-import { H2, H3 } from '../../../../share/Heading';
-import { TagArea } from '../../../../share/TagArea';
-import { TagLabel } from '../../../../share/TagLabel';
-import { TimeStamp } from '../../../../share/TimeStamp';
+import { BlogCard, PostInfo } from '@/share/BlogCard';
+import { CategoryLabel } from '@/share/CategoryLabel';
+import { H2, H3 } from '@/share/Heading';
+import { TagArea } from '@/share/TagArea';
+import { TagLabel } from '@/share/TagLabel';
+import { TimeStamp } from '@/share/TimeStamp';
 
-import Breadcrumb from '../../../components/Breadcrumb';
-import Seo from '../../../components/Seo';
-import Layout from '../../../components/Layout';
-import Paginate from '../../../components/Paginate';
-import PostThumbnail from '../../../components/PostThumbnail';
+import Breadcrumb from '@/components/Breadcrumb';
+import Layout from '@/components/Layout';
+import Paginate from '@/components/Paginate';
+import PostThumbnail from '@/components/PostThumbnail';
+import Seo from '@/components/Seo';
 
 interface Props {
   categories: Content[];

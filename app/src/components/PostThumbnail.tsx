@@ -2,7 +2,7 @@ import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
 
-import { device } from '../../share/media-query';
+import { device } from '@/share/media-query';
 
 interface Props {
   className?: string;

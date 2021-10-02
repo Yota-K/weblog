@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
 import styled from 'styled-components';
 
-import { colorObj } from '../../share/variables';
+import { colorObj } from '@/share/variables';
 
 interface Props {
   siteTitle: React.ReactNode;

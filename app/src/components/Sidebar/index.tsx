@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { CategoriesAndTags } from '../../../interfaces/taxonomy';
-import { SearchJson } from '../../../interfaces/search-posts';
+import { CategoriesAndTags } from '@/interfaces/taxonomy';
+import { SearchJson } from '@/interfaces/search-posts';
 
-import { device } from '../../../share/media-query';
+import { device } from '@/share/media-query';
 
-import SearchBox from './SearchBox';
-import Profile from './Profile';
-import CategoryList from './CategoryList';
-import TagList from './TagList';
+import SearchBox from '@/components/Sidebar/SearchBox';
+import Profile from '@/components/Sidebar/Profile';
+import CategoryList from '@/components/Sidebar/CategoryList';
+import TagList from '@/components/Sidebar/TagList';
 
 interface Props {
   taxonomies: CategoriesAndTags;

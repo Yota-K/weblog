@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { SearchJson } from '../../../interfaces/search-posts';
+import { SearchJson } from '@/interfaces/search-posts';
 
-import { H4 } from '../../../share/Heading';
+import { H4 } from '@/share/Heading';
 
-import { SidebarBox } from './SidebarBox';
+import { SidebarBox } from '@/components/Sidebar/SidebarBox';
 
-import SearchArea from '../Search/SearchArea';
+import SearchArea from '@/components/Search/SearchArea';
 
 interface Props {
   searchPosts: SearchJson[];

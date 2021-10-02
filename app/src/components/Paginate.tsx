@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
-import { colorObj } from '../../share/variables';
-import { config } from '../../config/app';
+import { colorObj } from '@/share/variables';
+import { config } from '@/config/app';
 
 interface Props {
   paginateType: string;
