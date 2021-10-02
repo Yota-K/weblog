@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
-import { colorObj } from '../../../share/variables';
+import { colorObj } from '@/share/variables';
 
-import { SearchJson } from '../../../interfaces/search-posts';
+import { SearchJson } from '@/interfaces/search-posts';
 
-import SearchView from './SearchView';
+import SearchView from '@/components/Search/SearchView';
 
 interface Props {
   searchPosts: SearchJson[];
@@ -87,7 +87,7 @@ const SearchInput = styled.input`
   font-size: 16px;
   box-shadow: none;
   transition: box-shadow 0.2s ease;
-  z-index: 9999;
+  z-index: 999;
 
   &[type='text']:focus {
     border: 1px solid ${colorObj.baseBlue};

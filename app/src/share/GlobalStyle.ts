@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { colorObj } from './variables';
+import { colorObj } from '@/share/variables';
 
 export const GlobalStyle = createGlobalStyle`
   html,body,h1,h2,h3,h4,p,ul,ol,li {

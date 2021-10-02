@@ -3,17 +3,17 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-import { config } from '../../config/app';
+import { config } from '@/config/app';
 
-import { Sitemap } from '../../interfaces/sitemap';
+import { Sitemap } from '@/interfaces/sitemap';
 
-import { getApiKey } from '../../utils/get-api-key';
+import { getApiKey } from '@/utils/get-api-key';
 
-import { colorObj } from '../../share/variables';
+import { colorObj } from '@/share/variables';
 
-import Breadcrumb from '../components/Breadcrumb';
-import Seo from '../components/Seo';
-import Layout from '../components/Layout';
+import Breadcrumb from '@/components/Breadcrumb';
+import Seo from '@/components/Seo';
+import Layout from '@/components/Layout';
 
 interface Props {
   contents: Sitemap[];
@@ -74,7 +74,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      contents: contents,
+      contents,
     },
   };
 };

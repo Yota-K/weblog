@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from './media-query';
+import { device } from '@/share/media-query';
 
 export const H1 = styled.h1`
   font-size: 2rem;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { config } from '../../../config/app';
+import { config } from '@/config/app';
 
-import { H4 } from '../../../share/Heading';
+import { H4 } from '@/share/Heading';
 
-import { SidebarBox } from './SidebarBox';
+import { SidebarBox } from '@/components/Sidebar/SidebarBox';
 
 const Profile: React.FC = () => {
   const { twitterUrl, githubUrl, profileUrl } = config.urls;

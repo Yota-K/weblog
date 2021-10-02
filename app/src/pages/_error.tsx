@@ -1,12 +1,12 @@
 import { NextComponentType, NextPageContext } from 'next';
 import React from 'react';
 
-import { RecordType } from '../../interfaces/record-type';
+import { RecordType } from '@/interfaces/record-type';
 
-import { H2 } from '../../share/Heading';
+import { H2 } from '@/share/Heading';
 
-import Seo from '../components/Seo';
-import Layout from '../components/Layout';
+import Seo from '@/components/Seo';
+import Layout from '@/components/Layout';
 
 interface Props {
   statusCode: number;

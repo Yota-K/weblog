@@ -1,4 +1,4 @@
-import { config } from '../config/app';
+import { config } from '@/config/app';
 
 // ホスト名を取得して、ホスト名で分岐させる
 export const contactApiEndpoint = () => {

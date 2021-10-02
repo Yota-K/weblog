@@ -3,10 +3,10 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
-import { config } from '../../config/app';
+import { config } from '@/config/app';
 
-import { pathNameChecker } from '../../utils/path-name-checker';
-import { colorObj } from '../../share/variables';
+import { pathNameChecker } from '@/utils/path-name-checker';
+import { colorObj } from '@/share/variables';
 
 interface Props {
   blogPageInfo?: {

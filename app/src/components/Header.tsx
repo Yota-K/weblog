@@ -3,13 +3,13 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
-import { SearchJson } from '../../interfaces/search-posts';
+import { SearchJson } from '@/interfaces/search-posts';
 
-import { device } from '../../share/media-query';
-import { colorObj } from '../../share/variables';
+import { device } from '@/share/media-query';
+import { colorObj } from '@/share/variables';
 
-import HeaderNav from './HeaderNav';
-import SearchArea from './Search/SearchArea';
+import HeaderNav from '@/components/HeaderNav';
+import SearchArea from '@/components/Search/SearchArea';
 
 interface Props {
   siteTitle: React.ReactNode;

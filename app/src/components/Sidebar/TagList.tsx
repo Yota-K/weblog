@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import React from 'react';
 
-import { Taxonomy } from '../../../interfaces/taxonomy';
+import { Taxonomy } from '@/interfaces/taxonomy';
 
-import { H4 } from '../../../share/Heading';
-import { TagArea } from '../../../share/TagArea';
-import { TagLabel } from '../../../share/TagLabel';
+import { H4 } from '@/share/Heading';
+import { TagArea } from '@/share/TagArea';
+import { TagLabel } from '@/share/TagLabel';
 
-import { SidebarBox } from './SidebarBox';
+import { SidebarBox } from '@/components/Sidebar/SidebarBox';
 
 interface Props {
   tags: Taxonomy[];

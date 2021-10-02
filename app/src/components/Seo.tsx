@@ -2,9 +2,9 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { config } from '../../config/app';
+import { config } from '@/config/app';
 
-import { pathNameChecker } from '../../utils/path-name-checker';
+import { pathNameChecker } from '@/utils/path-name-checker';
 
 interface Props {
   title: string;

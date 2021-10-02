@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-import { device } from '../../share/media-query';
+import { device } from '@/share/media-query';
 
 const HeaderNav: React.FC = () => {
   const navLinks = [
@@ -49,7 +49,7 @@ const HeaderNavBar = styled.nav`
   background: #fff;
   position: sticky;
   top: 0;
-  z-index: 99999;
+  z-index: 999;
 
   ${device.mobileM} {
     width: 100%;

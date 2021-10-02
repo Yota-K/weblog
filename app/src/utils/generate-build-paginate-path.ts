@@ -1,5 +1,5 @@
-import { BuildTaxonomyPaginateList } from '../interfaces/taxonomy';
-import { config } from '../config/app';
+import { BuildTaxonomyPaginateList } from '@/interfaces/taxonomy';
+import { config } from '@/config/app';
 
 export const generateBuildPaginatePath = (contents: BuildTaxonomyPaginateList[]) => {
   const paginateNum = config.paginateNum;

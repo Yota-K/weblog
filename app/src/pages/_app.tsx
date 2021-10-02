@@ -3,19 +3,19 @@ import { AppProps } from 'next/app';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { config } from '../../config/app';
+import { config } from '@/config/app';
 
-import { CategoriesAndTags } from '../../interfaces/taxonomy';
-import { SearchJson } from '../../interfaces/search-posts';
+import { CategoriesAndTags } from '@/interfaces/taxonomy';
+import { SearchJson } from '@/interfaces/search-posts';
 
-import { getApiKey } from '../../utils/get-api-key';
+import { getApiKey } from '@/utils/get-api-key';
 
-import { GlobalStyle } from '../../share/GlobalStyle';
-import { device } from '../../share/media-query';
+import { GlobalStyle } from '@/share/GlobalStyle';
+import { device } from '@/share/media-query';
 
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import Sidebar from '@/components/Sidebar';
 
 import 'highlight.js/styles/shades-of-purple.css';
 

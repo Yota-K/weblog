@@ -2,34 +2,34 @@ import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } fr
 import Link from 'next/link';
 import React from 'react';
 
-import { config } from '../../../config/app';
+import { config } from '@/config/app';
 
-import { Content } from '../../../interfaces/content';
-import { RecordType } from '../../../interfaces/record-type';
+import { Content } from '@/interfaces/content';
+import { RecordType } from '@/interfaces/record-type';
 
-import { dateFormat } from '../../../utils/date-format';
-import { getApiKey } from '../../../utils/get-api-key';
+import { dateFormat } from '@/utils/date-format';
+import { getApiKey } from '@/utils/get-api-key';
 
-import { BlogCard, PostInfo } from '../../../share/BlogCard';
-import { CategoryLabel } from '../../../share/CategoryLabel';
-import { H3 } from '../../../share/Heading';
-import { TagArea } from '../../../share/TagArea';
-import { TagLabel } from '../../../share/TagLabel';
-import { TimeStamp } from '../../../share/TimeStamp';
+import { BlogCard, PostInfo } from '@/share/BlogCard';
+import { CategoryLabel } from '@/share/CategoryLabel';
+import { H3 } from '@/share/Heading';
+import { TagArea } from '@/share/TagArea';
+import { TagLabel } from '@/share/TagLabel';
+import { TimeStamp } from '@/share/TimeStamp';
 
-import Seo from '../../components/Seo';
-import Layout from '../../components/Layout';
-import Paginate from '../../components/Paginate';
-import PostThumbnail from '../../components/PostThumbnail';
+import Layout from '@/components/Layout';
+import Paginate from '@/components/Paginate';
+import PostThumbnail from '@/components/PostThumbnail';
+import Seo from '@/components/Seo';
 
 interface Props {
-  blogs: Content[];
+  contents: Content[];
   totalCount: number;
 }
 
 const paginateNum = config.paginateNum;
 
-const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, totalCount }) => {
+const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ contents, totalCount }) => {
   const { siteTitle } = config.siteInfo;
 
   const paginateType = 'page';
@@ -38,28 +38,28 @@ const Page: NextComponentType<NextPageContext, RecordType, Props> = ({ blogs, to
     <Layout>
       <Seo title={siteTitle} />
       <div id="blog-list">
-        {blogs.map((blog) => (
-          <BlogCard key={blog.id}>
-            <PostThumbnail thumbnailUrl={blog.thumbnail.url} width="308" height="173" />
+        {contents.map((content) => (
+          <BlogCard key={content.id}>
+            <PostThumbnail thumbnailUrl={content.thumbnail.url} width="308" height="173" />
             <PostInfo>
               <TimeStamp>
-                <time itemProp="dateCreated" dateTime={`${dateFormat(blog.createdAt)}`}>
-                  {dateFormat(blog.createdAt)}
+                <time itemProp="dateCreated" dateTime={`${dateFormat(content.createdAt)}`}>
+                  {dateFormat(content.createdAt)}
                 </time>
               </TimeStamp>
               <H3>
-                <Link href="/blogs/[id]" as={`/blogs/${blog.id}`}>
-                  <a>{blog.title}</a>
+                <Link href="/blogs/[id]" as={`/blogs/${content.id}`}>
+                  <a>{content.title}</a>
                 </Link>
               </H3>
               <CategoryLabel>
                 カテゴリー：
-                <Link href="/category/[id]" as={`/category/${blog.category_field.id}`}>
-                  <a>{blog.category_field.name}</a>
+                <Link href="/category/[id]" as={`/category/${content.category_field.id}`}>
+                  <a>{content.category_field.name}</a>
                 </Link>
               </CategoryLabel>
               <TagArea>
-                {blog.tag_field.map((tag) => (
+                {content.tag_field.map((tag) => (
                   <TagLabel key={tag.id}>
                     <Link href="/tags/[id]" as={`/tags/${tag.id}`}>
                       <a>{tag.name}</a>
@@ -103,13 +103,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=${offset}&limit=${paginateNum}`, key);
   const data = await res.json();
 
-  const blogs = data.contents;
+  const contents = data.contents;
   const totalCount = data.totalCount;
 
   return {
     props: {
-      blogs: blogs,
-      totalCount: totalCount,
+      contents,
+      totalCount,
     },
   };
 };

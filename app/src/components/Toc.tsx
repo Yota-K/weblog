@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-scroll';
 import styled from 'styled-components';
 
-import { H2 } from '../../share/Heading';
-import { colorObj } from '../../share/variables';
+import { H2 } from '@/share/Heading';
+import { colorObj } from '@/share/variables';
 
 interface Props {
   toc: {

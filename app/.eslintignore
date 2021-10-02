@@ -6,3 +6,4 @@ out
 out_functions
 package.json
 package-lock.json
+tsconfig.json
