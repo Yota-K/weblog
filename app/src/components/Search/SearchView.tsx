@@ -45,7 +45,7 @@ const SearchUl = styled.ul<ModalHeight>`
   padding-top: 30px;
   scrollbar-width: none;
   box-sizing: border-box;
-  z-index: 1000;
+  z-index: 998;
 `;
 
 const BaseStyle = `
