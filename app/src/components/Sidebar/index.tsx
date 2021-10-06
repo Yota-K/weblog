@@ -1,4 +1,5 @@
 import React from 'react';
+import { Adsense } from '@ctrl/react-adsense';
 import styled from 'styled-components';
 
 import { CategoriesAndTags } from '@/interfaces/taxonomy';
@@ -19,6 +20,13 @@ interface Props {
 const Sidebar: React.FC<Props> = ({ taxonomies, searchPosts }) => {
   return (
     <BlogSidebar>
+      <Adsense
+        client="ca-pub-1412340494644518"
+        slot="6911596626"
+        style={{ display: 'block' }}
+        format="auto"
+        responsive="true"
+      />
       <SearchBox searchPosts={searchPosts} />
       <Profile />
       <CategoryList categories={taxonomies.categories} />

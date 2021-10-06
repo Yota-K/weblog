@@ -13,7 +13,6 @@ export const MyContent = styled.div`
   margin-top: 35px;
   min-height: 800px;
   word-break: break-all;
-  overflow: hidden;
 
   h2 {
     margin: 20px 0;

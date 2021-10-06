@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Toc: React.FC<Props> = ({ toc }) => {
-  const headingScroll = (e: React.MouseEvent<HTMLElement>): void => {
+  const headingScroll = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
   };
 
@@ -33,7 +33,6 @@ const Toc: React.FC<Props> = ({ toc }) => {
 };
 
 const TocArea = styled.ul`
-  margin: 25px 0 45px !important;
   background: #f1f1f1 !important;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
   border: none !important;
