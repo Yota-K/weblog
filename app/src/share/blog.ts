@@ -135,3 +135,7 @@ export const MyContent = styled.div`
     margin 12px 0;
   }
 `;
+
+export const PostDiv = styled.div`
+  margin-top: 50px;
+`;

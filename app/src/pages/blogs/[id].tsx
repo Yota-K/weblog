@@ -14,7 +14,7 @@ import { RecordType } from '@/interfaces/record-type';
 
 import { dateFormat } from '@/utils/date-format';
 
-import { ShareArea, MyContent } from '@/share/blog';
+import { ShareArea, MyContent, PostDiv } from '@/share/blog';
 import { CategoryLabel } from '@/share/CategoryLabel';
 import { getApiKey } from '@/utils/get-api-key';
 import { H1 } from '@/share/Heading';
@@ -93,7 +93,7 @@ const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc
           <PostThumbnail className="post-thumbnail" thumbnailUrl={blog.thumbnail.url} width="100%" height="auto" />
           <Toc toc={toc} />
           <Adsense client="ca-pub-1412340494644518" slot="6911596626" />
-          <div className="post" dangerouslySetInnerHTML={{ __html: body }}></div>
+          <PostDiv dangerouslySetInnerHTML={{ __html: body }}></PostDiv>
         </MyContent>
       </div>
     </Layout>

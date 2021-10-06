@@ -13,7 +13,7 @@ import { RecordType } from '@/interfaces/record-type';
 
 import { dateFormat } from '@/utils/date-format';
 
-import { ShareArea, MyContent } from '@/share/blog';
+import { ShareArea, MyContent, PostDiv } from '@/share/blog';
 import { CategoryLabel } from '@/share/CategoryLabel';
 import { getApiKey } from '@/utils/get-api-key';
 import { H1 } from '@/share/Heading';
@@ -98,7 +98,7 @@ const Preview: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, 
             effect="blur"
           />
           <Toc toc={toc} />
-          <div className="post" dangerouslySetInnerHTML={{ __html: body }}></div>
+          <PostDiv dangerouslySetInnerHTML={{ __html: body }}></PostDiv>
         </MyContent>
       </div>
     </Layout>
