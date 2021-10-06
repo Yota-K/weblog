@@ -4,6 +4,7 @@ import MarkdownIt from 'markdown-it';
 import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
+import { Adsense } from '@ctrl/react-adsense';
 
 import { config } from '@/config/app';
 
@@ -91,6 +92,7 @@ const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc
         <MyContent>
           <PostThumbnail className="post-thumbnail" thumbnailUrl={blog.thumbnail.url} width="100%" height="auto" />
           <Toc toc={toc} />
+          <Adsense client="ca-pub-1412340494644518" slot="6911596626" />
           <div className="post" dangerouslySetInnerHTML={{ __html: body }}></div>
         </MyContent>
       </div>

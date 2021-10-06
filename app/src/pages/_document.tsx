@@ -43,7 +43,6 @@ class MyDocument extends Document {
 
   render() {
     const GA_TRACKING_ID = 'G-Y2MDQ3RC4V';
-    const AD_CLIENT = 'ca-pub-1412340494644518';
 
     return (
       <Html lang="ja">
@@ -56,11 +55,7 @@ class MyDocument extends Document {
           {
             // <!-- Google AdSense -->
           }
-          <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-            data-ad-client={AD_CLIENT}
-          />
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
           <script
             dangerouslySetInnerHTML={{
               __html: `
