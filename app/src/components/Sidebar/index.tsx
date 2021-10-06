@@ -1,5 +1,4 @@
 import React from 'react';
-import { Adsense } from '@ctrl/react-adsense';
 import styled from 'styled-components';
 
 import { CategoriesAndTags } from '@/interfaces/taxonomy';
@@ -7,6 +6,7 @@ import { SearchJson } from '@/interfaces/search-posts';
 
 import { device } from '@/share/media-query';
 
+import GoogleAdsense from '@/components/GoogleAdsense';
 import SearchBox from '@/components/Sidebar/SearchBox';
 import Profile from '@/components/Sidebar/Profile';
 import CategoryList from '@/components/Sidebar/CategoryList';
@@ -20,13 +20,7 @@ interface Props {
 const Sidebar: React.FC<Props> = ({ taxonomies, searchPosts }) => {
   return (
     <BlogSidebar>
-      <Adsense
-        client="ca-pub-1412340494644518"
-        slot="6911596626"
-        style={{ display: 'block' }}
-        format="auto"
-        responsive="true"
-      />
+      <GoogleAdsense />
       <SearchBox searchPosts={searchPosts} />
       <Profile />
       <CategoryList categories={taxonomies.categories} />
