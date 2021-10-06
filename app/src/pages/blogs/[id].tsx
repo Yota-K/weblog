@@ -92,7 +92,13 @@ const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc
         <MyContent>
           <PostThumbnail className="post-thumbnail" thumbnailUrl={blog.thumbnail.url} width="100%" height="auto" />
           <Toc toc={toc} />
-          <Adsense client="ca-pub-1412340494644518" slot="6911596626" />
+          <Adsense
+            client="ca-pub-1412340494644518"
+            slot="6911596626"
+            style={{ display: 'block' }}
+            format="auto"
+            responsive="true"
+          />
           <PostDiv dangerouslySetInnerHTML={{ __html: body }}></PostDiv>
         </MyContent>
       </div>
