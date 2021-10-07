@@ -1,12 +1,28 @@
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-import { Adsense } from '@ctrl/react-adsense';
-
 const GoogleAdsense: React.FC = () => {
+  const { asPath } = useRouter();
+
+  // asPathに変化があった（ページ遷移したとき）に window.adsbygoogle.push({}) するようにする
+  useEffect(() => {
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (err) {
+      console.log(err);
+    }
+  }, [asPath]);
+
   return (
     <AdsenseDiv>
-      <Adsense client="ca-pub-1412340494644518" slot="6911596626" style={{ display: 'block' }} format="auto" />
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client="ca-pub-1412340494644518"
+        data-ad-slot="6911596626"
+        data-ad-format="auto"
+      ></ins>
     </AdsenseDiv>
   );
 };

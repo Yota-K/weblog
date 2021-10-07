@@ -24,6 +24,6 @@
     "isolatedModules": true,
     "downlevelIteration": true
   },
-  "include": ["src/pages/**/*", "src/layouts/**/*", "src/components/**/*"],
+  "include": ["next-env.d.ts", "src/pages/**/*", "src/layouts/**/*", "src/components/**/*"],
   "exclude": ["node_modules"]
 }
