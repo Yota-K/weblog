@@ -2,6 +2,13 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
+// adsbygoogle の型定義
+declare global {
+  interface Window {
+    adsbygoogle?: { [key: string]: unknown }[];
+  }
+}
+
 const GoogleAdsense: React.FC = () => {
   const { asPath } = useRouter();
 
@@ -14,8 +21,9 @@ const GoogleAdsense: React.FC = () => {
     }
   }, [asPath]);
 
+  // keyを指定しないと、既にイベントを適用している旨のエラーがでてしまう。
   return (
-    <AdsenseDiv>
+    <AdsenseDiv key={asPath}>
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
