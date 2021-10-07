@@ -17,9 +17,8 @@ const Error: NextComponentType<NextPageContext, RecordType, Props> = ({ statusCo
     <Layout>
       <Seo title={`${statusCode}エラーが発生しました`} />
       <H2>{statusCode} Not Found</H2>
-      <p>お探しのページは一時的にアクセスができない状況にあるか、</p>
-      <p>移動または削除された可能性があります。</p>
-      <p>URL、ファイル名にタイプミスがないかもご確認ください。</p>
+      <p>サーバで何らかのエラーが発生しました。</p>
+      <p>恐れ入りますが、時間をおいて再度アクセスしてください。</p>
     </Layout>
   );
 };
