@@ -3,8 +3,31 @@ export const config = {
     siteTitle: 'カルキチのブログ',
     siteUrl: 'https://karukichi-blog.netlify.app/',
     defaultDescription: 'カルキチ副島が運営するウェブ系の技術について執筆しているブログです。',
-    ogpImage: 'https://images.microcms-assets.io/protected/ap-northeast-1:4e1ce5b7-3cdc-47cb-b3a0-9c403488fea6/service/karukichi-tech-blog/media/top-ogp.png',
+    ogpImage:
+      'https://images.microcms-assets.io/protected/ap-northeast-1:4e1ce5b7-3cdc-47cb-b3a0-9c403488fea6/service/karukichi-tech-blog/media/top-ogp.png',
   },
+  headerNavLinks: [
+    {
+      title: 'フロントエンド',
+      link: '/category/front-end',
+    },
+    {
+      title: 'バックエンド',
+      link: '/category/back-end',
+    },
+    {
+      title: 'その他もろもろ',
+      link: '/category/others',
+    },
+    {
+      title: 'サイトマップ',
+      link: '/sitemap',
+    },
+    {
+      title: 'お問い合わせ',
+      link: '/contact',
+    },
+  ],
   urls: {
     twitterUrl: 'https://twitter.com/karukichi_yah',
     githubUrl: 'https://github.com/Yota-K',
