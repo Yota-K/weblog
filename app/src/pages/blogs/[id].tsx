@@ -1,7 +1,7 @@
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 import MarkdownIt from 'markdown-it';
-import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
+import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 
@@ -9,7 +9,6 @@ import { config } from '@/config/app';
 
 import { Content } from '@/interfaces/content';
 import { PageSlug } from '@/interfaces/page-slug';
-import { RecordType } from '@/interfaces/record-type';
 
 import { dateFormat } from '@/utils/date-format';
 
@@ -38,7 +37,7 @@ interface Props {
   body: string;
 }
 
-const Blog: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body }) => {
+const Blog: NextPage<Props> = ({ blog, toc, body }) => {
   const { siteTitle } = config.siteInfo;
   const { siteUrl } = config.siteInfo;
   const url = `${siteUrl}blogs/${blog.id}`;

@@ -1,11 +1,10 @@
-import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
+import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 
 import { config } from '@/config/app';
 
 import { Content } from '@/interfaces/content';
-import { RecordType } from '@/interfaces/record-type';
 import { BuildTaxonomyPaginateList } from '@/interfaces/taxonomy';
 
 import { dateFormat } from '@/utils/date-format';
@@ -34,7 +33,7 @@ interface Props {
 
 const paginateNum = config.paginateNum;
 
-const TagPage: NextComponentType<NextPageContext, RecordType, Props> = ({ contents, tagName, tagSlug, totalCount }) => {
+const TagPage: NextPage<Props> = ({ contents, tagName, tagSlug, totalCount }) => {
   const { siteTitle } = config.siteInfo;
 
   const paginateType = `tags/${tagSlug}`;
