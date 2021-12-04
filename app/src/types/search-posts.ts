@@ -1,4 +1,4 @@
-export interface SearchJson {
+export type SearchJson = {
   id: string;
   title: string;
   tag_field: {

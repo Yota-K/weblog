@@ -1,4 +1,4 @@
-export interface Content {
+export type Content = {
   id: string;
   createdAt: string;
   updatedAt: string;

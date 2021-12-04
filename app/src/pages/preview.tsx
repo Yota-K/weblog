@@ -1,15 +1,14 @@
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 import MarkdownIt from 'markdown-it';
-import { NextComponentType, NextPageContext, GetServerSideProps } from 'next';
+import { NextPage, GetServerSideProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { config } from '@/config/app';
 
-import { Content } from '@/interfaces/content';
-import { RecordType } from '@/interfaces/record-type';
+import { Content } from '@/types/content';
 
 import { dateFormat } from '@/utils/date-format';
 
@@ -27,7 +26,7 @@ import Seo from '@/components/Seo';
 import SocialLinks from '@/components/SocialLinks';
 import Toc from '@/components/Toc';
 
-interface Props {
+type Props = {
   blog: Content;
   toc: {
     id: string;
@@ -38,7 +37,7 @@ interface Props {
   draftKey: string;
 }
 
-const Preview: NextComponentType<NextPageContext, RecordType, Props> = ({ blog, toc, body, draftKey }) => {
+const Preview: NextPage<Props> = ({ blog, toc, body, draftKey }) => {
   const { siteTitle } = config.siteInfo;
   const { siteUrl } = config.siteInfo;
   const url = `${siteUrl}blogs/${blog.id}`;

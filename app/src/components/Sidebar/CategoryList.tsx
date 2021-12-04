@@ -2,14 +2,14 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Taxonomy } from '@/interfaces/taxonomy';
+import { Taxonomy } from '@/types/taxonomy';
 
 import { H4 } from '@/share/Heading';
 import { colorObj } from '@/share/variables';
 
 import { SidebarBox } from '@/components/Sidebar/SidebarBox';
 
-interface Props {
+type Props = {
   categories: Taxonomy[];
 }
 

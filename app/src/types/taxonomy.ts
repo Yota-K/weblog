@@ -1,19 +1,19 @@
 // カテゴリーページとタグページのビルドを行う際に使用する型定義
-export interface BuildTaxonomyPaginateList {
+export type BuildTaxonomyPaginateList = {
   id: string;
   posts: {
     id: string;
   }[];
-}
+};
 
 // カテゴリーとタグの型定義
-export interface Taxonomy extends BuildTaxonomyPaginateList {
+export type Taxonomy = BuildTaxonomyPaginateList & {
   createdAt: string;
   updatedAt: string;
   name: string;
-}
+};
 
-export interface CategoriesAndTags {
+export type CategoriesAndTags = {
   categories: Taxonomy[];
   tags: Taxonomy[];
-}
+};

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { config } from '@/config/app';
 
-import { Sitemap } from '@/interfaces/sitemap';
+import { Sitemap } from '@/types/sitemap';
 
 import { getApiKey } from '@/utils/get-api-key';
 
@@ -15,7 +15,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import Seo from '@/components/Seo';
 import Layout from '@/components/Layout';
 
-interface Props {
+type Props = {
   contents: Sitemap[];
 }
 

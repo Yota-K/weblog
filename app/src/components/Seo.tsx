@@ -6,7 +6,7 @@ import { config } from '@/config/app';
 
 import { pathNameChecker } from '@/utils/path-name-checker';
 
-interface Props {
+type Props = {
   title: string;
   description?: string;
   url?: string;

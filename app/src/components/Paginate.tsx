@@ -6,10 +6,10 @@ import styled from 'styled-components';
 import { colorObj } from '@/share/variables';
 import { config } from '@/config/app';
 
-interface Props {
+type Props = {
   paginateType: string;
   totalCount: number;
-}
+};
 
 const Paginate: React.FC<Props> = ({ paginateType, totalCount }) => {
   const router = useRouter();

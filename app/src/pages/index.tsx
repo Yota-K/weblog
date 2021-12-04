@@ -1,11 +1,10 @@
-import { NextComponentType, NextPageContext, GetStaticProps } from 'next';
+import { NextPage, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 
 import { config } from '@/config/app';
 
-import { Content } from '@/interfaces/content';
-import { RecordType } from '@/interfaces/record-type';
+import { Content } from '@/types/content';
 
 import { dateFormat } from '@/utils/date-format';
 import { getApiKey } from '@/utils/get-api-key';
@@ -22,14 +21,14 @@ import Layout from '@/components/Layout';
 import Paginate from '@/components/Paginate';
 import PostThumbnail from '@/components/PostThumbnail';
 
-interface Props {
+type Props = {
   contents: Content[];
   totalCount: number;
 }
 
 const paginateNum = config.paginateNum;
 
-const Home: NextComponentType<NextPageContext, RecordType, Props> = ({ contents, totalCount }) => {
+const Home: NextPage<Props> = ({ contents, totalCount }) => {
   const { siteTitle } = config.siteInfo;
 
   const paginateType = 'page';

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { colorObj } from '@/share/variables';
 
-interface Props {
+type Props = {
   siteTitle: React.ReactNode;
 }
 

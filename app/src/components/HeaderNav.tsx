@@ -2,36 +2,16 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
+import { config } from '@/config/app';
 import { device } from '@/share/media-query';
 
 const HeaderNav: React.FC = () => {
-  const navLinks = [
-    {
-      title: 'フロントエンド',
-      link: '/category/front-end',
-    },
-    {
-      title: 'バックエンド',
-      link: '/category/back-end',
-    },
-    {
-      title: 'その他もろもろ',
-      link: '/category/others',
-    },
-    {
-      title: 'サイトマップ',
-      link: '/sitemap',
-    },
-    {
-      title: 'お問い合わせ',
-      link: '/contact',
-    },
-  ];
+  const { headerNavLinks } = config;
 
   return (
     <HeaderNavBar>
       <ul>
-        {navLinks.map((el, i) => (
+        {headerNavLinks.map((el, i) => (
           <li key={i}>
             <Link href={el.link}>
               <a>{el.title}</a>

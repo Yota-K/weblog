@@ -8,7 +8,7 @@ import { config } from '@/config/app';
 import { pathNameChecker } from '@/utils/path-name-checker';
 import { colorObj } from '@/share/variables';
 
-interface Props {
+type Props = {
   blogPageInfo?: {
     categoryId: string;
     categoryName: string;

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import { colorObj } from '@/share/variables';
 
-import { SearchJson } from '@/interfaces/search-posts';
+import { SearchJson } from '@/types/search-posts';
 
-interface Props {
+type Props = {
   results: SearchJson[];
 }
 

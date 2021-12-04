@@ -5,8 +5,8 @@ import styled from 'styled-components';
 
 import { config } from '@/config/app';
 
-import { CategoriesAndTags } from '@/interfaces/taxonomy';
-import { SearchJson } from '@/interfaces/search-posts';
+import { CategoriesAndTags } from '@/types/taxonomy';
+import { SearchJson } from '@/types/search-posts';
 
 import { getApiKey } from '@/utils/get-api-key';
 

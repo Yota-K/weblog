@@ -1,12 +1,11 @@
-import { NextComponentType, NextPageContext, GetStaticPaths, GetStaticProps } from 'next';
+import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 
 import { config } from '@/config/app';
 
-import { Content } from '@/interfaces/content';
-import { RecordType } from '@/interfaces/record-type';
-import { BuildTaxonomyPaginateList } from '@/interfaces/taxonomy';
+import { Content } from '@/types/content';
+import { BuildTaxonomyPaginateList } from '@/types/taxonomy';
 
 import { dateFormat } from '@/utils/date-format';
 import { generateBuildPaginatePath } from '@/utils/generate-build-paginate-path';
@@ -25,7 +24,7 @@ import Paginate from '@/components/Paginate';
 import PostThumbnail from '@/components/PostThumbnail';
 import Seo from '@/components/Seo';
 
-interface Props {
+type Props = {
   contents: Content[];
   categoryName: string;
   categorySlug: string;
@@ -34,12 +33,7 @@ interface Props {
 
 const paginateNum = config.paginateNum;
 
-const CategoryPage: NextComponentType<NextPageContext, RecordType, Props> = ({
-  contents,
-  categoryName,
-  categorySlug,
-  totalCount,
-}) => {
+const CategoryPage: NextPage<Props> = ({ contents, categoryName, categorySlug, totalCount }) => {
   const { siteTitle } = config.siteInfo;
 
   const paginateType = `category/${categorySlug}`;

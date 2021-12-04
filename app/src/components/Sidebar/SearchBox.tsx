@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SearchJson } from '@/interfaces/search-posts';
+import { SearchJson } from '@/types/search-posts';
 
 import { H4 } from '@/share/Heading';
 
@@ -8,7 +8,7 @@ import { SidebarBox } from '@/components/Sidebar/SidebarBox';
 
 import SearchArea from '@/components/Search/SearchArea';
 
-interface Props {
+type Props = {
   searchPosts: SearchJson[];
 }
 
