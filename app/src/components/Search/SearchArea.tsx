@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 import { colorObj } from '@/share/variables';
 
-import { SearchJson } from '@/interfaces/search-posts';
+import { SearchJson } from '@/types/search-posts';
 
 import SearchView from '@/components/Search/SearchView';
 
-interface Props {
+type Props = {
   searchPosts: SearchJson[];
 }
 

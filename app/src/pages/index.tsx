@@ -4,7 +4,7 @@ import React from 'react';
 
 import { config } from '@/config/app';
 
-import { Content } from '@/interfaces/content';
+import { Content } from '@/types/content';
 
 import { dateFormat } from '@/utils/date-format';
 import { getApiKey } from '@/utils/get-api-key';
@@ -21,7 +21,7 @@ import Layout from '@/components/Layout';
 import Paginate from '@/components/Paginate';
 import PostThumbnail from '@/components/PostThumbnail';
 
-interface Props {
+type Props = {
   contents: Content[];
   totalCount: number;
 }

@@ -4,8 +4,8 @@ import React from 'react';
 
 import { config } from '@/config/app';
 
-import { Content } from '@/interfaces/content';
-import { PageSlug } from '@/interfaces/page-slug';
+import { Content } from '@/types/content';
+import { PageSlug } from '@/types/page-slug';
 
 import { dateFormat } from '@/utils/date-format';
 import { getApiKey } from '@/utils/get-api-key';
@@ -23,7 +23,7 @@ import Paginate from '@/components/Paginate';
 import PostThumbnail from '@/components/PostThumbnail';
 import Seo from '@/components/Seo';
 
-interface Props {
+type Props = {
   contents: Content[];
   tagName: string;
   tagSlug: string;

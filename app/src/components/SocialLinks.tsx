@@ -1,7 +1,7 @@
 import React from 'react';
 import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
 
-interface Props {
+type Props = {
   url: string;
 }
 

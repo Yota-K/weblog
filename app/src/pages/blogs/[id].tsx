@@ -7,8 +7,8 @@ import React from 'react';
 
 import { config } from '@/config/app';
 
-import { Content } from '@/interfaces/content';
-import { PageSlug } from '@/interfaces/page-slug';
+import { Content } from '@/types/content';
+import { PageSlug } from '@/types/page-slug';
 
 import { dateFormat } from '@/utils/date-format';
 
@@ -27,7 +27,7 @@ import Seo from '@/components/Seo';
 import SocialLinks from '@/components/SocialLinks';
 import Toc from '@/components/Toc';
 
-interface Props {
+type Props = {
   blog: Content;
   toc: {
     id: string;

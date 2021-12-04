@@ -1,4 +1,4 @@
-export interface Sitemap {
+export type Sitemap = {
   id: string;
   name: string;
   posts: {

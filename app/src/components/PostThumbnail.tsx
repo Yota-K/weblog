@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { device } from '@/share/media-query';
 
-interface Props {
+type Props = {
   className?: string;
   thumbnailUrl: string;
   width: string;

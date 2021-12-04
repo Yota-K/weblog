@@ -4,8 +4,8 @@ import React from 'react';
 
 import { config } from '@/config/app';
 
-import { Content } from '@/interfaces/content';
-import { BuildTaxonomyPaginateList } from '@/interfaces/taxonomy';
+import { Content } from '@/types/content';
+import { BuildTaxonomyPaginateList } from '@/types/taxonomy';
 
 import { dateFormat } from '@/utils/date-format';
 import { generateBuildPaginatePath } from '@/utils/generate-build-paginate-path';
@@ -24,7 +24,7 @@ import Paginate from '@/components/Paginate';
 import PostThumbnail from '@/components/PostThumbnail';
 import Seo from '@/components/Seo';
 
-interface Props {
+type Props = {
   contents: Content[];
   tagName: string;
   tagSlug: string;

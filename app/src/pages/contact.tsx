@@ -14,7 +14,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import Seo from '@/components/Seo';
 import Layout from '@/components/Layout';
 
-interface FormValues {
+type FormValues = {
   name: string;
   email: string;
   message: string;

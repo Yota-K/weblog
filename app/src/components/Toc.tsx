@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { H2 } from '@/share/Heading';
 import { colorObj } from '@/share/variables';
 
-interface Props {
+type Props = {
   toc: {
     id: string;
     text: string;

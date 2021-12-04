@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { CategoriesAndTags } from '@/interfaces/taxonomy';
-import { SearchJson } from '@/interfaces/search-posts';
+import { CategoriesAndTags } from '@/types/taxonomy';
+import { SearchJson } from '@/types/search-posts';
 
 import { device } from '@/share/media-query';
 
@@ -12,7 +12,7 @@ import Profile from '@/components/Sidebar/Profile';
 import CategoryList from '@/components/Sidebar/CategoryList';
 import TagList from '@/components/Sidebar/TagList';
 
-interface Props {
+type Props = {
   taxonomies: CategoriesAndTags;
   searchPosts: SearchJson[];
 }

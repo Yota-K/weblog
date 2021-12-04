@@ -8,7 +8,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { config } from '@/config/app';
 
-import { Content } from '@/interfaces/content';
+import { Content } from '@/types/content';
 
 import { dateFormat } from '@/utils/date-format';
 
@@ -26,7 +26,7 @@ import Seo from '@/components/Seo';
 import SocialLinks from '@/components/SocialLinks';
 import Toc from '@/components/Toc';
 
-interface Props {
+type Props = {
   blog: Content;
   toc: {
     id: string;

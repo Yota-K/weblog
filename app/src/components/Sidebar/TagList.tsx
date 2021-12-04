@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-import { Taxonomy } from '@/interfaces/taxonomy';
+import { Taxonomy } from '@/types/taxonomy';
 
 import { H4 } from '@/share/Heading';
 import { TagArea } from '@/share/TagArea';
@@ -9,7 +9,7 @@ import { TagLabel } from '@/share/TagLabel';
 
 import { SidebarBox } from '@/components/Sidebar/SidebarBox';
 
-interface Props {
+type Props = {
   tags: Taxonomy[];
 }
 
