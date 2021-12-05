@@ -1,30 +1,30 @@
-import cheerio from 'cheerio';
-import hljs from 'highlight.js';
 import MarkdownIt from 'markdown-it';
 import { NextPage, GetServerSideProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+import Breadcrumb from '@/components/Breadcrumb';
+import Layout from '@/components/Layout';
+import PostThumbnail from '@/components/PostThumbnail';
+import Seo from '@/components/Seo';
+import SocialLinks from '@/components/SocialLinks';
+import Toc from '@/components/Toc';
 
 import { config } from '@/config/app';
 
-import { Content } from '@/types/content';
-
-import { dateFormat } from '@/utils/date-format';
+import { fetchBlogPage } from '@/lib/fetch-blog-page';
 
 import { ShareArea, MyContent, PostDiv } from '@/share/blog';
 import { CategoryLabel } from '@/share/CategoryLabel';
-import { getApiKey } from '@/utils/get-api-key';
 import { H1 } from '@/share/Heading';
 import { TagArea } from '@/share/TagArea';
 import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
 
-import Breadcrumb from '@/components/Breadcrumb';
-import Layout from '@/components/Layout';
-import Seo from '@/components/Seo';
-import SocialLinks from '@/components/SocialLinks';
-import Toc from '@/components/Toc';
+import { Content } from '@/types/content';
+
+import { dateFormat } from '@/utils/date-format';
+import { parseHtml } from '@/utils/parse-html';
 
 type Props = {
   blog: Content;
@@ -35,7 +35,7 @@ type Props = {
   }[];
   body: string;
   draftKey: string;
-}
+};
 
 const Preview: NextPage<Props> = ({ blog, toc, body, draftKey }) => {
   const { siteTitle } = config.siteInfo;
@@ -88,14 +88,7 @@ const Preview: NextPage<Props> = ({ blog, toc, body, draftKey }) => {
           <SocialLinks url={url} />
         </ShareArea>
         <MyContent>
-          <LazyLoadImage
-            className="eyecatch"
-            width="100%"
-            height="auto"
-            src={blog.thumbnail.url}
-            alt="thumbnail"
-            effect="blur"
-          />
+          <PostThumbnail className="post-thumbnail" thumbnailUrl={blog.thumbnail.url} width="100%" height="auto" />
           <Toc toc={toc} />
           <PostDiv dangerouslySetInnerHTML={{ __html: body }}></PostDiv>
         </MyContent>
@@ -105,8 +98,6 @@ const Preview: NextPage<Props> = ({ blog, toc, body, draftKey }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const key = getApiKey();
-
   const { id, draftKey } = context.query;
 
   // 編集中の記事URLとdraftKeyが設定されていない場合を考慮
@@ -116,30 +107,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  const res = await fetch(`${process.env.ENDPOINT}/blogs/${id}?draftKey=${draftKey}`, key);
-  const blog = await res.json();
+  const { draftBlogData } = fetchBlogPage();
+  const blog = await draftBlogData(id as string, draftKey as string);
 
-  const $ = cheerio.load(blog.body, { _useHtmlParser2: true });
-
-  const headings = $('h2, h3').toArray();
-
-  const toc = headings.map((data: any) => ({
-    id: data.attribs.id,
-    text: data.children[0].data,
-    type: data.name,
-  }));
-
-  $('pre > code').each((i, elm) => {
-    const result = hljs.highlightAuto($(elm).text());
-    $(elm).html(result.value);
-    $(elm).addClass('hljs');
-  });
+  const { toc, body } = parseHtml(blog);
 
   return {
     props: {
-      blog: blog,
-      toc: toc,
-      body: $.html(),
+      blog,
+      toc,
+      body,
       draftKey,
     },
   };

@@ -36,8 +36,24 @@ export const fetchBlogPage = () => {
     return data;
   };
 
+  /**
+   * 下書き中の投稿データを取得
+   * @param contentId 記事ページのスラッグ
+   * @param draftKey draftKey
+   */
+  const draftBlogData = async (contentId: string, draftKey: string) => {
+    const data = await client.get<Content>({
+      endpoint: 'blogs',
+      contentId,
+      queries: { draftKey },
+    });
+
+    return data;
+  };
+
   return {
     blogPaths,
     blogData,
+    draftBlogData,
   };
 };
