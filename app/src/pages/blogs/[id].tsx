@@ -97,8 +97,10 @@ const Blog: NextPage<Props> = ({ blog, toc, body }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { blogPaths } = fetchBlogPage();
-  const paths = await blogPaths();
+  const { blogPathsData } = fetchBlogPage();
+  const data = await blogPathsData();
+
+  const paths = data.contents.map((post) => `/blogs/${post.id}`);
 
   return { paths, fallback: false };
 };

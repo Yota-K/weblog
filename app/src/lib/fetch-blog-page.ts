@@ -3,7 +3,7 @@ import { Content } from '@/types/content';
 
 type BlogPaths = {
   contents: Pick<Content, 'id'>[];
-  totalcount: number;
+  totalCount: number;
   offset: number;
   limit: number;
 };
@@ -12,15 +12,13 @@ export const fetchBlogPage = () => {
   /**
    * 記事ページを生成するために必要なパスの配列を生成
    */
-  const blogPaths = async () => {
+  const blogPathsData = async () => {
     const data = await client.get<BlogPaths>({
       endpoint: 'blogs',
-      queries: { limit: 9999, fields: 'id' },
+      queries: { fields: 'id', limit: 9999 },
     });
 
-    const paths = data.contents.map((post) => `/blogs/${post.id}`);
-
-    return paths;
+    return data;
   };
 
   /**
@@ -52,7 +50,7 @@ export const fetchBlogPage = () => {
   };
 
   return {
-    blogPaths,
+    blogPathsData,
     blogData,
     draftBlogData,
   };
