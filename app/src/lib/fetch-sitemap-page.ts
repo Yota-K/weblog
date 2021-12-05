@@ -9,7 +9,7 @@ type SitemapData = {
 };
 
 /**
- * サイトマップを生成するために必要なパスの配列を生成
+ * サイトマップを生成するために必要な情報を取得
  */
 export const fetchSitemapPage = async () => {
   const data = await client.get<SitemapData>({
