@@ -4,8 +4,9 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/config/*": ["config/*"],
-      "@/types/*": ["types/*"],
+      "@/lib/*": ["lib/*"],
       "@/share/*": ["share/*"],
+      "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"]
     },
     "target": "es5",
