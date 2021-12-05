@@ -2,9 +2,13 @@ export type Content = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  publishedAt?: string;
+  revisedAt: string;
   title: string;
   thumbnail: {
     url: string;
+    height: number;
+    width: number;
   };
   body: string;
   description: string;
@@ -26,4 +30,4 @@ export type Content = {
       id: string;
     }[];
   }[];
-}
+};
