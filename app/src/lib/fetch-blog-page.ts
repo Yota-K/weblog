@@ -15,7 +15,10 @@ export const fetchBlogPage = () => {
   const blogPathsData = async () => {
     const data = await client.get<BlogPaths>({
       endpoint: 'blogs',
-      queries: { fields: 'id', limit: 9999 },
+      queries: {
+        fields: 'id',
+        limit: 9999,
+      },
     });
 
     return data;
@@ -43,7 +46,9 @@ export const fetchBlogPage = () => {
     const data = await client.get<Content>({
       endpoint: 'blogs',
       contentId,
-      queries: { draftKey },
+      queries: {
+        draftKey,
+      },
     });
 
     return data;
