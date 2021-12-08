@@ -11,12 +11,13 @@ type Articles = {
 /**
  * 記事一覧を表示するために必要な情報を取得
  */
-export const fetchArticlesPage = async (offset: number, limit: number) => {
+export const fetchArticlesPage = async (offset: number, limit: number, filters?: string) => {
   const data = await client.get<Articles>({
     endpoint: 'blogs',
     queries: {
       offset,
       limit,
+      filters,
     },
   });
 
