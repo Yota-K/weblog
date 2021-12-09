@@ -2,13 +2,11 @@ import { client } from '@/utils/microcms-client';
 
 type TaxonomyType = 'category' | 'tags';
 
-// * category
-//   * index.tsx /category?fields=id&limit=9999
-//   * [id].tsx /category?depth=1&fields=id,posts.id&limit=9999
-// * tags
-//   * index.tsx /tags?fields=id&limit=9999
-//   * [id].tsx /tags?depth=1&fields=id,posts.id&limit=9999
-
+/**
+ * カテゴリーページ・タグページを表示するために必要な情報を取得
+ * @param endpoint APIのエンドポイント
+ * @param fields *コンテンツの中で取得する要素を指定
+ */
 export const fetchTaxonomiesData = async <T>(endpoint: TaxonomyType, fields: string) => {
   const data = await client.get<T>({
     endpoint,
@@ -21,9 +19,3 @@ export const fetchTaxonomiesData = async <T>(endpoint: TaxonomyType, fields: str
 
   return data;
 };
-
-// const { taxonomyData } = fetchTaxonomiesPage();
-//
-// const hoge = async () => {
-//   const hogee = await taxonomyData<{id: string}>('category', 'id');
-// }
