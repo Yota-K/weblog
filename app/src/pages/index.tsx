@@ -2,12 +2,16 @@ import { NextPage, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 
+import Layout from '@/components/Layout';
+import Paginate from '@/components/Paginate';
+import PostThumbnail from '@/components/PostThumbnail';
+import Seo from '@/components/Seo';
+
 import { config } from '@/config/app';
 
-import { Content } from '@/types/content';
+import { fetchArticlesPage } from '@/lib/fetch-articles-page';
 
-import { dateFormat } from '@/utils/date-format';
-import { getApiKey } from '@/utils/get-api-key';
+import { Content } from '@/types/content';
 
 import { BlogCard, PostInfo } from '@/share/BlogCard';
 import { CategoryLabel } from '@/share/CategoryLabel';
@@ -16,15 +20,12 @@ import { TagArea } from '@/share/TagArea';
 import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
 
-import Seo from '@/components/Seo';
-import Layout from '@/components/Layout';
-import Paginate from '@/components/Paginate';
-import PostThumbnail from '@/components/PostThumbnail';
+import { dateFormat } from '@/utils/date-format';
 
 type Props = {
   contents: Content[];
   totalCount: number;
-}
+};
 
 const paginateNum = config.paginateNum;
 
@@ -76,10 +77,7 @@ const Home: NextPage<Props> = ({ contents, totalCount }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const key = getApiKey();
-
-  const res = await fetch(`${process.env.ENDPOINT}/blogs?offset=0&limit=${paginateNum}`, key);
-  const data = await res.json();
+  const data = await fetchArticlesPage(0, paginateNum);
 
   const contents = data.contents;
   const totalCount = data.totalCount;

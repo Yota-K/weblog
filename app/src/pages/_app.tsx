@@ -42,9 +42,8 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   useEffect(() => {
     // サイドバーのカテゴリー・タグ一覧の取得
     const getTaxonomies = async () => {
-      const key = getApiKey();
-
-      const res = await fetch(`${process.env.ENDPOINT}/taxonomy`, key);
+      const url = location.origin;
+      const res = await fetch(`${url}/taxonomy.json`);
       const data = await res.json();
 
       setTaxonomies({

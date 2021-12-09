@@ -4,8 +4,9 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/config/*": ["config/*"],
-      "@/types/*": ["types/*"],
+      "@/lib/*": ["lib/*"],
       "@/share/*": ["share/*"],
+      "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"]
     },
     "target": "es5",
@@ -24,6 +25,6 @@
     "isolatedModules": true,
     "downlevelIteration": true
   },
-  "include": ["next-env.d.ts", "src/pages/**/*", "src/layouts/**/*", "src/components/**/*"],
+  "include": ["next-env.d.ts", "src/**/*"],
   "exclude": ["node_modules"]
 }

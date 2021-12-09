@@ -2,14 +2,19 @@ import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 
+import Breadcrumb from '@/components/Breadcrumb';
+import Layout from '@/components/Layout';
+import Paginate from '@/components/Paginate';
+import PostThumbnail from '@/components/PostThumbnail';
+import Seo from '@/components/Seo';
+
 import { config } from '@/config/app';
 
-import { Content } from '@/types/content';
-import { BuildTaxonomyPaginateList } from '@/types/taxonomy';
+import { fetchArticlesPage } from '@/lib/fetch-articles-page';
+import { fetchTaxonomiesData } from '@/lib/fetch-taxonomies-page';
 
-import { dateFormat } from '@/utils/date-format';
-import { generateBuildPaginatePath } from '@/utils/generate-build-paginate-path';
-import { getApiKey } from '@/utils/get-api-key';
+import { Content } from '@/types/content';
+import { TaxonomyIdsAndRelatedPosts } from '@/types/taxonomy';
 
 import { BlogCard, PostInfo } from '@/share/BlogCard';
 import { CategoryLabel } from '@/share/CategoryLabel';
@@ -18,18 +23,15 @@ import { TagArea } from '@/share/TagArea';
 import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
 
-import Breadcrumb from '@/components/Breadcrumb';
-import Layout from '@/components/Layout';
-import Paginate from '@/components/Paginate';
-import PostThumbnail from '@/components/PostThumbnail';
-import Seo from '@/components/Seo';
+import { dateFormat } from '@/utils/date-format';
+import { generateBuildPaginatePath } from '@/utils/generate-build-paginate-path';
 
 type Props = {
   contents: Content[];
   categoryName: string;
   categorySlug: string;
   totalCount: number;
-}
+};
 
 const paginateNum = config.paginateNum;
 
@@ -83,32 +85,28 @@ const CategoryPage: NextPage<Props> = ({ contents, categoryName, categorySlug, t
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const key = getApiKey();
+  const data = await fetchTaxonomiesData<TaxonomyIdsAndRelatedPosts>('category', 'id,posts.id');
+  const results = generateBuildPaginatePath(data.contents);
 
-  const res = await fetch(`${process.env.ENDPOINT}/taxonomy?fields=categories.id,categories.posts&limit=9999`, key);
-  const data = await res.json();
-
-  const contents: BuildTaxonomyPaginateList[] = data.categories;
-  const resultAry = generateBuildPaginatePath(contents);
-
-  const paths = resultAry.map((path) => ({
-    params: { slug: path.params.slug, id: path.params.id.toString() },
+  const paths = results.map((path) => ({
+    params: {
+      slug: path.params.slug,
+      id: path.params.id.toString(),
+    },
   }));
 
-  return { paths, fallback: false };
+  return {
+    paths,
+    fallback: false,
+  };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const key = getApiKey();
-
   const slug = context?.params?.slug;
   const id = context?.params?.id as string;
-
   const offset = parseInt(id) * paginateNum - paginateNum;
 
-  const params = `?filters=category_field[equals]${slug}&offset=${offset}&limit=${paginateNum}`;
-  const res = await fetch(`${process.env.ENDPOINT}/blogs${params}`, key);
-  const data = await res.json();
+  const data = await fetchArticlesPage(offset, paginateNum, `category_field[equals]${slug}`);
 
   const contents = data.contents;
   const categoryName = contents[0].category_field.name;

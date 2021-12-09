@@ -3,21 +3,21 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-import { config } from '@/config/app';
-
-import { Sitemap } from '@/types/sitemap';
-
-import { getApiKey } from '@/utils/get-api-key';
-
-import { colorObj } from '@/share/variables';
-
 import Breadcrumb from '@/components/Breadcrumb';
 import Seo from '@/components/Seo';
 import Layout from '@/components/Layout';
 
+import { config } from '@/config/app';
+
+import { fetchSitemapPage } from '@/lib/fetch-sitemap-page';
+
+import { Sitemap } from '@/types/sitemap';
+
+import { colorObj } from '@/share/variables';
+
 type Props = {
   contents: Sitemap[];
-}
+};
 
 const BlogSitemap: NextPage<Props> = ({ contents }) => {
   const { siteTitle } = config.siteInfo;
@@ -56,13 +56,7 @@ const BlogSitemap: NextPage<Props> = ({ contents }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const key = getApiKey();
-
-  const params = `?fields=id,name,posts.id,posts.createdAt,posts.title&limit=9999`;
-  const res = await fetch(`${process.env.ENDPOINT}/category${params}`, key);
-  const data = await res.json();
-
-  const contents: Sitemap[] = data.contents;
+  const contents = await fetchSitemapPage();
 
   contents.map((blog) => {
     const posts = blog.posts;
