@@ -11,7 +11,7 @@ import Seo from '@/components/Seo';
 import { config } from '@/config/app';
 
 import { fetchArticlesPage } from '@/lib/fetch-articles-page';
-import { fetchTaxonomiesData } from '@/lib/fetch-taxonomies-page';
+import { fetchTaxonomyPage } from '@/lib/fetch-taxonomy-page';
 
 import { Content } from '@/types/content';
 import { TaxonomyIdsAndRelatedPosts } from '@/types/taxonomy';
@@ -85,7 +85,7 @@ const CategoryPage: NextPage<Props> = ({ contents, categoryName, categorySlug, t
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await fetchTaxonomiesData<TaxonomyIdsAndRelatedPosts>('category', 'id,posts.id');
+  const data = await fetchTaxonomyPage<TaxonomyIdsAndRelatedPosts>('category', 'id,posts.id');
   const results = generateBuildPaginatePath(data.contents);
 
   const paths = results.map((path) => ({

@@ -1,29 +1,30 @@
 import styled from 'styled-components';
 
-import { device } from './media-query';
 import { colorObj } from './variables';
 
-export const TagLabel = styled.span`
+export const TagLabel = styled.span<{
+  margin?: string;
+  marginRight?: string;
+}>`
   display: inline-block;
-  margin-right: 10px;
-  margin: 8px 8px 8px 0;
+  margin: ${(props) => (props.margin ? props.margin : '0 6px 0 0')};
+  line-height: 1.2;
+
+  &:last-child {
+    margin-right: ${(props) => (props.margin ? props.marginRight : '0px')};
+  }
 
   a {
     display: inline-block;
-    padding: 0.2rem;
+    padding: 3px;
     border-radius: 3px;
     border: 1px solid ${colorObj.baseBlue};
     color: ${colorObj.baseBlue} !important;
-    font-size: 1rem;
 
     &:hover {
       background: ${colorObj.baseBlue};
       color: #fff !important;
       transition: all 0.3s;
-    }
-
-    ${device.mobileM} {
-      font-size: 0.8rem;
     }
   }
 `;

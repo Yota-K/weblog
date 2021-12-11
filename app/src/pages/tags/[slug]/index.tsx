@@ -11,7 +11,7 @@ import Seo from '@/components/Seo';
 import { config } from '@/config/app';
 
 import { fetchArticlesPage } from '@/lib/fetch-articles-page';
-import { fetchTaxonomiesData } from '@/lib/fetch-taxonomies-page';
+import { fetchTaxonomyPage } from '@/lib/fetch-taxonomy-page';
 
 import { Content } from '@/types/content';
 import { TaxonomyPaths } from '@/types/taxonomy';
@@ -84,7 +84,7 @@ const TagPage: NextPage<Props> = ({ contents, tagName, tagSlug, totalCount }) =>
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await fetchTaxonomiesData<TaxonomyPaths>('tags', 'id,posts.id');
+  const data = await fetchTaxonomyPage<TaxonomyPaths>('tags', 'id,posts.id');
 
   const results = data.contents;
   const paths = results.map((post) => `/tags/${post.id}`);

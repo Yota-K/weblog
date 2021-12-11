@@ -8,8 +8,6 @@ import { config } from '@/config/app';
 import { CategoriesAndTags } from '@/types/taxonomy';
 import { SearchJson } from '@/types/search-posts';
 
-import { getApiKey } from '@/utils/get-api-key';
-
 import { GlobalStyle } from '@/share/GlobalStyle';
 import { device } from '@/share/media-query';
 
@@ -17,7 +15,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 
-import 'highlight.js/styles/shades-of-purple.css';
+import 'highlight.js/styles/base16/materia.css';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const { siteTitle } = config.siteInfo;

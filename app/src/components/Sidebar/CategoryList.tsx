@@ -11,7 +11,7 @@ import { SidebarBox } from '@/components/Sidebar/SidebarBox';
 
 type Props = {
   categories: Taxonomy[];
-}
+};
 
 const CategoryList: React.FC<Props> = ({ categories }) => {
   return (
@@ -36,11 +36,11 @@ const CategoryUl = styled.ul`
   list-style: none;
 
   li {
-    padding: 10px;
-    font-size: 1rem;
     border-bottom: 1px solid #ddd;
 
     a {
+      display: block;
+      padding: 10px;
       color: ${colorObj.fontColor};
     }
   }

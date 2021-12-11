@@ -14,7 +14,7 @@ import SearchArea from '@/components/Search/SearchArea';
 type Props = {
   siteTitle: React.ReactNode;
   searchPosts: SearchJson[];
-}
+};
 
 const Header: React.FC<Props> = ({ siteTitle, searchPosts }) => {
   const router = useRouter();
@@ -69,11 +69,11 @@ const HeaderBar = styled.header`
 
 const SiteTitleTop = styled.h1`
   display: inline-block;
-  font-size: 2rem;
+  font-size: 32px;
   font-weight: 600;
 
   ${device.mobileM} {
-    font-size: 1.8rem;
+    font-size: 28px;
   }
 `;
 

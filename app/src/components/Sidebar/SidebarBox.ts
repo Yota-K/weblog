@@ -8,45 +8,47 @@ export const SidebarBox = styled.div`
 
   h4 {
     margin-bottom: 15px;
-    padding: 10px 20px;
+    padding: 10px;
     background: ${colorObj.subBlue};
     border-radius: 3px;
   }
+`;
 
-  .profile-area {
-    .profile-icon {
-      width: 100px;
-      max-width: 100px;
-      height: auto;
-      display: inline-block;
-      margin: 20px 0;
-      border: 1px solid ${colorObj.borderGray};
-      border-radius: 50%;
-    }
+export const ProfileArea = styled.div`
+  padding: 0 10px;
+  .profile-icon {
+    width: 100px;
+    max-width: 100px;
+    height: auto;
+    display: inline-block;
+    margin: 20px 0;
+    border: 1px solid ${colorObj.borderGray};
+    border-radius: 50%;
+  }
 
-    // プロフィールサイトのリンクの色
-    p {
-      a {
-        &:hover {
-          color: ${colorObj.baseRed};
-        }
+  // プロフィールサイトのリンクの色
+  p {
+    a {
+      font-weight: bold;
+      &:hover {
+        color: ${colorObj.baseRed};
       }
     }
+  }
 
-    .btn-area {
-      margin-top: 10px;
+  .btn-area {
+    margin-top: 10px;
 
-      .mini-icon {
-        margin-right: 10px;
-      }
+    .mini-icon {
+      margin-right: 10px;
+    }
 
-      .twitter svg {
-        fill: #42afe3;
-      }
+    .twitter svg {
+      fill: #42afe3;
+    }
 
-      .github svg {
-        fill: darkslategray;
-      }
+    .github svg {
+      fill: darkslategray;
     }
   }
 `;

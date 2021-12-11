@@ -38,41 +38,39 @@ const Page: NextPage<Props> = ({ contents, totalCount }) => {
   return (
     <Layout>
       <Seo title={siteTitle} />
-      <div id="blog-list">
-        {contents.map((content) => (
-          <BlogCard key={content.id}>
-            <PostThumbnail thumbnailUrl={content.thumbnail.url} width="308" height="173" />
-            <PostInfo>
-              <TimeStamp>
-                <time itemProp="dateCreated" dateTime={`${dateFormat(content.createdAt)}`}>
-                  {dateFormat(content.createdAt)}
-                </time>
-              </TimeStamp>
-              <H3>
-                <Link href="/blogs/[id]" as={`/blogs/${content.id}`}>
-                  <a>{content.title}</a>
-                </Link>
-              </H3>
-              <CategoryLabel>
-                カテゴリー：
-                <Link href="/category/[id]" as={`/category/${content.category_field.id}`}>
-                  <a>{content.category_field.name}</a>
-                </Link>
-              </CategoryLabel>
-              <TagArea>
-                {content.tag_field.map((tag) => (
-                  <TagLabel key={tag.id}>
-                    <Link href="/tags/[id]" as={`/tags/${tag.id}`}>
-                      <a>{tag.name}</a>
-                    </Link>
-                  </TagLabel>
-                ))}
-              </TagArea>
-            </PostInfo>
-          </BlogCard>
-        ))}
-        <Paginate paginateType={paginateType} totalCount={totalCount} />
-      </div>
+      {contents.map((content) => (
+        <BlogCard key={content.id}>
+          <PostThumbnail thumbnailUrl={content.thumbnail.url} width="308" height="173" />
+          <PostInfo>
+            <TimeStamp>
+              <time itemProp="dateCreated" dateTime={`${dateFormat(content.createdAt)}`}>
+                {dateFormat(content.createdAt)}
+              </time>
+            </TimeStamp>
+            <H3>
+              <Link href="/blogs/[id]" as={`/blogs/${content.id}`}>
+                <a>{content.title}</a>
+              </Link>
+            </H3>
+            <CategoryLabel>
+              カテゴリー：
+              <Link href="/category/[id]" as={`/category/${content.category_field.id}`}>
+                <a>{content.category_field.name}</a>
+              </Link>
+            </CategoryLabel>
+            <TagArea>
+              {content.tag_field.map((tag) => (
+                <TagLabel key={tag.id}>
+                  <Link href="/tags/[id]" as={`/tags/${tag.id}`}>
+                    <a>{tag.name}</a>
+                  </Link>
+                </TagLabel>
+              ))}
+            </TagArea>
+          </PostInfo>
+        </BlogCard>
+      ))}
+      <Paginate paginateType={paginateType} totalCount={totalCount} />
     </Layout>
   );
 };

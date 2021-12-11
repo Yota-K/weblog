@@ -18,7 +18,7 @@ type FormValues = {
   name: string;
   email: string;
   message: string;
-}
+};
 
 const Contact: NextPage = () => {
   const { siteTitle } = config.siteInfo;
@@ -65,7 +65,8 @@ const Contact: NextPage = () => {
       // undefinedの可能性があるとエラーが出たので
       if (!executeRecaptcha) return;
 
-      const reCaptchaToken = await executeRecaptcha('contactPage');
+      const { name, email, message } = data;
+      const token = await executeRecaptcha('contactPage');
 
       const res = await fetch(apiEndPoint, {
         method: 'POST',
@@ -73,10 +74,10 @@ const Contact: NextPage = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          message: data.message,
-          token: reCaptchaToken,
+          name,
+          email,
+          message,
+          token,
         }),
       });
 
