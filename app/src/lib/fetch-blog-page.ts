@@ -1,4 +1,5 @@
 import { client } from '@/utils/microcms-client';
+import { config } from '@/config/app';
 import { Content } from '@/types/content';
 
 type BlogPaths = {
@@ -9,12 +10,14 @@ type BlogPaths = {
 };
 
 export const fetchBlogPage = () => {
+  const { endpoint } = config.siteInfo;
+
   /**
    * 記事ページを生成するために必要なパスの配列を生成
    */
   const blogPathsData = async () => {
     const data = await client.get<BlogPaths>({
-      endpoint: 'blogs',
+      endpoint: endpoint.blogs,
       queries: {
         fields: 'id',
         limit: 9999,
@@ -30,7 +33,7 @@ export const fetchBlogPage = () => {
    */
   const blogData = async (contentId: string) => {
     const data = await client.get<Content>({
-      endpoint: 'blogs',
+      endpoint: endpoint.blogs,
       contentId,
     });
 
@@ -44,7 +47,7 @@ export const fetchBlogPage = () => {
    */
   const draftBlogData = async (contentId: string, draftKey: string) => {
     const data = await client.get<Content>({
-      endpoint: 'blogs',
+      endpoint: endpoint.blogs,
       contentId,
       queries: {
         draftKey,

@@ -1,4 +1,5 @@
 import { client } from '@/utils/microcms-client';
+import { config } from '@/config/app';
 import { Content } from '@/types/content';
 
 type Articles = {
@@ -15,8 +16,10 @@ type Articles = {
  * @param filters? 取得条件の指定
  */
 export const fetchArticlesPage = async (offset: number, limit: number, filters?: string) => {
+  const { endpoint } = config.siteInfo;
+
   const data = await client.get<Articles>({
-    endpoint: 'blogs',
+    endpoint: endpoint.blogs,
     queries: {
       offset,
       limit,

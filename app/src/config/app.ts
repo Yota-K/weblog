@@ -6,6 +6,11 @@ export const config = {
     ogpImage:
       'https://images.microcms-assets.io/protected/ap-northeast-1:4e1ce5b7-3cdc-47cb-b3a0-9c403488fea6/service/karukichi-tech-blog/media/top-ogp.png',
     serviceDomain: 'karukichi-tech-blog',
+    endpoint: {
+      blogs: 'blogs',
+      category: 'category',
+      tags: 'tags',
+    },
   },
   headerNavLinks: [
     {
