@@ -2,12 +2,24 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/config/*": ["config/*"],
-      "@/lib/*": ["lib/*"],
-      "@/share/*": ["share/*"],
-      "@/types/*": ["types/*"],
-      "@/utils/*": ["utils/*"]
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/config/*": [
+        "config/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/share/*": [
+        "share/*"
+      ],
+      "@/types/*": [
+        "types/*"
+      ],
+      "@/utils/*": [
+        "utils/*"
+      ]
     },
     "target": "es5",
     "module": "esnext",
@@ -16,15 +28,27 @@
     "strict": true,
     "esModuleInterop": true,
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext", "es6", "dom"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es6",
+      "dom"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "src/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
