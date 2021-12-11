@@ -1,8 +1,6 @@
-FROM node:15-alpine
+FROM node:16-alpine
 
 RUN apk update
-
-RUN apk add nodejs
 
 RUN npm install -g ts-node typescript npm-check-updates
 
