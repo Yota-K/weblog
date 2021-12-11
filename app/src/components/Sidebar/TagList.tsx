@@ -11,13 +11,13 @@ import { SidebarBox } from '@/components/Sidebar/SidebarBox';
 
 type Props = {
   tags: Taxonomy[];
-}
+};
 
 const TagList: React.FC<Props> = ({ tags }) => {
   return (
     <SidebarBox>
       <H4>タグ</H4>
-      <TagArea>
+      <TagArea className="tag-area">
         {tags.map((tag) => (
           <TagLabel key={tag.id}>
             <Link href="/tags/[id]" as={`/tags/${tag.id}`}>

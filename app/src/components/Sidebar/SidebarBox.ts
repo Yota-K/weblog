@@ -8,12 +8,14 @@ export const SidebarBox = styled.div`
 
   h4 {
     margin-bottom: 15px;
-    padding: 10px 20px;
+    padding: 10px;
     background: ${colorObj.subBlue};
     border-radius: 3px;
   }
 
+  // プロフィール
   .profile-area {
+    padding: 0 10px;
     .profile-icon {
       width: 100px;
       max-width: 100px;
@@ -49,5 +51,11 @@ export const SidebarBox = styled.div`
         fill: darkslategray;
       }
     }
+  }
+
+  // タグ
+  .tag-area {
+    margin: 0;
+    padding: 0 10px;
   }
 `;
