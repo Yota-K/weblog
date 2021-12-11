@@ -5,7 +5,7 @@ import { config } from '@/config/app';
 
 import { H4 } from '@/share/Heading';
 
-import { SidebarBox } from '@/components/Sidebar/SidebarBox';
+import { SidebarBox, ProfileArea } from '@/components/Sidebar/SidebarBox';
 
 const Profile: React.FC = () => {
   const { twitterUrl, githubUrl, profileUrl } = config.urls;
@@ -13,7 +13,7 @@ const Profile: React.FC = () => {
   return (
     <SidebarBox>
       <H4>プロフィール</H4>
-      <div className="profile-area">
+      <ProfileArea>
         <LazyLoadImage className="profile-icon" src="/icon.png" alt="icon" width="102" height="102" effect="blur" />
         <p>カルキチ副島です。</p>
         <p>都内の自社開発企業でウェブエンジニアやっています。</p>
@@ -34,7 +34,7 @@ const Profile: React.FC = () => {
             </svg>
           </a>
         </div>
-      </div>
+      </ProfileArea>
     </SidebarBox>
   );
 };
