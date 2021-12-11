@@ -27,6 +27,7 @@ export const SidebarBox = styled.div`
     // プロフィールサイトのリンクの色
     p {
       a {
+        font-weight: bold;
         &:hover {
           color: ${colorObj.baseRed};
         }
