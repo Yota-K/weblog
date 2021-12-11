@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { device } from '@/share/media-query';
 import { colorObj } from '@/share/variables';
 
-export const CategoryLabel = styled.span`
+export const CategoryLabel = styled.div`
   display: block;
-  margin-top: 10px;
-  font-size: 1rem;
+  margin: 12px 0;
   line-height: 2;
+
+  ${device.mobileM} {
+    font-size: 14px;
+  }
 
   a {
     color: ${colorObj.infoColor};
@@ -15,9 +18,5 @@ export const CategoryLabel = styled.span`
     &:hover {
       color: ${colorObj.baseBlue};
     }
-  }
-
-  ${device.mobileM} {
-    font-size: 0.8rem;
   }
 `;

@@ -4,6 +4,11 @@ import { colorObj } from '@/share/variables';
 import { device } from '@/share/media-query';
 
 export const ShareArea = styled.div`
+  margin-top: 24px;
+  ${device.mobileM} {
+    margin-top: 12px;
+  }
+
   button {
     margin-right: 8px;
   }

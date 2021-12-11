@@ -52,10 +52,4 @@ export const SidebarBox = styled.div`
       }
     }
   }
-
-  // タグ
-  .tag-area {
-    margin: 0;
-    padding: 0 10px;
-  }
 `;
