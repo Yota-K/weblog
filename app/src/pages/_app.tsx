@@ -8,8 +8,6 @@ import { config } from '@/config/app';
 import { CategoriesAndTags } from '@/types/taxonomy';
 import { SearchJson } from '@/types/search-posts';
 
-import { getApiKey } from '@/utils/get-api-key';
-
 import { GlobalStyle } from '@/share/GlobalStyle';
 import { device } from '@/share/media-query';
 
