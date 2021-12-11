@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { device } from './media-query';
 import { colorObj } from './variables';
 
 export const TagLabel = styled.span<{
@@ -26,10 +25,6 @@ export const TagLabel = styled.span<{
       background: ${colorObj.baseBlue};
       color: #fff !important;
       transition: all 0.3s;
-    }
-
-    ${device.mobileM} {
-      font-size: 14px;
     }
   }
 `;

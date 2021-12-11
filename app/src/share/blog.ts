@@ -15,18 +15,21 @@ export const ShareArea = styled.div`
 `;
 
 export const MyContent = styled.div`
-  margin-top: 35px;
+  margin-top: 30px;
   min-height: 800px;
   word-break: break-all;
 
   h2 {
     margin: 20px 0;
-    padding: 0.4rem;
+    padding: 6px;
     background: #b8d0f5;
     border-radius: 3px;
-    font-size: 1.6rem;
     letter-spacing: 0.4px;
-    font-size: 1.4rem;
+    font-size: 22px;
+
+    ${device.mobileM} {
+      font-size: 20px;
+    }
   }
 
   h3 {
@@ -34,7 +37,7 @@ export const MyContent = styled.div`
     margin: 20px 0;
     padding-bottom: 5px;
     border-bottom: 2px solid ${colorObj.borderGray};
-    font-size: 1.4rem;
+    font-size: 18px;
 
     &::after {
       position: absolute;
@@ -43,10 +46,6 @@ export const MyContent = styled.div`
       content: '';
       width: 30%;
       border-bottom: 2px solid ${colorObj.baseBlue};
-    }
-
-    ${device.mobileM} {
-      font-size: 1.2rem;
     }
   }
 
@@ -60,7 +59,7 @@ export const MyContent = styled.div`
   }
 
   p {
-    font-size: 1.1rem;
+    font-size: 17px;
     line-height: 1.9;
 
     code {
@@ -71,7 +70,7 @@ export const MyContent = styled.div`
     }
 
     ${device.mobileS} {
-      font-size: 1rem;
+      font-size: 16px;
     }
   }
 
@@ -125,7 +124,7 @@ export const MyContent = styled.div`
     overflow-x: scroll;
 
     code {
-      font-size: 0.9rem;
+      font-size: 14px;
       line-height: 1.8;
 
       &.hljs {

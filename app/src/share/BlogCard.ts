@@ -7,7 +7,7 @@ export const BlogCard = styled.div`
   display: flex;
   align-items: start;
   margin-bottom: 20px;
-  padding: 10px 0;
+  padding: 10px 0 16px;
   border-top: 1px solid ${colorObj.borderGray};
   border-bottom: 1px solid ${colorObj.borderGray};
 
