@@ -6,7 +6,7 @@ import { colorObj } from '@/share/variables';
 
 type Props = {
   siteTitle: React.ReactNode;
-}
+};
 
 const Footer: React.FC<Props> = ({ siteTitle }) => {
   const scrollToTop = () => scroll.scrollToTop();
