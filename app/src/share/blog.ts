@@ -84,7 +84,7 @@ export const MyContent = styled.div`
   ul,
   ol {
     margin: 25px 0;
-    padding: 0.5em 0.5em 0.5em 2em;
+    padding: 8px 8px 8px 32px;
     background: #fffbf4;
     border: 2px solid #f3a6c3;
     border-radius: 3px;
@@ -93,6 +93,11 @@ export const MyContent = styled.div`
       font-weight: 600;
       line-height: 1.9;
     }
+  }
+
+  ul > li > ul {
+    border: none;
+    margin: 0;
   }
 
   blockquote {
