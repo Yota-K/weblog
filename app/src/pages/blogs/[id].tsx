@@ -1,7 +1,7 @@
 import MarkdownIt from 'markdown-it';
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Breadcrumb from '@/components/Breadcrumb';
 import Layout from '@/components/Layout';
@@ -51,6 +51,16 @@ const Blog: NextPage<Props> = ({ blog, toc, body }) => {
   const md = new MarkdownIt({
     html: true,
   });
+
+  useEffect(() => {
+    const url = 'https://platform.twitter.com/widgets.js';
+    const script = document.createElement('script');
+
+    script.src = url;
+    script.setAttribute('async', 'async');
+
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <Layout>
