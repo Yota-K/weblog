@@ -1,7 +1,7 @@
 import MarkdownIt from 'markdown-it';
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import Breadcrumb from '@/components/Breadcrumb';
 import Layout from '@/components/Layout';
