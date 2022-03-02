@@ -26,7 +26,7 @@
 # ビルドの設定
 [build]
   command = 'npm run build'
-  publish = 'out_publish'
+  publish = '.next'
   functions = 'out_functions'
 
 # プラグインの設定
