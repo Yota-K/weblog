@@ -9,7 +9,7 @@ type Props = {
   thumbnailUrl: string;
   width: string;
   height: string;
-}
+};
 
 const PostThumbnail: React.FC<Props> = ({ className, thumbnailUrl, width, height }) => {
   return (
@@ -31,11 +31,14 @@ export const Thumbnail = styled.div`
     height: auto;
   }
 
+  /* 記事ページのサムネイル */
   &.post-thumbnail {
     width: 100%;
+    margin-top: 30px;
 
     img {
       margin: 0 0 60px 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
       ${device.mobileM} {
         margin: 0 0 30px 0;

@@ -96,8 +96,8 @@ const Blog: NextPage<Props> = ({ blog, toc, body }) => {
         <ShareArea>
           <SocialLinks url={url} />
         </ShareArea>
+        <PostThumbnail className="post-thumbnail" thumbnailUrl={blog.thumbnail.url} width="100%" height="auto" />
         <MyContent>
-          <PostThumbnail className="post-thumbnail" thumbnailUrl={blog.thumbnail.url} width="100%" height="auto" />
           <Toc toc={toc} />
           <PostDiv dangerouslySetInnerHTML={{ __html: body }}></PostDiv>
         </MyContent>

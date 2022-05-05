@@ -15,7 +15,6 @@ export const ShareArea = styled.div`
 `;
 
 export const MyContent = styled.div`
-  margin-top: 30px;
   min-height: 800px;
   word-break: break-all;
 
@@ -75,7 +74,7 @@ export const MyContent = styled.div`
   }
 
   img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     margin: 30px 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
