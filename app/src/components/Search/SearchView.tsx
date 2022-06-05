@@ -7,7 +7,7 @@ import { SearchJson } from '@/types/search-posts';
 
 type Props = {
   results: SearchJson[];
-}
+};
 
 const SearchView: React.FC<Props> = ({ results }) => {
   return (
@@ -40,10 +40,16 @@ const SearchUl = styled.ul<ModalHeight>`
   height: ${(props) => (props.resultsLength <= 3 ? 'auto' : '220px')};
   overflow-y: scroll;
   ::-webkit-scrollbar {
-    display: none;
+    width: 5px;
+    height: 5px;
+    border-left: 1px solid ${colorObj.borderGray};
+  }
+  ::-webkit-scrollbar-thumb {
+    background: ${colorObj.accentBlue};
+    border-radius: 5px;
+    box-shadow: inset 3px 3px 3px rgba(255, 255, 255, 0.2);
   }
   padding-top: 30px;
-  scrollbar-width: none;
   box-sizing: border-box;
   z-index: 997;
 `;
