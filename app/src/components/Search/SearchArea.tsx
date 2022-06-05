@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { colorObj } from '@/share/variables';
@@ -6,56 +6,15 @@ import { colorObj } from '@/share/variables';
 import { SearchJson } from '@/types/search-posts';
 
 import SearchView from '@/components/Search/SearchView';
+import { useSearchPosts } from './useSearchPosts';
 
 type Props = {
   searchPosts: SearchJson[];
-}
+};
 
+// TODO: propsの名前変更する
 const SearchArea: React.FC<Props> = ({ searchPosts }) => {
-  const [results, setResults] = useState<SearchJson[]>([
-    {
-      id: '',
-      title: '',
-      tag_field: [
-        {
-          name: '',
-        },
-      ],
-    },
-  ]);
-
-  const [searchWord, setSearchWord] = useState('');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchWord(e.target.value);
-  };
-
-  const searchFunc = useCallback(() => {
-    // 半角文字列に変換
-    const value = searchWord.toLowerCase();
-
-    const genarateNewAry = searchPosts.filter((e) => {
-      const tags = e.tag_field.map((e) => e.name);
-      const tagStr = tags.join(',');
-
-      // タイトル・記事のURL・タグの配列を文字列として連結
-      const target = `
-        ${e.title.toLowerCase()}
-        ${e.id.toLowerCase()}
-        ${tagStr.toLowerCase()}
-      `;
-
-      // 生成した配列に検索ワードが含まれる場合は-1以外が返る
-      return target.indexOf(value) !== -1;
-    });
-
-    setResults(genarateNewAry);
-  }, [searchWord, searchPosts]);
-
-  useEffect(() => {
-    if (searchWord !== '') searchFunc();
-  }, [searchWord, searchFunc]);
-
+  const { results, searchWord, handleChange } = useSearchPosts(searchPosts);
   return (
     <>
       <InputWrapper>
