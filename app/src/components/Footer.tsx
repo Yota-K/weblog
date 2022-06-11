@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
 import styled from 'styled-components';
 
@@ -9,17 +9,18 @@ type Props = {
 };
 
 const Footer: React.FC<Props> = ({ siteTitle }) => {
-  const scrollToTop = () => scroll.scrollToTop();
+  const scrollSvgRef = useRef<SVGSVGElement>(null);
 
   const handleScroll = () => {
-    const scrollBtn = document.querySelector('.scroll-top');
+    if (!scrollSvgRef.current) return;
+
     const height = window.innerHeight;
     const offset = window.pageYOffset;
 
     if (offset - height > height) {
-      scrollBtn?.classList.add('slide-top');
+      scrollSvgRef.current.style.transform = 'translateY(0)';
     } else {
-      scrollBtn?.classList.remove('slide-top');
+      scrollSvgRef.current.style.transform = 'translateY(1000px)';
     }
   };
 
@@ -33,17 +34,16 @@ const Footer: React.FC<Props> = ({ siteTitle }) => {
     }
   }, []);
 
-  const year = new Date().getFullYear();
-
   return (
     <FooterBar>
       <svg
-        onClick={scrollToTop}
-        className="scroll-top"
+        ref={scrollSvgRef}
+        onClick={() => scroll.scrollToTop()}
         xmlns="http://www.w3.org/2000/svg"
         width="34"
         height="34"
         viewBox="0 0 24 24"
+        className="scroll-top"
       >
         <path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z" />
       </svg>
@@ -55,7 +55,7 @@ const Footer: React.FC<Props> = ({ siteTitle }) => {
         </p>
       </SiteInfo>
       <CopyRight>
-        © 2020〜{year} {siteTitle}
+        © 2020〜{new Date().getFullYear()} {siteTitle}
       </CopyRight>
     </FooterBar>
   );
@@ -82,11 +82,6 @@ const FooterBar = styled.footer`
     &:hover {
       box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
     }
-  }
-
-  .slide-top {
-    transform: translateY(0);
-    transition: all 0.8s;
   }
 
   p {
