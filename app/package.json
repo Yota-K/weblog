@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build": "next build && node create-posts-json.js && node create-xml-sitemap.js && node create-taxonomy.js",
+    "build": "next build && node create-posts-json.js && node create-sitemap-xml.js && node create-taxonomy.js",
     "start": "next start",
     "lint": "next lint",
     "fmt": "prettier --write **/*.{js,json,ts,tsx}"
