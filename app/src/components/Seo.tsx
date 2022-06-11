@@ -11,11 +11,10 @@ type Props = {
   description?: string;
   url?: string;
   thumbnail?: string;
-}
+};
 
 const Seo: React.FC<Props> = ({ title, description, url, thumbnail }) => {
-  const { ogpImage } = config.siteInfo;
-  const { defaultDescription } = config.siteInfo;
+  const { defaultDescription, ogpImage } = config.siteInfo;
 
   const router = useRouter();
   const isBlogPage = pathNameChecker(router);
