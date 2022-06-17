@@ -21,13 +21,11 @@ export const useSearchPosts = (searchJson: SearchJson[]) => {
     (keyword: string) => {
       return searchJson.filter((post) => {
         const tags = post.tag_field.map((tag) => tag.name);
-        const tagStr = tags.join(',');
+        // ,で区切ると検索フィールドに,が入力されると全データがヒットしてしまうので、
+        // 意図的に入力するのが難しいタブ文字で区切る
+        const tagStr = tags.join('\t');
 
-        const target = `
-        ${post.title.toLowerCase()}
-        ${post.id.toLowerCase()}
-        ${tagStr.toLowerCase()}
-      `;
+        const target = `${post.title.toLowerCase()}\t${tagStr.toLowerCase()}`;
 
         return target.includes(keyword);
       });
@@ -54,13 +52,13 @@ export const useSearchPosts = (searchJson: SearchJson[]) => {
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchWord(e.target.value);
+    setSearchWord(e.target.value.trimStart());
   };
 
   const searchFunc = useCallback(() => {
     // 半角文字列に変換
-    const keyword = searchWord.toLowerCase();
-    const keywordAry = keyword.replaceAll(/ |　/g, ' ').split(' ');
+    const keyword = searchWord.trim().toLowerCase();
+    const keywordAry = keyword.replace(/\s/g, '\t').split('\t');
 
     // 1つの単語で検索された時の処理
     if (keywordAry.length === 0) {
