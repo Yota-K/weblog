@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
-    "@netlify/plugin-nextjs": "^4.2.7",
+    "@netlify/plugin-nextjs": "^4.23.1",
     "@types/cheerio": "^0.22.31",
     "@types/dotenv": "^8.2.0",
     "@types/highlight.js": "^9.12.4",
