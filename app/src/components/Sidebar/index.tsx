@@ -6,7 +6,8 @@ import { SearchJson } from '@/types/search-posts';
 
 import { device } from '@/share/media-query';
 
-import GoogleAdsense from '@/components/GoogleAdsense';
+// TODO: 身分証明がなくて、アドセンスが消えた（なる早で身分証明証を取得する）
+// import GoogleAdsense from '@/components/GoogleAdsense';
 import SearchBox from '@/components/Sidebar/SearchBox';
 import Profile from '@/components/Sidebar/Profile';
 import CategoryList from '@/components/Sidebar/CategoryList';
@@ -15,12 +16,11 @@ import TagList from '@/components/Sidebar/TagList';
 type Props = {
   taxonomies: CategoriesAndTags;
   searchPosts: SearchJson[];
-}
+};
 
 const Sidebar: React.FC<Props> = ({ taxonomies, searchPosts }) => {
   return (
     <BlogSidebar>
-      <GoogleAdsense />
       <SearchBox searchPosts={searchPosts} />
       <Profile />
       <CategoryList categories={taxonomies.categories} />
