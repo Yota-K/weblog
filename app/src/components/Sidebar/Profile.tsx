@@ -5,6 +5,7 @@ import { config } from '@/config/app';
 
 import { H4 } from '@/share/Heading';
 
+import CoffeeButtonArea from '@/components/CoffeeButtonArea';
 import { SidebarBox, ProfileArea } from '@/components/Sidebar/SidebarBox';
 
 const Profile: React.FC = () => {
@@ -34,6 +35,7 @@ const Profile: React.FC = () => {
             </svg>
           </a>
         </div>
+        <CoffeeButtonArea />
       </ProfileArea>
     </SidebarBox>
   );

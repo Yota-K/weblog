@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useEffect } from 'react';
 
 import Breadcrumb from '@/components/Breadcrumb';
+import CoffeeButtonArea from '@/components/CoffeeButtonArea';
 import Layout from '@/components/Layout';
 import PostThumbnail from '@/components/PostThumbnail';
 import Seo from '@/components/Seo';
@@ -101,6 +102,7 @@ const Blog: NextPage<Props> = ({ blog, toc, body }) => {
           <Toc toc={toc} />
           <PostDiv dangerouslySetInnerHTML={{ __html: body }}></PostDiv>
         </MyContent>
+        <CoffeeButtonArea isPost />
       </div>
     </Layout>
   );
