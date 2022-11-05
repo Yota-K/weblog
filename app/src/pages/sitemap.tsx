@@ -34,7 +34,7 @@ const BlogSitemap: NextPage<Props> = ({ contents }) => {
           <ul key={content.id}>
             <li>
               <Link href="/category/[id]" as={`/category/${content.id}`}>
-                <a>{content.name}</a>
+                {content.name}
               </Link>
             </li>
             <PostList>
@@ -42,7 +42,7 @@ const BlogSitemap: NextPage<Props> = ({ contents }) => {
                 {content.posts.map((post) => (
                   <li key={post.id}>
                     <Link href="/blogs/[id]" as={`/blogs/${post.id}`}>
-                      <a>{post.title}</a>
+                      {post.title}
                     </Link>
                   </li>
                 ))}

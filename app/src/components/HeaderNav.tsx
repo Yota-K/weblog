@@ -13,9 +13,7 @@ const HeaderNav: React.FC = () => {
       <ul>
         {headerNavLinks.map((el, i) => (
           <li key={i}>
-            <Link href={el.link}>
-              <a>{el.title}</a>
-            </Link>
+            <Link href={el.link}>{el.title}</Link>
           </li>
         ))}
       </ul>

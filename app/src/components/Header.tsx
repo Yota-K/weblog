@@ -39,15 +39,11 @@ const Header: React.FC<Props> = ({ siteTitle, searchPosts }) => {
       <HeaderBar>
         {getPathName() === '/' ? (
           <SiteTitleTop>
-            <Link href="/">
-              <a>{siteTitle}</a>
-            </Link>
+            <Link href="/">{siteTitle}</Link>
           </SiteTitleTop>
         ) : (
           <SiteTitle>
-            <Link href="/">
-              <a>{siteTitle}</a>
-            </Link>
+            <Link href="/">{siteTitle}</Link>
           </SiteTitle>
         )}
       </HeaderBar>

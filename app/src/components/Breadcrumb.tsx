@@ -16,7 +16,7 @@ type Props = {
   };
   pageTitle?: string;
   draftKey?: string;
-}
+};
 
 const Breadcrumb: React.FC<Props> = ({ blogPageInfo, pageTitle, draftKey }) => {
   const router = useRouter();
@@ -44,9 +44,7 @@ const Breadcrumb: React.FC<Props> = ({ blogPageInfo, pageTitle, draftKey }) => {
   return (
     <MyBreadcrumb>
       <BreadcrumbItem>
-        <Link href="/">
-          <a>{siteTitle}</a>
-        </Link>
+        <Link href="/">{siteTitle}</Link>
       </BreadcrumbItem>
       {blogPageBreadCrumb()}
       {pageTitle && <BreadcrumbItem>{pageTitle}</BreadcrumbItem>}
