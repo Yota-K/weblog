@@ -57,20 +57,20 @@ const CategoryPage: NextPage<Props> = ({ contents, categoryName, categorySlug, t
               </TimeStamp>
               <H3>
                 <Link href="/blogs/[id]" as={`/blogs/${content.id}`}>
-                  <a>{content.title}</a>
+                  {content.title}
                 </Link>
               </H3>
               <CategoryLabel>
                 カテゴリー：
                 <Link href="/category/[id]" as={`/category/${content.category_field.id}`}>
-                  <a>{content.category_field.name}</a>
+                  {content.category_field.name}
                 </Link>
               </CategoryLabel>
               <TagArea>
                 {content.tag_field.map((tag) => (
                   <TagLabel key={tag.id}>
                     <Link href="/tags/[id]" as={`/tags/${tag.id}`}>
-                      <a>{tag.name}</a>
+                      {tag.name}
                     </Link>
                   </TagLabel>
                 ))}

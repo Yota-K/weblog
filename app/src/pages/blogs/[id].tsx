@@ -82,14 +82,14 @@ const Blog: NextPage<Props> = ({ blog, toc, body }) => {
         <CategoryLabel>
           カテゴリー：
           <Link href="/category/[id]" as={`/category/${blog.category_field.id}`}>
-            <a>{blog.category_field.name}</a>
+            {blog.category_field.name}
           </Link>
         </CategoryLabel>
         <TagArea>
           {blog.tag_field.map((tag) => (
             <TagLabel key={tag.id}>
               <Link href="/tags/[id]" as={`/tags/${tag.id}`}>
-                <a>{tag.name}</a>
+                {tag.name}
               </Link>
             </TagLabel>
           ))}

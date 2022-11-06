@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { device } from '@/share/media-query';
 
-const Layout: React.FC = ({ children }) => <Main>{children}</Main>;
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => <Main>{children}</Main>;
 
 const Main = styled.article`
   width: 100%;

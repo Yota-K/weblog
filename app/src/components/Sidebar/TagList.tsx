@@ -21,7 +21,7 @@ const TagList: React.FC<Props> = ({ tags }) => {
         {tags.map((tag) => (
           <TagLabel margin="4px" key={tag.id}>
             <Link href="/tags/[id]" as={`/tags/${tag.id}`}>
-              <a>{tag.name}</a>
+              {tag.name}
             </Link>
           </TagLabel>
         ))}

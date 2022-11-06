@@ -21,9 +21,7 @@ const CategoryList: React.FC<Props> = ({ categories }) => {
         {categories.map((category) => (
           <li key={category.id}>
             <Link href="/category/[id]" as={`/category/${category.id}`}>
-              <a>
-                {category.name} ({category.posts.length})
-              </a>
+              {category.name} ({category.posts.length})
             </Link>
           </li>
         ))}

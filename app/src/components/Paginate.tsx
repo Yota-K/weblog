@@ -22,8 +22,8 @@ const Paginate: React.FC<Props> = ({ paginateType, totalCount }) => {
     if (path === '/' || path === `/${paginateType}` || path === `/${paginateType}/1`) {
       return (
         <MyPaginate type="flex-end">
-          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/2`}>
-            <a className="next-paginate">Next &gt;&gt;</a>
+          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/2`} className="next-paginate">
+            Next &gt;&gt;
           </Link>
         </MyPaginate>
       );
@@ -41,19 +41,31 @@ const Paginate: React.FC<Props> = ({ paginateType, totalCount }) => {
     if (currentPaginateNum === totalPaginateNum) {
       return (
         <MyPaginate type="flex-start">
-          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${currentPaginateNum - 1}`}>
-            <a className="prev-paginate"> &lt;&lt; Prev</a>
+          <Link
+            href={`/${paginateType}/[id]`}
+            as={`/${paginateType}/${currentPaginateNum - 1}`}
+            className="prev-paginate"
+          >
+            &lt;&lt; Prev
           </Link>
         </MyPaginate>
       );
     } else {
       return (
         <MyPaginate type="space-between">
-          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${currentPaginateNum - 1}`}>
-            <a className="prev-paginate">&lt;&lt; Prev</a>
+          <Link
+            href={`/${paginateType}/[id]`}
+            as={`/${paginateType}/${currentPaginateNum - 1}`}
+            className="prev-paginate"
+          >
+            &lt;&lt; Prev
           </Link>
-          <Link href={`/${paginateType}/[id]`} as={`/${paginateType}/${currentPaginateNum + 1}`}>
-            <a className="next-paginate">Next &gt;&gt;</a>
+          <Link
+            href={`/${paginateType}/[id]`}
+            as={`/${paginateType}/${currentPaginateNum + 1}`}
+            className="next-paginate"
+          >
+            Next &gt;&gt;
           </Link>
         </MyPaginate>
       );
