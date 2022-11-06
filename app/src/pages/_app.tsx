@@ -64,7 +64,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   }, []);
 
   return (
-    <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY} language="ja">
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY || ''} language="ja">
       <GlobalStyle />
       <Header siteTitle={siteTitle} searchPosts={searchPosts} />
       <Wrapper>
