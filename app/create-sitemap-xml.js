@@ -29,7 +29,10 @@ const getUrlByApi = async () => {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
 
-  const res = await axios.get(`${process.env.ENDPOINT}/blogs?fields=id,updatedAt&limit=9999&?orders=-publishedAt`, key);
+  const res = await axios.get(
+    `https://${process.env.ENDPOINT}.microcms.io/api/v1/blogs?fields=id,updatedAt&limit=9999&?orders=-publishedAt`,
+    key
+  );
 
   const contents = await res.data.contents;
 

@@ -10,7 +10,7 @@ const fs = require('fs');
       headers: { 'X-API-KEY': process.env.API_KEY },
     };
 
-    const res = await axios.get(`${process.env.ENDPOINT}/taxonomy`, key);
+    const res = await axios.get(`https://${process.env.ENDPOINT}.microcms.io/api/v1/taxonomy`, key);
 
     const categories = await res.data.categories;
     const tags = await res.data.tags;
