@@ -10,8 +10,6 @@ const fs = require('fs');
       headers: { 'X-API-KEY': process.env.API_KEY },
     };
 
-    // https://karukichi-tech-blog
-
     const res = await axios.get(
       `https://${process.env.ENDPOINT}.microcms.io/api/v1/blogs?fields=id,title,tag_field.name&limit=9999&?orders=-publishedAt`,
       key
