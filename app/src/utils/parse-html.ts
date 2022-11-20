@@ -29,17 +29,17 @@ export const parseHtml = (blog: Content) => {
     $(elm).addClass('hljs');
   });
 
-  if ($('iframe').toArray().length === 0) return;
-
   // iframeのSP対応
   // 横幅が変わっても常に16:9の比率を保つようにする
-  $('iframe').each((_, elm) => {
-    const wrapDiv = $(
-      '<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"></div>'
-    );
-    $(elm).wrap(wrapDiv);
-    $(elm).attr('style', 'border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;');
-  });
+  if ($('iframe').toArray().length !== 0) {
+    $('iframe').each((_, elm) => {
+      const wrapDiv = $(
+        '<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"></div>'
+      );
+      $(elm).wrap(wrapDiv);
+      $(elm).attr('style', 'border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;');
+    });
+  }
 
   return {
     blog,
