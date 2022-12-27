@@ -37,7 +37,7 @@ export const config = {
   urls: {
     twitterUrl: 'https://twitter.com/karukichi_yah',
     githubUrl: 'https://github.com/Yota-K',
-    profileUrl: 'https://karukichi.gatsbyjs.io/',
+    profileUrl: 'https://karukichi-portfolio.vercel.app/',
   },
   contactApiSettings: {
     prod: {
