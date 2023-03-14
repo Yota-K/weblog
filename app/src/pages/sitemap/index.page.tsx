@@ -1,19 +1,14 @@
-import { NextPage, GetStaticProps } from 'next';
+import { NextPage } from 'next';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-
 import Breadcrumb from '@/components/Breadcrumb';
 import Seo from '@/components/Seo';
 import Layout from '@/components/Layout';
-
 import { config } from '@/config/app';
-
-import { fetchSitemapPage } from '@/lib/fetch-sitemap-page';
-
 import { Sitemap } from '@/types/sitemap';
-
 import { colorObj } from '@/share/variables';
+import { getStaticProps } from './index.hook';
 
 type Props = {
   contents: Sitemap[];
@@ -55,23 +50,7 @@ const BlogSitemap: NextPage<Props> = ({ contents }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const contents = await fetchSitemapPage();
-
-  contents.map((blog) => {
-    const posts = blog.posts;
-
-    posts.sort((a, b) => {
-      return a.createdAt < b.createdAt ? 1 : -1;
-    });
-  });
-
-  return {
-    props: {
-      contents,
-    },
-  };
-};
+export { getStaticProps };
 
 const SitemapDiv = styled.div`
   margin: 30px 0 0 18px;

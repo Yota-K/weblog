@@ -1,8 +1,7 @@
 import MarkdownIt from 'markdown-it';
-import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
+import { NextPage } from 'next';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
-
 import Breadcrumb from '@/components/Breadcrumb';
 import CoffeeButtonArea from '@/components/CoffeeButtonArea';
 import Layout from '@/components/Layout';
@@ -10,22 +9,16 @@ import PostThumbnail from '@/components/PostThumbnail';
 import Seo from '@/components/Seo';
 import SocialLinks from '@/components/SocialLinks';
 import Toc from '@/components/Toc';
-
 import { config } from '@/config/app';
-
-import { fetchBlogPage } from '@/lib/fetch-blog-page';
-
 import { ShareArea, MyContent, PostDiv } from '@/share/blog';
 import { CategoryLabel } from '@/share/CategoryLabel';
 import { H1 } from '@/share/Heading';
 import { TagArea } from '@/share/TagArea';
 import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
-
 import { Content } from '@/types/content';
-
 import { dateFormat } from '@/utils/date-format';
-import { parseHtml } from '@/utils/parse-html';
+import { getStaticPaths, getStaticProps } from './index.hook';
 
 type Props = {
   blog: Content;
@@ -108,30 +101,6 @@ const Blog: NextPage<Props> = ({ blog, toc, body }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const { blogPathsData } = fetchBlogPage();
-  const data = await blogPathsData();
-
-  const paths = data.contents.map((post) => `/blogs/${post.id}`);
-
-  return { paths, fallback: false };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context?.params?.id as string;
-
-  const { blogData } = fetchBlogPage();
-  const blog = await blogData(id);
-
-  const { toc, body } = parseHtml(blog);
-
-  return {
-    props: {
-      blog,
-      toc,
-      body,
-    },
-  };
-};
+export { getStaticPaths, getStaticProps };
 
 export default Blog;

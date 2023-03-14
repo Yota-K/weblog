@@ -1,29 +1,21 @@
-import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
+import { NextPage } from 'next';
 import Link from 'next/link';
 import React from 'react';
-
 import Breadcrumb from '@/components/Breadcrumb';
 import Layout from '@/components/Layout';
 import Paginate from '@/components/Paginate';
 import PostThumbnail from '@/components/PostThumbnail';
 import Seo from '@/components/Seo';
-
 import { config } from '@/config/app';
-
-import { fetchArticlesPage } from '@/lib/fetch-articles-page';
-import { fetchTaxonomyPage } from '@/lib/fetch-taxonomy-page';
-
 import { Content } from '@/types/content';
-import { TaxonomyPaths } from '@/types/taxonomy';
-
 import { BlogCard, PostInfo } from '@/share/BlogCard';
 import { CategoryLabel } from '@/share/CategoryLabel';
 import { H2, H3 } from '@/share/Heading';
 import { TagArea } from '@/share/TagArea';
 import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
-
 import { dateFormat } from '@/utils/date-format';
+import { getStaticPaths, getStaticProps } from './index.hook';
 
 type Props = {
   contents: Content[];
@@ -31,8 +23,6 @@ type Props = {
   tagSlug: string;
   totalCount: number;
 };
-
-const paginateNum = config.paginateNum;
 
 const TagPage: NextPage<Props> = ({ contents, tagName, tagSlug, totalCount }) => {
   const { siteTitle } = config.siteInfo;
@@ -83,40 +73,6 @@ const TagPage: NextPage<Props> = ({ contents, tagName, tagSlug, totalCount }) =>
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await fetchTaxonomyPage<TaxonomyPaths>('tags', 'id,posts.id');
-
-  const results = data.contents;
-  const paths = results.map((post) => `/tags/${post.id}`);
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const slug = context?.params?.slug;
-
-  const data = await fetchArticlesPage(0, paginateNum, `tag_field[contains]${slug}`);
-
-  const contents = data.contents;
-
-  // ページに一致するタグを探す
-  const findTag = contents[0].tag_field.find((tag) => tag.id === slug);
-
-  const tagName = findTag?.name;
-  const tagSlug = findTag?.id;
-  const totalCount = data.totalCount;
-
-  return {
-    props: {
-      contents,
-      tagName,
-      tagSlug,
-      totalCount,
-    },
-  };
-};
+export { getStaticPaths, getStaticProps };
 
 export default TagPage;

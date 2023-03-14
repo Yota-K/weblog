@@ -24,4 +24,6 @@ module.exports = {
     return config;
   },
   swcMinify: false,
+  // page.tsxという拡張子以外ページとして認識しないようにする
+  pageExtensions: ['page.tsx'],
 };

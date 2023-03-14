@@ -1,30 +1,23 @@
 import MarkdownIt from 'markdown-it';
-import { NextPage, GetServerSideProps } from 'next';
+import { NextPage } from 'next';
 import Link from 'next/link';
 import React from 'react';
-
 import Breadcrumb from '@/components/Breadcrumb';
 import Layout from '@/components/Layout';
 import PostThumbnail from '@/components/PostThumbnail';
 import Seo from '@/components/Seo';
 import SocialLinks from '@/components/SocialLinks';
 import Toc from '@/components/Toc';
-
 import { config } from '@/config/app';
-
-import { fetchBlogPage } from '@/lib/fetch-blog-page';
-
 import { ShareArea, MyContent, PostDiv } from '@/share/blog';
 import { CategoryLabel } from '@/share/CategoryLabel';
 import { H1 } from '@/share/Heading';
 import { TagArea } from '@/share/TagArea';
 import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
-
 import { Content } from '@/types/content';
-
 import { dateFormat } from '@/utils/date-format';
-import { parseHtml } from '@/utils/parse-html';
+import { getServerSideProps } from './index.hook';
 
 type Props = {
   blog: Content;
@@ -97,29 +90,6 @@ const Preview: NextPage<Props> = ({ blog, toc, body, draftKey }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id, draftKey } = context.query;
-
-  // 編集中の記事URLとdraftKeyが設定されていない場合を考慮
-  if (id === undefined || draftKey === undefined) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const { draftBlogData } = fetchBlogPage();
-  const blog = await draftBlogData(id as string, draftKey as string);
-
-  const { toc, body } = parseHtml(blog);
-
-  return {
-    props: {
-      blog,
-      toc,
-      body,
-      draftKey,
-    },
-  };
-};
+export { getServerSideProps };
 
 export default Preview;
