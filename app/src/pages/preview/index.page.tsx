@@ -1,43 +1,24 @@
 import MarkdownIt from 'markdown-it';
-import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
+import { NextPage } from 'next';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
-
+import React from 'react';
 import Breadcrumb from '@/components/Breadcrumb';
-import CoffeeButtonArea from '@/components/CoffeeButtonArea';
 import Layout from '@/components/Layout';
 import PostThumbnail from '@/components/PostThumbnail';
 import Seo from '@/components/Seo';
 import SocialLinks from '@/components/SocialLinks';
 import Toc from '@/components/Toc';
-
 import { config } from '@/config/app';
-
-import { fetchBlogPage } from '@/lib/fetch-blog-page';
-
 import { ShareArea, MyContent, PostDiv } from '@/share/blog';
 import { CategoryLabel } from '@/share/CategoryLabel';
 import { H1 } from '@/share/Heading';
 import { TagArea } from '@/share/TagArea';
 import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
-
-import { Content } from '@/types/content';
-
 import { dateFormat } from '@/utils/date-format';
-import { parseHtml } from '@/utils/parse-html';
+import { Props, getServerSideProps } from './index.hook';
 
-type Props = {
-  blog: Content;
-  toc: {
-    id: string;
-    text: string;
-    type: string;
-  }[];
-  body: string;
-};
-
-const Blog: NextPage<Props> = ({ blog, toc, body }) => {
+const Preview: NextPage<Props> = ({ blog, toc, body, draftKey }) => {
   const { siteTitle } = config.siteInfo;
   const { siteUrl } = config.siteInfo;
   const url = `${siteUrl}blogs/${blog.id}`;
@@ -53,16 +34,6 @@ const Blog: NextPage<Props> = ({ blog, toc, body }) => {
     html: true,
   });
 
-  useEffect(() => {
-    const url = 'https://platform.twitter.com/widgets.js';
-    const script = document.createElement('script');
-
-    script.src = url;
-    script.setAttribute('async', 'async');
-
-    document.body.appendChild(script);
-  }, []);
-
   return (
     <Layout>
       <Seo
@@ -72,7 +43,7 @@ const Blog: NextPage<Props> = ({ blog, toc, body }) => {
         thumbnail={blog.thumbnail.url}
       />
       <div id="blog">
-        <Breadcrumb blogPageInfo={reciveBreadcrumb} />
+        <Breadcrumb blogPageInfo={reciveBreadcrumb} draftKey={draftKey} />
         <TimeStamp>
           <time itemProp="dateCreated" dateTime={`${dateFormat(blog.createdAt)}`}>
             {dateFormat(blog.createdAt)}
@@ -97,41 +68,16 @@ const Blog: NextPage<Props> = ({ blog, toc, body }) => {
         <ShareArea>
           <SocialLinks url={url} />
         </ShareArea>
-        <PostThumbnail className="post-thumbnail" thumbnailUrl={blog.thumbnail.url} width="100%" height="auto" />
         <MyContent>
+          <PostThumbnail className="post-thumbnail" thumbnailUrl={blog.thumbnail.url} width="100%" height="auto" />
           <Toc toc={toc} />
           <PostDiv dangerouslySetInnerHTML={{ __html: body }}></PostDiv>
         </MyContent>
-        <CoffeeButtonArea isPost />
       </div>
     </Layout>
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const { blogPathsData } = fetchBlogPage();
-  const data = await blogPathsData();
+export default Preview;
 
-  const paths = data.contents.map((post) => `/blogs/${post.id}`);
-
-  return { paths, fallback: false };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context?.params?.id as string;
-
-  const { blogData } = fetchBlogPage();
-  const blog = await blogData(id);
-
-  const { toc, body } = parseHtml(blog);
-
-  return {
-    props: {
-      blog,
-      toc,
-      body,
-    },
-  };
-};
-
-export default Blog;
+export { getServerSideProps };

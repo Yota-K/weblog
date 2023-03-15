@@ -1,8 +1,6 @@
 import React from 'react';
 import { NextPage } from 'next';
-
 import { H2 } from '@/share/Heading';
-
 import Layout from '@/components/Layout';
 import Seo from '@/components/Seo';
 

@@ -1,35 +1,21 @@
-import { NextPage, GetStaticProps } from 'next';
+import { NextPage } from 'next';
 import Link from 'next/link';
 import React from 'react';
-
 import Layout from '@/components/Layout';
 import Paginate from '@/components/Paginate';
 import PostThumbnail from '@/components/PostThumbnail';
 import Seo from '@/components/Seo';
-
 import { config } from '@/config/app';
-
-import { fetchArticlesPage } from '@/lib/fetch-articles-page';
-
-import { Content } from '@/types/content';
-
 import { BlogCard, PostInfo } from '@/share/BlogCard';
 import { CategoryLabel } from '@/share/CategoryLabel';
 import { H3 } from '@/share/Heading';
 import { TagArea } from '@/share/TagArea';
 import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
-
 import { dateFormat } from '@/utils/date-format';
+import { Props, getStaticPaths, getStaticProps } from './[id].hook';
 
-type Props = {
-  contents: Content[];
-  totalCount: number;
-};
-
-const paginateNum = config.paginateNum;
-
-const Home: NextPage<Props> = ({ contents, totalCount }) => {
+const Page: NextPage<Props> = ({ contents, totalCount }) => {
   const { siteTitle } = config.siteInfo;
 
   const paginateType = 'page';
@@ -74,18 +60,6 @@ const Home: NextPage<Props> = ({ contents, totalCount }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetchArticlesPage(0, paginateNum);
+export default Page;
 
-  const contents = data.contents;
-  const totalCount = data.totalCount;
-
-  return {
-    props: {
-      contents,
-      totalCount,
-    },
-  };
-};
-
-export default Home;
+export { getStaticPaths, getStaticProps };

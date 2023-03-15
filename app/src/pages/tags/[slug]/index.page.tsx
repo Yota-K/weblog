@@ -1,50 +1,40 @@
-import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
+import { NextPage } from 'next';
 import Link from 'next/link';
 import React from 'react';
-
 import Breadcrumb from '@/components/Breadcrumb';
 import Layout from '@/components/Layout';
 import Paginate from '@/components/Paginate';
 import PostThumbnail from '@/components/PostThumbnail';
 import Seo from '@/components/Seo';
-
 import { config } from '@/config/app';
-
-import { fetchArticlesPage } from '@/lib/fetch-articles-page';
-import { fetchTaxonomyPage } from '@/lib/fetch-taxonomy-page';
-
 import { Content } from '@/types/content';
-import { TaxonomyPaths } from '@/types/taxonomy';
-
 import { BlogCard, PostInfo } from '@/share/BlogCard';
 import { CategoryLabel } from '@/share/CategoryLabel';
 import { H2, H3 } from '@/share/Heading';
 import { TagArea } from '@/share/TagArea';
 import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
-
 import { dateFormat } from '@/utils/date-format';
+import { getStaticPaths, getStaticProps } from './index.hook';
 
 type Props = {
   contents: Content[];
-  categoryName: string;
-  categorySlug: string;
+  tagName: string;
+  tagSlug: string;
   totalCount: number;
 };
 
-const paginateNum = config.paginateNum;
-
-const CategoryPage: NextPage<Props> = ({ contents, categoryName, categorySlug, totalCount }) => {
+const TagPage: NextPage<Props> = ({ contents, tagName, tagSlug, totalCount }) => {
   const { siteTitle } = config.siteInfo;
 
-  const paginateType = `category/${categorySlug}`;
+  const paginateType = `tags/${tagSlug}`;
 
   return (
     <Layout>
-      <Seo title={`${categoryName}｜${siteTitle}`} />
+      <Seo title={`${tagName}｜${siteTitle}`} />
       <div id="categories">
-        <Breadcrumb pageTitle={categoryName} />
-        <H2>カテゴリー：{categoryName}</H2>
+        <Breadcrumb pageTitle={tagName} />
+        <H2>タグ：{tagName}</H2>
         {contents.map((content) => (
           <BlogCard key={content.id}>
             <PostThumbnail thumbnailUrl={content.thumbnail.url} width="308" height="173" />
@@ -83,36 +73,6 @@ const CategoryPage: NextPage<Props> = ({ contents, categoryName, categorySlug, t
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await fetchTaxonomyPage<TaxonomyPaths>('category', 'id,posts.id');
+export default TagPage;
 
-  const results = data.contents;
-  const paths = results.map((post) => `/category/${post.id}`);
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const slug = context?.params?.slug;
-
-  const data = await fetchArticlesPage(0, paginateNum, `category_field[equals]${slug}`);
-
-  const contents = data.contents;
-  const categoryName = contents[0].category_field.name;
-  const categorySlug = contents[0].category_field.id;
-  const totalCount = data.totalCount;
-
-  return {
-    props: {
-      contents,
-      categoryName,
-      categorySlug,
-      totalCount,
-    },
-  };
-};
-
-export default CategoryPage;
+export { getStaticPaths, getStaticProps };
