@@ -73,6 +73,6 @@ const CategoryPage: NextPage<Props> = ({ contents, categoryName, categorySlug, t
   );
 };
 
-export { getStaticPaths, getStaticProps };
-
 export default CategoryPage;
+
+export { getStaticPaths, getStaticProps };

@@ -73,6 +73,6 @@ const TagPage: NextPage<Props> = ({ contents, tagName, tagSlug, totalCount }) =>
   );
 };
 
-export { getStaticPaths, getStaticProps };
-
 export default TagPage;
+
+export { getStaticPaths, getStaticProps };

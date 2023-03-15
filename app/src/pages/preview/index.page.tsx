@@ -90,6 +90,6 @@ const Preview: NextPage<Props> = ({ blog, toc, body, draftKey }) => {
   );
 };
 
-export { getServerSideProps };
-
 export default Preview;
+
+export { getServerSideProps };

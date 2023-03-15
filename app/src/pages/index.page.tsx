@@ -66,6 +66,6 @@ const Home: NextPage<Props> = ({ contents, totalCount }) => {
   );
 };
 
-export { getStaticProps };
-
 export default Home;
+
+export { getStaticProps };

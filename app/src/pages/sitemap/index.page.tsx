@@ -50,8 +50,6 @@ const BlogSitemap: NextPage<Props> = ({ contents }) => {
   );
 };
 
-export { getStaticProps };
-
 const SitemapDiv = styled.div`
   margin: 30px 0 0 18px;
 
@@ -77,3 +75,5 @@ const PostList = styled.li`
 `;
 
 export default BlogSitemap;
+
+export { getStaticProps };

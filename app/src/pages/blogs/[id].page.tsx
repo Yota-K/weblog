@@ -18,7 +18,7 @@ import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
 import { Content } from '@/types/content';
 import { dateFormat } from '@/utils/date-format';
-import { getStaticPaths, getStaticProps } from './index.hook';
+import { getStaticPaths, getStaticProps } from './[id].hook';
 
 type Props = {
   blog: Content;
@@ -101,6 +101,6 @@ const Blog: NextPage<Props> = ({ blog, toc, body }) => {
   );
 };
 
-export { getStaticPaths, getStaticProps };
-
 export default Blog;
+
+export { getStaticPaths, getStaticProps };
