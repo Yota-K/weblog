@@ -5,6 +5,9 @@ import { fetchTaxonomyPage } from '@/lib/fetch-taxonomy-page';
 import { TaxonomyIdsAndRelatedPosts } from '@/types/taxonomy';
 import { generateBuildPaginatePath } from '@/utils/generate-build-paginate-path';
 
+// TODO: あとでリファクタする。
+// ページネーション周りの挙動が怪しい。
+// タグページとかも同じ現象起きてる
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await fetchTaxonomyPage<TaxonomyIdsAndRelatedPosts>('category', 'id,posts.id');
   const results = generateBuildPaginatePath(data.contents);
@@ -27,6 +30,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const id = context?.params?.id as string;
 
   const { paginateNum } = config;
+  // /back-endみたいな感じでアクセスすると、offsetがNaNになってしまう
   const offset = parseInt(id) * paginateNum - paginateNum;
 
   const data = await fetchArticlesPage(offset, paginateNum, `category_field[equals]${slug}`);
