@@ -6,7 +6,6 @@ import Paginate from '@/components/Paginate';
 import PostThumbnail from '@/components/PostThumbnail';
 import Seo from '@/components/Seo';
 import { config } from '@/config/app';
-import { Content } from '@/types/content';
 import { BlogCard, PostInfo } from '@/share/BlogCard';
 import { CategoryLabel } from '@/share/CategoryLabel';
 import { H3 } from '@/share/Heading';
@@ -14,12 +13,7 @@ import { TagArea } from '@/share/TagArea';
 import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
 import { dateFormat } from '@/utils/date-format';
-import { getStaticProps } from './index.hook';
-
-type Props = {
-  contents: Content[];
-  totalCount: number;
-};
+import { Props, getStaticProps } from './index.hook';
 
 const Home: NextPage<Props> = ({ contents, totalCount }) => {
   const { siteTitle } = config.siteInfo;
