@@ -16,19 +16,8 @@ import { H1 } from '@/share/Heading';
 import { TagArea } from '@/share/TagArea';
 import { TagLabel } from '@/share/TagLabel';
 import { TimeStamp } from '@/share/TimeStamp';
-import { Content } from '@/types/content';
 import { dateFormat } from '@/utils/date-format';
-import { getStaticPaths, getStaticProps } from './[id].hook';
-
-type Props = {
-  blog: Content;
-  toc: {
-    id: string;
-    text: string;
-    type: string;
-  }[];
-  body: string;
-};
+import { Props, getStaticPaths, getStaticProps } from './[id].hook';
 
 const Blog: NextPage<Props> = ({ blog, toc, body }) => {
   const { siteTitle } = config.siteInfo;

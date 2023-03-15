@@ -6,13 +6,8 @@ import Breadcrumb from '@/components/Breadcrumb';
 import Seo from '@/components/Seo';
 import Layout from '@/components/Layout';
 import { config } from '@/config/app';
-import { Sitemap } from '@/types/sitemap';
 import { colorObj } from '@/share/variables';
-import { getStaticProps } from './index.hook';
-
-type Props = {
-  contents: Sitemap[];
-};
+import { Props, getStaticProps } from './index.hook';
 
 const BlogSitemap: NextPage<Props> = ({ contents }) => {
   const { siteTitle } = config.siteInfo;

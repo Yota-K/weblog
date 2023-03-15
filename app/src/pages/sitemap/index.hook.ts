@@ -1,7 +1,9 @@
-import { GetStaticProps } from 'next';
+import { InferGetStaticPropsType } from 'next';
 import { fetchSitemapPage } from '@/lib/fetch-sitemap-page';
 
-export const getStaticProps: GetStaticProps = async () => {
+export type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+export const getStaticProps = async () => {
   const contents = await fetchSitemapPage();
 
   contents.map((blog) => {
