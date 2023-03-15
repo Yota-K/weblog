@@ -14,6 +14,8 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     };
   }
 
+  if (typeof draftKey !== 'string') throw new Error('Wrong type of draftKey');
+
   const { draftBlogData } = fetchBlogPage();
   const blog = await draftBlogData(id as string, draftKey as string);
   const { toc, body } = parseHtml(blog);
