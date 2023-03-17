@@ -1,6 +1,6 @@
 import { BaseCmsResponse } from '@/types/common';
 
-export type TaxonomyField = {
+type TaxonomyField = {
   id: string;
   createdAt: string;
   updatedAt: string;

@@ -1,6 +1,6 @@
 import { config } from '@/config/app';
-import { Sitemap } from '@/types/sitemap';
 import { client } from '@/utils/microcms-client';
+import { Sitemap } from './type';
 
 type Posts = {
   contents: Sitemap[];

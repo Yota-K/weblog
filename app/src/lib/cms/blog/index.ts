@@ -1,7 +1,7 @@
 import { config } from '@/config/app';
-import { Content } from '@/types/content';
 import { client } from '@/utils/microcms-client';
 import { Common } from '@/types/common';
+import { Content } from './type';
 
 type Paths = {
   contents: Pick<Content, 'id'>[];
