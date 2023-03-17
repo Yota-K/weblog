@@ -1,13 +1,14 @@
 import { config } from '@/config/app';
 import { Content } from '@/types/content';
 import { client } from '@/utils/microcms-client';
+import { Common } from '@/types/common';
 
 type Paths = {
-  contents: Pick<Content, 'id' | 'totalCount' | 'offset' | 'limit'>[];
-};
+  contents: Pick<Content, 'id'>[];
+} & Common;
 type Posts = {
   contents: Content[];
-};
+} & Common;
 
 const { endpoint } = config.siteInfo;
 
