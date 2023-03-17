@@ -1,4 +1,4 @@
-import { BaseCmsResponse } from './common';
+import { BaseCmsResponse } from '@/types/common';
 
 export type TaxonomyField = {
   id: string;
