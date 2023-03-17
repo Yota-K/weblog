@@ -51,6 +51,23 @@ const findPost = () => {
 };
 
 /**
+ * 下書き中の投稿データを取得
+ * @param contentId 記事ページのスラッグ
+ * @param draftKey draftKey
+ */
+const findDraftPost = async (contentId: string, draftKey: string) => {
+  const data = await client.get<Content>({
+    endpoint: endpoint.blogs,
+    contentId,
+    queries: {
+      draftKey,
+    },
+  });
+
+  return data;
+};
+
+/**
  * 記事一覧を表示するために必要な情報を取得
  * @param offset 何件目から取得するかの指定
  * @param limit 取得件数
@@ -69,4 +86,4 @@ const getPosts = async (offset: number, limit: number, filters?: string) => {
   return data;
 };
 
-export { findPost, getPosts };
+export { findPost, findDraftPost, getPosts };
