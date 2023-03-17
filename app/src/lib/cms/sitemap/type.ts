@@ -6,5 +6,6 @@ export type Sitemap = {
   posts: {
     id: string;
     title: string;
+    createdAt: string;
   }[];
 } & Common;

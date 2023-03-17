@@ -15,7 +15,7 @@ export const htmlSitemap = async () => {
   const data = await client.get<Posts>({
     endpoint: endpoint.category,
     queries: {
-      fields: 'id,name,posts.id,posts.title',
+      fields: 'id,name,posts.id,posts.createdAt,posts.title',
       limit: 9999,
     },
   });
