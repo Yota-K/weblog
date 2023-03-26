@@ -1,5 +1,5 @@
 import { config } from '@/config/app';
-import { client } from '@/utils/microcms-client';
+import { client } from '@/lib/cms/client';
 import { Common } from '@/types/common';
 import { Content } from './type';
 

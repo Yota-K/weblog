@@ -1,4 +1,5 @@
 import { client } from '@/utils/microcms-client';
+import { Contents } from './type';
 
 type EndpointType = 'category' | 'tags';
 
@@ -7,8 +8,8 @@ type EndpointType = 'category' | 'tags';
  * @param endpoint APIのエンドポイント
  * @param fields コンテンツの中で取得する要素を指定
  */
-export const fetchTaxonomyPage = async <T>(endpoint: EndpointType, fields: string) => {
-  const data = await client.get<T>({
+export const getTaxonomies = async (endpoint: EndpointType, fields: string) => {
+  const data = await client.get<Contents>({
     endpoint,
     queries: {
       fields,
