@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { findPost } from '@/lib/cms/blog/index';
-import { parseHtml } from '@/utils/parse-html';
+import { parseHtml } from '@/lib/cms/parseHtml';
 
 export type Props = InferGetStaticPropsType<typeof getStaticProps>;
 

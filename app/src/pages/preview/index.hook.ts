@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { findDraftPost } from '@/lib/cms/blog/index';
-import { parseHtml } from '@/utils/parse-html';
+import { parseHtml } from '@/lib/cms/parseHtml';
 
 export type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
