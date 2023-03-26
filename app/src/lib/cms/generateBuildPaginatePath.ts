@@ -1,13 +1,20 @@
 import { BuildTaxonomyPaginateList } from '@/types/taxonomy';
 import { config } from '@/config/app';
 
-export const generateBuildPaginatePath = (contents: BuildTaxonomyPaginateList[]) => {
-  const paginateNum = config.paginateNum;
-
-  const slugAry: {
+type Result = {
+  params: {
+    id: number;
     slug: string;
-    count: number;
-  }[] = [];
+  };
+}[];
+
+type SlugAly = {
+  slug: string;
+  count: number;
+};
+
+export const generateBuildPaginatePath = (contents: BuildTaxonomyPaginateList[]): Result => {
+  const { paginateNum } = config;
 
   // 以下のようなオブジェクトを持った配列を生成する
   // 例：front-endカテゴリーの記事が11記事以上、15記事以下の場合
@@ -16,25 +23,27 @@ export const generateBuildPaginatePath = (contents: BuildTaxonomyPaginateList[])
   //   {slug: 'front-end', count: 2},
   //   {slug: 'front-end', count: 3},
   // ],
-  contents.forEach((content) => {
+  const slugAry: SlugAly[] = [];
+  contents.forEach((e) => {
+    const { id, posts } = e;
+
     // 各カテゴリ・タグに属する投稿の数
-    const postLength = content.posts.length;
+    const postLength = posts.length;
 
-    let totalCount: number;
+    // 記事数が
+    let count = 1;
 
-    if (postLength <= paginateNum) {
-      // 記事数の合計が5記事以下の場合はページネーションは不要なので1を代入する
-      totalCount = 1;
-    } else {
-      totalCount = Math.ceil(postLength / paginateNum);
+    if (paginateNum < postLength) {
+      // - 6記事の場合・・・6 / 5 = 1
+      // - 11記事の場合・・・11 / 5 = 2
+      count = Math.ceil(postLength / paginateNum);
     }
 
     slugAry.push({
-      slug: content.id,
-      count: totalCount,
+      slug: id,
+      count,
     });
   });
-
   console.info(slugAry);
 
   // 二次元配列を生成する
@@ -47,22 +56,17 @@ export const generateBuildPaginatePath = (contents: BuildTaxonomyPaginateList[])
   //     {params: {slug: 'back-end', id: 1}},
   //   ],
   // ]
-  const paramsAry = slugAry.map((el) => {
-    const count = el.count;
-
+  const paramsAry = slugAry.map((e) => {
+    const { count, slug } = e;
     return [...new Array(count)].map((_, i) => ({
-      params: { slug: el.slug, id: ++i },
+      params: { slug, id: ++i },
     }));
   });
-
   console.info(paramsAry);
 
-  // reduceで二次元配列を一次元配列に変換
-  const resultAry = paramsAry.reduce((prev, current) => {
-    return [...prev, ...current];
-  }, []);
+  // 二次元配列を一次元配列に変換
+  const result = paramsAry.flat();
+  console.info(result);
 
-  console.info(resultAry);
-
-  return resultAry;
+  return result;
 };
