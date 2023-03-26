@@ -1,6 +1,6 @@
 import { Common } from '@/types/common';
 
-export type Posts = {
+export type Data = {
   contents: {
     id: string;
     posts: {

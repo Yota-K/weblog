@@ -1,14 +1,6 @@
 import { config } from '@/config/app';
 import { client } from '@/lib/cms/client';
-import { Common } from '@/types/common';
-import { Content } from './type';
-
-type Paths = {
-  contents: Pick<Content, 'id'>[];
-} & Common;
-type Posts = {
-  contents: Content[];
-} & Common;
+import { Data } from './type';
 
 const { endpoint } = config.siteInfo;
 
@@ -20,7 +12,7 @@ const findPost = () => {
    * 記事ページを生成するために必要なパスの配列を生成
    */
   const paths = async () => {
-    const data = await client.get<Paths>({
+    const data = await client.get<Data['paths']>({
       endpoint: endpoint.blogs,
       queries: {
         fields: 'id',
@@ -36,7 +28,7 @@ const findPost = () => {
    * @param contentId 記事ページのスラッグ
    */
   const post = async (contentId: string) => {
-    const data = await client.get<Content>({
+    const data = await client.get<Data['content']>({
       endpoint: endpoint.blogs,
       contentId,
     });
@@ -56,7 +48,7 @@ const findPost = () => {
  * @param draftKey draftKey
  */
 const findDraftPost = async (contentId: string, draftKey: string) => {
-  const data = await client.get<Content>({
+  const data = await client.get<Data['content']>({
     endpoint: endpoint.blogs,
     contentId,
     queries: {
@@ -74,7 +66,7 @@ const findDraftPost = async (contentId: string, draftKey: string) => {
  * @param filters? 取得条件の指定
  */
 const getPosts = async (offset: number, limit: number, filters?: string) => {
-  const data = await client.get<Posts>({
+  const data = await client.get<Data['posts']>({
     endpoint: endpoint.blogs,
     queries: {
       offset,

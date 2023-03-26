@@ -10,5 +10,4 @@ export type BaseCmsResponse<T> = {
   updatedAt: string;
   publishedAt: string;
   revisedAt: string;
-} & Common &
-  T;
+} & T;

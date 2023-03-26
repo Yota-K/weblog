@@ -1,5 +1,5 @@
 import { client } from '@/lib/cms/client';
-import { Posts } from './type';
+import { Data } from './type';
 
 type EndpointType = 'category' | 'tags';
 
@@ -9,7 +9,7 @@ type EndpointType = 'category' | 'tags';
  * @param fields コンテンツの中で取得する要素を指定
  */
 export const getTaxonomies = async (endpoint: EndpointType, fields: string) => {
-  const data = await client.get<Posts>({
+  const data = await client.get<Data>({
     endpoint,
     queries: {
       fields,

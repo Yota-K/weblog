@@ -1,11 +1,13 @@
 import { Common } from '@/types/common';
 
-export type Sitemap = {
-  id: string;
-  name: string;
-  posts: {
+export type Data = {
+  contents: {
     id: string;
-    title: string;
-    createdAt: string;
+    name: string;
+    posts: {
+      id: string;
+      title: string;
+      createdAt: string;
+    }[];
   }[];
 } & Common;
