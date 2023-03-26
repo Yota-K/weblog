@@ -1,12 +1,12 @@
 import { InferGetStaticPropsType } from 'next';
-import { fetchSitemapPage } from '@/lib/fetch-sitemap-page';
+import { htmlSitemap } from '@/lib/cms//sitemap/index';
 
 export type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export const getStaticProps = async () => {
-  const contents = await fetchSitemapPage();
+  const data = await htmlSitemap();
 
-  contents.map((blog) => {
+  data.map((blog) => {
     blog.posts.sort((a, b) => {
       return a.createdAt < b.createdAt ? 1 : -1;
     });
@@ -14,7 +14,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      contents,
+      contents: data,
     },
   };
 };

@@ -1,15 +1,14 @@
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { config } from '@/config/app';
-import { fetchArticlesPage } from '@/lib/fetch-articles-page';
-import { fetchBlogPage } from '@/lib/fetch-blog-page';
+import { findPost, getPosts } from '@/lib/cms/blog/index';
 
 const { paginateNum } = config;
 
 export type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { blogPathsData } = fetchBlogPage();
-  const data = await blogPathsData();
+  const { paths } = findPost();
+  const data = await paths();
 
   let totalCount = data.totalCount;
   totalCount = Math.ceil(totalCount / paginateNum);
@@ -18,9 +17,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return [...new Array(totalCount).keys()].map((i) => ++i);
   };
 
-  const paths = paginate(totalCount).map((pageNum) => `/page/${pageNum}`);
+  const paginatePaths = paginate(totalCount).map((pageNum) => `/page/${pageNum}`);
 
-  return { paths, fallback: false };
+  return { paths: paginatePaths, fallback: false };
 };
 
 export const getStaticProps = async (context: GetStaticPropsContext<{ id: string }>) => {
@@ -29,7 +28,7 @@ export const getStaticProps = async (context: GetStaticPropsContext<{ id: string
   if (!id) throw Error('undefined id');
 
   const offset = parseInt(id) * paginateNum - paginateNum;
-  const data = await fetchArticlesPage(offset, paginateNum);
+  const data = await getPosts(offset, paginateNum);
   const { contents, totalCount } = data;
 
   return {

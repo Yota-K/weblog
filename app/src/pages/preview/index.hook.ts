@@ -1,5 +1,5 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { fetchBlogPage } from '@/lib/fetch-blog-page';
+import { findDraftPost } from '@/lib/cms/blog/index';
 import { parseHtml } from '@/utils/parse-html';
 
 export type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
@@ -16,8 +16,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
   if (typeof draftKey !== 'string') throw new Error('Wrong type of draftKey');
 
-  const { draftBlogData } = fetchBlogPage();
-  const blog = await draftBlogData(id as string, draftKey as string);
+  const blog = await findDraftPost(id as string, draftKey as string);
   const { toc, body } = parseHtml(blog);
 
   return {
