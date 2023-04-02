@@ -1,10 +1,10 @@
 export const colorObj = {
-  baseBlack: '#39394d',
   baseBlue: '#331cbf',
-  baseRed: '#ed143d',
-  subBlue: '#d8e4ef',
   accentBlue: '#7180ea',
-  borderGray: '#ddd',
-  fontColor: '#2b2c30',
+  subBlue: '#d8e4ef',
+  baseBlack: '#39394d',
   infoColor: '#616269',
+  fontColor: '#2b2c30',
+  borderGray: '#ddd',
+  baseRed: '#ed143d',
 } as const;
