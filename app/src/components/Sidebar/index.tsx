@@ -1,30 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { CategoriesAndTags } from '@/types/taxonomy';
-import { SearchJson } from '@/types/search-posts';
-
-import { device } from '@/share/media-query';
-
 // TODO: 身分証明がなくて、アドセンスが消えた（なる早で身分証明証を取得する）
 // import GoogleAdsense from '@/components/GoogleAdsense';
 import SearchBox from '@/components/Sidebar/SearchBox';
 import Profile from '@/components/Sidebar/Profile';
-import CategoryList from '@/components/Sidebar/CategoryList';
-import TagList from '@/components/Sidebar/TagList';
+import TaxonomyList from '@/components/Sidebar/TaxonomyList';
+import { SidebarTaxonomies } from '@/lib/cms/taxonomy/type';
+import { device } from '@/share/media-query';
+import { SearchJson } from '@/types/search-posts';
 
 type Props = {
-  taxonomies: CategoriesAndTags;
+  taxonomies: SidebarTaxonomies;
   searchPosts: SearchJson[];
 };
 
 const Sidebar: React.FC<Props> = ({ taxonomies, searchPosts }) => {
+  const { categories, tags } = taxonomies;
+
   return (
     <BlogSidebar>
       <SearchBox searchPosts={searchPosts} />
       <Profile />
-      <CategoryList categories={taxonomies.categories} />
-      <TagList tags={taxonomies.tags} />
+      <TaxonomyList title="カテゴリー" categories={categories} />
+      <TaxonomyList title="タグ" tags={tags} />
     </BlogSidebar>
   );
 };

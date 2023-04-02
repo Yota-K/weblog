@@ -2,14 +2,14 @@ import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { AppProps } from 'next/app';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { config } from '@/config/app';
-import { CategoriesAndTags } from '@/types/taxonomy';
-import { SearchJson } from '@/types/search-posts';
-import { GlobalStyle } from '@/share/GlobalStyle';
-import { device } from '@/share/media-query';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
+import { config } from '@/config/app';
+import { device } from '@/share/media-query';
+import { GlobalStyle } from '@/share/GlobalStyle';
+import { SidebarTaxonomies } from '@/lib/cms/taxonomy/type';
+import { SearchJson } from '@/types/search-posts';
 import 'highlight.js/styles/base16/materia.css';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
@@ -27,7 +27,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     },
   ]);
 
-  const [taxonomies, setTaxonomies] = useState<CategoriesAndTags>({
+  const [taxonomies, setTaxonomies] = useState<SidebarTaxonomies>({
     categories: [],
     tags: [],
   });

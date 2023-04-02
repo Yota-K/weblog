@@ -1,4 +1,3 @@
-import { BuildTaxonomyPaginateList } from '@/types/taxonomy';
 import { config } from '@/config/app';
 
 type Result = {
@@ -11,6 +10,14 @@ type Result = {
 type SlugAly = {
   slug: string;
   count: number;
+};
+
+// カテゴリーページとタグページのビルドを行う際に使用する型定義
+type BuildTaxonomyPaginateList = {
+  id: string;
+  posts: {
+    id: string;
+  }[];
 };
 
 export const generateBuildPaginatePath = (contents: BuildTaxonomyPaginateList[]): Result => {
