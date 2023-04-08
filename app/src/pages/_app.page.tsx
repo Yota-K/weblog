@@ -7,7 +7,6 @@ import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import { config } from '@/config/app';
 import { device } from '@/share/media-query';
-import { GlobalStyle } from '@/share/GlobalStyle';
 import { SidebarTaxonomies } from '@/lib/cms/taxonomy/type';
 import { SearchJson } from '@/types/search-posts';
 import 'highlight.js/styles/base16/materia.css';
@@ -60,7 +59,6 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 
   return (
     <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY || ''} language="ja">
-      <GlobalStyle />
       <Header siteTitle={siteTitle} searchPosts={searchPosts} />
       <Wrapper>
         <Component {...pageProps} />

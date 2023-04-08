@@ -1,46 +1,9 @@
-import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
-import { ServerStyleSheet } from 'styled-components';
+import { globalStyles } from '@/share/GlobalStyle';
 
 // MEMO: SSR時のみ実行される
 class MyDocument extends Document {
-  // SSR実行時に生成されるページの処理をカスタマイズする
-  // css-in-js系のライブラリを使用する場合にカスタマイズが必要になる
-  //
-  // 公式: https://nextjs.org/docs/advanced-features/custom-document#customizing-renderpage
-  // https://dev.to/aprietof/nextjs--styled-components-the-really-simple-guide----101c
-  static async getInitialProps(context: DocumentContext) {
-    const sheet = new ServerStyleSheet();
-
-    try {
-      // SSRを行うページ？？
-      const page = context.renderPage;
-
-      // ページ内のコンポーネントからスタイルを取得する
-      context.renderPage = () =>
-        page({
-          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
-        });
-
-      // 継承元のクラスのgetInitialPropsを実行する
-      const initialProps = await Document.getInitialProps(context);
-
-      // スプレッド構文で上書き
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {/* スタイルをスタイルタグとして出力する */}
-            {sheet.getStyleElement()}
-          </>
-        ),
-      };
-    } finally {
-      sheet.seal();
-    }
-  }
-
   render() {
     const GA_TRACKING_ID = 'G-Y2MDQ3RC4V';
 
@@ -67,6 +30,7 @@ class MyDocument extends Document {
             `,
             }}
           />
+          <style>{globalStyles}</style>
         </Head>
         <body>
           <Main />
