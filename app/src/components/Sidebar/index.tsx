@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// TODO: 身分証明がなくて、アドセンスが消えた（なる早で身分証明証を取得する）
-// import GoogleAdsense from '@/components/GoogleAdsense';
+import GoogleAdsense from '@/components/GoogleAdsense';
 import SearchBox from '@/components/Sidebar/SearchBox';
 import Profile from '@/components/Sidebar/Profile';
 import TaxonomyList from '@/components/Sidebar/TaxonomyList';
@@ -19,6 +18,7 @@ const Sidebar: React.FC<Props> = ({ taxonomies, searchPosts }) => {
 
   return (
     <BlogSidebar>
+      <GoogleAdsense />
       <SearchBox searchPosts={searchPosts} />
       <Profile />
       <TaxonomyList title="カテゴリー" categories={categories} />
