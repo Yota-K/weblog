@@ -1,5 +1,6 @@
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { AppProps } from 'next/app';
+import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Footer from '@/components/Footer';
@@ -59,15 +60,20 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   return (
-    <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY || ''} language="ja">
-      <GlobalStyle />
-      <Header siteTitle={siteTitle} searchPosts={searchPosts} />
-      <Wrapper>
-        <Component {...pageProps} />
-        <Sidebar taxonomies={taxonomies} searchPosts={searchPosts} />
-      </Wrapper>
-      <Footer siteTitle={siteTitle} />
-    </GoogleReCaptchaProvider>
+    <>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY || ''} language="ja">
+        <GlobalStyle />
+        <Header siteTitle={siteTitle} searchPosts={searchPosts} />
+        <Wrapper>
+          <Component {...pageProps} />
+          <Sidebar taxonomies={taxonomies} searchPosts={searchPosts} />
+        </Wrapper>
+        <Footer siteTitle={siteTitle} />
+      </GoogleReCaptchaProvider>
+    </>
   );
 };
 
