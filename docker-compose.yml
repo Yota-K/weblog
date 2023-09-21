@@ -9,4 +9,4 @@ services:
       - 3000:3000
     volumes:
       - ./app:/app
-    command: npm run dev
+    command: pnpm dev
