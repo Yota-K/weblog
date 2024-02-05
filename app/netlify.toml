@@ -25,7 +25,7 @@
 
 # ビルドの設定
 [build]
-  command = 'npm run build'
+  command = 'pnpm build'
   publish = '.next'
   functions = 'out_functions'
 

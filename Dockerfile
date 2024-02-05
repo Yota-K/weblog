@@ -1,9 +1,12 @@
-FROM node:16-alpine
+FROM node:18-alpine
 
 RUN apk update
 
-RUN npm install -g ts-node typescript npm-check-updates
-
-ENV NODE_PATH /usr/local/lib/node_modules
+# pnpm config set store-dir /root/.local/share/pnpm/storeを実行してストアディレクトリを変更しないと、
+# pnpm installするときにエラーが発生した。
+RUN npm install --global pnpm@latest \
+  && SHELL=bash pnpm setup \
+  && source /root/.bashrc \
+  && pnpm config set store-dir /root/.local/share/pnpm/store
 
 WORKDIR /app

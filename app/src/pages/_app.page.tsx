@@ -1,5 +1,6 @@
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { AppProps } from 'next/app';
+import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Footer from '@/components/Footer';
@@ -12,7 +13,7 @@ import { SidebarTaxonomies } from '@/lib/cms/taxonomy/type';
 import { SearchJson } from '@/types/search-posts';
 import 'highlight.js/styles/base16/materia.css';
 
-const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const { siteTitle } = config.siteInfo;
 
   const [searchPosts, setSearchPosts] = useState<SearchJson[]>([
@@ -59,15 +60,20 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   }, []);
 
   return (
-    <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY || ''} language="ja">
-      <GlobalStyle />
-      <Header siteTitle={siteTitle} searchPosts={searchPosts} />
-      <Wrapper>
-        <Component {...pageProps} />
-        <Sidebar taxonomies={taxonomies} searchPosts={searchPosts} />
-      </Wrapper>
-      <Footer siteTitle={siteTitle} />
-    </GoogleReCaptchaProvider>
+    <>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY || ''} language="ja">
+        <GlobalStyle />
+        <Header siteTitle={siteTitle} searchPosts={searchPosts} />
+        <Wrapper>
+          <Component {...pageProps} />
+          <Sidebar taxonomies={taxonomies} searchPosts={searchPosts} />
+        </Wrapper>
+        <Footer siteTitle={siteTitle} />
+      </GoogleReCaptchaProvider>
+    </>
   );
 };
 
