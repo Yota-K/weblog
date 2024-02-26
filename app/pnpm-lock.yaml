@@ -44,8 +44,8 @@ devDependencies:
     specifier: 18.11.9
     version: 18.11.9
   '@types/react':
-    specifier: 18.0.25
-    version: 18.0.25
+    specifier: 18.2.59
+    version: 18.2.59
   '@types/react-dom':
     specifier: 18.0.8
     version: 18.0.8
@@ -1058,7 +1058,7 @@ packages:
   /@types/hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-YIQtIg4PKr7ZyqNPZObpxfHsHEmuB8dXCxd6qVcGuQVDK2bpsF7bYNnBJ4Nn7giuACZg+WewExgrtAJ3XnA4Xw==}
     dependencies:
-      '@types/react': 18.0.25
+      '@types/react': 18.2.59
       hoist-non-react-statics: 3.3.2
     dev: true
 
@@ -1100,30 +1100,30 @@ packages:
   /@types/react-dom@18.0.8:
     resolution: {integrity: sha512-C3GYO0HLaOkk9dDAz3Dl4sbe4AKUGTCfFIZsz3n/82dPNN8Du533HzKatDxeUYWu24wJgMP1xICqkWk1YOLOIw==}
     dependencies:
-      '@types/react': 18.0.25
+      '@types/react': 18.2.59
     dev: true
 
   /@types/react-lazy-load-image-component@1.5.2:
     resolution: {integrity: sha512-4NLJsMJVrMv18FuMIkUUBVj/PH9A+BvLKrZC75EWiEFn1IsMrZHgL1tVKw5QBfoa0Qjz6SkWIzEvwcyZ8PgnIg==}
     dependencies:
-      '@types/react': 18.0.25
+      '@types/react': 18.2.59
       csstype: 3.1.2
     dev: true
 
   /@types/react-scroll@1.8.3:
     resolution: {integrity: sha512-Xt0+Y58pwrIv+vRFxcyKDoo0gBWBR2eNMJ4XRMhQpZdGUtmjnszPi/wFEJSAY+5r83ypJsSA+hOpSc3hRpYlWw==}
     dependencies:
-      '@types/react': 18.0.25
+      '@types/react': 18.2.59
     dev: true
 
   /@types/react-share@3.0.3:
     resolution: {integrity: sha512-GpKAVNbwMBgad0995uVLkOdKWp3CjCrvIeUt4qZcsrgLtf7SMR7gIfMgC9X2rsfLgN6saT/nr2T4QLJE9cCZiA==}
     dependencies:
-      '@types/react': 18.0.25
+      '@types/react': 18.2.59
     dev: true
 
-  /@types/react@18.0.25:
-    resolution: {integrity: sha512-xD6c0KDT4m7n9uD4ZHi02lzskaiqcBxf4zi+tXZY98a04wvc0hi/TcCPC2FOESZi51Nd7tlUeOJY8RofL799/g==}
+  /@types/react@18.2.59:
+    resolution: {integrity: sha512-DE+F6BYEC8VtajY85Qr7mmhTd/79rJKIHCg99MU9SWPB4xvLb6D1za2vYflgZfmPqQVEr6UqJTnLXEwzpVPuOg==}
     dependencies:
       '@types/prop-types': 15.7.6
       '@types/scheduler': 0.16.3
@@ -1144,7 +1144,7 @@ packages:
     resolution: {integrity: sha512-mz0fzq2nez+Lq5IuYammYwWgyLUE6OMAJTQL9D8hFLP4Pkh7gVYJii/VQWxq8/TK34g/OrkehXaFNdcEKcItug==}
     dependencies:
       '@types/hoist-non-react-statics': 3.3.2
-      '@types/react': 18.0.25
+      '@types/react': 18.2.59
       csstype: 3.1.2
     dev: true
 
