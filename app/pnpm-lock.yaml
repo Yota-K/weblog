@@ -21,8 +21,8 @@ dependencies:
     specifier: ^1.9.7
     version: 1.9.7(react-dom@18.2.0)(react@18.2.0)
   react-is:
-    specifier: ^17.0.2
-    version: 17.0.2
+    specifier: ^18.2.0
+    version: 18.2.0
 
 devDependencies:
   '@babel/core':
@@ -123,7 +123,7 @@ devDependencies:
     version: 7.1.1
   styled-components:
     specifier: ^5.3.3
-    version: 5.3.3(react-dom@18.2.0)(react-is@17.0.2)(react@18.2.0)
+    version: 5.3.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
   ts-node:
     specifier: ^10.6.0
     version: 10.6.0(@types/node@18.11.9)(typescript@4.8.4)
@@ -1541,7 +1541,7 @@ packages:
       babel-plugin-syntax-jsx: 6.18.0
       lodash: 4.17.21
       picomatch: 2.3.1
-      styled-components: 5.3.3(react-dom@18.2.0)(react-is@17.0.2)(react@18.2.0)
+      styled-components: 5.3.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
     dev: true
 
   /babel-plugin-syntax-jsx@6.18.0:
@@ -3832,8 +3832,8 @@ packages:
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  /react-is@17.0.2:
-    resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
+  /react-is@18.2.0:
+    resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
 
   /react-lazy-load-image-component@1.5.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-grTEZzURLHPkq7JoipcBBQU44ijdF4fH3Cb+eSD5eSAaMsjugbXqTaVWm5ruPUNLduoNR9KKQF6bOR9h2WphEg==}
@@ -4196,7 +4196,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /styled-components@5.3.3(react-dom@18.2.0)(react-is@17.0.2)(react@18.2.0):
+  /styled-components@5.3.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-++4iHwBM7ZN+x6DtPPWkCI4vdtwumQ+inA/DdAsqYd4SVgUKJie5vXyzotA00ttcFdQkCng7zc6grwlfIfw+lw==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -4214,7 +4214,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-is: 17.0.2
+      react-is: 18.2.0
       shallowequal: 1.1.0
       supports-color: 5.5.0
     dev: true
