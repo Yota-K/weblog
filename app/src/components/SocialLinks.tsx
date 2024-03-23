@@ -1,5 +1,5 @@
 import React from 'react';
-import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
+import { FacebookIcon, FacebookShareButton, TwitterShareButton, XIcon } from 'react-share';
 
 type Props = {
   url: string;
@@ -9,7 +9,7 @@ const SocialLinks: React.FC<Props> = ({ url }) => {
   return (
     <>
       <TwitterShareButton url={url}>
-        <TwitterIcon size={42} round />
+        <XIcon size={42} round />
       </TwitterShareButton>
       <FacebookShareButton url={url}>
         <FacebookIcon size={42} round />
