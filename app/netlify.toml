@@ -1,35 +1,40 @@
-# 記事一覧
+# # 記事一覧
+# [[redirects]]
+#   from = 'https://karukichi-blog.netlify.app/page/1'
+#   to = 'https://karukichi-blog.netlify.app/'
+#   status = 301
+#   force = true
+#
+# # カテゴリーに紐付く投稿一覧
+# [[redirects]]
+#   from = '/category/*/1'
+#   to = '/category/:splat'
+#   status = 301
+#   force = true
+#
+# # タグに紐付く投稿一覧
+# [[redirects]]
+#   from = '/tags/*/1'
+#   to = '/tags/:splat'
+#   status = 301
+#   force = true
+#
+# # 環境変数の設定
+# [context.branch-deploy.environment]
+#   NEXT_STAGING_ENV = 'staging'
+#
+# # ビルドの設定
+# [build]
+#   command = 'pnpm build'
+#   publish = '.next'
+#   functions = 'out_functions'
+#
+# # プラグインの設定
+# [[plugins]]
+#   # NetlifyでNext.jsをサポートするためのプラグイン
+#   package = "@netlify/plugin-nextjs"
 [[redirects]]
-  from = 'https://karukichi-blog.netlify.app/page/1'
-  to = 'https://karukichi-blog.netlify.app/'
-  status = 301
-  force = true
-
-# カテゴリーに紐付く投稿一覧
-[[redirects]]
-  from = '/category/*/1'
-  to = '/category/:splat'
-  status = 301
-  force = true
-
-# タグに紐付く投稿一覧
-[[redirects]]
-  from = '/tags/*/1'
-  to = '/tags/:splat'
-  status = 301
-  force = true
-
-# 環境変数の設定
-[context.branch-deploy.environment]
-  NEXT_STAGING_ENV = 'staging'
-
-# ビルドの設定
-[build]
-  command = 'pnpm build'
-  publish = '.next'
-  functions = 'out_functions'
-
-# プラグインの設定
-[[plugins]]
-  # NetlifyでNext.jsをサポートするためのプラグイン
-  package = "@netlify/plugin-nextjs"
+    from = "/*"
+    to = "https://karukichi-blog.com"
+    status = 301
+    force = true
