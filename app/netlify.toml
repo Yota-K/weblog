@@ -23,16 +23,16 @@
 # [context.branch-deploy.environment]
 #   NEXT_STAGING_ENV = 'staging'
 #
-# # ビルドの設定
-# [build]
-#   command = 'pnpm build'
-#   publish = '.next'
-#   functions = 'out_functions'
-#
-# # プラグインの設定
-# [[plugins]]
-#   # NetlifyでNext.jsをサポートするためのプラグイン
-#   package = "@netlify/plugin-nextjs"
+# ビルドの設定
+[build]
+  command = 'pnpm build'
+  publish = '.next'
+  functions = 'out_functions'
+
+# プラグインの設定
+[[plugins]]
+  # NetlifyでNext.jsをサポートするためのプラグイン
+  package = "@netlify/plugin-nextjs"
 [[redirects]]
     from = "/*"
     to = "https://karukichi-blog.com"
